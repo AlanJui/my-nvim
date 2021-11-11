@@ -1,4 +1,5 @@
--- Essential configuration
+-- Essential configuration on development init.lua
+-----------------------------------------------------------
 -- Tabs
 vim.bo.expandtab = true
 vim.bo.shiftwidth = 4
@@ -10,6 +11,10 @@ vim.wo.relativenumber = true
 vim.opt.textwidth = 0
 vim.opt.wrapmargin = 0
 vim.wo.wrap = false
+
+-- Configurations for Neovim
+-----------------------------------------------------------
+require('configs')
 
 -- Plugin Manager: install plugins
 -----------------------------------------------------------
@@ -33,7 +38,11 @@ require('packer').startup({ function()
     use 'lukas-reineke/indent-blankline.nvim'
 
     -- Auto close parentheses and repeat by dot dot dot ...
-    use 'jiangmiao/auto-pairs'
+    -- use 'jiangmiao/auto-pairs'
+	use {
+		'windwp/nvim-autopairs',
+		config = [[ require('plugins.autopairs') ]]
+	}
 
     -- surroundings: parentheses, brackets, quotes, XML tags, and more
     use 'tpope/vim-surround'
@@ -107,7 +116,7 @@ require('packer').startup({ function()
 	}
 
 	-- colorscheme for neovim written in lua specially made for roshnvim
-	use { 'shaeinst/roshnivm-cs' }
+	use { 'shaeinst/roshnivim-cs' }
 
 	-- Fuzzy files finder
 	use {
