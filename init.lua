@@ -22,8 +22,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 local use = require('packer').use
-return require('packer').startup({
-  function()
+require('packer').startup({ function()
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
@@ -70,6 +69,35 @@ return require('packer').startup({
     }
 
     -- A completion plugin for neovim coded in Lua.
+	use {
+		'hrsh7th/nvim-cmp',
+		requires = {
+			-- nvim-cmp source for neovim builtin LSP client
+			'hrsh7th/cmp-nvim-lsp',
+			-- nvim-cmp source for nvim lua
+			'hrsh7th/cmp-nvim-lua',
+			-- nvim-cmp source for buffer words
+			'hrsh7th/cmp-buffer',
+			-- nvim-cmp source for filesystem paths
+			'hrsh7th/cmp-path',
+			-- nvim-cmp source for math calculation
+			'hrsh7th/cmp-calc',
+
+			-- LuaSnip completion source for nvim-cmp
+			'saadparwaiz1/cmp_luasnip',
+		},
+      	config = [[ require('plugins/cmp') ]]
+	}
+
+	-- Snippet Engine for Neovim written in Lua.
+	use {
+		'L3MON4D3/LuaSnip',
+		requires = {
+			-- Snippets collection for a set of different programming languages for faster development
+			'rafamadriz/friendly-snippets',
+		},
+		config = [[ require('plugins/luasnip') ]]
+	}
   end,
 
   config = {
@@ -89,3 +117,19 @@ return require('packer').startup({
 
 -- Color scheme: for syntax highlighting
 -----------------------------------------------------------
+
+-- Key bindings
+-- --------------------------------------------------------
+local keymap = require('utils.set_keymap')
+local opts = { silent = true, noremap = true }
+
+vim.g.maplocalleader = ','
+
+keymap('i', 'jj', '<Esc>', opts)
+keymap('n', 'H', '0', opts)
+keymap('n', 'L', '$', opts)
+keymap('n', 'X', 'd$', opts)
+keymap('n', 'Y', 'y$', opts)
+
+keymap('n', '\\', ':Explore<CR>', opts)
+keymap('n', '<LocalLeader>f', ':!ls<CR>:e', opts)
