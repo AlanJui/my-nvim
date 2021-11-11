@@ -45,27 +45,27 @@ require('packer').startup({ function()
     -- server client
     use {
       'neovim/nvim-lspconfig',
-      config = [[ require('plugins/lspconfig') ]]
+      config = [[ require('plugins.lspconfig') ]]
     }
 
     -- companion plugin for nvim-lspconfig that allows you to seamlessly
     -- install LSP servers locally
     use {
       'williamboman/nvim-lsp-installer',
-      config = [[ require('plugins/lsp_installer_nvim') ]]
+      config = [[ require('plugins.lsp_installer_nvim') ]]
     }
 
     -- vscode-like pictograms for neovim lsp completion items Topics
     use {
       'onsails/lspkind-nvim',
-      config = [[ require('plugins/lspkind') ]]
+      config = [[ require('plugins.lspkind') ]]
     }
 
     -- Utility functions for getting diagnostic status and progress messages
     -- from LSP servers, for use in the Neovim statusline
     use {
       'nvim-lua/lsp-status.nvim',
-      config = [[ require('plugins/lspstatus') ]]
+      config = [[ require('plugins.lspstatus') ]]
     }
 
     -- A completion plugin for neovim coded in Lua.
@@ -86,7 +86,7 @@ require('packer').startup({ function()
 			-- LuaSnip completion source for nvim-cmp
 			'saadparwaiz1/cmp_luasnip',
 		},
-      	config = [[ require('plugins/cmp') ]]
+      	config = [[ require('plugins.cmp') ]]
 	}
 
 	-- Snippet Engine for Neovim written in Lua.
@@ -96,8 +96,27 @@ require('packer').startup({ function()
 			-- Snippets collection for a set of different programming languages for faster development
 			'rafamadriz/friendly-snippets',
 		},
-		config = [[ require('plugins/luasnip') ]]
+		config = [[ require('plugins.luasnip') ]]
 	}
+
+	-- Nvim Treesitter configurations and abstraction layer
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		run = ':TSUpdate',
+		config = [[ require('plugins.treesitter') ]]
+	}
+
+	-- colorscheme for neovim written in lua specially made for roshnvim
+	use { 'shaeinst/roshnivm-cs' }
+
+	-- Fuzzy files finder
+	use {
+		'nvim-telescope/telescope.nvim',
+		requires = {
+			{ 'nvim-lua/plenary.nvim', }
+		}
+	}
+
   end,
 
   config = {
@@ -132,4 +151,4 @@ keymap('n', 'X', 'd$', opts)
 keymap('n', 'Y', 'y$', opts)
 
 keymap('n', '\\', ':Explore<CR>', opts)
-keymap('n', '<LocalLeader>f', ':!ls<CR>:e', opts)
+keymap('n', '<LocalLeader>f', ':Telescope<CR>', opts)
