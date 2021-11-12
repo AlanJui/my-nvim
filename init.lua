@@ -12,19 +12,44 @@ vim.opt.textwidth = 0
 vim.opt.wrapmargin = 0
 vim.wo.wrap = false
 
--- Configurations for Neovim
------------------------------------------------------------
-require('configs')
-
 -- Plugin Manager: install plugins
 -----------------------------------------------------------
 local execute = vim.api.nvim_command
 local fn = vim.fn
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+-- local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+-- local is_empty = require('utils.is_empty')
+local is_empty = function(str)
+	return str == nil or str == ''
+end
+local home_path = os.getenv('HOME')
+
+local my_nvim
+local nvim_config_path
+local package_root
+local compile_path
+local install_path
+
+my_nvim = os.getenv('MY_NVIM')
+if is_empty(my_nvim) then
+	my_nvim = 'nvim'
+	nvim_config_path = home_path .. '/.config/' .. my_nvim
+	package_root = home_path .. '/.local/share/' .. my_nvim .. '/site/pack'
+else
+	nvim_config_path = os.getenv('NVIM_CONFIG_DIR')
+	package_root = os.getenv('NVIM_RUNTIME_DIR') .. '/site/pack'
+end
+compile_path = nvim_config_path .. '/plugin/packer_compiled.lua'
+install_path = package_root .. '/packer/start/packer.nvim'
+
 if fn.empty(fn.glob(install_path)) > 0 then
   fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
   execute 'packadd packer.nvim'
 end
+
+require('packer').init({
+	package_root = package_root,
+	compile_path = compile_path,
+})
 
 local use = require('packer').use
 require('packer').startup({ function()
@@ -112,11 +137,14 @@ require('packer').startup({ function()
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate',
-		config = [[ require('plugins.treesitter') ]]
+		-- config = [[ require('plugins.treesitter') ]]
+		config = [[ require('plugins.nvim-treesitter') ]]
 	}
+	-- Additional textobjects for treesitter
+	use 'nvim-treesitter/nvim-treesitter-textobjects'
 
 	-- colorscheme for neovim written in lua specially made for roshnvim
-	use { 'shaeinst/roshnivim-cs' }
+	-- use { 'shaeinst/roshnivim-cs' }
 
 	-- Fuzzy files finder
 	use {
@@ -125,6 +153,37 @@ require('packer').startup({ function()
 			{ 'nvim-lua/plenary.nvim', }
 		}
 	}
+
+	-- Status Line
+	use {
+		'yamatsum/nvim-nonicons',
+		requires = { 'kyazdani42/nvim-web-devicons' }
+	}
+	use {
+		'glepnir/galaxyline.nvim',
+		branch = 'main',
+		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+		config = function() require('plugins.galaxyline.angeline') end
+		-- config = [[ require('plugins.galaxyline.spaceline') ]]
+		-- config = [[ require('plugins.galaxyline.bubbles') ]]
+	}
+	-- -- use 'itchyny/lightline.vim' -- Fancier statusline
+	-- use {
+	-- 	'nvim-lualine/lualine.nvim',
+	-- 	requires = {'kyazdani42/nvim-web-devicons', opt = true},
+	-- 	config = [[ require('plugins.lualine') ]]
+	-- }
+	-- use { 'arkav/lualine-lsp-progress' }
+	-- use {
+	-- 	'kdheepak/tabline.nvim',
+	-- 	config = function ()
+	-- 		require('tabline').setup({ enable = false })
+	-- 	end,
+	-- 	require = {
+	-- 		'hoob3rt/lualine.nvim',
+	-- 		'kyazdani42/nvim-web-devicons'
+	-- 	}
+	-- }
 
   end,
 
@@ -145,6 +204,14 @@ require('packer').startup({ function()
 
 -- Color scheme: for syntax highlighting
 -----------------------------------------------------------
+
+-- Configurations for Neovim
+-----------------------------------------------------------
+require('configs')
+
+-- Themes
+vim.o.termguicolors = true
+vim.cmd([[ run time ./colors/NeoSolarized.vim ]])
 
 -- Key bindings
 -- --------------------------------------------------------

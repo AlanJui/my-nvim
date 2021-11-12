@@ -7,8 +7,8 @@ local cmd   = vim.cmd           -- execute Vim commands
 -- local b     = vim.bo            -- buffer-scoped options
 -- local w     = vim.wo            -- windows-scoped options
 
-cmd('autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=grey') --to Show whitespace, MUST be inserted BEFORE the colorscheme command
-cmd('colorscheme rvcs')
+-- cmd('autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=grey') --to Show whitespace, MUST be inserted BEFORE the colorscheme command
+-- cmd('colorscheme rvcs')
 set.guifont		      = 'DroidSansMono Nerd Font 11'
 set.termguicolors   = true      -- Enable GUI colors for the terminal to get truecolor
 set.list            = false      -- show whitespace
@@ -53,7 +53,6 @@ set.splitright      = true      -- open vertical splits to the right of the curr
 set.laststatus      = 2         -- always show status line
 --set.colorcolumn = "79"        -- vertical word limit line
 
-
 set.hidden          = true      -- allows you to hide buffers with unsaved changes without being prompted
 set.inccommand      = 'split'   -- live preview of :s results
 set.shell           = 'zsh'     -- shell to use for `!`, `:!`, `system()` etc.
@@ -84,7 +83,9 @@ cmd([[au BufEnter * set fo-=c fo-=r fo-=o]])
 set.completeopt = 'menuone,noselect,noinsert'
 
 -- 4 spaces for selected filetypes
-cmd([[ autocmd FileType python, lua setlocal shiftwidth=4 tabstop=4 ]])
+cmd([[ autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 smartindent ]])
+cmd([[ autocmd FileType python set foldmethod=indent foldlevel=99 ]])
+cmd([[ autocmd FileType lua setlocal shiftwidth=4 tabstop=4 ]])
 -- 2 spaces for selected filetypes
 cmd([[ autocmd FileType xml, html, xhtml, css, scss, javascript, dart setlocal shiftwidth=2 tabstop=2 ]])
 -- json
