@@ -1,0 +1,12 @@
+#!/bin/sh
+
+export MY_NVIM="web-nvim"
+export NVIM_CONFIG_DIR="$HOME/.config/$MY_NVIM"
+export NVIM_RUNTIME_DIR="$HOME/.local/share/$MY_NVIM"
+#ln -fns "$NVIM_CONFIG_DIR" "$HOME/.config/nvim"
+
+exec nvim -u "$NVIM_CONFIG_DIR/init.lua" "$@"
+
+unset NVIM_RUNTIME_DIR
+unset NVIM_CONFIG_DIR
+unset MY_NVIM
