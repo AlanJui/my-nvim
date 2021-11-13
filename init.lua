@@ -42,8 +42,8 @@ compile_path = nvim_config_path .. '/plugin/packer_compiled.lua'
 install_path = package_root .. '/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
-  execute 'packadd packer.nvim'
+	fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
+	execute 'packadd packer.nvim'
 end
 
 require('packer').init({
@@ -53,56 +53,68 @@ require('packer').init({
 
 local use = require('packer').use
 require('packer').startup({ function()
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
+	-----------------------------------------------------------
+	-- Essential plugins
+	-----------------------------------------------------------
 
-    -- Causes all trailing whitespace characters to be highlighted
-    use 'ntpeters/vim-better-whitespace'
+	-- Packer can manage itself
+	use 'wbthomason/packer.nvim'
 
-    -- Add indentation guides even on blank lines
-    use 'lukas-reineke/indent-blankline.nvim'
+	-- Causes all trailing whitespace characters to be highlighted
+	use 'ntpeters/vim-better-whitespace'
 
-    -- Auto close parentheses and repeat by dot dot dot ...
-    -- use 'jiangmiao/auto-pairs'
+	-- Add indentation guides even on blank lines
+	use 'lukas-reineke/indent-blankline.nvim'
+
+	-- Auto close parentheses and repeat by dot dot dot ...
+	-- use 'jiangmiao/auto-pairs'
 	use {
 		'windwp/nvim-autopairs',
 		config = [[ require('plugins.autopairs') ]]
 	}
 
-    -- surroundings: parentheses, brackets, quotes, XML tags, and more
-    use 'tpope/vim-surround'
+	-- surroundings: parentheses, brackets, quotes, XML tags, and more
+	use 'tpope/vim-surround'
 
-    -- Toggle comments in Neovim
-    use 'terrortylor/nvim-comment'
+	-- Toggle comments in Neovim
+	use 'terrortylor/nvim-comment'
 
-    -- A collection of common configurations for Neovim's built-in language
-    -- server client
-    use {
-      'neovim/nvim-lspconfig',
-      config = [[ require('plugins.lspconfig') ]]
-    }
+	-----------------------------------------------------------
+	-- LSP/LspInstaller: configurations for the Nvim LSP client
+	-----------------------------------------------------------
 
-    -- companion plugin for nvim-lspconfig that allows you to seamlessly
-    -- install LSP servers locally
-    use {
-      'williamboman/nvim-lsp-installer',
-      config = [[ require('plugins.lsp_installer_nvim') ]]
-    }
+	-- A collection of common configurations for Neovim's built-in language
+	-- server client
+	use {
+		'neovim/nvim-lspconfig',
+		config = [[ require('plugins.lspconfig') ]]
+	}
 
-    -- vscode-like pictograms for neovim lsp completion items Topics
-    use {
-      'onsails/lspkind-nvim',
-      config = [[ require('plugins.lspkind') ]]
-    }
+	-- companion plugin for nvim-lspconfig that allows you to seamlessly
+	-- install LSP servers locally
+	use {
+		'williamboman/nvim-lsp-installer',
+		config = [[ require('plugins.lsp_installer_nvim') ]]
+	}
 
-    -- Utility functions for getting diagnostic status and progress messages
-    -- from LSP servers, for use in the Neovim statusline
-    use {
-      'nvim-lua/lsp-status.nvim',
-      config = [[ require('plugins.lspstatus') ]]
-    }
+	-- vscode-like pictograms for neovim lsp completion items Topics
+	use {
+		'onsails/lspkind-nvim',
+		config = [[ require('plugins.lspkind') ]]
+	}
 
-    -- A completion plugin for neovim coded in Lua.
+	-- Utility functions for getting diagnostic status and progress messages
+	-- from LSP servers, for use in the Neovim statusline
+	use {
+		'nvim-lua/lsp-status.nvim',
+		config = [[ require('plugins.lspstatus') ]]
+	}
+
+	-----------------------------------------------------------
+	-- Completion: for auto-completion/suggestion/snippets
+	-----------------------------------------------------------
+
+	-- A completion plugin for neovim coded in Lua.
 	use {
 		'hrsh7th/nvim-cmp',
 		requires = {
@@ -120,7 +132,7 @@ require('packer').startup({ function()
 			-- LuaSnip completion source for nvim-cmp
 			'saadparwaiz1/cmp_luasnip',
 		},
-      	config = [[ require('plugins.cmp') ]]
+		config = [[ require('plugins.cmp') ]]
 	}
 
 	-- Snippet Engine for Neovim written in Lua.
@@ -133,6 +145,10 @@ require('packer').startup({ function()
 		config = [[ require('plugins.luasnip') ]]
 	}
 
+	-----------------------------------------------------------
+	-- Treesitter: for better syntax
+	-----------------------------------------------------------
+
 	-- Nvim Treesitter configurations and abstraction layer
 	use {
 		'nvim-treesitter/nvim-treesitter',
@@ -142,6 +158,10 @@ require('packer').startup({ function()
 	}
 	-- Additional textobjects for treesitter
 	use 'nvim-treesitter/nvim-treesitter-textobjects'
+
+	-----------------------------------------------------------
+	-- User Interface
+	-----------------------------------------------------------
 
 	-- colorscheme for neovim written in lua specially made for roshnvim
 	-- use { 'shaeinst/roshnivim-cs' }
@@ -185,25 +205,13 @@ require('packer').startup({ function()
 	-- 	}
 	-- }
 
-  end,
+end,
 
-  config = {
-    -- Move to lua dir so impatient.nvim can cache it
-    compile_path = fn.stdpath('config') .. '/plugin/packer_compiled.lua'
-  }
+	config = {
+		-- Move to lua dir so impatient.nvim can cache it
+		compile_path = fn.stdpath('config') .. '/plugin/packer_compiled.lua'
+	}
 })
-
--- LSP/LspInstaller: configurations for the Nvim LSP client
------------------------------------------------------------
-
--- Completion: for auto-completion/suggestion/snippets
------------------------------------------------------------
-
--- Treesitter: for better syntax
------------------------------------------------------------
-
--- Color scheme: for syntax highlighting
------------------------------------------------------------
 
 -- Configurations for Neovim
 -----------------------------------------------------------
