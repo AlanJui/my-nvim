@@ -9,9 +9,9 @@ local cmd   = vim.cmd           -- execute Vim commands
 
 -- cmd('autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=grey') --to Show whitespace, MUST be inserted BEFORE the colorscheme command
 -- cmd('colorscheme rvcs')
-set.guifont		      = 'DroidSansMono Nerd Font 11'
+set.guifont		    = 'DroidSansMono Nerd Font 11'
 set.termguicolors   = true      -- Enable GUI colors for the terminal to get truecolor
-set.list            = false      -- show whitespace
+set.list            = false     -- show whitespace
 set.listchars = {
     nbsp       = '⦸',      -- CIRCLED REVERSE SOLIDUS (U+29B8, UTF-8: E2 A6 B8)
     extends    = '»',      -- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
@@ -39,14 +39,14 @@ set.smartcase       = true
 set.scrolloff       = 1             -- when scrolling, keep cursor 1 lines away from screen border
 set.sidescrolloff   = 2             -- keep 30 columns visible left and right of the cursor at all times
 set.backspace       = 'indent,start,eol' -- make backspace behave like normal again
---set.mouse = "a"  		-- turn on mouse interaction
-set.updatetime      = 500              -- CursorHold interval
+set.mouse			= "a"  		-- turn on mouse interaction
+set.updatetime      = 500       -- CursorHold interval
 set.softtabstop     = 2
-set.shiftwidth      = 2             -- spaces per tab (when shifting), when using the >> or << commands, shift lines by 4 spaces
-set.tabstop         = 2             -- spaces per tab
-set.smarttab        = true          -- <tab>/<BS> indent/dedent in leading whitespace
-set.autoindent      = true          -- maintain indent of current line
-set.expandtab       = false         -- don't expand tabs into spaces
+set.shiftwidth      = 2         -- spaces per tab (when shifting), when using the >> or << commands, shift lines by 4 spaces
+set.tabstop         = 2         -- spaces per tab
+set.smarttab        = true      -- <tab>/<BS> indent/dedent in leading whitespace
+set.autoindent      = true      -- maintain indent of current line
+set.expandtab       = false     -- don't expand tabs into spaces
 set.shiftround      = true
 set.splitbelow      = true      -- open horizontal splits below current window
 set.splitright      = true      -- open vertical splits to the right of the current window
@@ -80,7 +80,7 @@ set.lazyredraw = true
 -- don't auto commenting new lines
 cmd([[au BufEnter * set fo-=c fo-=r fo-=o]])
 -- completion options
-set.completeopt = 'menuone,noselect,noinsert'
+-- set.completeopt = 'menuone,noselect,noinsert'
 
 -- 4 spaces for selected filetypes
 cmd([[ autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 smartindent ]])
