@@ -70,10 +70,16 @@ require('packer').startup({ function()
     use 'wbthomason/packer.nvim'
 
     -- Causes all trailing whitespace characters to be highlighted
-    use 'ntpeters/vim-better-whitespace'
+    use {
+        'ntpeters/vim-better-whitespace',
+        config = [[ require('plugins.telescope-nvim') ]]
+    }
 
     -- Add indentation guides even on blank lines
-    use 'lukas-reineke/indent-blankline.nvim'
+    use {
+        'lukas-reineke/indent-blankline.nvim',
+        config = [[ require('plugins.indent-blankline') ]]
+    }
 
     -- Auto close parentheses and repeat by dot dot dot ...
     -- use 'jiangmiao/auto-pairs'
@@ -86,7 +92,13 @@ require('packer').startup({ function()
     use 'tpope/vim-surround'
 
     -- Toggle comments in Neovim
-    use 'terrortylor/nvim-comment'
+    use {
+        'terrortylor/nvim-comment',
+        -- config = [[ require('plugins.nvim-comment') ]]
+        config = function ()
+            require('nvim_comment').setup()
+        end
+    }
 
     -----------------------------------------------------------
     -- LSP/LspInstaller: configurations for the Nvim LSP client
