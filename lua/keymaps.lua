@@ -34,3 +34,6 @@ keymap('n', '<C-w>|',  ':vsplit<CR>', opts)
 keymap('n', '<LocalLeader>wi', '<C-w>| <C-w>_', opts)
 keymap('n', '<LocalLeader>wo', '<C-w>=', opts)
 
+-- Tab navigation
+keymap('n', 'gT',  		  ':TablineBufferPrevious<CR>',  opts)
+keymap('n', 'gt',  		  ':TablineBufferNext<CR>',      opts)

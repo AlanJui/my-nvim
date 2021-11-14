@@ -205,31 +205,34 @@ require('packer').startup({ function()
     }
 
     -- Status Line
+    -- use {
+    --     'glepnir/galaxyline.nvim',
+    --     branch = 'main',
+    --     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    --     config = function() require('plugins.galaxyline.angeline') end
+    --     -- config = [[ require('plugins.galaxyline.spaceline') ]]
+    --     -- config = [[ require('plugins.galaxyline.bubbles') ]]
+    -- }
+    -- use 'itchyny/lightline.vim' -- Fancier statusline
     use {
-        'glepnir/galaxyline.nvim',
-        branch = 'main',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-        config = function() require('plugins.galaxyline.angeline') end
-        -- config = [[ require('plugins.galaxyline.spaceline') ]]
-        -- config = [[ require('plugins.galaxyline.bubbles') ]]
+    	'nvim-lualine/lualine.nvim',
+    	requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    	config = [[ require('plugins.lualine.bubbles') ]]
     }
-    -- -- use 'itchyny/lightline.vim' -- Fancier statusline
-    -- use {
-    -- 	'nvim-lualine/lualine.nvim',
-    -- 	requires = {'kyazdani42/nvim-web-devicons', opt = true},
-    -- 	config = [[ require('plugins.lualine') ]]
-    -- }
-    -- use { 'arkav/lualine-lsp-progress' }
-    -- use {
-    -- 	'kdheepak/tabline.nvim',
-    -- 	config = function ()
-    -- 		require('tabline').setup({ enable = false })
-    -- 	end,
-    -- 	require = {
-    -- 		'hoob3rt/lualine.nvim',
-    -- 		'kyazdani42/nvim-web-devicons'
-    -- 	}
-    -- }
+    use {
+        'arkav/lualine-lsp-progress',
+    	-- config = [[ require('plugins.lualine.lualine-lsp-progress') ]]
+    }
+    use {
+    	'kdheepak/tabline.nvim',
+    	config = function ()
+    		require('tabline').setup({ enable = false })
+    	end,
+    	require = {
+    		'hoob3rt/lualine.nvim',
+    		'kyazdani42/nvim-web-devicons'
+    	}
+    }
 
 end,
 
