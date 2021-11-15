@@ -1,10 +1,22 @@
--- lualine.lua
+-- bubbles.lua
 --
 -- Lualine has sections as shown below.
 -- +-------------------------------------------------+
 -- | A | B | C                             X | Y | Z |
 -- +-------------------------------------------------+
 
+
+--------------------------------------------------------
+local function diff_source()
+    local gitsigns = vim.b.gitsigns_status_dict
+    if gitsigns then
+        return {
+            added    = gitsigns.added,
+            modified = gitsigns.changed,
+            removed  = gitsigns.removed
+        }
+    end
+end
 
 -- stylua: ignore
 local colors = {
@@ -16,6 +28,18 @@ local colors = {
     violet = '#d183e8',
     grey   = '#303030',
 }
+-- local colors = {
+--     yellow = '#ECBE7B',
+--     cyan = '#008080',
+--     darkblue = '#081633',
+--     green = '#98be65',
+--     orange = '#FF8800',
+--     violet = '#a9a1e1',
+--     magenta = '#c678dd',
+--     blue = '#51afef',
+--     red = '#ec5f67'
+-- }
+
 
 local bubbles_theme = {
     normal = {
@@ -35,17 +59,6 @@ local bubbles_theme = {
     },
 }
 
-local function diff_source()
-    local gitsigns = vim.b.gitsigns_status_dict
-    if gitsigns then
-        return {
-            added    = gitsigns.added,
-            modified = gitsigns.changed,
-            removed  = gitsigns.removed
-        }
-    end
-end
-
 local config = {
     options = {
         theme = bubbles_theme,
@@ -56,10 +69,47 @@ local config = {
         lualine_a = {
             { 'mode', separator = { left = '' }, right_padding = 2 },
         },
-        lualine_b = { 'filename', 'branch' },
-        lualine_c = { 'fileformat', 'lsp_progress' },
-        lualine_x = {},
-        lualine_y = { 'filetype', 'progress' },
+        lualine_b = {
+            'filename',
+            'branch'
+        },
+        lualine_c = {
+            'fileformat',
+        },
+        lualine_x = {
+            {
+                'diagnostics',
+                -- table of diagnostic sources, available sources:
+                -- 'nvim_lsp', 'nvim', 'coc', 'ale', 'vim_lsp'
+                -- Or a function that returns a table like:
+                -- {error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt}
+                sources = {'nvim_lsp', 'coc'},
+                -- displays diagnostics from defined severity
+                sections = {'error', 'warn', 'info', 'hint'},
+                -- all colors are in format #rrggbb
+                diagnostic_color = {
+                    error = nil,
+                    warn  = nil,
+                    info  = nil,
+                    hint  = nil,
+                },
+                symbols = {
+                    error = ' ',
+                    warn  = ' ',
+                    info  = ' ',
+                    hint  = ' ',
+                },
+                -- Update diagnostics in insert mode
+                update_in_insert = false,
+                -- Show diagnostics even if count is 0
+                alwayw_visible = false,
+            },
+        },
+        lualine_y = {
+            'encoding',
+            'filetype',
+            'progress'
+        },
         lualine_z = {
             { 'location', separator = { right = '' }, left_padding = 2 },
         },
@@ -72,8 +122,15 @@ local config = {
         lualine_y = {},
         lualine_z = { 'location' },
     },
-    tabline = {},
-    extensions = {},
+    tabline = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { require('tabline').tabline_buffers },
+        lualine_x = { require('tabline').tabline_tabs },
+        lualine_y = {},
+        lualine_z = {},
+    },
+    extensions = {'fugitive'}
 }
 
 require('lualine').setup({
@@ -150,6 +207,7 @@ require('lualine').setup({
 })
 
 
+--------------------------------------------------------
 -- Inserts a component in lualine_c at left section
 local function ins_left(component)
     table.insert(config.sections.lualine_c, component)
@@ -162,7 +220,11 @@ end
 
 ins_left({
     'lsp_progress',
-    display_components = { 'lsp_client_name', { 'title', 'percentage', 'message' }},
+    display_components = {
+        'lsp_client_name',
+        'spinner',
+        { 'title', 'percentage', 'message' }
+    },
     -- With spinner
     -- display_components = { 'lsp_client_name', 'spinner', { 'title', 'percentage', 'message' }},
     colors = {
@@ -176,13 +238,21 @@ ins_left({
     separators = {
         component = ' ',
         progress = ' | ',
-        -- message = { pre = '(', post = ')'},
+        message = { pre = '(', post = ')'},
+        -- message = { commenced = 'In Progress', completed = 'Completed' },
         percentage = { pre = '', post = '%% ' },
         title = { pre = '', post = ': ' },
         lsp_client_name = { pre = '[', post = ']' },
         spinner = { pre = '', post = '' },
-        message = { commenced = 'In Progress', completed = 'Completed' },
     },
     timer = { progress_enddelay = 500, spinner = 1000, lsp_client_name_enddelay = 1000 },
     spinner_symbols = { '🌑 ', '🌒 ', '🌓 ', '🌔 ', '🌕 ', '🌖 ', '🌗 ', '🌘 ' },
+})
+
+require('lualine').setup({
+    options = config.options,
+    sections = config.sections,
+    inactive_sections = config.inactive_sections,
+    tabline = config.tabline,
+    extensions = config.extensions,
 })

@@ -205,18 +205,10 @@ require('packer').startup({ function()
     }
 
     -- Status Line
-    -- use {
-    --     'glepnir/galaxyline.nvim',
-    --     branch = 'main',
-    --     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-    --     config = function() require('plugins.galaxyline.angeline') end
-    --     -- config = [[ require('plugins.galaxyline.spaceline') ]]
-    --     -- config = [[ require('plugins.galaxyline.bubbles') ]]
-    -- }
-    -- use 'itchyny/lightline.vim' -- Fancier statusline
     use {
     	'nvim-lualine/lualine.nvim',
     	requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    	-- config = [[ require('plugins.lualine.material') ]]
     	config = [[ require('plugins.lualine.bubbles') ]]
     }
     use {
@@ -233,6 +225,15 @@ require('packer').startup({ function()
     		'kyazdani42/nvim-web-devicons'
     	}
     }
+    -- use {
+    --     'glepnir/galaxyline.nvim',
+    --     branch = 'main',
+    --     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    --     config = function() require('plugins.galaxyline.angeline') end
+    --     -- config = [[ require('plugins.galaxyline.spaceline') ]]
+    --     -- config = [[ require('plugins.galaxyline.bubbles') ]]
+    -- }
+    -- use 'itchyny/lightline.vim' -- Fancier statusline
 
 end,
 
