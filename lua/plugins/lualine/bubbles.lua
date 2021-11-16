@@ -19,38 +19,56 @@ local function diff_source()
     end
 end
 
--- stylua: ignore
-local colors = {
+local colors_org = {
     blue   = '#80a0ff',
     cyan   = '#79dac8',
     black  = '#080808',
     white  = '#c6c6c6',
     red    = '#ff5189',
-    violet = '#d183e8',
+    violet = '#c678dd',
     grey   = '#303030',
 }
--- local colors = {
---     yellow = '#ECBE7B',
---     cyan = '#008080',
---     darkblue = '#081633',
---     green = '#98be65',
---     orange = '#FF8800',
---     violet = '#a9a1e1',
---     magenta = '#c678dd',
---     blue = '#51afef',
---     red = '#ec5f67'
--- }
+local bubbles_theme_org = {
+    normal = {
+        a = { fg = colors_org.black, bg = colors_org.violet },
+        b = { fg = colors_org.white, bg = colors_org.grey },
+        c = { fg = colors_org.black, bg = colors_org.black },
+    },
 
+    insert = { a = { fg = colors_org.black, bg = colors_org.blue } },
+    visual = { a = { fg = colors_org.black, bg = colors_org.cyan } },
+    replace = { a = { fg = colors_org.black, bg = colors_org.red } },
 
+    inactive = {
+        a = { fg = colors_org.white, bg = colors_org.black },
+        b = { fg = colors_org.white, bg = colors_org.black },
+        c = { fg = colors_org.black, bg = colors_org.black },
+    },
+}
+
+local colors = {
+    yellow = '#ECBE7B',
+    cyan = '#008080',
+    darkblue = '#081633',
+    green = '#98be65',
+    orange = '#FF8800',
+    violet = '#a9a1e1',
+    magenta = '#c678dd',
+    blue = '#51afef',
+    red = '#ec5f67',
+    black  = '#080808',
+    white  = '#c6c6c6',
+    grey   = '#303030',
+}
 local bubbles_theme = {
     normal = {
-        a = { fg = colors.black, bg = colors.violet },
+        a = { fg = colors.black, bg = colors.blue },
         b = { fg = colors.white, bg = colors.grey },
         c = { fg = colors.black, bg = colors.black },
     },
 
-    insert = { a = { fg = colors.black, bg = colors.blue } },
-    visual = { a = { fg = colors.black, bg = colors.cyan } },
+    insert = { a = { fg = colors.black, bg = colors.green } },
+    visual = { a = { fg = colors.black, bg = colors.magenta } },
     replace = { a = { fg = colors.black, bg = colors.red } },
 
     inactive = {
@@ -142,9 +160,9 @@ local function ins_left(component)
 end
 
 -- Inserts a component in lualine_x ot right section
-local function ins_right(component)
-    table.insert(config.sections.lualine_x, component)
-end
+-- local function ins_right(component)
+--     table.insert(config.sections.lualine_x, component)
+-- end
 
 ins_left({
     'lsp_progress',

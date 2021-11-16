@@ -208,8 +208,8 @@ require('packer').startup({ function()
     use {
     	'nvim-lualine/lualine.nvim',
     	requires = {'kyazdani42/nvim-web-devicons', opt = true},
-    	config = [[ require('plugins.lualine.material') ]]
-    	-- config = [[ require('plugins.lualine.bubbles') ]]
+    	-- config = [[ require('plugins.lualine.material') ]]
+    	config = [[ require('plugins.lualine.bubbles') ]]
     }
     use {
         'arkav/lualine-lsp-progress',
