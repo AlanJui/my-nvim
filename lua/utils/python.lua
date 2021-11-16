@@ -15,11 +15,13 @@ M.getVirtualEnv = function ()
     if vim.bo.filetype == "python" then
         local venv = os.getenv "CONDA_DEFAULT_ENV"
         if venv then
-            return string.format("  (%s)", get_venv_name(venv))
+            -- return string.format("  (%s)", get_venv_name(venv))
+            return string.format("(%s)", get_venv_name(venv))
         end
         venv = os.getenv "VIRTUAL_ENV"
         if venv then
-            return string.format("  (%s)", get_venv_name(venv))
+            -- return string.format("  (%s)", get_venv_name(venv))
+            return string.format("(%s)", get_venv_name(venv))
         end
         return ""
     end

@@ -1,5 +1,33 @@
 local M = {}
 
+local get_venv = require('utils.python').getVirtualEnv
+
+M.lsp_provider = function ()
+    local clients = {}
+    local icon = ' '
+
+    for _, client in pairs(vim.lsp.buf_get_clients()) do
+        if client.name == "pyright" then
+           local venv_name = get_venv()
+           clients[#clients+1] = icon .. client.name .. ' ' .. venv_name
+        else
+           clients[#clients+1] = icon .. client.name
+        end
+    end
+
+    return table.concat(clients, ' ')
+end
+
+M.print_lsp_client = function ()
+    -- print(vim.config.capabilities.textDocument.name)
+    local lsp_clients = vim.lsp.buf_get_clients()
+    for i, v in pairs(lsp_clients) do
+        -- print(i)  -- print the number
+        -- print(v)  -- print the value
+        print(string.format('%s: %s', i, v))
+    end
+end
+
 M.get_lsp_client_name = function (msg)
     msg = msg or "LS Inactive"
     local buf_clients = vim.lsp.buf_get_clients()
@@ -32,5 +60,6 @@ M.get_lsp_client_name = function (msg)
 
     return table.concat(buf_client_names, ", ")
 end
+
 
 return M

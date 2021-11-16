@@ -5,6 +5,7 @@
 -- | A | B | C                             X | Y | Z |
 -- +-------------------------------------------------+
 
+local lsp_provider = require('utils.lsp').lsp_provider
 
 --------------------------------------------------------
 local function diff_source()
@@ -108,6 +109,7 @@ local config = {
         lualine_y = {
             'encoding',
             'filetype',
+            lsp_provider,
             'progress'
         },
         lualine_z = {
@@ -132,80 +134,6 @@ local config = {
     },
     extensions = {'fugitive'}
 }
-
-require('lualine').setup({
-    options = {
-        theme = bubbles_theme,
-        component_separators = '|',
-        section_separators = { left = '', right = '' },
-    },
-    sections = {
-        lualine_a = {
-            { 'mode', separator = { left = '' }, right_padding = 2 },
-        },
-        lualine_b = { 'filename', 'branch' },
-        lualine_c = {
-            'filename',
-            {
-                'diff',
-                source = diff_source
-            },
-            'lsp_progress',
-        },
-        lualine_x = {
-            {
-                'diagnostics',
-                -- table of diagnostic sources, available sources:
-                -- 'nvim_lsp', 'nvim', 'coc', 'ale', 'vim_lsp'
-                -- Or a function that returns a table like:
-                -- {error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt}
-                sources = {'nvim_lsp', 'coc'},
-                -- displays diagnostics from defined severity
-                sections = {'error', 'warn', 'info', 'hint'},
-                -- all colors are in format #rrggbb
-                diagnostic_color = {
-                    error = nil,
-                    warn  = nil,
-                    info  = nil,
-                    hint  = nil,
-                },
-                symbols = {
-                    error = ' ',
-                    warn  = ' ',
-                    info  = ' ',
-                    hint  = ' ',
-                },
-                -- Update diagnostics in insert mode
-                update_in_insert = false,
-                -- Show diagnostics even if count is 0
-                alwayw_visible = false,
-            },
-            'encoding',
-        },
-        lualine_y = { 'filetype', 'progress' },
-        lualine_z = {
-            { 'location', separator = { right = '' }, left_padding = 2 },
-        },
-    },
-    inactive_sections = {
-        lualine_a = { 'filename' },
-        lualine_b = {},
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = { 'location' },
-    },
-    tabline = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = { require('tabline').tabline_buffers },
-        lualine_x = { require('tabline').tabline_tabs },
-        lualine_y = {},
-        lualine_z = {},
-    },
-    extensions = {'fugitive'}
-})
-
 
 --------------------------------------------------------
 -- Inserts a component in lualine_c at left section
