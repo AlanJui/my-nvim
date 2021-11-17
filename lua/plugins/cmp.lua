@@ -2,6 +2,7 @@
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 local cmp = require('cmp')
+local lspkind = require('lspkind')
 
 cmp.setup({
 	cmpletion = {
@@ -15,6 +16,10 @@ cmp.setup({
 	},
 
 	formatting = {
+        -- format = lspkind.cmp_format({
+        --     with_text = true,
+        --     maxwidth = 50,
+        -- })
 		format = function(entry, vim_item)
 			-- fancy icons and a name of kind
 			vim_item.kind = require('lspkind').presets.default[vim_item.kind]

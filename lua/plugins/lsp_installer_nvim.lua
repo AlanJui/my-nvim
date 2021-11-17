@@ -17,21 +17,11 @@ lsp_installer.settings({
 
 
 ---------------------------------------------------
-local system_name
-
-if vim.fn.has("mac") == 1 then
-	system_name = "macOS"
-elseif vim.fn.has("unix") == 1 then
-	system_name = "Linux"
-elseif vim.fn.has('win32') == 1 then
-	system_name = "Windows"
-else
-	print("Unsupported system for sumneko")
-end
+local system_name = require('utils').get_system()
 
 local function make_server_ready(on_attach)
 	lsp_installer.on_server_ready(function(server)
- 		-- -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
+        -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
  		-- local opts = {}
  		-- opts.on_attach = attach
  		-- server:setup(opts)
@@ -82,9 +72,52 @@ local function make_server_ready(on_attach)
 				}
 
 				default_opts.on_attach = on_attach
-				-- default_opts.capabilities = capabilities
 				return default_opts
 			end,
+
+            ['html'] = function ()
+                default_opts.cmd = { "vscode-html-language-server", "--stdio" }
+                default_opts.filetypes = {
+                    "html",
+                    "htmldjango",
+                    "css",
+                }
+                default_opts.on_attach = on_attach
+                return default_opts
+            end,
+
+            ['emmet_ls'] = function ()
+                default_opts.cmd = { "emmet-ls", "--stdio" }
+                default_opts.filetypes = {
+                    "html",
+                    "htmldjango",
+                    "css",
+                }
+                default_opts.on_attach = on_attach
+                return default_opts
+            end,
+
+            ['tsserver'] = function ()
+                default_opts.cmd = {
+                    'typescript-language-server',
+                    '--stdio',
+                }
+                default_opts.filetypes = {
+                    'javascript',
+                    'javascriptreact',
+                    'typescript',
+                    'typescriptreact',
+                }
+                default_opts.on_attach = on_attach
+                return default_opts
+            end,
+
+            ['pyright'] = function ()
+                default_opts.cmd = { "pyright-langserver", "--stdio" }
+                default_opts.filetypes = { "python" }
+                default_opts.on_attach = on_attach
+                return default_opts
+            end,
 		}
 
 		-- We check to see if any custom server_opts exist for the LSP server, if so, load them,
@@ -96,7 +129,7 @@ end
 
 ---------------------------------------------------
 local function install_server(server)
-	local lsp_installer_servers = require'nvim-lsp-installer.servers'
+	local lsp_installer_servers = require('nvim-lsp-installer.servers')
 	local ok, server_analyzer = lsp_installer_servers.get_server(server)
 	if ok then
 		if not server_analyzer:is_installed() then
@@ -111,12 +144,17 @@ local servers = {
     "pyright",
     "tsserver",           -- for javascript
     "jsonls",             -- for json
+	'html',
+	'emmet_ls',
+	'vuels',
+	'yamlls',
+	'bashls',
 }
-
 
 -- setup the LS
 require "plugins.lspconfig"
-make_server_ready(On_attach)    -- LSP mappings
+-- make_server_ready(On_attach)    -- LSP mappings
+make_server_ready(require('lsp.on_attach'))    -- LSP mappings
 
 -- install the LS
 for _, server in ipairs(servers) do
