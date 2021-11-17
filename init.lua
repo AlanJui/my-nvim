@@ -21,6 +21,7 @@ vim.cmd([[
 command! -range=% Format :<line1>,<line2>s/^\s*/&&
 ]])
 
+
 -- Plugin Manager: install plugins
 -----------------------------------------------------------
 require('plugins')
@@ -32,7 +33,11 @@ require('configs')
 
 -- Themes
 vim.o.termguicolors = true
-vim.cmd([[ run time ./colors/NeoSolarized.vim ]])
+-- vim.cmd([[ run time ./colors/NeoSolarized.vim ]])
+-- vim.cmd([[ colorscheme solarized_true ]])
+-- vim.cmd([[ colorscheme nightfly ]])
+-- vim.cmd([[ colorscheme moonfly ]])
+vim.cmd([[ colorscheme OceanicNext ]])
 
 -- Key bindings
 -----------------------------------------------------------
@@ -54,12 +59,13 @@ require('keymaps')
 --     -- will get overriden by `get_icons` option
 --     default = true;
 -- }
-vim.cmd([[
-autocmd BufWritePre *.py lua vim.lsp.buf.formatting()
+-- vim.cmd([[
+-- autocmd BufWritePre *.py lua vim.lsp.buf.formatting()
+--
+-- " change popup menu color for non selected items
+-- highlight Pmenu ctermfg=lightgrey ctermbg=black
+--
+-- " change popup menu color for selected item
+-- highlight PmenuSel ctermfg=white ctermbg=gray
+-- ]])
 
-" change popup menu color for non selected items
-highlight Pmenu ctermfg=lightgrey ctermbg=black
-
-" change popup menu color for selected item
-highlight PmenuSel ctermfg=white ctermbg=gray
-]])

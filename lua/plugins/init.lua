@@ -127,6 +127,8 @@ require('packer').startup({ function()
     -----------------------------------------------------------
 
     -- colorscheme for neovim written in lua specially made for roshnvim
+    use 'bluz71/vim-moonfly-colors'
+    use 'bluz71/vim-nightfly-guicolors'
     -- use { 'shaeinst/roshnivim-cs' }
 
     -- Icons

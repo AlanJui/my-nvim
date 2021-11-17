@@ -17,7 +17,10 @@ let g:strip_whitespace_on_save=1
 autocmd FileType dashboard DisableWhitespace
 
 " Disable white spacing highlights.
-let g:better_whitespace_filetypes_blacklist = [ 'diff', 'gitcommit', 'qf', 'help', 'markdown', 'dashboard', 'packer' ]
+let g:better_whitespace_filetypes_blacklist = [ 'dashboard', 'packer', 'diff', 'gitcommit', 'unite', 'qf', 'help', 'markdown', 'fugitive' ]
 
 " Don't ask for confirmation before whitespace is stripped when you save the file.
 let g:strip_whitespace_confirm = 0
+
+" Not to highlight space space characters that apper before on in-between tabs
+let g:show_spaces_that_precede_tabs=1
