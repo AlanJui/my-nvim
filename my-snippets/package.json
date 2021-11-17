@@ -6,17 +6,11 @@
   "contributes": {
     "snippets": [
       {
-        "language": [
-          "html",
-          "htmldjango"
-				],
+        "language": "html",
         "path": "./html.json"
       },
       {
-        "language": [
-          "html",
-          "htmldjango"
-        ],
+        "language": "htmldjango",
         "path": "./htmldjango.json"
       },
       {
