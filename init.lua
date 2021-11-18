@@ -33,11 +33,12 @@ require('configs')
 
 -- Themes
 vim.o.termguicolors = true
+-- vim.cmd([[ colorscheme solarized8_flat ]])
+-- vim.cmd([[ colorscheme solarized8 ]])
+-- vim.cmd([[ colorscheme rvcs ]])
+vim.cmd([[ colorscheme OceanicNext ]])
 -- vim.cmd([[ colorscheme nightfly ]])
 -- vim.cmd([[ colorscheme moonfly ]])
--- vim.cmd([[ colorscheme OceanicNext ]])
--- vim.cmd([[ colorscheme solarized8 ]])
-vim.cmd([[ colorscheme solarized8_flat ]])
 
 -- Key bindings
 -----------------------------------------------------------

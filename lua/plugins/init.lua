@@ -2,26 +2,10 @@
 -----------------------------------------------------------
 local execute = vim.api.nvim_command
 local fn = vim.fn
-local is_empty = require('utils.is_empty')
 
--- local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-local home_path = os.getenv('HOME')
-local my_nvim = os.getenv('MY_NVIM')
-local nvim_config_path
-local package_root
-local compile_path
-local install_path
-
-if is_empty(my_nvim) then
-    my_nvim = 'nvim'
-    nvim_config_path = home_path .. '/.config/' .. my_nvim
-    package_root = home_path .. '/.local/share/' .. my_nvim .. '/site/pack'
-else
-    nvim_config_path = os.getenv('NVIM_CONFIG_DIR')
-    package_root = os.getenv('NVIM_RUNTIME_DIR') .. '/site/pack'
-end
-compile_path = nvim_config_path .. '/plugin/packer_compiled.lua'
-install_path = package_root .. '/packer/start/packer.nvim'
+local install_path = require('utils').get_install_path()
+local package_root = require('utils').get_package_root()
+local compile_path = require('utils').get_compile_path()
 
 if fn.empty(fn.glob(install_path)) > 0 then
     fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
@@ -127,9 +111,10 @@ require('packer').startup({ function()
     -----------------------------------------------------------
 
     -- colorscheme for neovim written in lua specially made for roshnvim
+    use 'shaeinst/roshnivim-cs'
+    use 'mhartington/oceanic-next'
     use 'bluz71/vim-moonfly-colors'
     use 'bluz71/vim-nightfly-guicolors'
-    -- use { 'shaeinst/roshnivim-cs' }
 
     -- Icons
     use {
