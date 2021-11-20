@@ -210,11 +210,5 @@ return require('packer').startup({
         if packer_bootstrap then
             require('packer').sync()
         end
-    end,
-
-    config = {
-        -- Move to lua dir so impatient.nvim can cache it
-        -- compile_path = fn.stdpath('config') .. '/plugin/packer_compiled.lua'
-        compile_path = compile_path
-    }
+    end
 })
