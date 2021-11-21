@@ -105,14 +105,14 @@ vim.g.which_key_leader = {
             ['n']    = {':Git diff', 'Normal diff' },
         },
         ['g']    = {':GGrep', 'git grep' },
-        ['l']    = {':Git log', 'log' },
+        ['l']    = {':Git log', 'List log with details' },
+        ['L']    = {':Git log --oneline', 'List log within one line' },
         ['p']    = {':Git push', 'push' },
         ['P']    = {':Git pull', 'pull' },
         ['r']    = {':GRemove', 'remove' },
         ['s']    = {':Git', 'status'},
-        ['t']    = {':GitGutterSignsToggle', 'toggle signs' },
-        ['v']    = {':GV', 'view commits' },
-        ['V']    = {':GV!', 'view buffer commits' },
+        ['S']    = {':GitGutterSignsToggle', 'toggle signs' },
+        ['T']    = {':Git log --no-walk --tags --pretty="%h %d %s" --decorate=full', 'List all tags in log' },
     },
 
     -- Gist
