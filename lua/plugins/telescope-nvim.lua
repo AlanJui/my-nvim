@@ -44,6 +44,7 @@ local opts = { noremap = true, silent = true }
 -- keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], { noremap = true, silent = true })
 
 keymap("n", ";f", "<cmd>lua require('telescope.builtin').find_files()<CR>", opts)
-keymap("n", ";r", "<cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
+keymap("n", ";g", "<cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
+keymap("n", ";b", "<cmd>lua require('telescope.builtin').buffers()<CR>", opts)
 keymap("n", "\\", "<cmd>lua require('telescope.builtin').buffers()<CR>", opts)
-keymap("n", ";;", "<cmd>lua require('telescope.builtin').help_tags()<CR>", opts)
+keymap("n", ";h", "<cmd>lua require('telescope.builtin').help_tags()<CR>", opts)

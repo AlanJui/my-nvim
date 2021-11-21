@@ -7,6 +7,7 @@ local fn = vim.fn
 local package_root = require('utils').get_package_root()
 local install_path = require('utils').get_install_path()
 local compile_path = require('utils').get_compile_path()
+local packer_bootstrap
 
 if fn.empty(fn.glob(install_path)) > 0 then
     packer_bootstrap = fn.system({
@@ -131,12 +132,14 @@ return require('packer').startup({
         --     'yamatsum/nvim-nonicons',
         --     requires = { 'kyazdani42/nvim-web-devicons' }
         -- }
+
         -- Fuzzy files finder
         use {
             'nvim-telescope/telescope.nvim',
             requires = {
                 { 'nvim-lua/plenary.nvim', }
-            }
+            },
+            config = [[ require('plugins.telescope-nvim') ]]
         }
 
         -- Status Line
@@ -152,23 +155,56 @@ return require('packer').startup({
         }
         use {
             'kdheepak/tabline.nvim',
-            config = function ()
-                require('tabline').setup({ enable = false })
-            end,
             require = {
                 'hoob3rt/lualine.nvim',
                 'kyazdani42/nvim-web-devicons'
-            }
+            },
+            config = function ()
+                require('tabline').setup({ enable = false })
+            end
         }
+
+        -- Screen Navigation
+        use {
+            'liuchengxu/vim-which-key',
+            config = [[ require('plugins.vim-which-key') ]]
+        }
+
+        -----------------------------------------------------------
+        -- Git Tools
+        -----------------------------------------------------------
+
+        -- Git commands in nvim
+        use 'tpope/vim-fugitive'
+
+        -- Fugitive-companion to interact with github
+        use 'tpope/vim-rhubarb'
+
+        -- Add git related info in the signs columns and popups
+        use {
+            'lewis6991/gitsigns.nvim',
+            requires = { 'nvim-lua/plenary.nvim' },
+            config = function ()
+                require('gitsigns').setup()
+            end
+        }
+
+        -- A work-in-progress Magit clone for Neovim that is geared toward the Vim philosophy.
         -- use {
-        --     'glepnir/galaxyline.nvim',
-        --     branch = 'main',
-        --     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-        --     config = function() require('plugins.galaxyline.angeline') end
-        --     -- config = [[ require('plugins.galaxyline.spaceline') ]]
-        --     -- config = [[ require('plugins.galaxyline.bubbles') ]]
+        --     'TimUntersberger/neogit',
+        --     requires = 'nvim-lua/plenary.nvim',
+        --     config = [[ require('plugins.neogit') ]]
         -- }
-        -- use 'itchyny/lightline.vim' -- Fancier statusline
+
+        -- for creating gist
+        use {
+            'mattn/vim-gist',
+            requires = 'mattn/webapi-vim',
+            config = vim.cmd([[
+                let g:gist_clip_command = 'xclip -selection clipboard'
+                let g:gist_open_browser_after_post = 1
+            ]])
+        }
 
         -----------------------------------------------------------
         -- Tools
@@ -177,7 +213,9 @@ return require('packer').startup({
         -- Causes all trailing whitespace characters to be highlighted
         use {
             'ntpeters/vim-better-whitespace',
-            config = [[ require('plugins.telescope-nvim') ]]
+            config = vim.cmd([[
+                runtime 'lua/plugins/vim-better-whitespace.rc.vim'
+            ]])
         }
 
         -- Add indentation guides even on blank lines
@@ -205,6 +243,9 @@ return require('packer').startup({
             end
         }
 
+        -- Floater Terminal
+        use 'voldikss/vim-floaterm'
+
         -- Automatically set up your configuration after cloning packer.nvim
         -- Put this at the end after all plugins
         if packer_bootstrap then
@@ -212,9 +253,9 @@ return require('packer').startup({
         end
     end,
 
-  -- config = {
-  --   -- Move to lua dir so impatient.nvim can cache it
-  --   -- compile_path = fn.stdpath('config') .. '/plugin/packer_compiled.lua'
-  --   compile_path = compile_path,
-  -- }
+    -- config = {
+    --     -- Move to lua dir so impatient.nvim can cache it
+    --     -- compile_path = fn.stdpath('config') .. '/plugin/packer_compiled.lua'
+    --     compile_path = compile_path,
+    -- }
 })

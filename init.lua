@@ -24,11 +24,12 @@ command! -range=% Format :<line1>,<line2>s/^\s*/&&
 
 -- Plugin Manager: install plugins
 -----------------------------------------------------------
+        -- autocmd BufWritePost lua/plugins/init.lua source <afile> | PackerCompile
 require('plugins')
 vim.cmd([[
     augroup packer_user_config
         autocmd!
-        autocmd BufWritePost lua/plugins/init.lua source <afile> | PackerCompile
+        autocmd BufWritePost ~/.config/web-nvim/nvim/lua/plugins/init.lua source <afile> | PackerCompile
     augroup end
 ]])
 
