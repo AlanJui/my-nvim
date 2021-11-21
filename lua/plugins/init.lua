@@ -267,6 +267,22 @@ return require('packer').startup({
             config = [[ require('plugins.nvim-ts-autotag') ]]
         }
 
+        -- Auto change html tags
+        use {
+            'AndrewRadev/tagalong.vim',
+            config = vim.cmd([[
+                runtime 'lua/plugins/tagalong-vim.rc.vim'
+            ]])
+        }
+
+        -- provides support for expanding abbreviations similar to emmet
+        use {
+            'mattn/emmet-vim',
+            config = vim.cmd([[
+                runtime 'lua/plugins/emmet-vim.rc.vim'
+            ]])
+        }
+
         -- Python
         ---------------------------------------------------------------
         -- ALE (Asynchronous Lint Engine) is a plugin providing linting (syntax
@@ -291,22 +307,6 @@ return require('packer').startup({
             'liuchengxu/vista.vim',
             config = vim.cmd([[
                 runtime 'lua/plugins/vista.rc.vim'
-            ]])
-        }
-
-        -- Auto change html tags
-        -- use {
-        --     'AndrewRadev/tagalong.vim',
-        --     config = vim.cmd([ale[
-        --         runtime 'lua/plugins/tagalong-vim.rc.vim'
-        --     ]])
-        -- }
-
-        -- provides support for expanding abbreviations similar to emmet
-        use {
-            'mattn/emmet-vim',
-            config = vim.cmd([[
-                runtime 'lua/plugins/emmet-vim.rc.vim'
             ]])
         }
 
