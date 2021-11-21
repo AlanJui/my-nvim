@@ -142,6 +142,13 @@ return require('packer').startup({
             config = [[ require('plugins.telescope-nvim') ]]
         }
 
+        -- File/Flolders explorer:nvim-tree
+        use {
+            'kyazdani42/nvim-tree.lua',
+            requires = 'kyazdani42/nvim-web-devicons',
+            config = [[ require('plugins.nvim-tree') ]]
+        }
+
         -- Status Line
         use {
             'nvim-lualine/lualine.nvim',
@@ -207,8 +214,17 @@ return require('packer').startup({
         }
 
         -----------------------------------------------------------
-        -- Tools
+        -- Editting Tools
         -----------------------------------------------------------
+
+        -- Toggle comments in Neovim
+        use {
+            'terrortylor/nvim-comment',
+            -- config = [[ require('plugins.nvim-comment') ]]
+            config = function ()
+                require('nvim_comment').setup()
+            end
+        }
 
         -- Causes all trailing whitespace characters to be highlighted
         use {
@@ -234,17 +250,109 @@ return require('packer').startup({
         -- surroundings: parentheses, brackets, quotes, XML tags, and more
         use 'tpope/vim-surround'
 
-        -- Toggle comments in Neovim
+        -- Multiple cursor editting
+        use 'mg979/vim-visual-multi'
+
+        -- visualizes undo history and makes it easier to browse and switch between different undo branches
         use {
-            'terrortylor/nvim-comment',
-            -- config = [[ require('plugins.nvim-comment') ]]
-            config = function ()
-                require('nvim_comment').setup()
-            end
+            'mbbill/undotree',
+            config = [[ require('plugins.undotree') ]]
         }
+
+        -- HTML
+        ---------------------------------------------------------------
+        -- Use treesitter to autoclose and autorename HTML tag
+        use {
+            'windwp/nvim-ts-autotag',
+            config = [[ require('plugins.nvim-ts-autotag') ]]
+        }
+
+        -- Python
+        ---------------------------------------------------------------
+        -- ALE (Asynchronous Lint Engine) is a plugin providing linting (syntax
+        -- checking and semantic errors) in NeooVim while you edit your text files,
+        -- and acts as a Vim Language Server Protocol client.
+        use {
+            'dense-analysis/ale',
+            config = vim.cmd([[
+                runtime 'lua/plugins/ale.rc.vim'
+            ]])
+        }
+
+        --  Modifies Vim’s indentation behavior to comply with PEP8 and my aesthetic preferences.
+        use 'Vimjas/vim-python-pep8-indent'
+
+        -- Python: provides text objects and motions for Python classes, methods,
+        -- functions and doc strings
+        use 'jeetsukumaran/vim-pythonsense'
+
+        -- View and search LSP symbols, tags in NeoVim
+        use {
+            'liuchengxu/vista.vim',
+            config = vim.cmd([[
+                runtime 'lua/plugins/vista.rc.vim'
+            ]])
+        }
+
+        -- Auto change html tags
+        -- use {
+        --     'AndrewRadev/tagalong.vim',
+        --     config = vim.cmd([ale[
+        --         runtime 'lua/plugins/tagalong-vim.rc.vim'
+        --     ]])
+        -- }
+
+        -- provides support for expanding abbreviations similar to emmet
+        use {
+            'mattn/emmet-vim',
+            config = vim.cmd([[
+                runtime 'lua/plugins/emmet-vim.rc.vim'
+            ]])
+        }
+
+        -----------------------------------------------------------
+        -- Utility
+        -----------------------------------------------------------
 
         -- Floater Terminal
         use 'voldikss/vim-floaterm'
+
+        -- highlight your todo comments in different styles
+        use {
+            'folke/todo-comments.nvim',
+            requires = 'nvim-lua/plenary.nvim',
+            config = function ()
+                require('todo-comments').setup({
+                    -- configuration comes here
+                    -- or leave it empty to use the default setting
+                })
+            end
+        }
+
+        -- Live server
+        use 'turbio/bracey.vim'
+
+        -- Markdown preview
+        use {
+            'instant-markdown/vim-instant-markdown',
+            config = vim.cmd([[
+                runtime 'lua/plugins/vim-instant-markdown.rc.vim'
+            ]])
+        }
+
+        -- PlantUML
+        use {
+            'weirongxu/plantuml-previewer.vim',
+            config = vim.cmd([[
+                runtime 'lua/plugins/plantuml-previewer.rc.vim'
+            ]])
+        }
+
+        -- PlantUML syntax highlighting
+        use 'aklt/plantuml-syntax'
+
+        -- Open URI with your favorite browser from your most favorite editor
+        use 'tyru/open-browser.vim'
 
         -- Automatically set up your configuration after cloning packer.nvim
         -- Put this at the end after all plugins
