@@ -36,7 +36,7 @@ require("luasnip/loaders/from_vscode").load({
         "typescript",
     },
     paths = {
-        "~/.config/nvim/my-snippets",
+        "~/.config/web-nvim/nvim/my-snippets",
         -- "~/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     }
 })

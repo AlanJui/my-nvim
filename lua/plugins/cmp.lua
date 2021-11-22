@@ -58,14 +58,20 @@ local luasnip = require("luasnip")
 
 cmp.setup({
   mapping = {
-    ['<C-\\>']	    = cmp.mapping.complete(),
-    ['<C-e>']       = cmp.mapping.close(),
-    ['<C-u>']       = cmp.mapping.scroll_docs(-4),
-    ['<C-d>']       = cmp.mapping.scroll_docs(4),
-    ['<CR>']        = cmp.mapping.confirm({
-          behavior  = cmp.ConfirmBehavior.Replace,
-          select    = false,
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-\\>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+    ['<C-e>'] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
     }),
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
 
    ["<Tab>"] = cmp.mapping(function(fallback)
                 if cmp.visible() then

@@ -261,10 +261,21 @@ return require('packer').startup({
 
         -- HTML
         ---------------------------------------------------------------
-        -- Use treesitter to autoclose and autorename HTML tag
+
+        -- provides support for expanding abbreviations similar to emmet
         use {
-            'windwp/nvim-ts-autotag',
-            config = [[ require('plugins.nvim-ts-autotag') ]]
+            'mattn/emmet-vim',
+            config = vim.cmd([[
+                runtime 'lua/plugins/emmet-vim.rc.vim'
+            ]])
+        }
+
+        -- Auto close tag
+        use {
+            'alvan/vim-closetag',
+            config = vim.cmd([[
+                runtime 'lua/plugins/vim-closetag.rc.vim'
+            ]])
         }
 
         -- Auto change html tags
@@ -275,13 +286,11 @@ return require('packer').startup({
             ]])
         }
 
-        -- provides support for expanding abbreviations similar to emmet
-        use {
-            'mattn/emmet-vim',
-            config = vim.cmd([[
-                runtime 'lua/plugins/emmet-vim.rc.vim'
-            ]])
-        }
+        -- Use treesitter to autoclose and autorename HTML tag
+        -- use {
+        --     'windwp/nvim-ts-autotag',
+        --     config = [[ require('plugins.nvim-ts-autotag') ]]
+        -- }
 
         -- Python
         ---------------------------------------------------------------
