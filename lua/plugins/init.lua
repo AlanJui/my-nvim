@@ -48,7 +48,7 @@ return require('packer').startup({
         -- install LSP servers locally
         use {
             'williamboman/nvim-lsp-installer',
-            config = [[ require('plugins.lsp_installer_nvim') ]]
+            config = [[ require('plugins.lsp-installer-nvim') ]]
         }
 
         -- vscode-like pictograms for neovim lsp completion items Topics
@@ -122,6 +122,9 @@ return require('packer').startup({
         use 'mhartington/oceanic-next'
         use 'bluz71/vim-moonfly-colors'
         use 'bluz71/vim-nightfly-guicolors'
+        use {
+            'folke/tokyonight.nvim',
+        }
 
         -- Icons
         use {
@@ -153,8 +156,8 @@ return require('packer').startup({
         use {
             'nvim-lualine/lualine.nvim',
             requires = {'kyazdani42/nvim-web-devicons', opt = true},
-            -- config = [[ require('plugins.lualine.material') ]]
-            config = [[ require('plugins.lualine.bubbles') ]]
+            config = [[ require('plugins.lualine.material') ]]
+            -- config = [[ require('plugins.lualine.bubbles') ]]
         }
         use {
             'arkav/lualine-lsp-progress',

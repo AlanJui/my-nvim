@@ -80,7 +80,8 @@ local bubbles_theme = {
 
 local config = {
     options = {
-        theme = bubbles_theme,
+        -- theme = bubbles_theme,
+        theme = 'tokyonight',
         component_separators = '|',
         section_separators = { left = '', right = '' },
     },
