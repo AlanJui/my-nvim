@@ -48,6 +48,7 @@ vim.o.termguicolors = true
 -- vim.cmd([[ colorscheme OceanicNext ]])
 
 -- Tokyo Night Color Scheme Configuration
+vim.cmd([[ colorscheme tokyonight ]])
 -- vim.g.tokyonight_style = 'day'
 -- vim.g.tokyonight_style = 'night'
 vim.g.tokyonight_style = 'storm'
@@ -64,7 +65,6 @@ vim.g.tokyonight_colors = {
     hint = 'orange',
     error = '#ff0000'
 }
-vim.cmd([[ colorscheme tokyonight ]])
 
 -- Key bindings
 -----------------------------------------------------------
