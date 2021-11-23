@@ -122,9 +122,7 @@ return require('packer').startup({
         use 'mhartington/oceanic-next'
         use 'bluz71/vim-moonfly-colors'
         use 'bluz71/vim-nightfly-guicolors'
-        use {
-            'folke/tokyonight.nvim',
-        }
+        use 'folke/tokyonight.nvim'
 
         -- Icons
         use {
