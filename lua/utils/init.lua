@@ -60,6 +60,11 @@ M.get_install_path = function ()
     return install_path
 end
 
+M.get_plugin_config_path = function ()
+    local plugin_config_path = nvim_config_path .. '/nvim/lua/plugins'
+    return plugin_config_path
+end
+
 return M
 
 

@@ -8,9 +8,10 @@ let g:ale_linters = {
 " Fixer: reformatting code
 " fixers options: black, yapf, autopep8
 " let g:ale_fixers = {'python': ['isort', 'black', 'remove_trailing_lines', 'trim_whitespace']}
+" \   'python': ['isort', 'autopep8'],
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'python': ['isort', 'autopep8'],
+\   'python': ['isort', 'black'],
 \}
 
 let g:ale_lsp_suggestions = 1

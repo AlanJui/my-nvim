@@ -234,7 +234,7 @@ return require('packer').startup({
         use {
             'ntpeters/vim-better-whitespace',
             config = vim.cmd([[
-                runtime 'lua/plugins/vim-better-whitespace.rc.vim'
+                runtime ./after/plugin/vim-better-whitespace.rc.vim
             ]])
         }
 
@@ -270,7 +270,7 @@ return require('packer').startup({
         use {
             'mattn/emmet-vim',
             config = vim.cmd([[
-                runtime 'lua/plugins/emmet-vim.rc.vim'
+                runtime ./after/plugin/emmet-vim.rc.vim
             ]])
         }
 
@@ -278,7 +278,7 @@ return require('packer').startup({
         use {
             'alvan/vim-closetag',
             config = vim.cmd([[
-                runtime 'lua/plugins/vim-closetag.rc.vim'
+                runtime ./after/plugin/vim-closetag.rc.vim
             ]])
         }
 
@@ -286,7 +286,7 @@ return require('packer').startup({
         use {
             'AndrewRadev/tagalong.vim',
             config = vim.cmd([[
-                runtime 'lua/plugins/tagalong-vim.rc.vim'
+                runtime ./after/plugin/tagalong-vim.rc.vim
             ]])
         }
 
@@ -304,7 +304,7 @@ return require('packer').startup({
         use {
             'dense-analysis/ale',
             config = vim.cmd([[
-                runtime 'lua/plugins/ale.rc.vim'
+                runtime ./after/plugin/ale.rc.vim
             ]])
         }
 
@@ -319,7 +319,7 @@ return require('packer').startup({
         use {
             'liuchengxu/vista.vim',
             config = vim.cmd([[
-                runtime 'lua/plugins/vista.rc.vim'
+                runtime ./after/plugin/vista.rc.vim
             ]])
         }
 
@@ -349,7 +349,7 @@ return require('packer').startup({
         use {
             'instant-markdown/vim-instant-markdown',
             config = vim.cmd([[
-                runtime 'lua/plugins/vim-instant-markdown.rc.vim'
+                runtime ./after/plugin/vim-instant-markdown.rc.vim
             ]])
         }
 
@@ -357,7 +357,7 @@ return require('packer').startup({
         use {
             'weirongxu/plantuml-previewer.vim',
             config = vim.cmd([[
-                runtime 'lua/plugins/plantuml-previewer.rc.vim'
+                runtime ./after/plugin/plantuml-previewer.rc.vim
             ]])
         }
 
