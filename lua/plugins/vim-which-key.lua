@@ -118,8 +118,8 @@ vim.g.which_key_leader = {
     -- Gist
     ['G'] = {
         ['name'] = '+gist',
-        ['a']    = {':Gist -a', 'post a gist anonymously' },
-        ['b']    = {':Gist -b', 'post gist browser' },
+        -- ['a']    = {':Gist -a', 'post a gist anonymously' },
+        -- ['b']    = {':Gist -b', 'post gist browser' },
         ['d']    = {':Gist -d', 'delete gist' },
         ['e']    = {':Gist -e', 'edit gist' },
         ['l']    = {':Gist -l', 'list public gists' },

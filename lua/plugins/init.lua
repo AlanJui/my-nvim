@@ -205,6 +205,8 @@ return require('packer').startup({
         -- }
 
         -- for creating gist
+        -- Personal Access Token: ~/.gist-vim
+        -- token XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         use {
             'mattn/vim-gist',
             requires = 'mattn/webapi-vim',
@@ -212,7 +214,6 @@ return require('packer').startup({
                 let g:gist_clip_command = 'xclip -selection clipboard'
                 let g:gist_open_browser_after_post = 1
                 let g:github_user = 'AlanJui'
-                let g:gist_token = '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'
             ]])
         }
 
