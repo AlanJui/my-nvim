@@ -156,6 +156,7 @@ return require('packer').startup({
             requires = {'kyazdani42/nvim-web-devicons', opt = true},
             config = [[ require('plugins.lualine.material') ]]
             -- config = [[ require('plugins.lualine.bubbles') ]]
+            -- config = [[ require('plugins.lualine.lualine-nvim') ]]
         }
         use {
             'arkav/lualine-lsp-progress',
@@ -233,9 +234,9 @@ return require('packer').startup({
         -- Causes all trailing whitespace characters to be highlighted
         use {
             'ntpeters/vim-better-whitespace',
-            config = vim.cmd([[
-                runtime ./after/plugin/vim-better-whitespace.rc.vim
-            ]])
+            -- config = vim.cmd([[
+            --     runtime ./after/plugin/vim-better-whitespace.rc.vim
+            -- ]])
         }
 
         -- Add indentation guides even on blank lines
@@ -269,25 +270,25 @@ return require('packer').startup({
         -- provides support for expanding abbreviations similar to emmet
         use {
             'mattn/emmet-vim',
-            config = vim.cmd([[
-                runtime ./after/plugin/emmet-vim.rc.vim
-            ]])
+            -- config = vim.cmd([[
+            --     runtime ./after/plugin/emmet-vim.rc.vim
+            -- ]])
         }
 
         -- Auto close tag
         use {
             'alvan/vim-closetag',
-            config = vim.cmd([[
-                runtime ./after/plugin/vim-closetag.rc.vim
-            ]])
+            -- config = vim.cmd([[
+            --     runtime ./after/plugin/vim-closetag.rc.vim
+            -- ]])
         }
 
         -- Auto change html tags
         use {
             'AndrewRadev/tagalong.vim',
-            config = vim.cmd([[
-                runtime ./after/plugin/tagalong-vim.rc.vim
-            ]])
+            -- config = vim.cmd([[
+            --     runtime ./after/plugin/tagalong-vim.rc.vim
+            -- ]])
         }
 
         -- Use treesitter to autoclose and autorename HTML tag
@@ -303,9 +304,9 @@ return require('packer').startup({
         -- and acts as a Vim Language Server Protocol client.
         use {
             'dense-analysis/ale',
-            config = vim.cmd([[
-                runtime ./after/plugin/ale.rc.vim
-            ]])
+            -- config = vim.cmd([[
+            --     runtime ./after/plugin/ale.rc.vim
+            -- ]])
         }
 
         --  Modifies Vim’s indentation behavior to comply with PEP8 and my aesthetic preferences.
@@ -314,14 +315,6 @@ return require('packer').startup({
         -- Python: provides text objects and motions for Python classes, methods,
         -- functions and doc strings
         use 'jeetsukumaran/vim-pythonsense'
-
-        -- View and search LSP symbols, tags in NeoVim
-        use {
-            'liuchengxu/vista.vim',
-            config = vim.cmd([[
-                runtime ./after/plugin/vista.rc.vim
-            ]])
-        }
 
         -----------------------------------------------------------
         -- Utility
@@ -348,17 +341,17 @@ return require('packer').startup({
         -- Markdown preview
         use {
             'instant-markdown/vim-instant-markdown',
-            config = vim.cmd([[
-                runtime ./after/plugin/vim-instant-markdown.rc.vim
-            ]])
+            -- config = vim.cmd([[
+            --     runtime ./after/plugin/vim-instant-markdown.rc.vim
+            -- ]])
         }
 
         -- PlantUML
         use {
             'weirongxu/plantuml-previewer.vim',
-            config = vim.cmd([[
-                runtime ./after/plugin/plantuml-previewer.rc.vim
-            ]])
+            -- config = vim.cmd([[
+            --     runtime ./after/plugin/plantuml-previewer.rc.vim
+            -- ]])
         }
 
         -- PlantUML syntax highlighting

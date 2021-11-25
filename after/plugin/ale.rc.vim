@@ -1,8 +1,9 @@
 " ale.rc.vim
 
 " linters options: flake8, pydocstyle, bandit, mypy, pylint, all
+" \   'python': ['flake8', 'pydocstyle', 'bandit', 'mypy', 'pylint'],
 let g:ale_linters = {
-\   'python': ['flake8', 'pydocstyle', 'bandit', 'mypy'],
+\   'python': ['pylint', 'pydocstyle', 'bandit', 'mypy'],
 \}
 
 " Fixer: reformatting code
@@ -34,29 +35,29 @@ let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
 
 " omni-completion function: use for triggering completion manually with <C-x><C-o>
-set omnifunc=ale#completion#OmniFunc
+" set omnifunc=ale#completion#OmniFunc
 
 nmap <F10> :ALEFix<CR>
 
 
-function! LinterStatus() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
+" function! LinterStatus() abort
+"   let l:counts = ale#statusline#Count(bufnr(''))
 
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
+"   let l:all_errors = l:counts.error + l:counts.style_error
+"   let l:all_non_errors = l:counts.total - l:all_errors
 
-  return l:counts.total == 0 ? '✨ all good ✨' : printf(
-        \   '😞 %dW %dE',
-        \   all_non_errors,
-        \   all_errors
-        \)
-endfunction
+"   return l:counts.total == 0 ? '✨ all good ✨' : printf(
+"         \   '😞 %dW %dE',
+"         \   all_non_errors,
+"         \   all_errors
+"         \)
+" endfunction
 
-set statusline=
-set statusline+=%m
-set statusline+=\ %f
-set statusline+=%=
-set statusline+=\ %{LinterStatus()}
+" set statusline=
+" set statusline+=%m
+" set statusline+=\ %f
+" set statusline+=%=
+" set statusline+=\ %{LinterStatus()}
 
 
 

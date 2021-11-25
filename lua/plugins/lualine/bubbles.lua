@@ -19,32 +19,32 @@ local function diff_source()
     end
 end
 
-local colors_org = {
-    blue   = '#80a0ff',
-    cyan   = '#79dac8',
-    black  = '#080808',
-    white  = '#c6c6c6',
-    red    = '#ff5189',
-    violet = '#c678dd',
-    grey   = '#303030',
-}
-local bubbles_theme_org = {
-    normal = {
-        a = { fg = colors_org.black, bg = colors_org.violet },
-        b = { fg = colors_org.white, bg = colors_org.grey },
-        c = { fg = colors_org.black, bg = colors_org.black },
-    },
-
-    insert = { a = { fg = colors_org.black, bg = colors_org.blue } },
-    visual = { a = { fg = colors_org.black, bg = colors_org.cyan } },
-    replace = { a = { fg = colors_org.black, bg = colors_org.red } },
-
-    inactive = {
-        a = { fg = colors_org.white, bg = colors_org.black },
-        b = { fg = colors_org.white, bg = colors_org.black },
-        c = { fg = colors_org.black, bg = colors_org.black },
-    },
-}
+-- local colors_org = {
+--     blue   = '#80a0ff',
+--     cyan   = '#79dac8',
+--     black  = '#080808',
+--     white  = '#c6c6c6',
+--     red    = '#ff5189',
+--     violet = '#c678dd',
+--     grey   = '#303030',
+-- }
+-- local bubbles_theme_org = {
+--     normal = {
+--         a = { fg = colors_org.black, bg = colors_org.violet },
+--         b = { fg = colors_org.white, bg = colors_org.grey },
+--         c = { fg = colors_org.black, bg = colors_org.black },
+--     },
+--
+--     insert = { a = { fg = colors_org.black, bg = colors_org.blue } },
+--     visual = { a = { fg = colors_org.black, bg = colors_org.cyan } },
+--     replace = { a = { fg = colors_org.black, bg = colors_org.red } },
+--
+--     inactive = {
+--         a = { fg = colors_org.white, bg = colors_org.black },
+--         b = { fg = colors_org.white, bg = colors_org.black },
+--         c = { fg = colors_org.black, bg = colors_org.black },
+--     },
+-- }
 
 local colors = {
     yellow = '#ECBE7B',
@@ -80,8 +80,7 @@ local bubbles_theme = {
 
 local config = {
     options = {
-        -- theme = bubbles_theme,
-        theme = 'tokyonight',
+        theme = bubbles_theme,
         component_separators = '|',
         section_separators = { left = '', right = '' },
     },
