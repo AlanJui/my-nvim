@@ -13,10 +13,12 @@ M.on_attach = function(client, bufnr)
   --- Mappings
   local opts = { noremap=true, silent=true }
   buf_set_keymap('n', 'gh', "<cmd>lua require('lspsaga.provider').lsp_finder()<CR>", opts)
-  buf_set_keymap('n', 'K', "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", opts)
+  buf_set_keymap('n', ';k', "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", opts)
 
-  -- Scroll down in popups
-  buf_set_keymap('n', '<C-b>', "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", opts)
+  -- Scroll down hover doc or scroll in definition preview popups
+  buf_set_keymap('n', '<C-f>', "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", opts)
+  -- Scroll up hover doc
+  buf_set_keymap('n', '<C-b>', "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", opts)
 
   -- Navigate and preview
   buf_set_keymap('n', 'gs', "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", opts)
@@ -25,7 +27,7 @@ M.on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gr', "<cmd>lua require('lspsaga.rename').rename()<CR>", opts)
 
   -- View diagnostics
-  buf_set_keymap('n', '<space>e', "<cmd>lua require('lspsaga.diagnostic').show_line_diagnostics()<CR>", opts)
+  buf_set_keymap('n', ';d', "<cmd>lua require('lspsaga.diagnostic').show_line_diagnostics()<CR>", opts)
   buf_set_keymap('n', '[d', "<cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_prev()<CR>", opts)
   buf_set_keymap('n', ']d', "<cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_next()<CR>", opts)
 end

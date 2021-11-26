@@ -17,7 +17,20 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
       spacing = 4,
       prefix = '',
       severity_limit = 'Error',   -- Only show virtual text on error
-    }
+    },
+    -- Use a function to dynamically turn signs off
+    -- and on, using buffer local variables
+    signs = function (bufnr, client_id)
+        local ok, result = pcall(vim.api.nvim_buf_get_var, bufnr, 'show_signs')
+        -- No buffer local variable set, so just enable by default
+        if not ok then
+            return true
+        end
+
+        return result
+    end,
+    -- Disable a feature
+    update_in_insert = false,
   }
 )
 
