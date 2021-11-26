@@ -64,6 +64,13 @@ return require('packer').startup({
             config = [[ require('plugins.lspstatus') ]]
         }
 
+        -- LSP plugin based on Neovim build-in LSP with highly a performant UI
+        use {
+            'glepnir/lspsaga.nvim',
+            requires = { 'neovim/nvim-lspconfig' },
+            config = [[ require('plugins.lspsaga-nvim') ]]
+        }
+
         -----------------------------------------------------------
         -- Completion: for auto-completion/suggestion/snippets
         -----------------------------------------------------------

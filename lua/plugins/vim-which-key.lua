@@ -58,12 +58,12 @@ vim.g.which_key_leader = {
         ['T']    = {':set filetype=html', 'set file type to HTML'},
         ['d']    = {'gd', 'go to definition'},
         ['D']    = {'gD', 'go to declaration'},
-        ['q']    = {':lua vim.lsp.diagnostic.set_loclist()', 'lint code'},
-        ['f']    = {':lua vim.lsp.buf.formatting()<CR>', 'format code'},
+        -- ['f']    = {':lua vim.lsp.buf.formatting()', 'format code'},
         ['l']    = {':set wrap!', 'on/off line wrap'},
         ['n']    = {':set nonumber!', 'on/off line-numbers'},
         ['N']    = {':set norelativenumber!', 'on/off relative line-numbers'},
-        ['w']    = {':StripWhitespace', 'strip whitespace'},
+        ['s']    = {':Lspsaga', 'Run Lspsaga command'},
+        ['S']    = {':StripWhitespace', 'strip whitespace'},
     },
 
     -- Buffer
@@ -144,11 +144,27 @@ vim.g.which_key_leader = {
             ['a']    = {":call v:lua.require('diaglist').open_all_diagnostics()", 'All diagnostics'},
             ['b']    = {":call v:lua.require('diaglist').open_buffer_diagnostics()", 'Buffer diagnostics'},
         },
+        ['s']    = {
+            ['name'] = '+Saga',
+            ['a']    = {":Lspsaga code_action<CR>", 'Code action'},
+            ['A']    = {":Lspsaga range_code_action<CR>", 'Code action for range'},
+            ['f']    = {":Lspsaga lsp_finder<CR>", 'Async LSP finder'},
+            ['h']    = {":Lspsaga hover_doc<CR>", 'Hover doc'},
+            ['H']    = {":Lspsaga signature_help<CR>", 'Signature help'},
+            ['l']    = {":Lspsaga ", 'Enter command Lspsaga'},
+            -- ['d']    = {":call v:lua.require'lspsaga.diagnostic'.show_line_diagnostics()", 'Show djagnosics'}
+            ['S']    = {":Lspsaga show_cursor_diagnostics<CR>", 'Show djagnosics on cursor'},
+            ['s']    = {":Lspsaga show_line_diagnostics<CR>", 'Show djagnosics'},
+            ['[']    = {":Lspsaga diagnostic_jump_prev<CR>", 'Jump previous djagnosics'},
+            [']']    = {":Lspsaga diagnostic_jump_next<CR>", 'Jump nex djagnosics'},
+            ['p']    = {":Lspsaga preview_definition<CR>", 'Preview definition'},
+            ['r']    = {":Lspsaga rename<CR>", 'rename'},
+        },
         ['p']    = {
             ['name'] = '+Python',
             ['d']    = {':FloatermNew python manage.py shell', 'Django-admin Shell'},
             ['p']    = {':FloatermNew python', 'Python shell'},
-            ['v']    = {':Vista!!', 'toogle vista view window'},
+            -- ['v']    = {':Vista!!', 'toogle vista view window'},
         },
         ['w']    = {
             ['name'] = '+Workspace',
@@ -208,4 +224,3 @@ vim.g.which_key_leader = {
         ['V']    = {':exe "vertical resize" . (winheight(0) * 2/3)', 'Increase height'},
     }
 }
-

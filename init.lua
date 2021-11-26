@@ -33,11 +33,11 @@ vim.cmd([[
 
 -- Configurations for Neovim
 -----------------------------------------------------------
--- require('lsp')
 require('configs')
+-- require('lsp')
 
 -- Themes
-vim.o.termguicolors = true
+-- vim.o.termguicolors = true
 -- vim.cmd([[ colorscheme solarized8_flat ]])
 -- vim.cmd([[ colorscheme solarized8 ]])
 -- vim.cmd([[ colorscheme rvcs ]])

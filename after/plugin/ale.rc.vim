@@ -3,7 +3,7 @@
 " linters options: flake8, pydocstyle, bandit, mypy, pylint, all
 " \   'python': ['flake8', 'pydocstyle', 'bandit', 'mypy', 'pylint'],
 let g:ale_linters = {
-\   'python': ['pylint', 'pydocstyle', 'bandit', 'mypy'],
+\   'python': ['pylint', 'flake8', 'pydocstyle', 'bandit', 'mypy'],
 \}
 
 " Fixer: reformatting code
@@ -16,11 +16,17 @@ let g:ale_fixers = {
 \}
 
 let g:ale_lsp_suggestions = 1
-let g:ale_go_gofmt_options = '-s'
-let g:ale_go_gometalinter_options = '— enable=gosimple — enable=staticcheck'
+let g:ale_disable_lsp = 0
+
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] [%severity%] %code: %%s'
+
+let g:ale_python_pylint_options = ''
+
+let g:ale_go_gofmt_options = '-s'
+let g:ale_go_gometalinter_options = '— enable=gosimple — enable=staticcheck'
+
 
 " Set this variable to 1 to fix files when you save them.
 let g:ale_fix_on_save = 1
