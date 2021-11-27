@@ -1,6 +1,6 @@
 local lsp_installer = require("nvim-lsp-installer")
--- local on_attach = require('lsp.on_attach')
-local on_attach = require('lsp.on_attach-with-lspsaga')
+-- local on_attach = require('lsp.on_attach').nvim_lsp
+local on_attach = require('lsp.on_attach').lsp_saga
 local capabilities = require('cmp_nvim_lsp').update_capabilities(
     vim.lsp.protocol.make_client_capabilities()
 )
@@ -22,14 +22,13 @@ lsp_installer.settings({
     max_concurrent_installers = 4,
 })
 
--- Linter setup
+-- Linter setup for `Setup Language Server`
 --------------------------------------------------------------------------
 --- Linter setup
 local filetypes = {
   typescript = "eslint",
   typescriptreact = "eslint",
   python = "flake8",
-  php = {"phpcs", "psalm"},
 }
 
 local linters = {
@@ -71,7 +70,6 @@ local linters = {
     },
   },
 }
-
 
 -- Setup Language Server
 --------------------------------------------------------------------------
@@ -180,16 +178,14 @@ lsp_installer.on_server_ready(function (server)
 
         ['diagnosticls'] = function ()
             default_opts.cmd = { "diagnostic-languageserver", "--stdio" }
-            -- Empty by default, override to add filetypes
-            -- default_opts.filetypes = {
-            -- }
-            -- default_opts.root_dir = Vim's starting directory
-            default_opts.on_attach = on_attach
             default_opts.filetypes = vim.tbl_keys(filetypes)
+            -- default_opts.root_dir = Vim's starting directory
             default_opts.init_options = {
                 filetypes = filetypes,
                 linters = linters,
             }
+            default_opts.on_attach = on_attach
+            default_opts.capabilities = capabilities
 
             return default_opts
         end,

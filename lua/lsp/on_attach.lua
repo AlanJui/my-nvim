@@ -4,14 +4,22 @@ local M = {}
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-M.on_attach = function(client, bufnr)
+-- Process:
+--  * Enable completion and how to triggered
+--  * key mapping conditional on server capabilities
+--     - ff for whole file formatting: lua vim.lsp.buf.formatting()
+--     - ff for range formatting: lua vim.lsp.buf.range_formatting()
+--  * set autocommands conditional on server_capabilities
+--     > resolve document_hightlight
+--     > auto-format on save file
+M.nvim_lsp = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
     -- Enable completion triggered by <c-x><c-o>
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    -- Mappings.
+    -- Key Mappings.
     local opts = { noremap=true, silent=true }
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -33,8 +41,8 @@ M.on_attach = function(client, bufnr)
     buf_set_keymap('n', '<LocalLeader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     buf_set_keymap('n', '<LocalLeader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
+    -- Auto formatting
     -- Let it format on save
-    -- 	-- Auto formatting
     -- 	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
     if client.resolved_capabilities.document_formatting then
         vim.cmd([[
@@ -46,4 +54,33 @@ M.on_attach = function(client, bufnr)
     end
 end
 
-return M.on_attach
+-- Handler to attach LSP keymappings to buffers using LSP Saga.
+M.lsp_saga = function(client, bufnr)
+  -- helper methods for setting keymaps
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
+
+  --- Mappings
+  local opts = { noremap=true, silent=true }
+  buf_set_keymap('n', 'gh', "<cmd>lua require('lspsaga.provider').lsp_finder()<CR>", opts)
+  buf_set_keymap('n', ';k', "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", opts)
+
+  -- Scroll down hover doc or scroll in definition preview popups
+  buf_set_keymap('n', '<C-f>', "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", opts)
+  -- Scroll up hover doc
+  buf_set_keymap('n', '<C-b>', "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", opts)
+
+  -- Navigate and preview
+  buf_set_keymap('n', 'gs', "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", opts)
+  buf_set_keymap('n', 'gd', "<cmd>lua require('lspsaga.provider').preview_definition()<CR>", opts)
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'gr', "<cmd>lua require('lspsaga.rename').rename()<CR>", opts)
+
+  -- View diagnostics
+  buf_set_keymap('n', ';d', "<cmd>lua require('lspsaga.diagnostic').show_line_diagnostics()<CR>", opts)
+  buf_set_keymap('n', '[d', "<cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_prev()<CR>", opts)
+  buf_set_keymap('n', ']d', "<cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_next()<CR>", opts)
+end
+return M

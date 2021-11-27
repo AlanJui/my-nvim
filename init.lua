@@ -34,35 +34,33 @@ vim.cmd([[
 -- Configurations for Neovim
 -----------------------------------------------------------
 require('configs')
--- require('lsp')
 
 -- Themes
--- vim.o.termguicolors = true
+-- -- Tokyo Night Color Scheme Configuration
+-- vim.cmd([[ colorscheme tokyonight ]])
+-- vim.g.tokyonight_style = 'storm'
+-- -- vim.g.tokyonight_style = 'day'
+-- -- vim.g.tokyonight_style = 'night'
+-- vim.g.tokyonight_italic_functions = true
+-- vim.g.tokyonight_sidebars = {
+--     'qf',
+--     'vista_kind',
+--     'terminal',
+--     'packer',
+-- }
+-- -- Change the "hint" color to the "orange" color,
+-- -- and make the "error" color bright red
+-- vim.g.tokyonight_colors = {
+--     hint = 'orange',
+--     error = '#ff0000'
+-- }
+
 -- vim.cmd([[ colorscheme solarized8_flat ]])
 -- vim.cmd([[ colorscheme solarized8 ]])
 -- vim.cmd([[ colorscheme rvcs ]])
 -- vim.cmd([[ colorscheme nightfly ]])
 -- vim.cmd([[ colorscheme moonfly ]])
--- vim.cmd([[ colorscheme OceanicNext ]])
-
--- Tokyo Night Color Scheme Configuration
-vim.cmd([[ colorscheme tokyonight ]])
-vim.g.tokyonight_style = 'storm'
--- vim.g.tokyonight_style = 'day'
--- vim.g.tokyonight_style = 'night'
-vim.g.tokyonight_italic_functions = true
-vim.g.tokyonight_sidebars = {
-    'qf',
-    'vista_kind',
-    'terminal',
-    'packer',
-}
--- Change the "hint" color to the "orange" color,
--- and make the "error" color bright red
-vim.g.tokyonight_colors = {
-    hint = 'orange',
-    error = '#ff0000'
-}
+vim.cmd([[ colorscheme OceanicNext ]])
 
 -- Key bindings
 -----------------------------------------------------------

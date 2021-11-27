@@ -41,7 +41,7 @@ return require('packer').startup({
         -- server client
         use {
             'neovim/nvim-lspconfig',
-            config = [[ require('plugins.lspconfig') ]]
+            -- config = [[ require('plugins.lspconfig') ]]
         }
 
         -- companion plugin for nvim-lspconfig that allows you to seamlessly
