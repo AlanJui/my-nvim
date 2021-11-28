@@ -9,10 +9,10 @@ let g:ale_linters = {
 " Fixer: reformatting code
 " fixers options: black, yapf, autopep8
 " let g:ale_fixers = {'python': ['isort', 'black', 'remove_trailing_lines', 'trim_whitespace']}
-" \   'python': ['isort', 'autopep8'],
+" \   'python': ['isort', 'black'],
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'python': ['isort', 'black'],
+\   'python': ['isort', 'autopep8'],
 \}
 
 let g:ale_lsp_suggestions = 1
@@ -44,6 +44,8 @@ let g:ale_completion_enabled = 0
 " set omnifunc=ale#completion#OmniFunc
 
 nmap <F10> :ALEFix<CR>
+nmap [e    :ALEPrev<CR>
+nmap ]e    :ALENext<CR>
 
 
 " function! LinterStatus() abort

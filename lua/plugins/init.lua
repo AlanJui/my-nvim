@@ -145,7 +145,8 @@ return require('packer').startup({
         use {
             'nvim-telescope/telescope.nvim',
             requires = {
-                { 'nvim-lua/plenary.nvim', }
+                { 'nvim-lua/plenary.nvim', },
+                { 'nvim-telescope/telescope-live-grep-raw.nvim' },
             },
             config = [[ require('plugins.telescope-nvim') ]]
         }

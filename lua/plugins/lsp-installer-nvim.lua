@@ -208,7 +208,7 @@ local servers = {
     'sumneko_lua',
     'pyright',
     'html',
-    'emmet_ls',
+    -- 'emmet_ls',
     'tsserver',
     'vuels',
     'yamlls',

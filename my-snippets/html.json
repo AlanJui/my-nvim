@@ -1,6 +1,6 @@
 {
   "myCommentLine": {
-    "prefix": "myComment",
+    "prefix": "myCommentLine",
     "body": ["{# comment-out a line #}"],
     "description": "comment out single line"
   },
@@ -27,7 +27,7 @@
     "prefix": "myLabel",
     "body": [
       "<label for=\"\" class=\"col-md-5 control-label\" >",
-      "\t${1:LABEL}"
+      "\t${1:LABEL}",
       "</label>"
     ]
   },

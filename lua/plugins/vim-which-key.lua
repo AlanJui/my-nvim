@@ -36,8 +36,7 @@ vim.g.which_key_leader = {
     ['name']    = '',
     [' ']       = {':Telescope find_files', 'Find files'},
     [',']       = {':Telescope buffers', 'Show buffers'},
-    ['.']       = {':FloatermNew --wintype=normal --height=10', 'Terminal pane'},
-    [';']       = {':e ~/.config/web-nvim/nvim/init.lua', 'Open init'},
+    [';']       = {':FloatermNew --wintype=normal --height=10', 'Terminal panel'},
     ['/']       = {'gcc', 'Comment out and Toggle'},
     ['<Up>']    = 'Up window',
     ['<Down>']  = 'Down window',
@@ -58,11 +57,10 @@ vim.g.which_key_leader = {
         ['T']    = {':set filetype=html', 'set file type to HTML'},
         ['d']    = {'gd', 'go to definition'},
         ['D']    = {'gD', 'go to declaration'},
-        -- ['f']    = {':lua vim.lsp.buf.formatting()', 'format code'},
         ['l']    = {':set wrap!', 'on/off line wrap'},
         ['n']    = {':set nonumber!', 'on/off line-numbers'},
         ['N']    = {':set norelativenumber!', 'on/off relative line-numbers'},
-        ['s']    = {':Lspsaga', 'Run Lspsaga command'},
+        -- ['s']    = {':Lspsaga', 'Run Lspsaga command'},
         ['S']    = {':StripWhitespace', 'strip whitespace'},
     },
 
@@ -80,6 +78,19 @@ vim.g.which_key_leader = {
         [']']    = {'gt', 'Next buffer'}
     },
 
+    -- Configure Neovim
+    ['c'] = {
+        ['name'] = '+Neovim',
+        ['i']    = {':e ~/.config/web-nvim/nvim/init.lua', 'Open [nvim]/init.lua'},
+        ['I']    = {':source ~/.config/web-nvim/nvim/init.lua', 'Reload [nvim]/init.lua'},
+        ['k']    = {':e ~/.config/web-nvim/nvim/lua/keymaps.lua', 'Open keybinding: keymaps.lua'},
+        ['K']    = {':e ~/.config/web-nvim/nvim/lua/plugins/vim-which-key.lua', 'Open which-key configuration'},
+        ['p']    = {':e ~/.config/web-nvim/nvim/lua/plugins/init.lua', 'Open [plugings]/init.lua'},
+        ['P']    = {':Telescope find_files shorten_path=true', 'Search configuration of plugin'},
+        ['c']    = {':e ~/.config/web-nvim/nvim/lua/configs.lua', 'Open setting: configs.lua'},
+        ['C']    = {':PackerCompile', 'PackerCompile'},
+        ['S']    = {':PackerSync', 'PackerSync'},
+    },
     -- File
     ['f'] = {
         ['name'] = '+file',
@@ -132,6 +143,14 @@ vim.g.which_key_leader = {
     -- LSP / Language
     ['l'] = {
         ['name'] = '+lsp',
+        ['a']    = {
+            ['name'] = '+ALE',
+            ['p']    = {":ALEPrevious", 'ALEPrevious'},
+            ['n']    = {":ALENext", 'ALENext'},
+            ['f']    = {":call v:lua.vim.lsp.buf.formatting()", 'Formatting'},
+            ['d']    = {":call v:lua.vim.lsp.buf.declaration()", 'Go to declaration'},
+            ['D']    = {":call v:lua.vim.lsp.buf.definition()", 'Go to definition'},
+        },
         ['c']    = {
             ['name'] = '+Commands',
             ['r']    = {":call v:lua.vim.lsp.buf.rename()", 'Rename'},
@@ -152,13 +171,14 @@ vim.g.which_key_leader = {
             ['h']    = {":Lspsaga hover_doc<CR>", 'Hover doc'},
             ['H']    = {":Lspsaga signature_help<CR>", 'Signature help'},
             ['l']    = {":Lspsaga ", 'Enter command Lspsaga'},
-            -- ['d']    = {":call v:lua.require'lspsaga.diagnostic'.show_line_diagnostics()", 'Show djagnosics'}
             ['S']    = {":Lspsaga show_cursor_diagnostics<CR>", 'Show djagnosics on cursor'},
             ['s']    = {":Lspsaga show_line_diagnostics<CR>", 'Show djagnosics'},
             ['[']    = {":Lspsaga diagnostic_jump_prev<CR>", 'Jump previous djagnosics'},
             [']']    = {":Lspsaga diagnostic_jump_next<CR>", 'Jump nex djagnosics'},
             ['p']    = {":Lspsaga preview_definition<CR>", 'Preview definition'},
             ['r']    = {":Lspsaga rename<CR>", 'rename'},
+            -- ['f']    = {':lua vim.lsp.buf.formatting()', 'format code'},
+            -- ['d']    = {":call v:lua.require'lspsaga.diagnostic'.show_line_diagnostics()", 'Show djagnosics'}
         },
         ['p']    = {
             ['name'] = '+Python',

@@ -93,3 +93,10 @@ endif
 -- -- json
 -- cmd([[ au BufEnter *.json set ai expandtab shiftwidth=2 tabstop=2 sta fo=croql ]])
 
+
+--Save undo history
+vim.cmd [[set undofile]]
+
+-- Disable swap file
+vim.opt.swapfile = false
+vim.opt.writebackup = false
