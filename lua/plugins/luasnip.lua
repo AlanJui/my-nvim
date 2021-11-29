@@ -60,7 +60,7 @@ luasnip.snippets.typescriptreact = luasnip.snippets.html
 luasnip.filetype_extend('htmldjango', {'html'})
 
 require("luasnip/loaders/from_vscode").load({
-    include = {"python", "html", "htmldjango", "javascript", "typescript"},
+    include = {"python", "html", "htmldjango", "javascript", "typescript", "css"},
     paths = {
         "~/.config/nvim/my-snippets",
         "~/.local/share/nvim/site/pack/packer/start/friendly-snippets",
