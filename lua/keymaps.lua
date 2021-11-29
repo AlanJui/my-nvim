@@ -5,13 +5,14 @@ local opts = { silent = true, noremap = true }
 vim.g.maplocalleader = ','
 
 keymap('i', 'jj', '<Esc>', opts)
-keymap('i', '<LocalLeader>O', '<Esc>O',  opts)
-keymap('i', '<LocalLeader>o', '<Esc>jO', opts)
-keymap('i', '<LocalLeader>G', '<Esc>Go', opts)
-keymap('i', '<LocalLeader>l', '<Esc>lli', opts)
-keymap('i', '<LocalLeader>a', '<Esc>A', opts)
-keymap('i', ',,',             '<Esc>lli,', opts)
-keymap('i', '::',             '<Esc>A:',  opts)
+keymap('i', '<LocalLeader>O', '<Esc>O',   opts)
+keymap('i', '<LocalLeader>o', '<Esc>jO',  opts)
+keymap('i', '<LocalLeader>G', '<Esc>Go',  opts)
+keymap('i', '<LocalLeader>l', '<Esc>la',  opts)
+keymap('i', '<LocalLeader>a', '<Esc>A',   opts)
+keymap('i', '<LocalLeader>,', '<Esc>la,', opts)
+keymap('i', '<LocalLeader>:', '<Esc>la:', opts)
+
 keymap('n', 'H', '0', opts)
 keymap('n', 'L', '$', opts)
 keymap('n', 'X', 'd$', opts)

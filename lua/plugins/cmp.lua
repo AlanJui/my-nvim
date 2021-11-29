@@ -65,9 +65,13 @@ cmp.setup({
     ['<C-\\>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
     ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ['<C-e>'] = cmp.mapping({
-        i = cmp.mapping.abort(),
+        i = cmp.mapping.close(),
         c = cmp.mapping.close(),
     }),
+    -- ['<C-e>'] = cmp.mapping({
+    --     i = cmp.mapping.abort(),
+    --     c = cmp.mapping.close(),
+    -- }),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,

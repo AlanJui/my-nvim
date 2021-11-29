@@ -207,11 +207,14 @@ return require('packer').startup({
         }
 
         -- A work-in-progress Magit clone for Neovim that is geared toward the Vim philosophy.
-        -- use {
-        --     'TimUntersberger/neogit',
-        --     requires = 'nvim-lua/plenary.nvim',
-        --     config = [[ require('plugins.neogit') ]]
-        -- }
+        use {
+            'TimUntersberger/neogit',
+            requires = {
+                'nvim-lua/plenary.nvim',
+                'sindrets/diffview.nvim',
+            },
+            config = [[ require('plugins.neogit') ]]
+        }
 
         -- for creating gist
         -- Personal Access Token: ~/.gist-vim
