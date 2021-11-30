@@ -40,7 +40,7 @@ require('plugins')
 vim.cmd([[
     augroup packer_user_config
         autocmd!
-        autocmd BufWritePost ~/.config/web-nvim/nvim/lua/plugins/init.lua source <afile> | PackerCompile
+        autocmd BufWritePost ~/.config/nvim/lua/plugins/init.lua source <afile> | PackerCompile
     augroup end
 ]])
 

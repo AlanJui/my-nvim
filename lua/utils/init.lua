@@ -12,8 +12,8 @@ local install_path
 
 if is_empty(my_nvim) then
     my_nvim = 'nvim'
-    package_root = home_path .. '/.local/share/' .. my_nvim .. '/site/pack'
-    nvim_config_path = home_path .. '/.config/' .. my_nvim
+    package_root = home_path .. '/.local/share/' .. 'nvim' .. '/site/pack'
+    nvim_config_path = home_path .. '/.config/' .. 'nvim'
 else
     package_root = os.getenv('NVIM_RUNTIME_DIR') .. '/site/pack'
     nvim_config_path = os.getenv('NVIM_CONFIG_DIR')
@@ -86,4 +86,3 @@ return M
 -- end
 -- compile_path = nvim_config_path .. '/plugin/packer_compiled.lua'
 -- install_path = package_root .. '/packer/start/packer.nvim'
-
