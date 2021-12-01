@@ -315,9 +315,9 @@ return require('packer').startup({
         -- and acts as a Vim Language Server Protocol client.
         use {
             'dense-analysis/ale',
-            -- config = vim.cmd([[
-            --     runtime ./after/plugin/ale.rc.vim
-            -- ]])
+            config = vim.cmd([[
+                runtime ./lua/plugins/ale.rc.vim
+            ]])
         }
 
         --  Modifies Vim’s indentation behavior to comply with PEP8 and my aesthetic preferences.

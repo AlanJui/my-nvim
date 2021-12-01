@@ -1,0 +1,28 @@
+###################
+.DS_Store
+.hg
+.svn
+.idea
+.vscode
+.git
+*.vscode
+node_modules
+###################
+# Python files
+.venv/
+env/
+__pycache__/
+.pyc
+# Temporary files
+*.kate-swp
+*.swp
+*.swo
+*~
+
+#################
+# Project
+docs/diagrams/out/
+docs/.vuepress/dist/
+static_collected/
+tags
+*.bak*

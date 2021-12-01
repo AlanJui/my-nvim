@@ -28,7 +28,7 @@ lsp_installer.settings({
 local filetypes = {
   typescript = "eslint",
   typescriptreact = "eslint",
-  python = "flake8",
+  -- python = "flake8",
 }
 
 local linters = {
@@ -49,26 +49,26 @@ local linters = {
     },
     securities = {[2] = "error", [1] = "warning"}
   },
-  flake8 = {
-    command = "flake8",
-    sourceName = "flake8",
-    args = {"--format", "%(row)d:%(col)d:%(code)s: %(text)s", "%file"},
-    formatPattern = {
-      "^(\\d+):(\\d+):(\\w+):(\\w).+: (.*)$",
-      {
-          line = 1,
-          column = 2,
-          message = {"[", 3, "] ", 5},
-          security = 4
-      }
-    },
-    securities = {
-      E = "error",
-      W = "warning",
-      F = "info",
-      B = "hint",
-    },
-  },
+  -- flake8 = {
+  --   command = "flake8",
+  --   sourceName = "flake8",
+  --   args = {"--format", "%(row)d:%(col)d:%(code)s: %(text)s", "%file"},
+  --   formatPattern = {
+  --     "^(\\d+):(\\d+):(\\w+):(\\w).+: (.*)$",
+  --     {
+  --         line = 1,
+  --         column = 2,
+  --         message = {"[", 3, "] ", 5},
+  --         security = 4
+  --     }
+  --   },
+  --   securities = {
+  --     E = "error",
+  --     W = "warning",
+  --     F = "info",
+  --     B = "hint",
+  --   },
+  -- },
 }
 
 -- Setup Language Server
@@ -125,6 +125,15 @@ lsp_installer.on_server_ready(function (server)
         ['pyright'] = function ()
             default_opts.cmd = { "pyright-langserver", "--stdio" }
             default_opts.filetypes = { "python" }
+            default_opts.settings = {
+                python = {
+                    analysis = {
+                        autoSearchPaths = true,
+                        diagnosticMode = "workspace",
+                        useLibraryCodeForTypes = true,
+                    }
+                }
+            }
             default_opts.on_attach = on_attach
             default_opts.capabilities = capabilities
 
@@ -207,8 +216,8 @@ end)
 local servers = {
     'sumneko_lua',
     'pyright',
-    'html',
     -- 'emmet_ls',
+    'html',
     'tsserver',
     'vuels',
     'yamlls',

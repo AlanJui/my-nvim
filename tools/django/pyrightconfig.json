@@ -1,0 +1,12 @@
+{
+	"venv" : "venv-3.10.0",
+	"venvPath" : "/home/alanjui/.pyenv/versions",
+	"exclude": [
+		"**/node_modules",
+		"**/__pycache__"
+	],
+	"reportUnusedVariable": false,
+	"reportUnusedFunction": false,
+	"reportUnusedImport": true,
+	"reportMissingImports": true
+}
