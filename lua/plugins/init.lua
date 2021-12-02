@@ -245,9 +245,9 @@ return require('packer').startup({
         -- Causes all trailing whitespace characters to be highlighted
         use {
             'ntpeters/vim-better-whitespace',
-            -- config = vim.cmd([[
-            --     runtime ./after/plugin/vim-better-whitespace.rc.vim
-            -- ]])
+            config = vim.cmd([[
+                runtime ./lua/plugins/vim-better-whitespace.rc.vim
+            ]])
         }
 
         -- Add indentation guides even on blank lines
@@ -281,25 +281,25 @@ return require('packer').startup({
         -- provides support for expanding abbreviations similar to emmet
         use {
             'mattn/emmet-vim',
-            -- config = vim.cmd([[
-            --     runtime ./after/plugin/emmet-vim.rc.vim
-            -- ]])
+            config = vim.cmd([[
+                runtime ./lua/plugins/emmet-vim.rc.vim
+            ]])
         }
 
         -- Auto close tag
         use {
             'alvan/vim-closetag',
-            -- config = vim.cmd([[
-            --     runtime ./after/plugin/vim-closetag.rc.vim
-            -- ]])
+            config = vim.cmd([[
+                runtime ./lua/plugins/vim-closetag.rc.vim
+            ]])
         }
 
         -- Auto change html tags
         use {
             'AndrewRadev/tagalong.vim',
-            -- config = vim.cmd([[
-            --     runtime ./after/plugin/tagalong-vim.rc.vim
-            -- ]])
+            config = vim.cmd([[
+                runtime ./lua/plugins/tagalong-vim.rc.vim
+            ]])
         }
 
         -- Use treesitter to autoclose and autorename HTML tag
@@ -352,17 +352,17 @@ return require('packer').startup({
         -- Markdown preview
         use {
             'instant-markdown/vim-instant-markdown',
-            -- config = vim.cmd([[
-            --     runtime ./after/plugin/vim-instant-markdown.rc.vim
-            -- ]])
+            config = vim.cmd([[
+                runtime ./lua/plugins/vim-instant-markdown.rc.vim
+            ]])
         }
 
         -- PlantUML
         use {
             'weirongxu/plantuml-previewer.vim',
-            -- config = vim.cmd([[
-            --     runtime ./after/plugin/plantuml-previewer.rc.vim
-            -- ]])
+            config = vim.cmd([[
+                runtime ./lua/plugins/plantuml-previewer.rc.vim
+            ]])
         }
 
         -- PlantUML syntax highlighting
