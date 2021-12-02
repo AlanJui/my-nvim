@@ -79,6 +79,7 @@ lsp_installer.on_server_ready(function (server)
         on_attach = on_attach,
         capabilities = capabilities,
     }
+    local lsp_servers_path = vim.fn.stdpath('data') .. '/lsp_servers'
 
     -- Create a server_opts table where we'll specify our custom LSP server configuration
     local server_opts = {
@@ -123,7 +124,10 @@ lsp_installer.on_server_ready(function (server)
         end,
 
         ['pyright'] = function ()
-            default_opts.cmd = { "pyright-langserver", "--stdio" }
+            default_opts.cmd = {
+                lsp_servers_path .. "/python/node_modules/.bin/pyright-langserver",
+                "--stdio"
+            }
             default_opts.filetypes = { "python" }
             default_opts.settings = {
                 python = {
@@ -142,8 +146,8 @@ lsp_installer.on_server_ready(function (server)
 
         ['tsserver'] = function ()
             default_opts.cmd = {
-                'typescript-language-server',
-                '--stdio',
+                lsp_servers_path .. "/tsserver/node_modules/.bin/typescript-language-server",
+                "--stdio"
             }
 
             default_opts.filetypes = {
@@ -160,11 +164,29 @@ lsp_installer.on_server_ready(function (server)
         end,
 
         ['html'] = function ()
-            default_opts.cmd = { "vscode-html-language-server", "--stdio" }
+            default_opts.cmd = {
+                lsp_servers_path .. "/html/node_modules/.bin/vscode-html-language-server",
+                "--stdio"
+            }
             default_opts.filetypes = {
                 "html",
                 "htmldjango",
+            }
+            default_opts.on_attach = on_attach
+            default_opts.capabilities = capabilities
+
+            return default_opts
+        end,
+
+        ['cssls'] = function ()
+            default_opts.cmd = {
+                lsp_servers_path .. "/html/node_modules/.bin/vscode-css-language-server",
+                "--stdio"
+            }
+            default_opts.filetypes = {
                 "css",
+                "scss",
+                "less",
             }
             default_opts.on_attach = on_attach
             default_opts.capabilities = capabilities
@@ -173,20 +195,30 @@ lsp_installer.on_server_ready(function (server)
         end,
 
         ['emmet_ls'] = function ()
-            default_opts.cmd = { "emmet-ls", "--stdio" }
+            local emmet_capabilities = vim.lsp.protocol.make_client_capabilities()
+            emmet_capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+            default_opts.cmd = {
+                lsp_servers_path .. "/emmet_ls/node_modules/.bin/emmet-ls",
+                "--stdio"
+            }
             default_opts.filetypes = {
                 "html",
                 "htmldjango",
+                "blade",
                 "css",
             }
             default_opts.on_attach = on_attach
-            default_opts.capabilities = capabilities
+            default_opts.capabilities = emmet_capabilities
 
             return default_opts
         end,
 
         ['diagnosticls'] = function ()
-            default_opts.cmd = { "diagnostic-languageserver", "--stdio" }
+            default_opts.cmd = {
+                lsp_servers_path .. "/diagnosticls/node_modules/.bin/diagnostic-languageserver",
+                "--stdio"
+            }
             default_opts.filetypes = vim.tbl_keys(filetypes)
             -- default_opts.root_dir = Vim's starting directory
             default_opts.init_options = {
@@ -204,7 +236,8 @@ lsp_installer.on_server_ready(function (server)
     -- if not, use our default_opts
     server:setup(server_opts[server.name] and server_opts[server.name]() or default_opts)
     vim.cmd([[
-    " do User LspAttachBuffers
+        " do User LspAttachBuffers
+        let g:completion_trigger_character = [ '.' ]
     ]])
 end)
 
@@ -215,14 +248,20 @@ end)
 -- local lsp_installer = require('nvim-lsp-installer')
 local servers = {
     'sumneko_lua',
+    'diagnosticls',
     'pyright',
-    -- 'emmet_ls',
+    'emmet_ls',
     'html',
+    'cssls',
+    'jsonls',
+    'eslint',
     'tsserver',
     'vuels',
     'yamlls',
     'bashls',
-    'diagnosticls',
+    'dockerls',
+    'sqlls',
+    'lemminx',  -- XML
 }
 for _, name in pairs(servers) do
     local ok, server = lsp_installer.get_server(name)
