@@ -1,9 +1,9 @@
 " ale.rc.vim
 
 " linters options: flake8, pydocstyle, bandit, mypy, pylint, all
-" \   'python': ['flake8', 'pydocstyle', 'bandit', 'mypy', 'pylint'],
+" \   'python': ['pylint', 'flake8', 'pydocstyle', 'bandit', 'mypy'],
 let g:ale_linters = {
-\   'python': ['pylint', 'flake8', 'pydocstyle', 'bandit', 'mypy'],
+\   'python': ['flake8', 'pydocstyle', 'bandit', 'mypy'],
 \}
 " let g:ale_linters = {}
 

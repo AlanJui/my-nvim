@@ -8,5 +8,13 @@
 	"reportUnusedVariable": false,
 	"reportUnusedFunction": false,
 	"reportUnusedImport": true,
-	"reportMissingImports": true
+	"reportMissingImports": true,
+	"reportMissingTypeStubs": "warning",
+	"reportOptionalMemberAccess": false,
+	"reportGeneralTypeIssues": "warning",
+
+  "stubPath": "typings",
+  "typeshedPaths": [],
+  "typeCheckingMode": "basic",
+  "useLibraryCodeForTypes": true
 }
