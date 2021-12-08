@@ -1,59 +1,96 @@
+-----------------------------------------------------------
+-- Startup
+-----------------------------------------------------------
+MY_VIM = 'web-nvim'
+DEBUG = false
+-- DEBUG = true
+
+if DEBUG then print('===== Begin of loading init.lua... =====') end
+
+local function print_runtime_path()
+    print(string.format('rtp = %s', vim.opt.rtp['_value']))
+end
+
+-----------------------------------------------------------
+-- Initial environment
+-----------------------------------------------------------
+if DEBUG then
+    print('<< Begin of init_my_vim() >>')
+    print_runtime_path()
+end
+-----------------------------------------------------------
+-- local init_env_path = os.getenv('HOME') .. '/.config/' .. MY_VIM .. '/lua/init_env.lua'
+-- print(string.format('init_env_path = %s', init_env_path))
+-- vim.cmd([[ "luafile " .. init_env_path ]])
+
+local config_dir = os.getenv('MY_CONFIG_DIR')
+local runtime_dir = os.getenv('MY_RUNTIME_DIR')
+local path_sep = vim.loop.os_uname().version:match "Windows" and "\\" or "/"
+
+local function join_paths(...)
+    local result = table.concat({ ... }, path_sep)
+    return result
+end
+
+vim.opt.rtp:remove(join_paths(vim.fn.stdpath('data'), 'site'))
+vim.opt.rtp:remove(join_paths(vim.fn.stdpath('data'), 'site', 'after'))
+vim.opt.rtp:prepend(join_paths(runtime_dir, 'site'))
+vim.opt.rtp:append(join_paths(runtime_dir, 'site', 'after'))
+
+vim.opt.rtp:remove(vim.fn.stdpath('config'))
+vim.opt.rtp:remove(join_paths( vim.fn.stdpath('config'), 'after' ))
+vim.opt.rtp:prepend(config_dir)
+vim.opt.rtp:append(join_paths(config_dir, 'after'))
+
+vim.cmd [[let &packpath = &runtimepath]]
+vim.cmd [["set spellfile" .. join_paths(config_dir, "spell", "en.utf-8.add")]]
+
+-----------------------------------------------------------
+if DEBUG then
+    print('<< End of init_my_vim() >>')
+    print_runtime_path()
+    -- print('config_dir=', config_dir)
+    -- print('runtime_dir=', runtime_dir)
+    -- print(vim.fn.stdpath('config'))
+    -- print(vim.fn.stdpath('data'))
+end
+
+-----------------------------------------------------------
 -- Essential configuration on development init.lua
 -----------------------------------------------------------
-local USER_HOME_PATH = os.getenv('HOME')
-local PYENV_ROOT_PATH = USER_HOME_PATH .. '/.pyenv'
-local PYENV_GLOBAL_PATH = PYENV_ROOT_PATH .. '/versions/venv-nvim'
-local PYTHON_BINARY = PYENV_GLOBAL_PATH .. '/bin/python3'
+require('essential')
 
-vim.opt.encoding = 'UTF-8'
-vim.guifont = 'DroidSansMono Nerd Font 18'
-
-vim.g.python3_host_prog = PYTHON_BINARY
-vim.g.loaded_python_provider = 0
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_perl_provider = 0
-
--- Display line number on side bar
-vim.wo.number = true
-vim.wo.relativenumber = true
--- Disable line wrap
-vim.opt.textwidth = 0
-vim.opt.wrapmargin = 0
-vim.wo.wrap = false
--- Tabs
-vim.bo.expandtab = true
-vim.bo.shiftwidth = 2
-vim.bo.softtabstop = 2
-vim.cmd([[
-    autocmd FileType lua setlocal expandtab shiftwidth=4 tabstop=4 smartindent
-    autocmd BufEnter *.lua set autoindent expandtab shiftwidth=4 tabstop=4
-]])
--- Reformat indent line
--- gg=G
-vim.cmd([[
-command! -range=% Format :<line1>,<line2>s/^\s*/&&
-]])
-
+-----------------------------------------------------------
 -- Plugin Manager: install plugins
 -----------------------------------------------------------
 require('plugins')
-vim.cmd([[
-    augroup packer_user_config
-        autocmd!
-        autocmd BufWritePost ~/.config/web-nvim/lua/plugins/init.lua source <afile> | PackerCompile
-    augroup end
-]])
 
+-- vim.cmd([[
+-- augroup packer_user_config
+--     autocmd!
+--     autocmd BufWritePost ./lua/plugins/init.lua source <afile> | PackerCompile
+-- augroup end
+-- ]])
+require('nvim_utils')
+local nvim_config_path = require('utils.env').get_config_dir()
+local autocmds = {
+    packer_user_config = {
+        { "BufWritePost " .. nvim_config_path .. "/lua/plugins/init.lua source <afile> | PackerCompile " },
+    }
+}
+nvim_create_augroups(autocmds)
+
+-----------------------------------------------------------
 -- Configurations for Neovim
 -----------------------------------------------------------
 require('configs')
 
 -- Themes
--- -- Tokyo Night Color Scheme Configuration
+-- Tokyo Night Color Scheme Configuration
+-- vim.g.tokyonight_style = 'day'
+-- vim.g.tokyonight_style = 'night'
 vim.cmd([[ colorscheme tokyonight ]])
 vim.g.tokyonight_style = 'storm'
--- -- vim.g.tokyonight_style = 'day'
--- -- vim.g.tokyonight_style = 'night'
 vim.g.tokyonight_italic_functions = true
 vim.g.tokyonight_dark_float = true
 vim.g.tokyonight_transparent = true
@@ -77,9 +114,12 @@ vim.g.tokyonight_colors = {
 -- vim.cmd([[ colorscheme nightfly ]])
 -- vim.cmd([[ colorscheme moonfly ]])
 
+-----------------------------------------------------------
 -- Key bindings
 -----------------------------------------------------------
 require('keymaps')
 
+-----------------------------------------------------------
 -- Experiment
 -----------------------------------------------------------
+if DEBUG then print('===== End of loading init.lua... =====') end

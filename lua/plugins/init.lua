@@ -1,12 +1,13 @@
+if DEBUG then print('Loading plugins...') end
+-----------------------------------------------------------
 -- Plugin Manager: install plugins
 -----------------------------------------------------------
 local vim = vim
-local execute = vim.api.nvim_command
 local fn = vim.fn
 
-local package_root = require('utils').get_package_root()
-local install_path = require('utils').get_install_path()
-local compile_path = require('utils').get_compile_path()
+local package_root = require('utils.env').get_package_root()
+local install_path = require('utils.env').get_install_path()
+local compile_path = require('utils.env').get_compile_path()
 local packer_bootstrap
 
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -16,7 +17,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
         'https://github.com/wbthomason/packer.nvim',
         install_path
     })
-    execute 'packadd packer.nvim'
 end
 
 require('packer').init({
@@ -32,6 +32,9 @@ return require('packer').startup({
 
         -- Packer can manage itself
         use 'wbthomason/packer.nvim'
+
+        -- Tools to migrating init.vim to init.lua
+        use 'norcalli/nvim_utils'
 
         -----------------------------------------------------------
         -- LSP/LspInstaller: configurations for the Nvim LSP client

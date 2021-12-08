@@ -4,7 +4,7 @@ local on_attach = require('lsp.on_attach').lsp_saga
 local capabilities = require('cmp_nvim_lsp').update_capabilities(
     vim.lsp.protocol.make_client_capabilities()
 )
-local system_name = require('utils').get_system()
+local system_name = require('utils.env').get_system()
 
 -- Provide settings first!
 --------------------------------------------------------------------------

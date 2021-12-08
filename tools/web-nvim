@@ -1,15 +1,6 @@
 #!/bin/sh
-
 export MY_NVIM="web-nvim"
-export XDG_CONFIG_HOME="$HOME/.config"
-export NVIM_CONFIG_DIR="$XDG_CONFIG_HOME/$MY_NVIM"
-export NVIM_RUNTIME_DIR="$HOME/.local/share/$MY_NVIM"
+export MY_CONFIG_DIR="$HOME/.config/$MY_NVIM"
+export MY_RUNTIME_DIR="$HOME/.local/share/$MY_NVIM"
 
-ln -fns "$NVIM_CONFIG_DIR"  "$HOME/.config/nvim"
-ln -fns "$NVIM_RUNTIME_DIR" "$HOME/.local/share/nvim"
-exec nvim -u "$NVIM_CONFIG_DIR/init.lua" "$@"
-
-unset NVIM_RUNTIME_DIR
-unset NVIM_CONFIG_DIR
-unset XDG_CONFIG_HOME
-unset MY_NVIM
+exec nvim -u "$MY_CONFIG_DIR/init.lua" "$@"
