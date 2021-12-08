@@ -91,9 +91,10 @@ vim.g.which_key_leader = {
         ['C']    = {':PackerCompile', 'PackerCompile'},
         ['S']    = {':PackerSync', 'PackerSync'},
     },
+
     -- File
     ['f'] = {
-        ['name'] = '+file',
+        ['name'] = '+find',
         ['a']    = {':Telescope live_grep', 'Find word'},
         ['b']    = {':Telescope marks', 'Bookmarks'},
         ['f']    = {':Telescope find_files', 'Find files'},
@@ -153,15 +154,20 @@ vim.g.which_key_leader = {
         },
         ['c']    = {
             ['name'] = '+Commands',
-            ['r']    = {":call v:lua.vim.lsp.buf.rename()", 'Rename'},
+            ['a']    = {":call v:lua.vim.lsp.buf.code_action()", 'Code Action'},
+            ['D']    = {":call v:lua.vim.lsp.buf.declaration()", 'Go to declaration'},
+            ['d']    = {":call v:lua.vim.lsp.buf.definition()", 'Go to definition'},
+            ['r']    = {":call v:lua.vim.lsp.buf.references()", 'References'},
             ['f']    = {":call v:lua.vim.lsp.buf.formatting()", 'Formatting'},
-            ['d']    = {":call v:lua.vim.lsp.buf.declaration()", 'Go to declaration'},
-            ['D']    = {":call v:lua.vim.lsp.buf.definition()", 'Go to definition'},
+            ['k']    = {":call v:lua.vim.lsp.buf.hover()", 'Hover Document'},
+            ['R']    = {":call v:lua.vim.lsp.buf.rename()", 'Rename'},
         },
         ['d']    = {
             ['name'] = '+DiagList',
-            ['a']    = {":call v:lua.require('diaglist').open_all_diagnostics()", 'All diagnostics'},
-            ['b']    = {":call v:lua.require('diaglist').open_buffer_diagnostics()", 'Buffer diagnostics'},
+            ['e']    = {":call v:lua.vim.diagnostic.open_float()", 'Open diagnostics floating'},
+            ['l']    = {":call v:lua.vim.diagnostic.setloclist()", 'List all diagnostics'},
+            ['p']    = {":call v:lua.vim.diagnostic.goto_prev()", 'Goto prev diagnostics'},
+            ['n']    = {":call v:lua.vim.diagnostic.goto_next()", 'Goto next diagnostics'},
         },
         ['s']    = {
             ['name'] = '+Saga',
