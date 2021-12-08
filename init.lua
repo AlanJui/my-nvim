@@ -6,14 +6,13 @@ DEBUG = false
 -- DEBUG = true
 
 if DEBUG then print('===== Begin of loading init.lua... =====') end
-
+-----------------------------------------------------------
+-- Initial environment
+-----------------------------------------------------------
 local function print_runtime_path()
     print(string.format('rtp = %s', vim.opt.rtp['_value']))
 end
 
------------------------------------------------------------
--- Initial environment
------------------------------------------------------------
 if DEBUG then
     print('<< Begin of init_my_vim() >>')
     print_runtime_path()
@@ -83,7 +82,7 @@ nvim_create_augroups(autocmds)
 -----------------------------------------------------------
 -- Configurations for Neovim
 -----------------------------------------------------------
-require('configs')
+require('settings')
 
 -- Themes
 -- Tokyo Night Color Scheme Configuration

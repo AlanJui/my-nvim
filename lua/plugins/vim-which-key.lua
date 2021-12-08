@@ -81,14 +81,14 @@ vim.g.which_key_leader = {
     -- Configure Neovim
     ['c'] = {
         ['name'] = '+Neovim',
-        ['i']    = {':e ~/.config/web-nvim/nvim/init.lua', 'Open [nvim]/init.lua'},
-        ['I']    = {':source ~/.config/web-nvim/nvim/init.lua', 'Reload [nvim]/init.lua'},
-        ['k']    = {':e ~/.config/web-nvim/nvim/lua/keymaps.lua', 'Open keybinding: keymaps.lua'},
-        ['K']    = {':e ~/.config/web-nvim/nvim/lua/plugins/vim-which-key.lua', 'Open which-key configuration'},
-        ['p']    = {':e ~/.config/web-nvim/nvim/lua/plugins/init.lua', 'Open [plugings]/init.lua'},
+        ['i']    = {':e ~/.config/web-nvim/init.lua', 'Open [nvim]/init.lua'},
+        ['I']    = {':source ~/.config/web-nvim/init.lua', 'Reload [nvim]/init.lua'},
+        ['k']    = {':e ~/.config/web-nvim/lua/keymaps.lua', 'Open keybinding: keymaps.lua'},
+        ['K']    = {':e ~/.config/web-nvim/lua/plugins/vim-which-key.lua', 'Open which-key configuration'},
+        ['p']    = {':e ~/.config/web-nvim/lua/plugins/init.lua', 'Open [plugings]/init.lua'},
         ['P']    = {':Telescope find_files shorten_path=true', 'Search configuration of plugin'},
-        ['c']    = {':e ~/.config/web-nvim/nvim/lua/configs.lua', 'Open setting: configs.lua'},
         ['C']    = {':PackerCompile', 'PackerCompile'},
+        ['s']    = {':e ~/.config/web-nvim/lua/settings.lua', 'Open setting: settings.lua'},
         ['S']    = {':PackerSync', 'PackerSync'},
     },
 
