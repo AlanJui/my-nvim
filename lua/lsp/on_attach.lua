@@ -53,11 +53,16 @@ local function on_attach(client, bufnr)
         client.resolved_capabilities.code_action = false
     end
     if client.resolved_capabilities.code_action then
+        buf_set_keymap('n', ';ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+        buf_set_keymap('n', ';ra', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
+        -- vim.cmd([[
+        --     augroup lsp_code_actions
+        --         autocmd! * <buffer>
+        --         autocmd CursorHold,CursorHoldI <buffer> lua require('nvim-lightbulb').update_lightbulb()
+        --     augroup end
+        -- ]])
         vim.cmd([[
-            augroup lsp_code_actions
-                autocmd! * <buffer>
-                autocmd CursorHold,CursorHoldI <buffer> lua require('nvim-lightbulb').update_lightbulb()
-            augroup end
+            autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()
         ]])
     end
 
@@ -66,10 +71,10 @@ local function on_attach(client, bufnr)
     -- 	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
     if client.resolved_capabilities.document_formatting then
         vim.cmd([[
-        augroup Format
-        autocmd! * <buffer>
-        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
-        augroup end
+            augroup Format
+                autocmd! * <buffer>
+                autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
+            augroup end
         ]])
     end
 end

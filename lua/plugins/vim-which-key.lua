@@ -78,8 +78,23 @@ vim.g.which_key_leader = {
         [']']    = {'gt', 'Next buffer'}
     },
 
+    -- Code Actions
+    ['c']    = {
+        ['name'] = '+Commands',
+        ['a']    = {":call v:lua.vim.lsp.buf.code_action()", 'Do CodeAction'},
+        ['A']    = {":call v:lua.vim.lsp.buf.range_code_action()", 'Do Range CodeAction'},
+        ['D']    = {":call v:lua.vim.lsp.buf.declaration()", 'Go to declaration'},
+        ['d']    = {":call v:lua.vim.lsp.buf.definition()", 'Go to definition'},
+        ['t']    = {":call v:lua.vim.lsp.buf.type_definition()", 'Go to type definition'},
+        ['r']    = {":call v:lua.vim.lsp.buf.references()", 'References'},
+        ['i']    = {":call v:lua.vim.lsp.buf.implementation()", 'Go to Implementation'},
+        ['f']    = {":call v:lua.vim.lsp.buf.formatting()", 'Formatting code'},
+        ['R']    = {":call v:lua.vim.lsp.buf.rename()", 'Rename code'},
+        ['k']    = {":call v:lua.vim.lsp.buf.hover()", 'Show HoverDocument'},
+    },
+
     -- Configure Neovim
-    ['c'] = {
+    ['n'] = {
         ['name'] = '+Neovim',
         ['i']    = {':e ~/.config/web-nvim/init.lua', 'Open [nvim]/init.lua'},
         ['I']    = {':source ~/.config/web-nvim/init.lua', 'Reload [nvim]/init.lua'},
@@ -155,6 +170,7 @@ vim.g.which_key_leader = {
         ['c']    = {
             ['name'] = '+Commands',
             ['a']    = {":call v:lua.vim.lsp.buf.code_action()", 'Do CodeAction'},
+            ['A']    = {":call v:lua.vim.lsp.buf.range_code_action()", 'Do Range CodeAction'},
             ['D']    = {":call v:lua.vim.lsp.buf.declaration()", 'Go to declaration'},
             ['d']    = {":call v:lua.vim.lsp.buf.definition()", 'Go to definition'},
             ['t']    = {":call v:lua.vim.lsp.buf.type_definition()", 'Go to type definition'},

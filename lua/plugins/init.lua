@@ -67,6 +67,12 @@ return require('packer').startup({
             config = [[ require('plugins.lspstatus') ]]
         }
 
+        -- Support LSP CodeAction
+        use {
+            'kosayoda/nvim-lightbulb',
+            config = [[ require('plugins.nvim-lightbulb') ]]
+        }
+
         -- LSP plugin based on Neovim build-in LSP with highly a performant UI
         -- use {
         --     'glepnir/lspsaga.nvim',

@@ -109,7 +109,7 @@ require('nvim_utils')
 -- vim.cmd([[
 -- augroup packer_user_config
 -- autocmd!
--- autocmd BufWritePost ~/.config/coc-nvim/lua/plugins/init.lua source <afile> | PackerCompile
+-- autocmd BufWritePost ~/.config/web-nvim/lua/plugins/init.lua source <afile> | PackerCompile
 -- augroup end
 -- ]])
 local autocmds = {
