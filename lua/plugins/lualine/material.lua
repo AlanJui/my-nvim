@@ -65,7 +65,7 @@ local config = {
                 -- 'nvim_lsp', 'nvim', 'coc', 'ale', 'vim_lsp'
                 -- Or a function that returns a table like:
                 -- {error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt}
-                sources = {'nvim_lsp', 'coc'},
+                sources = {'nvim_diagnostic', 'coc'},
                 -- displays diagnostics from defined severity
                 sections = {'error', 'warn', 'info', 'hint'},
                 -- all colors are in format #rrggbb

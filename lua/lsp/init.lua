@@ -30,13 +30,6 @@ end
 -- =======================================================================
 local cmp = require('cmp')
 
-local on_attach = require('lsp.on_attach').on_attach_saga
-local capabilities = require('cmp_nvim_lsp').update_capabilities(
-	vim.lsp.protocol.make_client_capabilities()
-)
-
-local system_name = require('utils').get_system()
-
 -- Setup completion and snippets engine
 --------------------------------------------------------------------------
 local lspkind = require('lspkind')
@@ -83,7 +76,7 @@ cmp.setup({
 				cmp.complete()
 			else
 				-- The fallback function sends a already mapped key. In this case,
-			  	-- it's probably `<Tab>`.
+				-- it's probably `<Tab>`.
 				fallback()
 			end
 		end, { 'i', 's' }),
@@ -121,22 +114,3 @@ cmp.setup.cmdline(':', {
 		{ name = 'cmdline' }
 	})
 })
-
--- Setup comp with lspconfig.
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
--- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
--- 	capabilities = capabilities
--- }
-
--- Setup Language Server
---------------------------------------------------------------------
-
-
--- Snippets Engine
---------------------------------------------------------------------------
--- require('lsp.LuaSnip')
--- require('lsp.vim-vsnip')
-
--- UI Tools
---------------------------------------------------------------------------
--- require('lsp.lspsaga')

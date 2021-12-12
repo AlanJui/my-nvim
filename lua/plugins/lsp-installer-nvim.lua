@@ -1,10 +1,4 @@
 local lsp_installer = require("nvim-lsp-installer")
--- local on_attach = require('lsp.on_attach').nvim_lsp
-local on_attach = require('lsp.on_attach').lsp_saga
-local capabilities = require('cmp_nvim_lsp').update_capabilities(
-    vim.lsp.protocol.make_client_capabilities()
-)
-local system_name = require('utils.env').get_system()
 
 -- Provide settings first!
 --------------------------------------------------------------------------
@@ -73,19 +67,27 @@ local linters = {
 
 -- Setup Language Server
 --------------------------------------------------------------------------
+local on_attach = require('lsp.on_attach')
+local capabilities = require('cmp_nvim_lsp').update_capabilities(
+    vim.lsp.protocol.make_client_capabilities()
+)
+local lsp_servers_path = vim.fn.stdpath('data') .. '/lsp_servers'
+
 lsp_installer.on_server_ready(function (server)
     -- Specify the default options which we'll use for all LSP servers
     local default_opts = {
         on_attach = on_attach,
         capabilities = capabilities,
     }
-    local lsp_servers_path = vim.fn.stdpath('data') .. '/lsp_servers'
+
 
     -- Create a server_opts table where we'll specify our custom LSP server configuration
     local server_opts = {
         ['sumneko_lua'] = function()
-            local lua_root_path = vim.fn.stdpath('data') .. '/lsp_servers/sumneko_lua/extension/server/bin/' .. system_name
-            local lua_binary = lua_root_path .. '/lua-language-server'
+            local system_name = OS_SYS
+            local lua_root_path = HOME .. '/.local/share/lua-language-server'
+            local lua_binary = lua_root_path .. "/bin/" .. system_name .. "/lua-language-server"
+
             local runtime_path = vim.split(package.path, ';')
             table.insert(runtime_path, 'lua/?.lua')
             table.insert(runtime_path, 'lua/?/init.lua')

@@ -7,77 +7,118 @@ DEBUG = false
 
 if DEBUG then print('===== Begin of loading init.lua... =====') end
 -----------------------------------------------------------
--- Initial environment
+-- Global Functions
 -----------------------------------------------------------
-local function print_runtime_path()
+PATH_SEPERATOR = vim.loop.os_uname().version:match "Windows" and "\\" or "/"
+
+function Is_empty(str)
+	return str == nil or str == ''
+end
+
+function Join_paths(...)
+    local result = table.concat({ ... }, PATH_SEPERATOR) return result
+end
+
+function Print_rtp()
     print(string.format('rtp = %s', vim.opt.rtp['_value']))
 end
 
-if DEBUG then
-    print('<< Begin of init_my_vim() >>')
-    print_runtime_path()
+function Print_table(a_table)
+    for k, v in pairs(a_table) do
+        print('key = ', k, "    value = ", v)
+    end
 end
+
 -----------------------------------------------------------
--- local init_env_path = os.getenv('HOME') .. '/.config/' .. MY_VIM .. '/lua/init_env.lua'
--- print(string.format('init_env_path = %s', init_env_path))
--- vim.cmd([[ "luafile " .. init_env_path ]])
+-- Initial environment
+-----------------------------------------------------------
+-- require('init_env')
+HOME = os.getenv('HOME')
 
-local config_dir = os.getenv('MY_CONFIG_DIR')
-local runtime_dir = os.getenv('MY_RUNTIME_DIR')
-local path_sep = vim.loop.os_uname().version:match "Windows" and "\\" or "/"
-
-local function join_paths(...)
-    local result = table.concat({ ... }, path_sep)
-    return result
+CONFIG_DIR = os.getenv('MY_CONFIG_DIR')
+if Is_empty(CONFIG_DIR) then
+  CONFIG_DIR = HOME .. '/.config/' .. MY_VIM
 end
 
-vim.opt.rtp:remove(join_paths(vim.fn.stdpath('data'), 'site'))
-vim.opt.rtp:remove(join_paths(vim.fn.stdpath('data'), 'site', 'after'))
-vim.opt.rtp:prepend(join_paths(runtime_dir, 'site'))
-vim.opt.rtp:append(join_paths(runtime_dir, 'site', 'after'))
+RUNTIME_DIR = os.getenv('MY_RUNTIME_DIR')
+if Is_empty(RUNTIME_DIR) then
+  RUNTIME_DIR = HOME .. '/.local/share/' .. MY_VIM
+end
+
+COMPILE_PATH = CONFIG_DIR .. '/plugin/packer_compiled.lua'
+
+-- Neovim defualt install path
+-- local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+PACKAGE_ROOT = RUNTIME_DIR .. '/site/pack'
+INSTALL_PATH = PACKAGE_ROOT .. '/packer/start/packer.nvim'
+
+local system_name
+if vim.fn.has("mac") == 1 then
+  system_name = "macOS"
+elseif vim.fn.has("unix") == 1 then
+  system_name = "Linux"
+elseif vim.fn.has('win32') == 1 then
+  system_name = "Windows"
+else
+  system_name = ''
+end
+OS_SYS = system_name
+
+-----------------------------------------------------------
+-- Setup runtimepath: stdpath('config'), stdpath('data')
+-----------------------------------------------------------
+-- require('setup_rtp')
+if DEBUG then
+    print('<< Begin of Initial Envirnoment >>')
+    Print_rtp()
+    print('CONFIG_DIR=', CONFIG_DIR)
+    print('RUNTIME_DIR=', RUNTIME_DIR)
+end
+
+vim.opt.rtp:remove(Join_paths(vim.fn.stdpath('data'), 'site'))
+vim.opt.rtp:remove(Join_paths(vim.fn.stdpath('data'), 'site', 'after'))
+vim.opt.rtp:prepend(Join_paths(RUNTIME_DIR, 'site'))
+vim.opt.rtp:append(Join_paths(RUNTIME_DIR, 'site', 'after'))
 
 vim.opt.rtp:remove(vim.fn.stdpath('config'))
-vim.opt.rtp:remove(join_paths( vim.fn.stdpath('config'), 'after' ))
-vim.opt.rtp:prepend(config_dir)
-vim.opt.rtp:append(join_paths(config_dir, 'after'))
+vim.opt.rtp:remove(Join_paths( vim.fn.stdpath('config'), 'after' ))
+vim.opt.rtp:prepend(CONFIG_DIR)
+vim.opt.rtp:append(Join_paths(CONFIG_DIR, 'after'))
 
 vim.cmd [[let &packpath = &runtimepath]]
-vim.cmd [["set spellfile" .. join_paths(config_dir, "spell", "en.utf-8.add")]]
+vim.cmd [["set spellfile" .. Join_paths(CONFIG_DIR, "spell", "en.utf-8.add")]]
 
------------------------------------------------------------
 if DEBUG then
-    print('<< End of init_my_vim() >>')
-    print_runtime_path()
-    -- print('config_dir=', config_dir)
-    -- print('runtime_dir=', runtime_dir)
-    -- print(vim.fn.stdpath('config'))
-    -- print(vim.fn.stdpath('data'))
+    print('<< End of Initial Envirnoment >>')
+    Print_rtp()
+    print("stdpath('config')=" , vim.fn.stdpath('config'))
+    print("stdpath('data')=", vim.fn.stdpath('data'))
 end
 
 -----------------------------------------------------------
 -- Essential configuration on development init.lua
 -----------------------------------------------------------
 require('essential')
+require('nvim_utils')
 
 -----------------------------------------------------------
 -- Plugin Manager: install plugins
 -----------------------------------------------------------
-require('plugins')
-
+-- To do "PackerCompile" automatically when file:
+-- `<Nvim>/lua/plugings/init.lua` is saved
 -- vim.cmd([[
 -- augroup packer_user_config
---     autocmd!
---     autocmd BufWritePost ./lua/plugins/init.lua source <afile> | PackerCompile
+-- autocmd!
+-- autocmd BufWritePost ~/.config/coc-nvim/lua/plugins/init.lua source <afile> | PackerCompile
 -- augroup end
 -- ]])
-require('nvim_utils')
-local nvim_config_path = require('utils.env').get_config_dir()
 local autocmds = {
     packer_user_config = {
-        { "BufWritePost " .. nvim_config_path .. "/lua/plugins/init.lua source <afile> | PackerCompile " },
+        { "BufWritePost " .. CONFIG_DIR .. "/lua/plugins/init.lua source <afile> | PackerCompile " },
     }
 }
 nvim_create_augroups(autocmds)
+require('plugins')
 
 -----------------------------------------------------------
 -- Configurations for Neovim
@@ -116,9 +157,15 @@ vim.g.tokyonight_colors = {
 -----------------------------------------------------------
 -- Key bindings
 -----------------------------------------------------------
+-- Load Shortcut Key
 require('keymaps')
 
+-- Load Which-key
+require('plugins.vim-which-key')
+
 -----------------------------------------------------------
--- Experiment
+-- Experiments
 -----------------------------------------------------------
+
+
 if DEBUG then print('===== End of loading init.lua... =====') end
