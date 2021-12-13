@@ -6,7 +6,7 @@ Neovim 0.5 的發行，令 Neovim 推進到一個更加高階的里程碑。對�
 需求，個人專用編輯器的使用者，Neovim 0.5 支援 LSP 及 Lua Script 的新功能，讓
 懷抱著這個夢想的人們，可以有機會美夢成真。
 
-[Neovim Language Server Protocol (LSP) 主要功能列表：](https://neovim.io/doc/lsp/)
+【附註】：[Neovim Language Server Protocol (LSP) 主要功能列表：](https://neovim.io/doc/lsp/)
 
  - Go to definition：定義跳轉
  - (auto)completion：自動補全
@@ -16,7 +16,10 @@ Neovim 0.5 的發行，令 Neovim 推進到一個更加高階的里程碑。對�
  - Show/go to references：顯示/跳轉引用處
  - snippets：程式碼片段
 
-個人需求：
+當 Neovim 0.5 還在 Beta 版，便已開始使用，如今 Neovim 0.6 都已推出了，個人對
+Neovim 的掌握度，仍是一知半解。想要擺脫這種狀態，於是想要進行深入的研究；想
+要檢驗研究的結果是否有達標，需要設定目標。所以，將個人在 Django Project 的
+應用需要，當成是這個研究的「專案需求」：
 
  - 程式編碼可用自動補全，加快輸入及避免打字錯誤
  - 程式碼在呼叫某 method/function 時，能「顯示用法」，提示該輸入的引數順序，
@@ -26,6 +29,10 @@ Neovim 0.5 的發行，令 Neovim 推進到一個更加高階的里程碑。對�
  - 自動檢查程式碼，確保沒有語法的錯誤
  - 程式碼已被檢查到的錯誤，可提示：「統計總數」、「標示位置」
  - 適用於 Django 開發專案
+ - 可編輯及預覽 Markdown 文件，以便可以與 VuePress 整合，作為「技術文件」編輯器
+ - 可使用如 PlantUML 的工具，繪製 UML Diagrams
+ - 可以透過 (DAP)[https://alpha2phi.medium.com/neovim-dap-enhanced-ebc730ff498b]
+	 與 Neovim 整合，讓 Neovim 可像 VS Code 一樣，能當除錯（Debug）工具
 
 ## 先決條件（Prerequisites）
 
