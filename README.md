@@ -1,13 +1,169 @@
 # 專案指引
 
-為深入掌握 Neovim 0.5 功能及如何使用 Lua Script ，打造適合個人需求之編輯器，
-故於前陣子啟始 my-nvim 專案，目前雖然已有初步成果，但在專案的執行過程，察覺
-Neovim 0.5 有些功能，及插件（Plugin）的使用特性，仍有未盡明白之處。
+## 專案簡介
 
-前幾天，臉書的社團有人分享 [Setting Up Neovim for Web Development](https://xlwe.medium.com/setting-up-neovim-for-web-development-70c57c3d7d61) 這篇文章。因其內容與個人
- my-nvim 專案所欲鑽研的目標，有著極大的相似度；且這篇文章的內容架構，作者擅於
-導引初學者，如何逐步掌握：使用 Lua Script 客製 Neovim 操作環境，滿足 Web App
-開發者在應用方面的作業需求。
+Neovim 0.5 的發行，令 Neovim 推進到一個更加高階的里程碑。對於有心打造符合自己
+需求，個人專用編輯器的使用者，Neovim 0.5 支援 LSP 及 Lua Script 的新功能，讓
+懷抱著這個夢想的人們，可以有機會美夢成真。
 
-為求驗證這篇教學文章的可用性；同時並試著找尋 my-nvim 專案所留下的疑問，是否
-能發現答案，故而啟動這個 `web-nvim 專案` 。
+[Neovim Language Server Protocol (LSP) 主要功能列表：](https://neovim.io/doc/lsp/)
+
+ - Go to definition：定義跳轉
+ - (auto)completion：自動補全
+ - Code Actions (automatic formatting, organize imports, ...)：
+	 程式碼操作，如：自動調整排版、組識 import 順序...等
+ - Show method signatures：顯示用法
+ - Show/go to references：顯示/跳轉引用處
+ - snippets：程式碼片段
+
+個人需求：
+
+ - 程式編碼可用自動補全，加快輸入及避免打字錯誤
+ - 程式碼在呼叫某 method/function 時，能「顯示用法」，提示該輸入的引數順序，
+	 及應使用的資料類型（Data Type）
+ - 可使用 snippets ，加速編碼工作及避免打字錯誤
+ - 原先在 VS Code 已建置的 Snippets ，能於 Neovim 環境套用
+ - 自動檢查程式碼，確保沒有語法的錯誤
+ - 程式碼已被檢查到的錯誤，可提示：「統計總數」、「標示位置」
+ - 適用於 Django 開發專案
+
+## 先決條件（Prerequisites）
+
+- [Neovim 0.6](https://alanjui.github.io/my-dev-env/nvim/#%E5%AE%89%E8%A3%9D%E8%88%87%E6%93%8D%E4%BD%9C)
+- [Python](https://alanjui.github.io/my-docs/python.html#install-python-tools)
+- [Node.js](https://alanjui.github.io/my-docs/nodejs.html#%E5%AE%89%E8%A3%9D%E8%88%87%E8%A8%AD%E5%AE%9A)
+- [Lua Langage Server](https://alanjui.github.io/my-docs/lua.html#install-lua-support-for-vim-neovim)
+
+
+## 安裝與設定作業（Setup process）
+
+### 1. 下載（Download）
+
+```sh
+git clone git@github.com:AlanJui/my-nvim.git ~/.config
+```
+
+### 2. 安裝插件（Install plugins）
+
+本專案使用 packer.nvim 作為 Neovim 的「插件管理工具」。Neovim 啟動後將自動安裝
+packer.nvim 插件；而專案使用到的其它插件，其安裝工作，也會由 packer.nvim 自動
+執行。
+
+(1) 首次啟動 Neovim
+
+啟動 Neovim 時，會將因插件尚未安裝，遭 Neovim 警告某些處理作業無法完成... ，
+遇此狀況莫慌，請繼續下去直到進入 Neovim。
+
+
+`Run the following command to start Neovim`
+
+```sh
+$ cd ~/.config/my-nvim
+$ mkdir ~/.local/bin
+$ ln -fns tools/my-nvim ~/.local/bin/
+```
+
+(2) 安裝插件
+
+在終端機輸入列指令，令 Neovim 可自動下載 nvim.packer 這插件管理工具，並安裝
+其它本專案會用到的插入（plugins）。
+
+每個插件在完成下載及安裝的工作後，均會顯示結果回報在畫面上，待看到「... has been
+installed」的時候，則可按《Ctrl + C》鍵，終結這個安裝指令。
+
+```sh
+$ my-nvim --headless
+```
+
+### 3. 操作 Neovim（Start Neovim）
+
+本專案不會佔用 `~/.config/nvim` 這個目錄。其好處為：使用者若想自學 Neovim ，
+這個目錄可留給您學習，做實驗用；但有麻煩則為：使用者若直接輸入指令 nvim ，則
+無法使用本專案的 Neovim 設定。
+
+請務必記得，需以如下指令啟動：
+
+`Start coc-nvim`
+
+```
+$ my-nvim
+```
+
+**【附註】：**
+
+本專案的 Neovim 設定檔存放目錄及插件的存放目錄說明：
+
+ - 設定存放目錄路徑： `~/.config/coc-nvim/`
+ - 插件存放目錄路徑： `~/.local/share/coc-nvim/`
+
+## 快捷鍵（Bindings）
+
+【附註】：
+
+**〈leader〉** = `《，》`
+
+| Plugin    | Mapping      | Action                                  |
+| --------- | ------------ | --------------------------------------- |
+|           | \<Space\>e   | Open file explorer                      |
+|           | \<Space\>;   | Open a terminal window                  |
+|           | sp           | Split window horizontally               |
+|           | vs           | Split window vertically                 |
+|           | \<C-H\>      | Move cursor to split left               |
+|           | \<C-J\>      | Move cursor to split down               |
+|           | \<C-K\>      | Move cursor to split up                 |
+|           | \<C-L\>      | Move cursor to split right              |
+|           | fr           | Search & replace in current buffer      |
+|           | tj           | Move one tab left                       |
+|           | tk           | Move one tab right                      |
+|           | tn           | Create a new tab                        |
+|           | to           | Close all other tabs                    |
+|           | gt           | Go to next tabline                      |
+|           | gT           | Go to prettier tabline                  |
+| coc       | \<C-@\>      | Open autocompletion                     |
+| coc       | \<Enter\>    | Select autocompletion                   |
+| coc       | \<S-Tab\>    | Browse previous autocompletion          |
+| coc       | \<Tab\>      | Browse next autocompletion              |
+| coc       | \<C-S\>      | Selections ranges                       |
+| coc       | \<leader\>a  | Applying code action to selected region |
+| coc       | \<leader\>ac | Applying code action for current buffer |
+| coc       | \<leader\>qf | Apply AutoFix on current line           |
+| coc       | \<leader\>l  | Execute code autofix                    |
+| coc       | \<leader\>rn | Rename                                  |
+| coc       | K            | Show document in pop up window          |
+| coc       | gd           | Go to definition                        |
+| coc       | gy           | Go to type definition                   |
+| coc       | gi           | Go to implementation                    |
+| coc       | gr           | Go to references                        |
+| coc       | gr           | Go to references                        |
+| coc       | [g           | Go to prettier diagnostic               |
+| coc       | ]g           | Go to next diagnostic                   |
+| coc       | \<Space\>a   | List all diagnostics                    |
+| coc       | \<Space\>x   | List all coc extensions installed       |
+| coc       | \<Space\>c   | Search command available in coc.nvim    |
+| coc       | \<Space\>o   | Search symbol within outline view       |
+| Telescope | ;b           | Switch opened files                     |
+| Telescope | ;f           | Find file by file name                  |
+| Telescope | ;g           | Find file by keyword(Live Grep)         |
+| Telescope | ;t           | Open Git worktree picker                |
+| Telescope | ;h           | Search help by tags                     |
+
+## 使用插件（Plugins）
+
+- [Lualine](https://github.com/nvim-lualine/lualine.nvim)
+- [Packer](https://github.com/wbthomason/packer.nvim)
+- [Plenary](https://github.com/nvim-lua/plenary.nvim)
+- [Surround](https://github.com/blackCauldron7/surround.nvim)
+- [Telescope](https://github.com/nvim-telescope/telescope.nvim)
+- [Tokyo Night](https://github.com/folke/tokyonight.nvim)
+- [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [coc](https://github.com/neoclide/coc.nvim)
+- [git-worktree](https://github.com/ThePrimeagen/git-worktree.nvim)
+- [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
+- [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
+- [vim-commentary](https://github.com/tpope/vim-commentary/)
+
+## 維護者（Maintainers）
+
+<a href="https://github.com/albingroen">
+  <img src="https://avatars.githubusercontent.com/u/2138279?v=4" width="80" height="80" />
+</a>
