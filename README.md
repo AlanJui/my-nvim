@@ -49,18 +49,37 @@ git clone git@github.com:AlanJui/my-nvim.git ~/.config
 packer.nvim 插件；而專案使用到的其它插件，其安裝工作，也會由 packer.nvim 自動
 執行。
 
-(1) 首次啟動 Neovim
+(1) 安裝執行檔（可啟動 Neovim 的 Shell Script 執行檔）
 
-啟動 Neovim 時，會將因插件尚未安裝，遭 Neovim 警告某些處理作業無法完成... ，
-遇此狀況莫慌，請繼續下去直到進入 Neovim。
+除非使用者做過設定，否則不能以 nvim 直接啟動 Neovim ，需要透過本專案提供的
+Shell Script 執行檔： `my-nvim` 才能正常運作。
 
-
-`Run the following command to start Neovim`
+請依下列指令，完成 my-nvim 執行檔的安裝作業。
 
 ```sh
+$ mkdir -p ~/.local/bin
 $ cd ~/.config/my-nvim
-$ mkdir ~/.local/bin
 $ ln -fns tools/my-nvim ~/.local/bin/
+```
+
+請記得在您所使用的 Bash Shell 或 ZSH Shell ，於 PATH 環境變數中加入
+`~/.local/bin` 搜尋路徑。
+
+```sh
+...
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+重啟 Bash / ZSH Shell
+
+```sh
+source ~/.bashrc
+```
+
+或
+
+```sh
+source ~/.zshrc
 ```
 
 (2) 安裝插件
@@ -69,7 +88,7 @@ $ ln -fns tools/my-nvim ~/.local/bin/
 其它本專案會用到的插入（plugins）。
 
 每個插件在完成下載及安裝的工作後，均會顯示結果回報在畫面上，待看到「... has been
-installed」的時候，則可按《Ctrl + C》鍵，終結這個安裝指令。
+installed」的時候，則可按《Ctrl》＋《C》鍵，終結這個安裝指令。
 
 ```sh
 $ my-nvim --headless
@@ -83,8 +102,6 @@ $ my-nvim --headless
 
 請務必記得，需以如下指令啟動：
 
-`Start coc-nvim`
-
 ```
 $ my-nvim
 ```
@@ -93,8 +110,8 @@ $ my-nvim
 
 本專案的 Neovim 設定檔存放目錄及插件的存放目錄說明：
 
- - 設定存放目錄路徑： `~/.config/coc-nvim/`
- - 插件存放目錄路徑： `~/.local/share/coc-nvim/`
+ - 設定存放目錄路徑： `~/.config/my-nvim/`
+ - 插件存放目錄路徑： `~/.local/share/my-nvim/`
 
 ## 快捷鍵（Bindings）
 
@@ -156,8 +173,6 @@ $ my-nvim
 - [Telescope](https://github.com/nvim-telescope/telescope.nvim)
 - [Tokyo Night](https://github.com/folke/tokyonight.nvim)
 - [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- [coc](https://github.com/neoclide/coc.nvim)
-- [git-worktree](https://github.com/ThePrimeagen/git-worktree.nvim)
 - [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
 - [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
 - [vim-commentary](https://github.com/tpope/vim-commentary/)
