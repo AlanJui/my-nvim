@@ -31,8 +31,8 @@ Neovim 的掌握度，仍是一知半解。想要擺脫這種狀態，於是想�
  - 適用於 Django 開發專案
  - 可編輯及預覽 Markdown 文件，以便可以與 VuePress 整合，作為「技術文件」編輯器
  - 可使用如 PlantUML 的工具，繪製 UML Diagrams
- - 可以透過 (DAP)[https://alpha2phi.medium.com/neovim-dap-enhanced-ebc730ff498b]
-	 與 Neovim 整合，讓 Neovim 可像 VS Code 一樣，能當除錯（Debug）工具
+ - 可以透過 [DAP](https://alpha2phi.medium.com/neovim-dap-enhanced-ebc730ff498b)
+	 與 Neovim 整合，讓 Neovim 可像 VS Code 一樣，當作除錯（Debug）工具來使用
 
 ## 先決條件（Prerequisites）
 
