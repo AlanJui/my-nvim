@@ -2,22 +2,22 @@ if DEBUG then print('Loading plugins...') end
 -----------------------------------------------------------
 -- Plugin Manager: install plugins
 -----------------------------------------------------------
+local execute = vim.api.nvim_command
 local fn = vim.fn
-local package_root = PACKAGE_ROOT
-local install_path = INSTALL_PATH
-local compile_path = COMPILE_PATH
 local packer_bootstrap
 
-if vim.fn.empty(fn.glob(install_path)) > 0 then
+if vim.fn.empty(fn.glob(INSTALL_PATH)) > 0 then
     packer_bootstrap = fn.system({
         'git',
         'clone',
         '--depth',
         '1',
         'https://github.com/wbthomason/packer.nvim',
-        install_path
+        INSTALL_PATH
     })
+    execute 'packadd packer.nvim'
 end
+
 if DEBUG then
     print('PACKAGE_ROOT=', PACKAGE_ROOT)
     print('INSTALL_PATH=', INSTALL_PATH)
@@ -26,8 +26,9 @@ if DEBUG then
 end
 
 require('packer').init({
-    package_root = package_root,
-    compile_path = compile_path,
+    package_root = PACKAGE_ROOT,
+    compile_path = COMPILE_PATH,
+    plugin_package = 'packer',
 })
 
 return require('packer').startup({
@@ -199,7 +200,11 @@ return require('packer').startup({
         -- Screen Navigation
         use {
             'liuchengxu/vim-which-key',
-            config = [[ require('plugins.vim-which-key') ]]
+            -- config = function ()
+            --     if vim.inspect(package.loaded) then
+            --         require('plugins.vim-which-key')
+            --     end
+            -- end
         }
 
         -----------------------------------------------------------

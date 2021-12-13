@@ -1,0 +1,3 @@
+#!/bin/sh
+rm -rf $HOME/.local/share/my-nvim
+rm $HOME/.config/my-nvim/plugin/packer_compiled.lua

@@ -1,3 +1,5 @@
+-- if (not INSTALLED) then return end
+if DEBUG then print('<< load vim-which-key ... >>') end
 -- ========================================================================
 -- WhichKey Configuration
 -- ========================================================================
