@@ -2,21 +2,27 @@ if DEBUG then print('Loading plugins...') end
 -----------------------------------------------------------
 -- Plugin Manager: install plugins
 -----------------------------------------------------------
-local vim = vim
 local fn = vim.fn
-
-local package_root = require('utils.env').get_package_root()
-local install_path = require('utils.env').get_install_path()
-local compile_path = require('utils.env').get_compile_path()
+local package_root = PACKAGE_ROOT
+local install_path = INSTALL_PATH
+local compile_path = COMPILE_PATH
 local packer_bootstrap
 
-if fn.empty(fn.glob(install_path)) > 0 then
+if vim.fn.empty(fn.glob(install_path)) > 0 then
     packer_bootstrap = fn.system({
         'git',
         'clone',
+        '--depth',
+        '1',
         'https://github.com/wbthomason/packer.nvim',
         install_path
     })
+end
+if DEBUG then
+    print('PACKAGE_ROOT=', PACKAGE_ROOT)
+    print('INSTALL_PATH=', INSTALL_PATH)
+    print('COMPILE_PATH=', COMPILE_PATH)
+    print('packer_bootstrap=', packer_bootstrap)
 end
 
 require('packer').init({

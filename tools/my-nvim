@@ -1,5 +1,5 @@
 #!/bin/sh
-export MY_NVIM="web-nvim"
+export MY_NVIM="my-nvim"
 export MY_CONFIG_DIR="$HOME/.config/$MY_NVIM"
 export MY_RUNTIME_DIR="$HOME/.local/share/$MY_NVIM"
 

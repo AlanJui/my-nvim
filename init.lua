@@ -1,9 +1,9 @@
 -----------------------------------------------------------
 -- Startup
 -----------------------------------------------------------
-MY_VIM = 'web-nvim'
-DEBUG = false
--- DEBUG = true
+MY_VIM = 'my-nvim'
+-- DEBUG = false
+DEBUG = true
 
 if DEBUG then print('===== Begin of loading init.lua... =====') end
 -----------------------------------------------------------
@@ -71,8 +71,12 @@ OS_SYS = system_name
 if DEBUG then
     print('<< Begin of Initial Envirnoment >>')
     Print_rtp()
+    print('OS_SYS=', OS_SYS)
     print('CONFIG_DIR=', CONFIG_DIR)
     print('RUNTIME_DIR=', RUNTIME_DIR)
+    print('PACKAGE_ROOT=', PACKAGE_ROOT)
+    print('INSTALL_PATH=', INSTALL_PATH)
+    print('COMPILE_PATH=', COMPILE_PATH)
 end
 
 vim.opt.rtp:remove(Join_paths(vim.fn.stdpath('data'), 'site'))
