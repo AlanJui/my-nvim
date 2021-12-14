@@ -11,8 +11,24 @@ if DEBUG then print('===== Begin of loading init.lua... =====') end
 -----------------------------------------------------------
 PATH_SEPERATOR = vim.loop.os_uname().version:match "Windows" and "\\" or "/"
 
+function Which_os()
+    local system_name
+
+    if vim.fn.has("mac") == 1 then
+        system_name = "macOS"
+    elseif vim.fn.has("unix") == 1 then
+        system_name = "Linux"
+    elseif vim.fn.has('win32') == 1 then
+        system_name = "Windows"
+    else
+        system_name = ''
+    end
+
+    return system_name
+end
+
 function Is_empty(str)
-	return str == nil or str == ''
+    return str == nil or str == ''
 end
 
 function Join_paths(...)
@@ -33,16 +49,17 @@ end
 -- Initial environment
 -----------------------------------------------------------
 -- require('init_env')
+OS_SYS = Which_os()
 HOME = os.getenv('HOME')
 
 CONFIG_DIR = os.getenv('MY_CONFIG_DIR')
 if Is_empty(CONFIG_DIR) then
-  CONFIG_DIR = HOME .. '/.config/' .. MY_VIM
+    CONFIG_DIR = HOME .. '/.config/' .. MY_VIM
 end
 
 RUNTIME_DIR = os.getenv('MY_RUNTIME_DIR')
 if Is_empty(RUNTIME_DIR) then
-  RUNTIME_DIR = HOME .. '/.local/share/' .. MY_VIM
+    RUNTIME_DIR = HOME .. '/.local/share/' .. MY_VIM
 end
 
 COMPILE_PATH = CONFIG_DIR .. '/plugin/packer_compiled.lua'
@@ -57,22 +74,25 @@ else
     INSTALLED = true
 end
 
-local system_name
-if vim.fn.has("mac") == 1 then
-  system_name = "macOS"
-elseif vim.fn.has("unix") == 1 then
-  system_name = "Linux"
-elseif vim.fn.has('win32') == 1 then
-  system_name = "Windows"
-else
-  system_name = ''
-end
-OS_SYS = system_name
-
 -----------------------------------------------------------
 -- Setup runtimepath: stdpath('config'), stdpath('data')
 -----------------------------------------------------------
 -- require('setup_rtp')
+local function setup_rtp()
+    vim.opt.rtp:remove(Join_paths(vim.fn.stdpath('data'), 'site'))
+    vim.opt.rtp:remove(Join_paths(vim.fn.stdpath('data'), 'site', 'after'))
+    vim.opt.rtp:prepend(Join_paths(RUNTIME_DIR, 'site'))
+    vim.opt.rtp:append(Join_paths(RUNTIME_DIR, 'site', 'after'))
+
+    vim.opt.rtp:remove(vim.fn.stdpath('config'))
+    vim.opt.rtp:remove(Join_paths( vim.fn.stdpath('config'), 'after' ))
+    vim.opt.rtp:prepend(CONFIG_DIR)
+    vim.opt.rtp:append(Join_paths(CONFIG_DIR, 'after'))
+
+    vim.cmd [[let &packpath = &runtimepath]]
+    vim.cmd [["set spellfile" .. Join_paths(CONFIG_DIR, "spell", "en.utf-8.add")]]
+end
+
 if DEBUG then
     print('<< Begin of Initial Envirnoment >>')
     Print_rtp()
@@ -84,18 +104,7 @@ if DEBUG then
     print('COMPILE_PATH=', COMPILE_PATH)
 end
 
-vim.opt.rtp:remove(Join_paths(vim.fn.stdpath('data'), 'site'))
-vim.opt.rtp:remove(Join_paths(vim.fn.stdpath('data'), 'site', 'after'))
-vim.opt.rtp:prepend(Join_paths(RUNTIME_DIR, 'site'))
-vim.opt.rtp:append(Join_paths(RUNTIME_DIR, 'site', 'after'))
-
-vim.opt.rtp:remove(vim.fn.stdpath('config'))
-vim.opt.rtp:remove(Join_paths( vim.fn.stdpath('config'), 'after' ))
-vim.opt.rtp:prepend(CONFIG_DIR)
-vim.opt.rtp:append(Join_paths(CONFIG_DIR, 'after'))
-
-vim.cmd [[let &packpath = &runtimepath]]
-vim.cmd [["set spellfile" .. Join_paths(CONFIG_DIR, "spell", "en.utf-8.add")]]
+setup_rtp()
 
 if DEBUG then
     print('<< End of Initial Envirnoment >>')
@@ -156,16 +165,16 @@ else
     vim.g.tokyonight_dark_float = true
     vim.g.tokyonight_transparent = true
     vim.g.tokyonight_sidebars = {
-      'qf',
-      'vista_kind',
-      'terminal',
-      'packer',
+        'qf',
+        'vista_kind',
+        'terminal',
+        'packer',
     }
     -- Change the "hint" color to the "orange" color,
     -- and make the "error" color bright red
     vim.g.tokyonight_colors = {
-      hint = 'orange',
-      error = '#ff0000'
+        hint = 'orange',
+        error = '#ff0000'
     }
 end
 

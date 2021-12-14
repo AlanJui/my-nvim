@@ -12,6 +12,10 @@ require'nvim-treesitter.configs'.setup {
   }
 }
 
+vim.cmd([[
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+]])
 -- require('nvim-treesitter.configs').setup({
 --     highlight = {
 --         enable  = { "c", "cpp", "dart", "python", "javascript" }, -- enable = true (false will disable the whole extension)

@@ -52,6 +52,7 @@ vim.g.which_key_leader = {
     -- Actions
     ['a'] = {
         ['name'] = '+actions',
+        ['f']    = {':set foldmethod=indent', 'Set code folding by indent'},
         ['h']    = {':let @/ = ""', 'remove search highlight'},
         ['t']    = {':set filetype=htmldjango', 'set file type to django template'},
         ['T']    = {':set filetype=html', 'set file type to HTML'},
