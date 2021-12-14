@@ -1,5 +1,3 @@
--- if (not INSTALLED) then return end
-if DEBUG then print('<< load vim-which-key ... >>') end
 -- ========================================================================
 -- WhichKey Configuration
 -- ========================================================================
@@ -98,14 +96,14 @@ vim.g.which_key_leader = {
     -- Configure Neovim
     ['n'] = {
         ['name'] = '+Neovim',
-        ['i']    = {':e ~/.config/web-nvim/init.lua', 'Open [nvim]/init.lua'},
-        ['I']    = {':source ~/.config/web-nvim/init.lua', 'Reload [nvim]/init.lua'},
-        ['k']    = {':e ~/.config/web-nvim/lua/keymaps.lua', 'Open keybinding: keymaps.lua'},
-        ['K']    = {':e ~/.config/web-nvim/lua/plugins/vim-which-key.lua', 'Open which-key configuration'},
-        ['p']    = {':e ~/.config/web-nvim/lua/plugins/init.lua', 'Open [plugings]/init.lua'},
+        ['i']    = {':e ~/.config/my-nvim/init.lua', 'Open [nvim]/init.lua'},
+        ['I']    = {':source ~/.config/my-nvim/init.lua', 'Reload [nvim]/init.lua'},
+        ['k']    = {':e ~/.config/my-nvim/lua/keymaps.lua', 'Open keybinding: keymaps.lua'},
+        ['K']    = {':e ~/.config/my-nvim/lua/plugins/vim-which-key.lua', 'Open which-key configuration'},
+        ['p']    = {':e ~/.config/my-nvim/lua/plugins/init.lua', 'Open [plugings]/init.lua'},
         ['P']    = {':Telescope find_files shorten_path=true', 'Search configuration of plugin'},
         ['C']    = {':PackerCompile', 'PackerCompile'},
-        ['s']    = {':e ~/.config/web-nvim/lua/settings.lua', 'Open setting: settings.lua'},
+        ['s']    = {':e ~/.config/my-nvim/lua/settings.lua', 'Open setting: settings.lua'},
         ['S']    = {':PackerSync', 'PackerSync'},
     },
 
@@ -114,8 +112,11 @@ vim.g.which_key_leader = {
         ['name'] = '+find',
         ['a']    = {':Telescope live_grep', 'Find word'},
         ['b']    = {':Telescope marks', 'Bookmarks'},
+        ['d']    = {':Telescope diagnostics', 'Find diagnostics from worksapce'},
+        ['D']    = {':Telescope diagnostics bufnr=0', 'Find diagnostics current file'},
         ['f']    = {':Telescope find_files', 'Find files'},
         ['h']    = {':Telescope oldfiles', 'History'},
+        ['H']    = {':Telescope help_tags', 'Help Tags'},
         ['r']    = {':FloatermNew ranger', 'Picture Viewer'},
         ['v']    = {':FloatermNew vifm', 'ViFm'},
     },
@@ -184,10 +185,12 @@ vim.g.which_key_leader = {
         },
         ['d']    = {
             ['name'] = '+DiagList',
+            ['d']    = {':Telescope diagnostics', 'List diagnostics in worksapce'},
+            ['D']    = {':Telescope diagnostics bufnr=0', 'List diagnostics current file'},
             ['e']    = {":call v:lua.vim.diagnostic.open_float()", 'Open diagnostics floating'},
-            ['l']    = {":call v:lua.vim.diagnostic.setloclist()", 'List all diagnostics'},
             ['p']    = {":call v:lua.vim.diagnostic.goto_prev()", 'Goto prev diagnostics'},
             ['n']    = {":call v:lua.vim.diagnostic.goto_next()", 'Goto next diagnostics'},
+            -- ['l']    = {":call v:lua.vim.diagnostic.setloclist()", 'List all diagnostics'},
         },
         -- ['s']    = {
         --     ['name'] = '+Saga',
