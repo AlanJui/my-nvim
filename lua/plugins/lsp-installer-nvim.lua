@@ -80,7 +80,6 @@ lsp_installer.on_server_ready(function (server)
         capabilities = capabilities,
     }
 
-
     -- Create a server_opts table where we'll specify our custom LSP server configuration
     local server_opts = {
         ['sumneko_lua'] = function()
