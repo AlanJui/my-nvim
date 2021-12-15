@@ -1,6 +1,7 @@
 if DEBUG then print('<< DEBUG: Loading keymaps.lua >>') end
 -- keymap.lua
-local keymap = require('utils.set_keymap')
+-- local keymap = require('utils.set_keymap')
+local keymap = vim.api.nvim_set_keymap
 local opts = { silent = true, noremap = true }
 
 vim.g.maplocalleader = ','
@@ -24,8 +25,12 @@ keymap('n', 'Y', 'y$', opts)
 keymap('n', 'fr', ':%s/', { noremap = true })
 
 -- Find files
-keymap('n', '\\', ":Lexplore<CR> :vertical resize 30<CR>", { noremap = true })
+-- keymap('n', '\\', ":Lexplore<CR> :vertical resize 30<CR>", { noremap = true })
 keymap('n', '<LocalLeader>f', ':Telescope<CR>', opts)
+
+-- Indent/Unident
+keymap('v', '<', '<gv', opts)
+keymap('v', '>', '>gv', opts)
 
 -- Move line
 keymap('n', '<S-Down>', ':m .+1<CR>', opts)
@@ -42,11 +47,10 @@ keymap('n', '<C-w>-',  ':split<CR>',  opts)
 keymap('n', '<C-w>_',  ':vsplit<CR>', opts)
 keymap('n', '<C-w>|',  ':vsplit<CR>', opts)
 
-keymap('n', '<C-L>', '<C-W><C-L>', opts)
-keymap('n', '<C-H>', '<C-W><C-H>', opts)
-keymap('n', '<C-K>', '<C-W><C-K>', opts)
-keymap('n', '<C-J>', '<C-W><C-J>', opts)
-
+keymap('n', '<C-L>', '<C-W>l', opts)
+keymap('n', '<C-H>', '<C-W>h', opts)
+keymap('n', '<C-K>', '<C-W>k', opts)
+keymap('n', '<C-J>', '<C-W>j', opts)
 
 -- Window Zoom In/Out
 keymap('n', '<LocalLeader>wi', '<C-w>| <C-w>_', opts)
@@ -56,6 +60,14 @@ keymap('n', 'tn', ':tabnew<CR>', { noremap = true })
 keymap('n', 'tk', ':tabnext<CR>', { noremap = true })
 keymap('n', 'tj', ':tabprev<CR>', { noremap = true })
 keymap('n', 'to', ':tabo<CR>', { noremap = true })
+
+--------------------------------------------------------------------
+-- Clear highlighting on escale in normal mode.
+keymap('n', '<Esc>', ':noh<CR><Esc>', {silent = true, noremap = true})
+
+--------------------------------------------------------------------
+-- Terminal mode
+keymap('t', '<Esc>', '<C-\\><C-n>', {noremap = true, silent = true})
 
 --------------------------------------------------------------
 -- None buildin commands
@@ -67,3 +79,14 @@ keymap('n', 'gt',  		  ':TablineBufferNext<CR>',      opts)
 -- Comment
 keymap('n', '<C-_>', ':CommentToggle<CR>',      opts)
 keymap('v', '<C-_>', ":'<,'>CommentToggle<CR>", opts)
+
+
+keymap('n', '<Leader>ci',  ':e ~/.config/my-nvim/init.lua<CR>', opts)
+keymap('n', '<Leader>cI',  ':source ~/.config/my-nvim/init.lua<CR>',   opts)
+keymap('n', '<Leader>ck',  ':e ~/.config/my-nvim/lua/keymaps.lua<CR>', opts)
+keymap('n', '<Leader>cK',  ':e ~/.config/my-nvim/lua/plugins/which-key-nvim.lua<CR>', opts)
+keymap('n', '<Leader>cp',  ':e ~/.config/my-nvim/lua/plugins/init.lua<CR>', opts)
+keymap('n', '<Leader>cP',  ':Telescope find_files shorten_path=true<CR>', opts)
+keymap('n', '<Leader>cs',  ':e ~/.config/my-nvim/lua/settings.lua<CR>', opts)
+keymap('n', '<Leader>pc',  ':PackerCompile<CR>', opts)
+keymap('n', '<Leader>ps',  ':PackerSync<CR>', opts)

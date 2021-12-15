@@ -119,6 +119,10 @@ end
 require('essential')
 require('nvim_utils')
 
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ','
+vim.o.timeoutlen=500
+
 -----------------------------------------------------------
 -- Plugin Manager: install plugins
 -----------------------------------------------------------
@@ -186,12 +190,13 @@ require('keymaps')
 
 -- Load Which-key
 if INSTALLED then
-    require('plugins.vim-which-key')
+    require('plugins.which-key-nvim')
+    -- require('which-key').setup({})
 end
 
 -----------------------------------------------------------
 -- Experiments
 -----------------------------------------------------------
-
+require('debug')
 
 if DEBUG then print('===== End of loading init.lua... =====') end

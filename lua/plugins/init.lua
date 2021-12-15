@@ -199,7 +199,11 @@ return require('packer').startup({
 
         -- Screen Navigation
         use {
-            'liuchengxu/vim-which-key',
+            'folke/which-key.nvim',
+            -- config = function ()
+            --     require('which-key').setup({})
+            -- end
+            -- 'liuchengxu/vim-which-key',
             -- config = function ()
             --     if vim.inspect(package.loaded) then
             --         require('plugins.vim-which-key')
@@ -346,6 +350,19 @@ return require('packer').startup({
         -- Python: provides text objects and motions for Python classes, methods,
         -- functions and doc strings
         use 'jeetsukumaran/vim-pythonsense'
+
+        -----------------------------------------------------------
+        -- DAP
+        -----------------------------------------------------------
+        use { 'nvim-telescope/telescope-dap.nvim' }
+        use { -- Python
+            'mfussenegger/nvim-dap-python',
+            requires = {
+                'mfussenegger/nvim-dap',
+                'microsoft/debugpy'
+            }
+        }
+
 
         -----------------------------------------------------------
         -- Utility
