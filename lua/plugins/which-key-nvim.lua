@@ -216,12 +216,12 @@ local mappings = {
     -- Window
     w = {
         name = 'window',
-        ['-']    = {'split',   'Horiz. window'},
-        ['|']    = {'vsplit',  'Vert. window'},
+        ['-']    = {':split<CR>',   'Horiz. window'},
+        ['|']    = {':vsplit<CR>',  'Vert. window'},
         z    = {'<C-W>_',  'Zoom-in'},
         Z    = {'<C-W>|',  'Zoom-in (Vertical)'},
         o    = {'<C-W>=',  'Zoom-out'},
-        c    = {'close',   'Close window'},
+        c    = {':close<CR>',   'Close window'},
         k    = {'<C-w>k',  'Up window'},
         j    = {'<C-w>j',  'Down window'},
         h    = {'<C-w>h',  'Left window'},

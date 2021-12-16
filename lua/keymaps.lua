@@ -45,14 +45,25 @@ keymap('n', '<C-w>-',  ':split<CR>',  opts)
 keymap('n', '<C-w>_',  ':vsplit<CR>', opts)
 keymap('n', '<C-w>|',  ':vsplit<CR>', opts)
 
+-- Move focus on window
 keymap('n', '<C-L>', '<C-W>l', opts)
 keymap('n', '<C-H>', '<C-W>h', opts)
 keymap('n', '<C-K>', '<C-W>k', opts)
 keymap('n', '<C-J>', '<C-W>j', opts)
 
+-- Window Resize
+keymap('n', '<LocalLeader>w<', '30<C-w><', opts )
+keymap('n', '<LocalLeader>w>', '30<C-w>>', opts )
+keymap('n', '<LocalLeader>w+', '10<C-w>+', opts )
+keymap('n', '<LocalLeader>w-', '10<C-w>-', opts )
+keymap('n', '<LocalLeader>w_', '<C-w>_', opts )
+keymap('n', '<LocalLeader>w=', '<C-w>=', opts )
+keymap('n', '<LocalLeader>w|', '<C-w>|', opts )
+keymap('n', '<LocalLeader>wo', '<C-w>|<C-w>_', opts )
+
 -- Window Zoom In/Out
-keymap('n', '<Leader>wi', '<C-w>| <C-w>_', opts)
-keymap('n', '<Leader>wo', '<C-w>=', opts)
+keymap('n', '<LocalLeader>wi', '<C-w>| <C-w>_', opts)
+keymap('n', '<LocalLeader>wo', '<C-w>=', opts)
 
 keymap('n', 'tn', ':tabnew<CR>', { noremap = true })
 keymap('n', 'tk', ':tabnext<CR>', { noremap = true })
