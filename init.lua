@@ -191,7 +191,6 @@ require('keymaps')
 -- Load Which-key
 if INSTALLED then
     require('plugins.which-key-nvim')
-    -- require('which-key').setup({})
 end
 
 -----------------------------------------------------------

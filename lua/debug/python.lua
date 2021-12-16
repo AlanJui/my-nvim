@@ -2,8 +2,9 @@
 -- nvim-dap-python
 -----------------------------------------------------------
 
-local dap = require('dap')
+require('dap-python').setup('~/.pyenv/versions/venv-3.10.0/bin/python')
 
+local dap = require('dap')
 local bin_path = HOME .. '/.pyenv/versions/venv-3.10.0/bin/python'
 
 -- dap.adapters.python = {
@@ -27,8 +28,15 @@ dap.configurations.python = {
     },
 }
 
-vim.cmd([[
-nnoremap <silent> <LocalLeader>dn :lua require('dap-python').test_method()<CR>
-nnoremap <silent> <LocalLeader>df :lua require('dap-python').test_class()<CR>
-vnoremap <silent> <LocalLeader>ds <ESC>:lua require('dap-python').debug_selection()<CR>
-]])
+local keymap = require('utils').keymap
+local opts = { silent = true, noremap = true }
+
+keymap('n', '<Leader>dn', ":lua require('dap-python').test_method()<CR>         ", opts)
+keymap('n', '<Leader>df', ":lua require('dap-python').test_class()<CR>          ", opts)
+keymap('n', '<Leader>ds', "<ESC>:lua require('dap-python').debug_selection()<CR>", opts)
+
+-- vim.cmd([[
+-- nnoremap <silent> <Leader>dn :lua require('dap-python').test_method()<CR>
+-- nnoremap <silent> <Leader>df :lua require('dap-python').test_class()<CR>
+-- vnoremap <silent> <Leader>ds <ESC>:lua require('dap-python').debug_selection()<CR>
+-- ]])
