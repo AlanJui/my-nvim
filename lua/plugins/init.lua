@@ -201,9 +201,9 @@ return require('packer').startup({
         -- Screen Navigation
         use {
             'folke/which-key.nvim',
-            -- config = function ()
-            --     require('which-key').setup({})
-            -- end
+            config = function ()
+                require('plugins.which-key')
+            end
             -- 'liuchengxu/vim-which-key',
             -- config = function ()
             --     if vim.inspect(package.loaded) then
@@ -258,14 +258,21 @@ return require('packer').startup({
         -- Editting Tools
         -----------------------------------------------------------
 
-        -- Toggle comments in Neovim
+        -- surroundings: parentheses, brackets, quotes, XML tags, and more
         use {
-            'terrortylor/nvim-comment',
-            -- config = [[ require('plugins.nvim-comment') ]]
-            config = function ()
-                require('nvim_comment').setup()
-            end
+            'tpope/vim-surround',
+            requires = { 'tpope/vim-repeat' }
         }
+
+        -- Toggle comments in Neovim
+        use { 'tpope/vim-commentary' }
+        -- use {
+        --     'terrortylor/nvim-comment',
+        --     -- config = [[ require('plugins.nvim-comment') ]]
+        --     config = function ()
+        --         require('nvim_comment').setup()
+        --     end
+        -- }
 
         -- Causes all trailing whitespace characters to be highlighted
         use {
@@ -288,11 +295,8 @@ return require('packer').startup({
             config = [[ require('plugins.autopairs') ]]
         }
 
-        -- surroundings: parentheses, brackets, quotes, XML tags, and more
-        use 'tpope/vim-surround'
-
         -- Multiple cursor editting
-        use 'mg979/vim-visual-multi'
+        -- use 'mg979/vim-visual-multi'
 
         -- visualizes undo history and makes it easier to browse and switch between different undo branches
         use {

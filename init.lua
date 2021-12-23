@@ -1,14 +1,14 @@
 -----------------------------------------------------------
 -- Startup
 -----------------------------------------------------------
--- DEBUG = false
-DEBUG = true
+DEBUG = false
+-- DEBUG = true
 
 if DEBUG then print('===== Begin of loading init.lua... =====') end
 -----------------------------------------------------------
 -- Global Functions
 -----------------------------------------------------------
-vim.api.nvim_command('luafile ~/.config/my-nvim/lua/global.lua')
+vim.api.nvim_command('luafile ~/.config/my-nvim/lua/globals.lua')
 
 -----------------------------------------------------------
 -- Initial environment
@@ -29,10 +29,6 @@ require('nvim_utils')
 -----------------------------------------------------------
 -- Plugin Manager: install plugins
 -----------------------------------------------------------
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ','
-vim.o.timeoutlen=500
-
 require('plugins')
 
 -----------------------------------------------------------
@@ -52,9 +48,9 @@ require('color-themes')
 require('keymaps')
 
 -- Load Which-key
-if INSTALLED then
-    require('plugins.which-key-nvim')
-end
+-- if INSTALLED then
+--     require('plugins.which-key')
+-- end
 
 -----------------------------------------------------------
 -- autocmd

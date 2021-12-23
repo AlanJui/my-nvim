@@ -1,7 +1,12 @@
 -- ========================================================================
 -- WhichKey Configuration
 -- ========================================================================
-vim.g.mapleader = ' '
+local wk = safe_require('which-key')
+if not wk then
+    return
+end
+
+-- vim.g.mapleader = ' '
 local keymap = require('utils.set_keymap')
 
 -- Leader configuration

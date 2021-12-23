@@ -1,14 +1,10 @@
+-----------------------------------------------------------
 -- Essential configuration on development init.lua
 -----------------------------------------------------------
-local USER_HOME_PATH = os.getenv('HOME')
-local PYENV_ROOT_PATH = USER_HOME_PATH .. '/.pyenv'
-local PYENV_GLOBAL_PATH = PYENV_ROOT_PATH .. '/versions/venv-nvim'
-local PYTHON_BINARY = PYENV_GLOBAL_PATH .. '/bin/python3'
 
-vim.g.python3_host_prog = PYTHON_BINARY
-vim.g.loaded_python_provider = 0
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_perl_provider = 0
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ';'
+vim.o.timeoutlen=500
 
 vim.opt.encoding = 'UTF-8'
 vim.opt.swapfile = false
