@@ -34,12 +34,12 @@ local colors = {
 local config = {
     options = {
         icons_enabled = true,
-        -- theme = 'material',
-        theme = 'tokyonight',
-        disabled_filetypes = { },
-        -- section_separators = {'', ''},
+        theme = 'tokyonight' or 'material',
+        -- theme = vim.g.colors_name or 'auto',
+        disabled_filetypes = { 'dashboard', 'NvimTree', 'packer' },
         -- component_separators = {'', ''},
-        -- fmt = string.lower,
+        -- section_separators = {'', ''},
+        -- always_divide_middle = true,
     },
     sections = {
         lualine_a = {
@@ -50,22 +50,17 @@ local config = {
         },
         lualine_b = {
             'branch',
-        },
-        lualine_c = {
-            'filename',
             {
                 'diff',
                 source = diff_source
-            }
-        },
-        lualine_x = {
+            },
             {
-                'diagnostics',
                 -- table of diagnostic sources, available sources:
                 -- 'nvim_lsp', 'nvim', 'coc', 'ale', 'vim_lsp'
                 -- Or a function that returns a table like:
                 -- {error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt}
-                sources = {'nvim_diagnostic', 'coc'},
+                'diagnostics',
+                sources = { 'nvim_diagnostic', 'coc', 'ale' },
                 -- displays diagnostics from defined severity
                 sections = {'error', 'warn', 'info', 'hint'},
                 -- all colors are in format #rrggbb
@@ -85,10 +80,14 @@ local config = {
                 update_in_insert = false,
                 -- Show diagnostics even if count is 0
                 alwayw_visible = false,
-            },
-            'encoding',
+            }
+        },
+        lualine_c = {
+            'filename',
+        },
+        lualine_x = {
             'filetype',
-            lsp_provider,  -- function
+            lsp_provider,
         },
         lualine_y = {'progress'},
         lualine_z = {'location'}

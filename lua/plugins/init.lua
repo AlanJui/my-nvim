@@ -47,18 +47,18 @@ return require('packer').startup({
         -- LSP/LspInstaller: configurations for the Nvim LSP client
         -----------------------------------------------------------
 
-        -- A collection of common configurations for Neovim's built-in language
-        -- server client
-        use {
-            'neovim/nvim-lspconfig',
-            -- config = [[ require('plugins.lspconfig') ]]
-        }
-
         -- companion plugin for nvim-lspconfig that allows you to seamlessly
         -- install LSP servers locally
         use {
             'williamboman/nvim-lsp-installer',
-            config = [[ require('plugins.lsp-installer-nvim') ]]
+            config = [[ require('plugins.nvim-lsp-installer') ]]
+        }
+
+        -- A collection of common configurations for Neovim's built-in language
+        -- server client
+        use {
+            'neovim/nvim-lspconfig',
+            config = [[ require('plugins.nvim-lspconfig') ]]
         }
 
         -- vscode-like pictograms for neovim lsp completion items Topics
@@ -105,6 +105,7 @@ return require('packer').startup({
                 'hrsh7th/cmp-path',
                 -- nvim-cmp source for math calculation
                 'hrsh7th/cmp-calc',
+                'hrsh7th/cmp-cmdline',
 
                 -- LuaSnip completion source for nvim-cmp
                 'saadparwaiz1/cmp_luasnip',
@@ -414,10 +415,4 @@ return require('packer').startup({
             require('packer').sync()
         end
     end,
-
-    -- config = {
-    --     -- Move to lua dir so impatient.nvim can cache it
-    --     -- compile_path = fn.stdpath('config') .. '/plugin/packer_compiled.lua'
-    --     compile_path = compile_path,
-    -- }
 })

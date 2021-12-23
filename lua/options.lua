@@ -100,3 +100,6 @@ vim.cmd [[set undofile]]
 -- Disable swap file
 vim.opt.swapfile = false
 vim.opt.writebackup = false
+
+-- make buffer modifiable
+vim.opt.modifiable = true

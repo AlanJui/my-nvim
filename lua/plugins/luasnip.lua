@@ -18,29 +18,6 @@ luasnip.config.set_config({
     updateevents = "TextChanged,TextChangedI",
 })
 
-luasnip.snippets = {
-    all = {
-    },
-    html = {
-    },
-}
-
--- snippets_path ="~/.config/nvim/my-snippets",
-require("luasnip/loaders/from_vscode").load({
-    include = {
-        "html",
-        "htmldjango",
-        "python",
-        "css",
-        "javascript",
-        "typescript",
-    },
-    paths = {
-        "~/.config/web-nvim/nvim/my-snippets",
-        -- "~/.local/share/nvim/site/pack/packer/start/friendly-snippets",
-    }
-})
-
 -- enable html snippets in javascript/javascript(REACT)
 luasnip.snippets.javascript = luasnip.snippets.html
 luasnip.snippets.javascriptreact = luasnip.snippets.html
@@ -59,10 +36,19 @@ luasnip.snippets.typescriptreact = luasnip.snippets.html
 
 luasnip.filetype_extend('htmldjango', {'html'})
 
+
+-- snippets_path ="~/.config/nvim/my-snippets",
 require("luasnip/loaders/from_vscode").load({
-    include = {"python", "html", "htmldjango", "javascript", "typescript", "css"},
+    include = {
+        "html",
+        "htmldjango",
+        "python",
+        "css",
+        "javascript",
+        "typescript",
+    },
     paths = {
-        "~/.config/nvim/my-snippets",
-        "~/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+        "~/.config/my-nvim/my-snippets",
+        -- "~/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     }
 })

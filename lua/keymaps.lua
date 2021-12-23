@@ -4,6 +4,7 @@ if DEBUG then print('<< DEBUG: Loading keymaps.lua >>') end
 local keymap = vim.api.nvim_set_keymap
 local opts = { silent = true, noremap = true }
 
+-- Line editting
 keymap('i', 'jj', '<Esc>', opts)
 keymap('i', '<Leader>O', '<Esc>O',   opts)
 keymap('i', '<Leader>o', '<Esc>jO',  opts)
@@ -24,7 +25,7 @@ keymap('n', 'fr', ':%s/', { noremap = true })
 
 -- Find files
 -- keymap('n', '\\', ":Lexplore<CR> :vertical resize 30<CR>", { noremap = true })
-keymap('n', '<Leader>f', ':Telescope<CR>', opts)
+keymap('n', '<Leader>f', ':Telescope find_files<CR>', opts)
 
 -- Indent/Unident
 keymap('v', '<', '<gv', opts)
@@ -65,6 +66,7 @@ keymap('n', '<LocalLeader>wo', '<C-w>|<C-w>_', opts )
 keymap('n', '<LocalLeader>wi', '<C-w>| <C-w>_', opts)
 keymap('n', '<LocalLeader>wo', '<C-w>=', opts)
 
+-- Tab operations
 keymap('n', 'tn', ':tabnew<CR>', { noremap = true })
 keymap('n', 'tk', ':tabnext<CR>', { noremap = true })
 keymap('n', 'tj', ':tabprev<CR>', { noremap = true })

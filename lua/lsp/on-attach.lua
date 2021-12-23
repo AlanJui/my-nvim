@@ -32,6 +32,11 @@ local function on_attach(client, bufnr)
     -- inspect documents for the code
     buf_set_keymap('n', 'K',     '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     buf_set_keymap('n', '<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    -- TODO
+    -- local lsp_signature = safe_require 'lsp_signature'
+    -- if lsp_signature then
+    --   lsp_signature.on_attach()
+    -- end
 
     -- View diagnostics
     buf_set_keymap('n', '<leader>dl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
@@ -62,7 +67,7 @@ local function on_attach(client, bufnr)
         --     augroup end
         -- ]])
         vim.cmd([[
-            autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()
+        autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()
         ]])
     end
 
@@ -71,12 +76,34 @@ local function on_attach(client, bufnr)
     -- 	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
     if client.resolved_capabilities.document_formatting then
         vim.cmd([[
-            augroup Format
-                autocmd! * <buffer>
-                autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
-            augroup end
+        augroup Format
+        autocmd! * <buffer>
+        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
+        augroup end
         ]])
     end
+
+    -- -- TODO
+    -- --   if client.name == 'tsserver' then
+    -- local ts_utils = safe_require 'nvim-lsp-ts-utils'
+    -- if ts_utils then
+    --     ts_utils.setup {}
+    --     ts_utils.setup_client(client)
+    -- end
+
+    -- -- So that the only client with format capabilities is efm
+    -- if client.name ~= 'efm' then
+    --     client.resolved_capabilities.document_formatting = false
+    -- end
+
+    -- if client.resolved_capabilities.document_formatting then
+    --     vim.cmd [[
+    --     augroup Format
+    --     au! * <buffer>
+    --     au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)
+    --     augroup END
+    --     ]]
+    -- end
 end
 
 return on_attach
