@@ -34,9 +34,11 @@ local mappings = {
     -- Debug
     d = {
         name = 'debug',
+        d = { ":FloatermNew --wintype='vsplit' --position='right'<CR>", "Debug Term..."},
         b = { ":lua require'dap'.toggle_breakpoint()<CR>", "Setting breakpoints"},
-        l = { ":lua require'dap'.continue()<CR>", "Launching debug sessions"},
-        s = { ":lua require'dap'.step_over()<CR>", "Step over"},
+        s = { ":lua require'dap'.continue()<CR>", "Launching debug sessions"},
+        c = { ":lua require'dap-python'.test_method()<CR>", "Debug to cursor"},
+        o = { ":lua require'dap'.step_over()<CR>", "Step over"},
         i = { ":lua require'dap'.step_into()<CR>", "Step into"},
     },
     -- Buffer
@@ -78,23 +80,11 @@ local mappings = {
             n    = {":call v:lua.vim.diagnostic.goto_next()<CR>", 'Goto next diagnostics'},
         },
     },
-    -- System
-    s = {
-        name = 'system',
-        q = { ":q<CR>", "Quit"},
-        w = { ":w<CR>", "Save"},
-        c = { ":bdelete<CR>", "Close" },
-        C = { ":q!<CR>", "Quit withou save" },
-        e = { ":qa<CR>", "Exit Neovim"},
-        E = { ":qa!<CR>", "Exit Neovim without save"},
-    },
     -- Find files
     f = {
         name = 'find',
-        ['1']    = '',
         a    = {':Telescope live_grep<CR>', 'Live grep'},
         b    = {':Telescope buffers theme=get_dropdown<CR>', 'buffers'},
-        D    = {':Telescope diagnostics<CR>', 'Find diagnostics from worksapce'},
         f    = {':Telescope find_files<CR>', 'Find files'},
         g    = {':Telescope git_files<CR>', 'Git files'},
         m    = {':Telescope marks<CR>', 'Bookmarks'},
@@ -210,9 +200,18 @@ local mappings = {
             S = {':PackerSync<CR>', 'PackerSync'},
         },
     },
+    -- System
+    s = {
+        name = 'system',
+        q = { ":q<CR>", "Quit"},
+        w = { ":w<CR>", "Save"},
+        c = { ":bdelete<CR>", "Close" },
+        C = { ":q!<CR>", "Quit withou save" },
+        e = { ":qa<CR>", "Exit Neovim"},
+        E = { ":qa!<CR>", "Exit Neovim without save"},
+    },
     -- utilities
     u = {
-        name = 'utility',
         t    = {
             name = 'terminal',
             d    = {':FloatermNew python manage.py shell<CR>', 'Django-admin Shell'},

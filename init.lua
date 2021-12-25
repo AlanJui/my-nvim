@@ -73,6 +73,29 @@ nvim_create_augroups(autocmds)
 -----------------------------------------------------------
 -- Experiments
 -----------------------------------------------------------
-require('debug')
+require('dbg')
+
+-----------------------------------------------------------
+-- local dap = require('dap')
+-- dap.configurations.python = {
+--     {
+--         -- The first three options are required by nvim-dap
+--         name = "Python: Django",
+--         type = 'python',  -- the type here established the link to the adapter definition: `dap.adapters.python`
+--         request = 'launch',
+--         -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
+--         program = "${workspaceFolder}/manage.py"; -- This configuration will launch the current file if used.
+--         args = {
+--             'runserver'
+--         },
+--         env = {
+--             DJANGO_SETTINGS_MODULE = 'web_project.settings'
+--         },
+--         django = true,
+--         pythonPath = function()
+--             return bin_path
+--         end,
+--     },
+-- }
 
 if DEBUG then print('===== End of loading init.lua... =====') end

@@ -359,15 +359,39 @@ return require('packer').startup({
         -----------------------------------------------------------
         -- DAP
         -----------------------------------------------------------
+        use { 'mfussenegger/nvim-dap' }
         use { 'nvim-telescope/telescope-dap.nvim' }
-        use { -- Python
-            'mfussenegger/nvim-dap-python',
-            requires = {
-                'mfussenegger/nvim-dap',
-                'microsoft/debugpy'
-            }
+        use { 'mfussenegger/nvim-dap-python' }
+        use {
+            'theHamsta/nvim-dap-virtual-text',
+            config = function ()
+                -- Show virtual text for current frame
+                vim.g.dap_virtual_text = true
+            end
         }
-
+        use {
+            'rcarriga/nvim-dap-ui',
+            config = function ()
+                local ok, dapui = pcall(require, 'nvim-dap-ui')
+                if not ok then
+                    return ok
+                end
+                dapui.setup()
+            end
+        }
+        use {
+            "rcarriga/vim-ultest",
+            config = "require('plugins.ultest').post()",
+            run = ":UpdateRemotePlugins",
+            requires = {"vim-test/vim-test"}
+        }
+        -- DAP adapter for the Neovim lua language
+        use {
+            'jbyuki/one-small-step-for-vimkind',
+            config = [[require('plugins.one-small-step-for-vimkind')]],
+        }
+        -- nvim-dap’s functionality for managing various debuggers.
+        use { 'Pocco81/DAPInstall.nvim' }
 
         -----------------------------------------------------------
         -- Utility
