@@ -122,7 +122,7 @@ keymap('n', '<Esc>', ':noh<CR><Esc>', opts)
 keymap('t', '<Esc>', '<C-\\><C-n>', opts)
 
 --------------------------------------------------------------
--- None buildin commands
+-- Nonbuild-in commands
 --------------------------------------------------------------
 -- Comment
 -- keymap('n', '<C-_>', ':CommentToggle<CR>',      opts)
@@ -135,3 +135,14 @@ keymap( 'n', '<LocalLeader>fp', '<cmd>let @*=fnamemodify(expand("%"), ":~:.") | 
 
 -- Neogit
 keymap('n', '<LocalLeader>g', ':Neogit<CR>', {noremap=true})
+
+-- vim-surround
+keymap('n', 'ds', '<Plug>Dsurround',  { noremap = false })
+keymap('n', 'cs', '<Plug>Csurround',  { noremap = false })
+keymap('n', 'cS', '<Plug>CSurround',  { noremap = false })
+keymap('n', 's',  '<Plug>Ysurround',  { noremap = false })
+keymap('n', 'S',  '<Plug>YSurround',  { noremap = false })
+keymap('n', 'ss', '<Plug>Yssurround', { noremap = false })
+keymap('n', 'SS', '<Plug>YSsurround', { noremap = false })
+keymap('x', 's',  '<Plug>VSurround',  { noremap = false })
+keymap('x', 'S',  '<Plug>VgSurround', { noremap = false })

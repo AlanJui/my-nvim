@@ -31,16 +31,6 @@ local mappings = {
         N    = {':set norelativenumber!<CR>', 'on/off relative line-numbers'},
         S    = {':StripWhitespace<CR>', 'strip whitespace'},
     },
-    -- Debug
-    d = {
-        name = 'debug',
-        d = { ":FloatermNew --wintype='vsplit' --position='right'<CR>", "Debug Term..."},
-        b = { ":lua require'dap'.toggle_breakpoint()<CR>", "Setting breakpoints"},
-        s = { ":lua require'dap'.continue()<CR>", "Launching debug sessions"},
-        c = { ":lua require'dap-python'.test_method()<CR>", "Debug to cursor"},
-        o = { ":lua require'dap'.step_over()<CR>", "Step over"},
-        i = { ":lua require'dap'.step_into()<CR>", "Step into"},
-    },
     -- Buffer
     b = {
         name = 'buffer',
@@ -79,6 +69,18 @@ local mappings = {
             p    = {":call v:lua.vim.diagnostic.goto_prev()<CR>", 'Goto prev diagnostics'},
             n    = {":call v:lua.vim.diagnostic.goto_next()<CR>", 'Goto next diagnostics'},
         },
+    },
+    -- Debug
+    d = {
+        name = 'debug',
+        b = { ":lua require'dap'.toggle_breakpoint()<CR>", "Toggle breakpoint"},
+        c = { ":lua require'dap'.continue()<CR>", "Launching debug sessions"},
+        C = { ":lua require'dap-python'.test_method()<CR>", "Debug to cursor"},
+        o = { ":lua require'dap'.step_over()<CR>", "Step over"},
+        i = { ":lua require'dap'.step_into()<CR>", "Step into"},
+        O = { ":lua require'dap'.step_out()<CR>", "Step out"},
+        u = { ":lua require'dapui'.toggle()<CR>", "Show/Hide Debug Sidebar"},
+        h = { ":lua require'dap.ui.widgets'.hover()<CR>", "Show contents in variable"},
     },
     -- Find files
     f = {
@@ -217,6 +219,7 @@ local mappings = {
             d    = {':FloatermNew python manage.py shell<CR>', 'Django-admin Shell'},
             p    = {':FloatermNew python<CR>', 'Python shell'},
             n    = {':FloatermNew node<CR>', 'Node.js shell'},
+            v    = {":FloatermNew --wintype='vsplit' --position='right'<CR>", "Debug Term..."},
         },
         l    = {
             name = 'LiveServer',
