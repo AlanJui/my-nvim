@@ -6,6 +6,15 @@ if not dap then
     return
 end
 
+dap.defaults.fallback.terminal_win_cmd = '80vsplit new'
+
+if OS_SYS == 'macOS' then
+    -- vim.fn.sign_define('DapBreakpoint', {text='🟥', texthl='', linehl='', numhl=''})
+    vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''})
+    vim.fn.sign_define('DapBreakpointRejected', {text='🟦', texthl='', linehl='', numhl=''})
+    vim.fn.sign_define('DapStopped', {text='⭐️', texthl='', linehl='', numhl=''})
+end
+
 -----------------------------------------------------------
 -- Show virtual text for current frame
 -----------------------------------------------------------
@@ -123,8 +132,13 @@ nmap [t <Plug>(ultest-prev-fail)
 -----------------------------------------------------------
 -- configurations for DAP Adapter
 -----------------------------------------------------------
+
+-- configure Neovim Lua Adapter
 require('dbg.lua')
-require('dbg.python')
+
+-- configure dap-python Adapter
+local python_path = HOME .. '/.pyenv/versions/3.10.0/envs/venv-3.10.0/bin/python'
+require('dbg.python').setup(python_path)
 
 -----------------------------------------------------------
 --  Key mapping for nvim-dap
