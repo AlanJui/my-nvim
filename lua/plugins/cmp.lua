@@ -55,50 +55,17 @@ cmp.setup({
         end
     },
 
-    formatting = {
-        fields = { "kind", "abbr", "menu" },
-        format = function(entry, vim_item)
-            -- fancy icons and a name of kind
-            vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-            -- vim_item.kind = require('lspkind').presets.default[vim_item.kind]
-            -- vim_item.kind = string.format(
-            --     '%s %s',
-            --     lspkind.presets.default[vim_item.kind],
-            --     vim_item.kind
-            -- )
-            -- set a name for each source
-            vim_item.menu = ({
-                buffer = "[Buff]",
-                nvim_lsp = "[LSP]",
-                nvim_lua = "[API]",
-                luasnip = "[LuaSnip]",
-                latex_symbols = "[Latex]",
-                spell = "[Spell]",
-                treesitter = "[TreeSitter]",
-                vsnip = "[VsSnip]",
-                zsh = "[Zsh]",
-                path = "[Path]",
-            })[entry.source.name]
-
-            return vim_item
-        end
-    },
-
     mapping = {
         ['<C-p>'] = cmp.mapping.select_prev_item(),
         ['<C-n>'] = cmp.mapping.select_next_item(),
         ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
         ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-        ['<C-\\>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+        ['<F2>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
         ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
         ['<C-e>'] = cmp.mapping({
-            i = cmp.mapping.close(),
+            i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         }),
-        -- ['<C-e>'] = cmp.mapping({
-        --     i = cmp.mapping.abort(),
-        --     c = cmp.mapping.close(),
-        -- }),
         ['<CR>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
@@ -129,12 +96,42 @@ cmp.setup({
         ),
     },
 
+    formatting = {
+        fields = { "kind", "abbr", "menu" },
+        format = function(entry, vim_item)
+            -- fancy icons and a name of kind
+            vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+            -- vim_item.kind = require('lspkind').presets.default[vim_item.kind]
+            -- vim_item.kind = string.format(
+            --     '%s %s',
+            --     lspkind.presets.default[vim_item.kind],
+            --     vim_item.kind
+            -- )
+            -- set a name for each source
+            vim_item.menu = ({
+                buffer = "[Buff]",
+                nvim_lsp = "[LSP]",
+                nvim_lua = "[Lua]",
+                luasnip = "[LuaSnip]",
+                latex_symbols = "[Latex]",
+                spell = "[Spell]",
+                treesitter = "[TreeSitter]",
+                vsnip = "[VsSnip]",
+                zsh = "[Zsh]",
+                path = "[Path]",
+            })[entry.source.name]
+
+            return vim_item
+        end
+    },
+
     sources = {
+        { name = 'luasnip' },
+        { name = 'vsnip' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
         { name = 'path' },
-        { name = 'vsnip' },
-        { name = 'luasnip' },
+        { name = 'emoji' },
         { name = 'spell' },
         -- { name = 'buffer', keyword_length = 1 },
         {

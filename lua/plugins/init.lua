@@ -105,6 +105,7 @@ return require('packer').startup({
                 'hrsh7th/cmp-path',
                 -- nvim-cmp source for math calculation
                 'hrsh7th/cmp-calc',
+                'hrsh7th/cmp-emoji',
                 'hrsh7th/cmp-cmdline',
 
                 -- LuaSnip completion source for nvim-cmp
