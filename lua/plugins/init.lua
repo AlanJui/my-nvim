@@ -51,14 +51,14 @@ return require('packer').startup({
         -- install LSP servers locally
         use {
             'williamboman/nvim-lsp-installer',
-            config = [[ require('plugins.nvim-lsp-installer') ]]
+            -- config = [[ require('plugins.nvim-lsp-installer') ]]
         }
 
         -- A collection of common configurations for Neovim's built-in language
         -- server client
         use {
             'neovim/nvim-lspconfig',
-            config = [[ require('plugins.nvim-lspconfig') ]]
+            -- config = [[ require('plugins.nvim-lspconfig') ]]
         }
 
         -- vscode-like pictograms for neovim lsp completion items Topics
@@ -111,17 +111,17 @@ return require('packer').startup({
                 -- LuaSnip completion source for nvim-cmp
                 'saadparwaiz1/cmp_luasnip',
             },
-            config = [[ require('plugins.cmp') ]]
+            -- config = [[ require('auto-cmp.nvim-cmp') ]]
         }
 
-        -- Snippet Engine for Neovim written in Lua.
+        -- -- Snippet Engine for Neovim written in Lua.
         use {
             'L3MON4D3/LuaSnip',
             requires = {
                 -- Snippets collection for a set of different programming languages for faster development
                 'rafamadriz/friendly-snippets',
             },
-            config = [[ require('plugins.luasnip') ]]
+            -- config = [[ require('auto-cmp.luasnip') ]]
         }
 
         -----------------------------------------------------------

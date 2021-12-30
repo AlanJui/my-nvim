@@ -31,19 +31,6 @@ local mappings = {
         N    = {':set norelativenumber!<CR>', 'on/off relative line-numbers'},
         S    = {':StripWhitespace<CR>', 'strip whitespace'},
     },
-    -- Buffer
-    b = {
-        name = 'buffer',
-        c    = {':bdelete<CR>', 'Close buffer'},
-        C    = {'%bdelete|edit #|normal `"<CR>', 'Close all but current'},
-        I    = {'gg=G', 'Formate indent of line'},
-        l    = {':Telescope buffers<CR>', 'List all buffers'},
-        s    = {':setlocal spell!<CR>', 'Toggle spell'},
-        w    = {':StripWhitespace<CR>', 'Strip white space'},
-        W    = {':ToggleWhitespace<CR>', 'Toggle white space'},
-        ['[']    = {'gT', 'Prev. buffer'},
-        [']']    = {'gt', 'Next buffer'}
-    },
     -- Code Actions
     c    = {
         name = 'code',
@@ -57,7 +44,8 @@ local mappings = {
             i    = {":call v:lua.vim.lsp.buf.implementation()<CR>", 'Go to Implementation'},
             r    = {":call v:lua.vim.lsp.buf.references()<CR>", 'References'},
         },
-        f    = {":call v:lua.vim.lsp.buf.formatting()<CR>", 'Formatting code'},
+        F    = {":call v:lua.vim.lsp.buf.formatting()<CR>", 'Formatting code'},
+        f    = {':set foldmethod=indent<CR>', 'Set code folding by indent'},
         r    = {":call v:lua.vim.lsp.buf.rename()<CR>", 'Rename code'},
         k    = {":call v:lua.vim.lsp.buf.hover()<CR>", 'Show HoverDocument'},
         s    = {":call v:lua.vim.lsp.buf.signature_help()<CR>", 'Show signature help'},
@@ -95,6 +83,30 @@ local mappings = {
         p    = {':FloatermNew ranger<CR>', 'Picture Viewer'},
         w    = {':Telescope live_grep<CR>', 'Find word'},
         v    = {':FloatermNew vifm<CR>', 'ViFm'},
+    },
+    -- Files
+    F = {
+        name = 'files',
+        f = {
+            name = 'Open/Close',
+            w = { ":w<CR>", "Save"},
+            c = { ":bdelete<CR>", "Close" },
+            C = { ":q!<CR>", "Quit withou save" },
+            e = { ":qa<CR>", "Exit Neovim"},
+            E = { ":qa!<CR>", "Exit Neovim without save"},
+        },
+        b = {
+            name = 'buffer',
+            c    = {':bdelete<CR>', 'Close buffer'},
+            C    = {'%bdelete|edit #|normal `"<CR>', 'Close all but current'},
+            I    = {'gg=G', 'Formate indent of line'},
+            l    = {':Telescope buffers<CR>', 'List all buffers'},
+            s    = {':setlocal spell!<CR>', 'Toggle spell'},
+            w    = {':StripWhitespace<CR>', 'Strip white space'},
+            W    = {':ToggleWhitespace<CR>', 'Toggle white space'},
+            ['[']    = {'gT', 'Prev. buffer'},
+            [']']    = {'gt', 'Next buffer'}
+        }
     },
     -- Git
     g = {
@@ -201,16 +213,6 @@ local mappings = {
             C = {':PackerCompile<CR>', 'PackerCompile'},
             S = {':PackerSync<CR>', 'PackerSync'},
         },
-    },
-    -- System
-    s = {
-        name = 'system',
-        q = { ":q<CR>", "Quit"},
-        w = { ":w<CR>", "Save"},
-        c = { ":bdelete<CR>", "Close" },
-        C = { ":q!<CR>", "Quit withou save" },
-        e = { ":qa<CR>", "Exit Neovim"},
-        E = { ":qa!<CR>", "Exit Neovim without save"},
     },
     -- utilities
     u = {

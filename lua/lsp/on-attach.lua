@@ -10,6 +10,23 @@
 --  * set autocommands conditional on server_capabilities
 --     > resolve document_hightlight
 --     > auto-format on save file
+
+local function lsp_highlight_document(client)
+    -- Set autocommands conditional on server_capabilities
+    if client.resolved_capabilities.document_highlight then
+        vim.api.nvim_exec(
+            [[
+            augroup lsp_document_highlight
+            autocmd! * <buffer>
+            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+            augroup END
+            ]],
+            false
+        )
+    end
+end
+
 local function on_attach(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -53,6 +70,14 @@ local function on_attach(client, bufnr)
     buf_set_keymap('n', '<LocalLeader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<LocalLeader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
 
+    lsp_highlight_document(client)
+
+    --------------------------------------------------------------------
+    -- {resolved_capabilities} (table): Normalized table of capabilities
+    -- that we have detected based on the initialize response from the
+    -- server in `server_capabilities`.
+    --------------------------------------------------------------------
+
     -- CodeAction
     if client.name == 'null-ls' then
         client.resolved_capabilities.code_action = false
@@ -73,7 +98,10 @@ local function on_attach(client, bufnr)
 
     -- Auto formatting
     -- Let it format on save
-    -- 	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
+    if client.name == 'tsserver' then
+        client.resolved_capabilities.document_formatting = false
+    end
+
     if client.resolved_capabilities.document_formatting then
         vim.cmd([[
         augroup Format

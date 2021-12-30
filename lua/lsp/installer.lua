@@ -22,6 +22,9 @@ lsp_installer.settings({
         },
     },
 
+    -- The directory in which to installl servers.
+    install_root_dir = RUNTIME_DIR .. '/lsp_servers',
+
     -- Limit for the maximum amount of servers to be installed at the same time. Once this limit is reached, any further
     -- servers that are requested to be installed will be put in a queue.
     max_concurrent_installers = 4,

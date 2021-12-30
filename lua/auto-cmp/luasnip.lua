@@ -1,6 +1,9 @@
 -- luasnip.lua
 -- Snippets Engine
-local luasnip = require('luasnip')
+local luasnip = safe_require 'luasnip'
+if not luasnip then
+    return
+end
 
 -- some shorthands...
 -- local s = luasnip.snippet
