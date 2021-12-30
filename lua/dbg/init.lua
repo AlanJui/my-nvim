@@ -150,6 +150,8 @@ keymap('n', '<LocalLeader>dso', '<cmd>lua require"dap".step_over()<CR>')
 keymap('n', '<LocalLeader>dsi', '<cmd>lua require"dap".step_into()<CR>')
 keymap('n', '<LocalLeader>dst', '<cmd>lua require"dap".step_out()<CR>')
 keymap('n', '<LocalLeader>dtb', '<cmd>lua require"dap".toggle_breakpoint()<CR>')
+keymap('n', '<LocalLeader>dlp',
+    '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>')
 
 -- nvim-dap-ui
 keymap('n', '<LocalLeader>dui', '<cmd>lua require"dapui".toggle()<CR>')
@@ -192,9 +194,4 @@ vim.cmd([[
     nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
     nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
     nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
-    nnoremap <silent> <leader>b  :lua require'dap'.toggle_breakpoint()<CR>
-    nnoremap <silent> <leader>B  :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
-    nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
-    nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
-    nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
 ]])

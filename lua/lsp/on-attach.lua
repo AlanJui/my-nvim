@@ -49,11 +49,6 @@ local function on_attach(client, bufnr)
     -- inspect documents for the code
     buf_set_keymap('n', 'K',     '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     buf_set_keymap('n', '<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    -- TODO
-    -- local lsp_signature = safe_require 'lsp_signature'
-    -- if lsp_signature then
-    --   lsp_signature.on_attach()
-    -- end
 
     -- View diagnostics
     buf_set_keymap('n', '<LocalLeader>dl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)

@@ -62,6 +62,7 @@ local mappings = {
     d = {
         name = 'debug',
         b = { ":lua require'dap'.toggle_breakpoint()<CR>", "Toggle breakpoint"},
+        B = { ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", "Condition breakpoint" },
         c = { ":lua require'dap'.continue()<CR>", "Launching debug sessions"},
         C = { ":lua require'dap-python'.test_method()<CR>", "Debug to cursor"},
         o = { ":lua require'dap'.step_over()<CR>", "Step over"},
@@ -216,6 +217,7 @@ local mappings = {
     },
     -- utilities
     u = {
+        name = 'utilities',
         t    = {
             name = 'terminal',
             d    = {':FloatermNew python manage.py shell<CR>', 'Django-admin Shell'},
