@@ -5,45 +5,6 @@ if (not lspconfig) or (not lsp_installer) then
 end
 
 --------------------------------------------------------------------
--- UI
-------- -------------------------------------------------------------
-local function setup_diagnostic_config()
-    --define diagnostic icon
-    local diagnostic_signs = {
-        Error = '',
-        Warning = '',
-        Hint = '',
-        Information = ''
-    }
-    for type, icon in pairs(diagnostic_signs) do
-        local hl = 'LspDiagnosticsSign' .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
-    end
-
-    local config = {
-        -- disable virtual text
-        virtual_text = false,
-        -- show signs
-        signs = {
-            active = diagnostic_signs,
-        },
-        update_in_insert = true,
-        underline = true,
-        severity_sort = true,
-        float = {
-            focusable = false,
-            style = "minimal",
-            border = "rounded",
-            source = "always",
-            header = "",
-            prefix = "",
-        },
-    }
-
-    vim.diagnostic.config(config)
-end
-
---------------------------------------------------------------------
 -- On attach
 -- Set up buffer-local keymaps (vim.api.nvim_buf_set_keymap()), etc.
 --------------------------------------------------------------------
@@ -60,6 +21,29 @@ if package.loaded['cmp_nvim_lsp'] then
 end
 
 --------------------------------------------------------------------
+-- UI: Borders
+--------------------------------------------------------------------
+vim.cmd [[autocmd ColorScheme * highlight NormalFloat guibg=#1f2335]]
+vim.cmd [[autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+
+local border = {
+      {"╭", "FloatBorder"},
+      {"─", "FloatBorder"},
+      {"╮", "FloatBorder"},
+      {"│", "FloatBorder"},
+      {"╯", "FloatBorder"},
+      {"─", "FloatBorder"},
+      {"╰", "FloatBorder"},
+      {"│", "FloatBorder"},
+}
+
+-- LSP settings (for overriding per client)
+local handlers =  {
+  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border}),
+  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border }),
+}
+
+--------------------------------------------------------------------
 -- Settings for servers
 --------------------------------------------------------------------
 local servers = require('lsp.servers-settings')
@@ -72,20 +56,14 @@ local function get_config(server_name)
     local config = servers[server_name] or {}
     config.on_attach = on_attach
     config.capabilities = capabilities
+    config.border = border
+    config.handlers = handlers
     return config
 end
 
 --------------------------------------------------------------------
 -- Main Process
 --------------------------------------------------------------------
-setup_diagnostic_config()
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = 'rounded',
-})
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = 'rounded',
-})
-
 lsp_installer.on_server_ready(function(server)
     server:setup(get_config(server.name))
     vim.cmd [[ do User LspAttachBuffers ]]
