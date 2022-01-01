@@ -51,8 +51,8 @@ local mappings = {
         s    = {":call v:lua.vim.lsp.buf.signature_help()<CR>", 'Show signature help'},
         d    = {
             name = 'diagnostics',
-            d    = {':Telescope diagnostics<CR>', 'List diagnostics in worksapce'},
-            D    = {':Telescope diagnostics bufnr=0<CR>', 'List diagnostics current file'},
+            D    = {':Telescope diagnostics<CR>', 'List diagnostics in worksapce'},
+            d    = {':Telescope diagnostics bufnr=0<CR>', 'List diagnostics current file'},
             e    = {":call v:lua.vim.diagnostic.open_float()<CR>", 'Open diagnostics floating'},
             p    = {":call v:lua.vim.diagnostic.goto_prev()<CR>", 'Goto prev diagnostics'},
             n    = {":call v:lua.vim.diagnostic.goto_next()<CR>", 'Goto next diagnostics'},

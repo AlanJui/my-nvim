@@ -3,7 +3,7 @@
 " linters options: flake8, pydocstyle, bandit, mypy, pylint, all
 " \   'python': ['pylint', 'flake8', 'pydocstyle', 'bandit', 'mypy'],
 let g:ale_linters = {
-\   'python': ['flake8', 'pydocstyle', 'bandit', 'mypy'],
+\   'python': ['pylint', 'flake8', 'pydocstyle', 'bandit', 'mypy'],
 \}
 " let g:ale_linters = {}
 
@@ -23,7 +23,7 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] [%severity%] %code: %%s'
 
-let g:ale_python_pylint_options = '--load-plugins=pylint_django'
+" let g:ale_python_pylint_options = '--load-plugins=pylint_django'
 
 let g:ale_go_gofmt_options = '-s'
 let g:ale_go_gometalinter_options = '— enable=gosimple — enable=staticcheck'
@@ -44,8 +44,8 @@ let g:ale_completion_enabled = 0
 " omni-completion function: use for triggering completion manually with <C-x><C-o>
 " set omnifunc=ale#completion#OmniFunc
 
-nmap <F9>  :ALELint<CR>
-nmap <F10> :ALEFix<CR>
+" nmap <F9>  :ALELint<CR>
+" nmap <F10> :ALEFix<CR>
 nmap [e    :ALEPrevious<CR>
 nmap ]e    :ALENext<CR>
 

@@ -6,7 +6,7 @@
       "\t\t$3",
       "\tpass"
     ],
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "宣告類別"
   },
   "#!": {
@@ -93,11 +93,6 @@
     "prefix": "defs",
     "body": "@staticmethod\ndef ${1:function}(${2:arg1}):\n\t`!p snip.rv = triple_quotes(snip)`${4:TODO: Docstring for $1.}`!p\nwrite_function_docstring(t, snip) `\n\t${5:${VISUAL:pass}}",
     "description": "static method with docstrings"
-  },
-  "/(^|(?<=\\W))\\./": {
-    "prefix": "/(^|(?<=\\W))\\./",
-    "body": "self.",
-    "description": "self."
   },
   "from": {
     "prefix": "from",
@@ -352,193 +347,193 @@
   "model": {
     "prefix": "model",
     "body": "class ${1:MODELNAME}(models.Model):\n\t$0\n\tclass Meta:\n\t\tverbose_name = \"$1\"\n\t\tverbose_name_plural = \"$1s\"\n\n\tdef __str__(self):\n\t\treturn super($1, self).__str__()\n",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "Model"
   },
   "modelfull": {
     "prefix": "modelfull",
     "body": "class ${1:MODELNAME}(models.Model):\n\t${2:# TODO: Define fields here}\n\n\tclass Meta:\n\t\tverbose_name = \"$1\"\n\t\tverbose_name_plural = \"$1s\"\n\n\tdef __str__(self):\n\t\treturn super($1, self).__str__()\n\n\tdef save(self):\n\t\treturn super($1, self).save()\n\n\tdef get_absolute_url(self):\n\t\treturn ('')\n\n\t${3:# TODO: Define custom methods here}\n",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "Model"
   },
   "mauto": {
     "prefix": "mauto",
     "body": "${1:FIELDNAME} = models.AutoField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "AutoField"
   },
   "mbigint": {
     "prefix": "mbigint",
     "body": "${1:FIELDNAME} = models.BigIntegerField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "BigIntegerField"
   },
   "mbool": {
     "prefix": "mbool",
     "body": "${1:FIELDNAME} = models.BooleanField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "BooleanField"
   },
   "mchar": {
     "prefix": "mchar",
     "body": "${1:FIELDNAME} = models.CharField(max_length=${2:50})",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "CharField"
   },
   "mcoseint": {
     "prefix": "mcoseint",
     "body": "${1:FIELDNAME} = models.CommaSeparatedIntegerField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "CommaSeparatedIntegerField"
   },
   "mdate": {
     "prefix": "mdate",
     "body": "${1:FIELDNAME} = models.DateField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "DateField"
   },
   "mdatetime": {
     "prefix": "mdatetime",
     "body": "${1:FIELDNAME} = models.DateTimeField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "DateTimeField"
   },
   "mdecimal": {
     "prefix": "mdecimal",
     "body": "${1:FIELDNAME} = models.DecimalField(max_digits=${2:10}, decimal_places=${3:2})",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "DecimalField"
   },
   "memail": {
     "prefix": "memail",
     "body": "${1:FIELDNAME} = models.EmailField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "EmailField"
   },
   "mfile": {
     "prefix": "mfile",
     "body": "${1:FIELDNAME} = models.FileField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "FileField"
   },
   "mfilepath": {
     "prefix": "mfilepath",
     "body": "${1:FIELDNAME} = models.FilePathField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "FilePathField"
   },
   "mfloat": {
     "prefix": "mfloat",
     "body": "${1:FIELDNAME} = models.FloatField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "FloatField"
   },
   "fk": {
     "prefix": "fk",
     "body": "${1:FIELDNAME} = models.ForeignKey($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "ForeignKey"
   },
   "mip": {
     "prefix": "mip",
     "body": "${1:FIELDNAME} = models.IPAddressField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "IPAddressField"
   },
   "mimg": {
     "prefix": "mimg",
     "body": "${1:FIELDNAME} = models.ImageField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "ImageField"
   },
   "mint": {
     "prefix": "mint",
     "body": "${1:FIELDNAME} = models.IntegerField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "IntegerField"
   },
   "m2m": {
     "prefix": "m2m",
     "body": "${1:FIELDNAME} = models.ManyToManyField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "ManyToManyField"
   },
   "mnullbool": {
     "prefix": "mnullbool",
     "body": "${1:FIELDNAME} = models.NullBooleanField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "NullBooleanField"
   },
   "o2o": {
     "prefix": "o2o",
     "body": "${1:FIELDNAME} = models.OneToOneField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "OneToOneField"
   },
   "mphone": {
     "prefix": "mphone",
     "body": "${1:FIELDNAME} = models.PhoneNumberField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "PhoneNumberField"
   },
   "mposint": {
     "prefix": "mposint",
     "body": "${1:FIELDNAME} = models.PositiveIntegerField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "PositiveIntegerField"
   },
   "mpossmallint": {
     "prefix": "mpossmallint",
     "body": "${1:FIELDNAME} = models.PositiveSmallIntegerField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "PositiveSmallIntegerField"
   },
   "mslug": {
     "prefix": "mslug",
     "body": "${1:FIELDNAME} = models.SlugField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "SlugField"
   },
   "msmallint": {
     "prefix": "msmallint",
     "body": "${1:FIELDNAME} = models.SmallIntegerField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "SmallIntegerField"
   },
   "mtext": {
     "prefix": "mtext",
     "body": "${1:FIELDNAME} = models.TextField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "TextField"
   },
   "mtime": {
     "prefix": "mtime",
     "body": "${1:FIELDNAME} = models.TimeField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "TimeField"
   },
   "murl": {
     "prefix": "murl",
     "body": "${1:FIELDNAME} = models.URLField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "URLField"
   },
   "musstate": {
     "prefix": "musstate",
     "body": "${1:FIELDNAME} = models.USStateField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "USStateField"
   },
   "mxml": {
     "prefix": "mxml",
     "body": "${1:FIELDNAME} = models.XMLField($2)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "XMLField"
   },
   "adminview": {
     "prefix": "adminview",
     "body": "class $1Admin(admin.ModelAdmin):\n\t'''\n\t\tAdmin View for $1\n\t'''\n\tlist_display = ('$2',)\n\tlist_filter = ('$3',)\n\tinlines = [\n\t\t$4Inline,\n\t]\n\traw_id_fields = ('$5',)\n\treadonly_fields = ('$6',)\n\tsearch_fields = ['$7']\nadmin.site.register($1, $1Admin)",
-		"scope": "source.python",
+    "scope": "source.python",
     "description": "Model Admin View"
   },
   "createview": {

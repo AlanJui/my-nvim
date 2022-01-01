@@ -46,6 +46,44 @@ require('lsp.manager')
 -- Setup UI: Diannostics
 --------------------------------------------------------------------
 
+-- Change diagnostic symbols in the sign column (gutter)
+local diagnostic_signs = {
+    Error = '',
+    Warn = '',
+    Hint = '',
+    Info = ''
+}
+for type, icon in pairs(diagnostic_signs) do
+    local hl = 'DiagnosticSign' .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+-- Customizing how diagnostics are displayed
+vim.diagnostic.config({
+    underline = true,
+    -- disable virtual text
+    -- virtual_text = false,
+    -- virtual_text = true,
+    virtual_text = {
+        spacing = 2,
+        severity_limit = 'Warning',
+    },
+    -- show signs
+    signs = {
+        active = diagnostic_signs,
+    },
+    update_in_insert = true,
+    severity_sort = true,
+    float = {
+        focusable = false,
+        style = "minimal",
+        border = "rounded",
+        source = "always",
+        header = "",
+        prefix = "",
+    },
+})
+
 -- Setup UI: hover and popup dispalyed contents
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = 'rounded',
@@ -64,36 +102,22 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.s
 vim.o.updatetime = 250
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 
--- Change diagnostic symbols in the sign column (gutter)
-local diagnostic_signs = {
-    Error = '',
-    Warn = '',
-    Hint = '',
-    Info = ''
-}
-for type, icon in pairs(diagnostic_signs) do
-    local hl = 'LspDiagnosticsSign' .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
--- Customizing how diagnostics are displayed
-vim.diagnostic.config({
-    -- disable virtual text
-    -- virtual_text = false,
-    virtual_text = true,
-    -- show signs
-    signs = {
-        active = diagnostic_signs,
-    },
-    update_in_insert = true,
-    underline = true,
-    severity_sort = true,
-    float = {
-        focusable = false,
-        style = "minimal",
-        border = "rounded",
-        source = "always",
-        header = "",
-        prefix = "",
-    },
+require('lspconfig').pyright.setup({
+    handlers = {
+        ['textDocument/publishDiagnostics'] = vim.lsp.with(
+            vim.lsp.diagnostic.on_publish_diagnostics, {
+                --Disable virtual_text
+                virtual_text = {
+                    spacing = 2,
+                    severity_limit = 'Warning',
+                },
+                -- Enable signs
+                -- signs = true,
+                signs = false,
+                -- Disable hint
+                -- tagSupport = 'Unnecessary',
+                tagSupport = true,
+            }
+        )
+    }
 })

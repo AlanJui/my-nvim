@@ -75,9 +75,18 @@ local settings = {
         settings = {
             python = {
                 analysis = {
-                    autoSearchPaths = true,
                     diagnosticMode = 'workspace',
+                    typeCheckingMode = 'off',
+                    autoSearchPaths = true,
                     useLibraryCodeForTypes = true,
+                    logLevel = 'Error',
+                },
+                linting = {
+                    pylintArgs = {
+                        '--load-plugins=pylint_django',
+                        '--load-plugins=pylint_dango.checkers.migrations',
+                        '--errors-only',
+                    },
                 },
             },
         },

@@ -13,13 +13,9 @@ keymap('i', 'jj', '<Esc>', opts)
 -- Line  editting
 --------------------------------------------------------------------
 -- Insert line
-keymap('i', '<Leader>O', '<Esc>O',   opts)
-keymap('i', '<Leader>o', '<Esc>jO',  opts)
-keymap('i', '<Leader>G', '<Esc>Go',  opts)
-keymap('i', '<Leader>l', '<Esc>la',  opts)
-keymap('i', '<Leader>a', '<Esc>A',   opts)
-keymap('i', '<Leader>,', '<Esc>la,', opts)
-keymap('i', '<Leader>:', '<Esc>la:', opts)
+keymap('i', '<LocalLeader>O', '<Esc>O',   opts)
+keymap('i', '<LocalLeader>o', '<Esc>jO',  opts)
+keymap('i', '<LocalLeader>G', '<Esc>Go',  opts)
 
 -- Move line
 keymap('n', '<S-Down>', ':m .+1<CR>', opts)
@@ -42,6 +38,23 @@ keymap('n', 'H', '0', opts)
 keymap('n', 'L', '$', opts)
 keymap('n', 'X', 'd$', opts)
 keymap('n', 'Y', 'y$', opts)
+
+keymap('i', '<LocalLeader>l', '<Esc>la',  opts)
+keymap('i', '<LocalLeader>a', '<Esc>A',   opts)
+keymap('i', '<LocalLeader>,', '<Esc>la,', opts)
+keymap('i', '<LocalLeader><LocalLeader>,', '<Esc>A,', opts)
+keymap('i', '<LocalLeader>:', '<Esc>la:', opts)
+keymap('i', '<LocalLeader><LocalLeader>:', '<Esc>A:', opts)
+
+keymap('n', 'ds', '<Plug>Dsurround', { noremap = false })
+keymap('n', 'cs', '<Plug>Csurround', { noremap = false })
+keymap('n', 'cS', '<Plug>CSurround', { noremap = false })
+keymap('n', 's', '<Plug>Ysurround', { noremap = false })
+keymap('n', 'S', '<Plug>YSurround', { noremap = false })
+keymap('n', 'ss', '<Plug>Yssurround', { noremap = false })
+keymap('n', 'SS', '<Plug>YSsurround', { noremap = false })
+keymap('x', 's', '<Plug>VSurround', { noremap = false })
+keymap('x', 'S', '<Plug>VgSurround', { noremap = false })
 
 -----------------------------------------------------------------------------
 -- Find workds and Replace
