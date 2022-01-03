@@ -33,29 +33,7 @@ M.setup = function (python_path)
     })
 
     -- configure configuration od DAP Adapter from VSCode
-    require('dap.ext.vscode').load_launchjs()
+    -- require('dap.ext.vscode').load_launchjs()
 end
 
 return M
-
--- dap.adapters.python = {
---     type = 'executable';
---     command = python_path;
---     args = { '-m', 'debugpy.adapter' };
--- }
-
--- dap.configurations.python = {
---     {
---         type = 'python',
---         request = 'launch',
---         name = 'DAP Django',
---         cwd = '${workspaceFolder}',
---         program = '${workspaceFolder}/manage.py',
---         args = {
---             'runserver',
---         },
---         pythonPath = function ()
---             return python_path
---         end,
---     },
--- }

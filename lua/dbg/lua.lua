@@ -1,3 +1,9 @@
+-----------------------------------------------------------
+-- `one-small-step-for-vimkind` is an adapter for the Neovim
+-- lua language. It allows you to debug any lua code running
+-- in a Neovim instance.
+-----------------------------------------------------------
+
 -- local dap_lua = safe_require('one-small-step-for-vimkind')
 -- if not dap_lua then
 --     return
@@ -27,7 +33,11 @@ dap.configurations.lua = {
 }
 
 dap.adapters.nlua = function(callback, config)
-    callback({ type = 'server', host = config.host, port = config.port })
+    callback({
+        type = 'server',
+        host = config.host,
+        port = config.port
+    })
 end
 
 

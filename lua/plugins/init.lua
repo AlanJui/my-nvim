@@ -382,7 +382,7 @@ return require('packer').startup({
         -- DAP adapter for the Neovim lua language
         use {
             'jbyuki/one-small-step-for-vimkind',
-            config = [[ require('plugins.one-small-step-for-vimkind') ]],
+            -- config = [[ require('plugins.one-small-step-for-vimkind') ]],
         }
 
         -----------------------------------------------------------
