@@ -6,12 +6,17 @@ if not dap then
     return
 end
 
-dap.defaults.fallback.terminal_win_cmd = '80vsplit new'
+-- dap.defaults.fallback.terminal_win_cmd = '80vsplit new'
+dap.defaults.fallback.terminal_win_cmd = '5split new'
 
 if OS_SYS == 'macOS' then
     -- vim.fn.sign_define('DapBreakpoint', {text='🟥', texthl='', linehl='', numhl=''})
     vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''})
     vim.fn.sign_define('DapBreakpointRejected', {text='🟦', texthl='', linehl='', numhl=''})
+    vim.fn.sign_define('DapStopped', {text='⭐️', texthl='', linehl='', numhl=''})
+elseif OS_SYS == 'Linux' then
+    vim.fn.sign_define('DapBreakpoint', {text='⏱️', texthl='', linehl='', numhl=''})
+    vim.fn.sign_define('DapBreakpointRejected', {text='😥', texthl='', linehl='', numhl=''})
     vim.fn.sign_define('DapStopped', {text='⭐️', texthl='', linehl='', numhl=''})
 end
 

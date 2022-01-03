@@ -33,7 +33,7 @@ M.setup = function (python_path)
     })
 
     -- configure configuration od DAP Adapter from VSCode
-    require('dap.ext.vscode').load_launchjs()
+    -- require('dap.ext.vscode').load_launchjs()
 end
 
 return M

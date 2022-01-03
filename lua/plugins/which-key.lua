@@ -63,7 +63,7 @@ local mappings = {
         name = 'debug',
         b = { ":lua require'dap'.toggle_breakpoint()<CR>", "Toggle breakpoint"},
         B = { ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", "Condition breakpoint" },
-        c = { ":lua require'dap'.continue()<CR>", "Launching debug sessions"},
+        c = { ":lua require'dap'.continue()<CR>", "Start debug..."},
         C = { ":lua require'dap-python'.test_method()<CR>", "Debug to cursor"},
         o = { ":lua require'dap'.step_over()<CR>", "Step over"},
         i = { ":lua require'dap'.step_into()<CR>", "Step into"},
@@ -262,10 +262,10 @@ local mappings = {
         ['<Down>']  = {'<cmd>wincmd +<CR>', 'Grow up' },
         ['<Left>']  = {'<cmd>wincmd <<CR>', 'Shrink narrowed' },
         ['<Right>'] = {'<cmd>wincmd ><CR>', 'Grow widder' },
-        -- w    = {':exe "resize" . (winwidth(0) * 3/2)<CR>',           'Increase weight'},
-        -- W    = {':exe "resize" . (winwidth(0) * 2/3)<CR>',           'Increase weight'},
-        -- v    = {':exe "vertical resize" . (winheight(0) * 3/2)<CR>', 'Increase height'},
-        -- V    = {':exe "vertical resize" . (winheight(0) * 2/3)<CR>', 'Increase height'},
+        w    = {':exe "resize" . (winwidth(0) * 3/2)<CR>',           'Increase weight'},
+        W    = {':exe "resize" . (winwidth(0) * 2/3)<CR>',           'Increase weight'},
+        v    = {':exe "vertical resize" . (winheight(0) * 3/2)<CR>', 'Increase height'},
+        V    = {':exe "vertical resize" . (winheight(0) * 2/3)<CR>', 'Increase height'},
     },
 }
 
