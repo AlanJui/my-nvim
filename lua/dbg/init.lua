@@ -7,7 +7,7 @@ if not dap then
 end
 
 -- dap.defaults.fallback.terminal_win_cmd = '80vsplit new'
-dap.defaults.fallback.terminal_win_cmd = '5split new'
+dap.defaults.fallback.terminal_win_cmd = '10split new'
 
 if OS_SYS == 'macOS' then
     -- vim.fn.sign_define('DapBreakpoint', {text='🟥', texthl='', linehl='', numhl=''})
@@ -143,7 +143,8 @@ require('dbg.lua')
 
 -- configure dap-python Adapter
 local python_path = HOME .. '/.pyenv/versions/3.10.0/envs/venv-3.10.0/bin/python'
-require('dbg.python').setup(python_path)
+-- require('dbg.python').setup(python_path)
+require('dbg.django').setup(python_path)
 
 -----------------------------------------------------------
 --  Key mapping for nvim-dap
