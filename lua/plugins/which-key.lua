@@ -51,11 +51,19 @@ local mappings = {
         s    = {":call v:lua.vim.lsp.buf.signature_help()<CR>", 'Show signature help'},
         d    = {
             name = 'diagnostics',
+            s    = {'<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', 'Set loclist'},
+            l    = {'<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', 'Show line diagnostics'},
             D    = {':Telescope diagnostics<CR>', 'List diagnostics in worksapce'},
             d    = {':Telescope diagnostics bufnr=0<CR>', 'List diagnostics current file'},
             e    = {":call v:lua.vim.diagnostic.open_float()<CR>", 'Open diagnostics floating'},
             p    = {":call v:lua.vim.diagnostic.goto_prev()<CR>", 'Goto prev diagnostics'},
             n    = {":call v:lua.vim.diagnostic.goto_next()<CR>", 'Goto next diagnostics'},
+        },
+        w    = {
+            name = 'workspace',
+            l    = {'<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', 'List workspace folders'},
+            a    = {'<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', 'Add folder to workspace'},
+            r    = {'<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', 'Remove folder from workspace'},
         },
     },
     -- Debug

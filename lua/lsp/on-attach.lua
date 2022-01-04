@@ -32,11 +32,11 @@ local function on_attach(client, bufnr)
 
     -- inspect documents for the code
     buf_set_keymap('n', 'K',     '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', '<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<LocalLeader>s', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 
     -- View diagnostics
-    buf_set_keymap('n', '<LocalLeader>dl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-    buf_set_keymap('n', '<LocalLeader>d',  '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    -- buf_set_keymap('n', '<LocalLeader>dl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+    -- buf_set_keymap('n', '<LocalLeader>d',  '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
     buf_set_keymap('n', '[d',  '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', ']d',  '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 
@@ -45,9 +45,9 @@ local function on_attach(client, bufnr)
     buf_set_keymap('n', '<LocalLeader>f',  '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
     -- workspace
-    buf_set_keymap('n', '<LocalLeader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-    buf_set_keymap('n', '<LocalLeader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<LocalLeader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+    -- buf_set_keymap('n', '<LocalLeader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    -- buf_set_keymap('n', '<LocalLeader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+    -- buf_set_keymap('n', '<LocalLeader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
 
     --------------------------------------------------------------------
     -- Set autocommands conditional on server_capabilities
