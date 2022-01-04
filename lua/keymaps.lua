@@ -89,10 +89,22 @@ keymap('n', '<ESC>k', '<cmd>wincmd -<CR>', opts)
 keymap('n', '<ESC>j', '<cmd>wincmd +<CR>', opts)
 keymap('n', '<ESC>h', '<cmd>wincmd <<CR>', opts)
 keymap('n', '<ESC>l', '<cmd>wincmd ><CR>', opts)
+
 keymap('n', '<M-Up>',    '<cmd>wincmd -<CR>', opts)
 keymap('n', '<M-Down>',  '<cmd>wincmd +<CR>', opts)
+keymap('n', '<M-Left>',  '<cmd>wincmd <<CR>', opts)
+keymap('n', '<M-Right>', '<cmd>wincmd ><CR>', opts)
+
+keymap('n', '<S-Up>',    '<cmd>wincmd -<CR>', opts)
+keymap('n', '<S-Down>',  '<cmd>wincmd +<CR>', opts)
 keymap('n', '<S-Left>',  '<cmd>wincmd <<CR>', opts)
 keymap('n', '<S-Right>', '<cmd>wincmd ><CR>', opts)
+
+keymap('n', '<F1>', '<cmd>wincmd -<CR>', opts)
+keymap('n', '<F2>', '<cmd>wincmd +<CR>', opts)
+keymap('n', '<F3>', '<cmd>wincmd <<CR>', opts)
+keymap('n', '<F4>', '<cmd>wincmd ><CR>', opts)
+
 -- keymap('n', '<LocalLeader>w<', '30<C-w><', opts )
 -- keymap('n', '<LocalLeader>w>', '30<C-w>>', opts )
 -- keymap('n', '<LocalLeader>w+', '10<C-w>+', opts )

@@ -77,7 +77,9 @@ local mappings = {
         i = { ":lua require'dap'.step_into()<CR>", "Step into"},
         O = { ":lua require'dap'.step_out()<CR>", "Step out"},
         u = { ":lua require'dapui'.toggle()<CR>", "Show/Hide Debug Sidebar"},
-        h = { ":lua require'dap.ui.widgets'.hover()<CR>", "Show contents in variable"},
+        v = { ":lua require'dap.ui.widgets'.hover()<CR>", "Show contents in variable"},
+        V = { "<cmd>lua local widgets=require'dap.ui.widgets'; widgets.centered_float(widgets.scopes)<CR>",
+              "Use widgets to display the variables"},
     },
     -- Find files
     f = {
