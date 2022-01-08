@@ -4,7 +4,9 @@
 DEBUG = false
 -- DEBUG = true
 
-if DEBUG then print('===== Begin of loading init.lua... =====') end
+if DEBUG then
+	print('===== Begin of loading init.lua... =====')
+end
 -----------------------------------------------------------
 -- Global Functions
 -----------------------------------------------------------
@@ -67,9 +69,9 @@ require('keymaps')
 -- augroup end
 -- ]])
 local autocmds = {
-    packer_user_config = {
-        { "BufWritePost " .. CONFIG_DIR .. "/lua/plugins/init.lua source <afile> | PackerCompile " },
-    }
+	packer_user_config = {
+		{ 'BufWritePost ' .. CONFIG_DIR .. '/lua/plugins/init.lua source <afile> | PackerCompile ' },
+	},
 }
 nvim_create_augroups(autocmds)
 
@@ -78,4 +80,6 @@ nvim_create_augroups(autocmds)
 -----------------------------------------------------------
 require('dbg')
 
-if DEBUG then print('===== End of loading init.lua... =====') end
+if DEBUG then
+	print('===== End of loading init.lua... =====')
+end
