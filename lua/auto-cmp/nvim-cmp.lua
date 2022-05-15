@@ -1,8 +1,8 @@
 -- cmp.lua
-local cmp = safe_require 'cmp'
-local luasnip = safe_require 'luasnip'
-local lspkind = safe_require 'lspkind'
-if (not cmp) or (not luasnip) or (not lspkind) then
+local cmp = safe_require("cmp")
+local luasnip = safe_require("luasnip")
+local lspkind = safe_require("lspkind")
+if not cmp or not luasnip or not lspkind then
     return
 end
 
@@ -46,30 +46,30 @@ local kind_icons = {
 
 cmp.setup({
     cmpletion = {
-        completeopt = 'menu, menuone, noinsert',
+        completeopt = "menu, menuone, noinsert",
     },
 
     snippet = {
         expand = function(args)
-            require('luasnip').lsp_expand(args.body)
-        end
+            require("luasnip").lsp_expand(args.body)
+        end,
     },
 
     mapping = {
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
-        ['<C-n>'] = cmp.mapping.select_next_item(),
-        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-        ['<F2>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-        ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-        ['<C-e>'] = cmp.mapping({
+        ["<C-p>"] = cmp.mapping.select_prev_item(),
+        ["<C-n>"] = cmp.mapping.select_next_item(),
+        ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+        ["<F2>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+        ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+        ["<C-e>"] = cmp.mapping({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         }),
-        ['<CR>'] = cmp.mapping.confirm {
+        ["<CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
-        },
+        }),
 
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -81,8 +81,7 @@ cmp.setup({
             else
                 fallback()
             end
-        end, { "i", "s" }
-        ),
+        end, { "i", "s" }),
 
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -92,8 +91,7 @@ cmp.setup({
             else
                 fallback()
             end
-        end, { "i", "s" }
-        ),
+        end, { "i", "s" }),
     },
 
     formatting = {
@@ -122,27 +120,27 @@ cmp.setup({
             })[entry.source.name]
 
             return vim_item
-        end
+        end,
     },
 
     sources = {
-        { name = 'luasnip' },
-        { name = 'vsnip' },
-        { name = 'nvim_lsp' },
-        { name = 'nvim_lua' },
-        { name = 'path' },
-        { name = 'emoji' },
-        { name = 'spell' },
+        { name = "luasnip" },
+        { name = "vsnip" },
+        { name = "nvim_lsp" },
+        { name = "nvim_lua" },
+        { name = "path" },
+        { name = "emoji" },
+        { name = "spell" },
         -- { name = 'buffer', keyword_length = 1 },
         {
-            name = 'buffer',
+            name = "buffer",
             options = {
-                get_bufnrs = function ()
+                get_bufnrs = function()
                     return vim.api.nvim_list_bufs()
                 end,
-            }
+            },
         },
-        { name = 'calc' },
+        { name = "calc" },
     },
 
     documentation = {
@@ -151,5 +149,5 @@ cmp.setup({
 
     experimental = {
         ghost_text = false,
-    }
+    },
 })

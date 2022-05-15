@@ -14,6 +14,10 @@ end
 -- Provide settings first!
 --------------------------------------------------------------------------
 lsp_installer.settings({
+    -- automatically detect which servers to install
+    -- (based on which servers are set up via lspconfig)
+        automatic_installation = true,
+
     ui = {
         icons = {
             server_installed = "✓",
@@ -29,6 +33,7 @@ lsp_installer.settings({
     -- servers that are requested to be installed will be put in a queue.
     max_concurrent_installers = 4,
 })
+lsp_installer.setup()
 
 --------------------------------------------------------------------------
 -- LSP Servers Installation
