@@ -78,7 +78,7 @@ notes=FIXME,XXX,TODO
 
 
 [FORMAT]
-max-line-length=160
+max-line-length=120
 max-module-lines=500
 indent-string='    '
 
@@ -89,7 +89,7 @@ max-locals=15
 max-returns=6
 max-branches=12
 max-statements=50
-max-parents=7
+max-parents=13
 max-attributes=7
 min-public-methods=0
 max-public-methods=50

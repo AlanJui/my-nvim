@@ -21,19 +21,9 @@ null_ls.setup({
 		end
 	end,
 	sources = {
-		-- Lua
-		formatting.stylua,
-		-- Python
-		formatting.autopep8,
-		-- formatting.black,
-		formatting.isort,
-		diagnostics.flake8.with({
-			filetypes = {
-				'python',
-			},
-		}),
-		diagnostics.pylint,
-		-- diagnostics.mypy,
+		-----------------------------
+		-- Code formatting
+		-----------------------------
 		-- HTML
 		formatting.prettier.with({
 			extra_args = {
@@ -42,5 +32,21 @@ null_ls.setup({
 				'--jsx-single-quote',
 			},
 		}),
+		-- Lua
+		formatting.stylua,
+		-- Python
+		-- formatting.autopep8,
+		formatting.black,
+		formatting.isort,
+		-----------------------------
+		-- Code diagnostic
+		---------------------------
+		diagnostics.flake8.with({
+			filetypes = {
+				'python',
+			},
+		}),
+		diagnostics.pylint,
+		-- diagnostics.mypy,
 	},
 })

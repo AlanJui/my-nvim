@@ -67,9 +67,11 @@ return require('packer').startup({
 		use({
 			'jose-elias-alvarez/null-ls.nvim',
 			requires = {
+                "nvim-lua/plenary.nvim",
 				-- stylua-nvim is a mini Lua code formatter
 				'ckipp01/stylua-nvim',
 			},
+			config = [[ require('lsp.null-langserver') ]],
 		})
 
 		-- vscode-like pictograms for neovim lsp completion items Topics
