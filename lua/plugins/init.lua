@@ -46,6 +46,66 @@ return require('packer').startup({
 		use('norcalli/nvim_utils')
 
 		-----------------------------------------------------------
+		-- LaTeX
+		-----------------------------------------------------------
+
+		-- Vimtex
+		use('lervag/vimtex')
+
+		-- Texlab configuration
+		use({
+			'f3fora/nvim-texlabconfig',
+			config = function()
+				require('texlabconfig').setup({
+					cache_active = true,
+					cache_filetypes = { 'tex', 'bib' },
+					cache_root = vim.fn.stdpath('cache'),
+					reverse_search_edit_cmd = 'edit',
+					file_permission_mode = 438,
+				})
+			end,
+			ft = { 'tex', 'bib' },
+			cmd = { 'TexlabInverseSearch' },
+		})
+
+		-- TexMagic.nvim
+		-- use({
+		-- 	'jakewvincent/texmagic.nvim',
+		-- 	config = function()
+		-- 		require('texmagic').setup({
+		-- 			-- Config goes here; leave blank for defaults
+		-- 			engines = {
+		-- 				pdflatex = { -- This has the same name as a default engine but would
+		-- 					-- be preferred over the same-name default if defined
+		-- 					executable = 'latexmk',
+		-- 					args = {
+		-- 						'-pdflatex',
+		-- 						'-interaction=nonstopmode',
+		-- 						'-synctex=1',
+		-- 						'-outdir=.build',
+		-- 						'-pv',
+		-- 						'%f',
+		-- 					},
+		-- 					isContinuous = false,
+		-- 				},
+		-- 				lualatex = { -- This is *not* one of the defaults, but it can be
+		-- 					-- called via magic comment if defined here
+		-- 					executable = 'latexmk',
+		-- 					args = {
+		-- 						'-pdflua',
+		-- 						'-interaction=nonstopmode',
+		-- 						'-synctex=1',
+		-- 						'-pv',
+		-- 						'%f',
+		-- 					},
+		-- 					isContinuous = false,
+		-- 				},
+		-- 			},
+		-- 		})
+		-- 	end,
+		-- })
+
+		-----------------------------------------------------------
 		-- LSP/LspInstaller: configurations for the Nvim LSP client
 		-----------------------------------------------------------
 
@@ -67,7 +127,7 @@ return require('packer').startup({
 		use({
 			'jose-elias-alvarez/null-ls.nvim',
 			requires = {
-                "nvim-lua/plenary.nvim",
+				'nvim-lua/plenary.nvim',
 				-- stylua-nvim is a mini Lua code formatter
 				'ckipp01/stylua-nvim',
 			},
@@ -406,16 +466,16 @@ return require('packer').startup({
 		use('voldikss/vim-floaterm')
 
 		-- highlight your todo comments in different styles
-		use({
-			'folke/todo-comments.nvim',
-			requires = 'nvim-lua/plenary.nvim',
-			config = function()
-				require('todo-comments').setup({
-					-- configuration comes here
-					-- or leave it empty to use the default setting
-				})
-			end,
-		})
+		-- use({
+		-- 	'folke/todo-comments.nvim',
+		-- 	requires = 'nvim-lua/plenary.nvim',
+		-- 	config = function()
+		-- 		require('todo-comments').setup({
+		-- 			-- configuration comes here
+		-- 			-- or leave it empty to use the default setting
+		-- 		})
+		-- 	end,
+		-- })
 
 		-- Live server
 		use('turbio/bracey.vim')

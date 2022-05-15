@@ -1,7 +1,7 @@
 local lspconfig = safe_require('lspconfig')
 local lsp_installer = safe_require('nvim-lsp-installer')
-if (not lspconfig) or (not lsp_installer) then
-    return
+if not lspconfig or not lsp_installer then
+	return
 end
 
 --------------------------------------------------------------------
@@ -9,7 +9,7 @@ end
 -- Set up buffer-local keymaps (vim.api.nvim_buf_set_keymap()), etc.
 --------------------------------------------------------------------
 local function on_attach(client, bufnr)
-    require('lsp.on-attach')(client, bufnr)
+	require('lsp.on-attach')(client, bufnr)
 end
 
 --------------------------------------------------------------------
@@ -17,30 +17,30 @@ end
 --------------------------------------------------------------------
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 if package.loaded['cmp_nvim_lsp'] then
-    capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+	capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 end
 
 --------------------------------------------------------------------
 -- UI: Borders
 --------------------------------------------------------------------
-vim.cmd [[autocmd ColorScheme * highlight NormalFloat guibg=#1f2335]]
-vim.cmd [[autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+vim.cmd([[autocmd ColorScheme * highlight NormalFloat guibg=#1f2335]])
+vim.cmd([[autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]])
 
 local border = {
-      {"╭", "FloatBorder"},
-      {"─", "FloatBorder"},
-      {"╮", "FloatBorder"},
-      {"│", "FloatBorder"},
-      {"╯", "FloatBorder"},
-      {"─", "FloatBorder"},
-      {"╰", "FloatBorder"},
-      {"│", "FloatBorder"},
+	{ '╭', 'FloatBorder' },
+	{ '─', 'FloatBorder' },
+	{ '╮', 'FloatBorder' },
+	{ '│', 'FloatBorder' },
+	{ '╯', 'FloatBorder' },
+	{ '─', 'FloatBorder' },
+	{ '╰', 'FloatBorder' },
+	{ '│', 'FloatBorder' },
 }
 
 -- LSP settings (for overriding per client)
-local handlers =  {
-  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border}),
-  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border }),
+local handlers = {
+	['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+	['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
 }
 
 --------------------------------------------------------------------
@@ -52,19 +52,63 @@ local servers = require('lsp.servers-settings')
 -- Get configuration of specific server
 --------------------------------------------------------------------
 local function get_config(server_name)
-    -- Specify the default options which we'll use to setupll servers
-    local config = servers[server_name] or {}
-    config.on_attach = on_attach
-    config.capabilities = capabilities
-    config.border = border
-    config.handlers = handlers
-    return config
+	-- Specify the default options which we'll use to setupll servers
+	local config = servers[server_name] or {}
+	config.on_attach = on_attach
+	config.capabilities = capabilities
+	config.border = border
+	config.handlers = handlers
+	return config
 end
 
 --------------------------------------------------------------------
 -- Main Process
 --------------------------------------------------------------------
-lsp_installer.on_server_ready(function(server)
-    server:setup(get_config(server.name))
-    vim.cmd [[ do User LspAttachBuffers ]]
-end)
+-- lsp_installer.setup(function(server)
+-- 	server:setup(get_config(server.name))
+-- 	vim.cmd([[ do User LspAttachBuffers ]])
+-- end)
+
+local servers = {
+	'texlab',
+	-- 'sumneko_lua',
+	'pyright',
+	'emmet_ls',
+	'html',
+	'jsonls',
+}
+for _, lsp in pairs(servers) do
+	local config = get_config(lsp)
+	lspconfig[lsp].setup({
+		on_attach = config.on_attach,
+		flags = {
+			debounce_text_changes = 150,
+		},
+	})
+end
+
+lspconfig.sumneko_lua.setup({
+	on_attach = custom_attach,
+	settings = {
+		Lua = {
+			runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
+			completion = { keywordSnippet = 'Disable' },
+			diagnostics = {
+				enable = true,
+				globals = {
+					'vim',
+					'describe',
+					'it',
+					'before_each',
+					'after_each',
+				},
+			},
+			workspace = {
+				library = {
+					[vim.fn.expand('$VIMRUNTIME/lua')] = true,
+					[vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+				},
+			},
+		},
+	},
+})

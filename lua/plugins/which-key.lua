@@ -33,6 +33,7 @@ local mappings = {
 			u = { ':e ~/.config/my-nvim/lua/utils.lua<CR>', 'utils' },
 			c = { ':e ~/.config/my-nvim/lua/color-themes.lua<CR>', 'colorscheme' },
 		},
+		P = { ':e ~/.config/my-nvim/lua/plugins/init.lua<CR>', 'specifying plugins' },
 		p = {
 			name = 'plugins',
 			p = { ':e ~/.config/my-nvim/lua/plugins/init.lua<CR>', 'specifying plugins' },

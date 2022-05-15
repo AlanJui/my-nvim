@@ -1,0 +1,1824 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.13)  15 MAY 2022 19:59
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**/Users/alanjui/.config/my-nvim/test/latex/demo.tex
+(/Users/alanjui/.config/my-nvim/test/latex/demo.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-05-04>
+(/usr/local/texlive/2022/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2022/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count185
+\c@section=\count186
+\c@subsection=\count187
+\c@subsubsection=\count188
+\c@paragraph=\count189
+\c@subparagraph=\count190
+\c@figure=\count191
+\c@table=\count192
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+)
+(/usr/local/texlive/2022/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspe
+c.sty
+Package: luatexja-fontspec 2020-09-14 fontspec support of LuaTeX-ja
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+(/usr/local/texlive/2022/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2022-05-04 L3 programming layer (loader) 
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2022-04-20 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count193
+\l__pdf_internal_box=\box50
+))
+Package: l3keys2e 2022-01-12 LaTeX2e option processing using LaTeX3 keys
+) (/usr/local/texlive/2022/texmf-dist/tex/luatex/luatexja/luatexja.sty
+Package: luatexja 2022-04-11 Japanese Typesetting with Lua(La)TeX
+
+! Undefined control sequence.
+l.53 \directlua
+               {require('ltj-unicode-ccfix.lua')}% catcode of ideographs
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.53 \directlua{r
+                 equire('ltj-unicode-ccfix.lua')}% catcode of ideographs
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+(/usr/local/texlive/2022/texmf-dist/tex/luatex/luatexja/luatexja-core.sty
+Package: luatexja-core 2022-01-12 Core of LuaTeX-ja
+
+(/usr/local/texlive/2022/texmf-dist/tex/luatex/luatexbase/luatexbase.sty
+Package: luatexbase 2015/10/04 v1.3 luatexbase interface to LuaTeX 
+
+(/usr/local/texlive/2022/texmf-dist/tex/luatex/ctablestack/ctablestack.sty
+Package: ctablestack 2015/10/01 v1.0 Catcode table stable support
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/base/ltluatex.tex
+File: ltluatex.tex 2021/10/15 v1.1v LuaTeX support for plain TeX (core) 
+
+! Undefined control sequence.
+l.55 \ifnum\luatexversion
+                         <60 %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   <
+l.55 \ifnum\luatexversion<
+                          60 %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+***************************************************
+* LuaTeX version too old for ltluatex support *
+***************************************************
+)
+\@catcodetablestackcnt=\count194
+)
+! Undefined control sequence.
+l.31 \newcatcodetable
+                     \CatcodeTableOther
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.31 \newcatcodetable\CatcodeTableOther
+                                       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \catcodetable 
+                         \CatcodeTableString \catcode 32 12 
+l.34   \catcode32 12 }
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \catcodetable \CatcodeTableString 
+                                             \catcode 32 12 
+l.34   \catcode32 12 }
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\@setcatcodetable ...gingroup #2\savecatcodetable 
+                                                  #1\endgroup 
+l.34   \catcode32 12 }
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \CatcodeTableOther 
+                              
+l.34   \catcode32 12 }
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.35 \newcatcodetable
+                     \CatcodeTableExpl
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.35 \newcatcodetable\CatcodeTableExpl
+                                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \catcodetable 
+                         \CatcodeTableLaTeX \catcode 126 10 \catcode 32 9 \c...
+l.43 }
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \catcodetable \CatcodeTableLaTeX 
+                                            \catcode 126 10 \catcode 32 9 \c...
+l.43 }
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\@setcatcodetable ...gingroup #2\savecatcodetable 
+                                                  #1\endgroup 
+l.43 }
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \CatcodeTableExpl 
+                             
+l.43 }
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.53 \directlua
+               {
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.54 f
+      unction luatexbase.reset_callback(name,make_false)
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.54 function luatexbase.reset_
+                               callback(name,make_false)
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 54.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 54.
+! Undefined control sequence.
+l.90 ...kage'] = \number\CatcodeTableLaTeXAtLetter
+                                                  ,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ,
+l.90 ...age'] = \number\CatcodeTableLaTeXAtLetter,
+                                                  
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+l.91   ini    = \number\CatcodeTableIniTeX
+                                          ,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ,
+l.91   ini    = \number\CatcodeTableIniTeX,
+                                           
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+l.92   string = \number\CatcodeTableString
+                                          ,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ,
+l.92   string = \number\CatcodeTableString,
+                                           
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+l.93   other  = \number\CatcodeTableOther
+                                         ,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ,
+l.93   other  = \number\CatcodeTableOther,
+                                          
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+l.94   latex  = \number\CatcodeTableLaTeX
+                                         ,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ,
+l.94   latex  = \number\CatcodeTableLaTeX,
+                                          
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+l.95   expl   = \number\CatcodeTableExpl
+                                        ,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ,
+l.95   expl   = \number\CatcodeTableExpl,
+                                         
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+l.96   expl3  = \number\CatcodeTableExpl
+                                        },
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.96   expl3  = \number\CatcodeTableExpl}
+                                         ,
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing { inserted.
+<to be read again> 
+                   _
+l.97  { __
+          index = function(t,key)
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Undefined control sequence.
+l.101 \ifnum\luatexversion
+                          <80 %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   <
+l.101 \ifnum\luatexversion<
+                           80 %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+l.111 \directlua
+                {
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.135 \ifnum\luatexversion
+                          <80 %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   <
+l.135 \ifnum\luatexversion<
+                           80 %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+l.147 \directlua
+                {%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing { inserted.
+<to be read again> 
+                   _
+l.158 local unassociated      = "__
+                                   unassociated"
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Missing { inserted.
+<to be read again> 
+                   _
+l.159 local user_whatsits       = {  __
+                                       unassociated = { } }
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.175 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.175 
+      
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.175 
+      
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.175 
+      
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (416.83527pt too wide) in paragraph at lines 54--175
+[]\OT1/cmr/m/n/10 function luatexbase.reset$[]\OML/cmm/m/it/10 allback\OT1/cmr/
+m/n/10 (\OML/cmm/m/it/10 name; make[]alse\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 for[
+]vinpairs\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 luatexbase:callback[]escriptions\OT1
+/cmr/m/n/10 (\OML/cmm/m/it/10 name\OT1/cmr/m/n/10 ))\OML/cmm/m/it/10 doluatexba
+se:remove[]rom[]allback\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 name; v\OT1/cmr/m/n/10
+ )\OML/cmm/m/it/10 endifmake[]alse \OT1/cmr/m/n/10 ==
+ []
+
+
+Overfull \hbox (11.92522pt too wide) in paragraph at lines 54--175
+\OML/cmm/m/it/10 truethenluatexbase:disable[]allback\OT1/cmr/m/n/10 (\OML/cmm/m
+/it/10 name\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 endendluatexbase:base[]dd[]o[]allb
+ack \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (128.49931pt too wide) in paragraph at lines 54--175
+\OML/cmm/m/it/10 luatexbase:add[]o[]allbackfunctionluatexbase:add[]o[]allback\O
+T1/cmr/m/n/10 (\OML/cmm/m/it/10 name; fun; description; priority\OT1/cmr/m/n/10
+ )\OML/cmm/m/it/10 localpriority \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (24.94695pt too wide) in paragraph at lines 54--175
+\OML/cmm/m/it/10 priorityifpriority \OT1/cmr/m/n/10 == \OML/cmm/m/it/10 nilthen
+priority \OT1/cmr/m/n/10 = #\OML/cmm/m/it/10 luatexbase:callback[]escriptions\O
+T1/cmr/m/n/10 (\OML/cmm/m/it/10 name\OT1/cmr/m/n/10 ) +
+ []
+
+
+Overfull \hbox (146.72043pt too wide) in paragraph at lines 54--175
+\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 endif\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 luatex
+base:callbacktypes\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 name\OT1/cmr/m/n/10 ] == 3\
+OML/cmm/m/it/10 andpriority \OT1/cmr/m/n/10 == 1\OML/cmm/m/it/10 and\OT1/cmr/m/
+n/10 #\OML/cmm/m/it/10 luatexbase:callback[]escriptions\OT1/cmr/m/n/10 (\OML/cm
+m/m/it/10 name\OT1/cmr/m/n/10 ) ==
+ []
+
+
+Overfull \hbox (259.54063pt too wide) in paragraph at lines 54--175
+\OT1/cmr/m/n/10 "\OML/cmm/m/it/10 ::name\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 luate
+xbase:reset[]allback\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 name\OT1/cmr/m/n/10 )\OML
+/cmm/m/it/10 endlocalsaved[]allback \OT1/cmr/m/n/10 = []\OML/cmm/m/it/10 ; ff; 
+ddfork; vinpairs\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 luatexbase:callback[]escripti
+ons\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 name\OT1/cmr/m/n/10 ))\OML/cmm/m/it/10 doi
+fk >\OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (15.35547pt too wide) in paragraph at lines 54--175
+\OML/cmm/m/it/10 prioritythenff; dd \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 luatexba
+se:remove[]rom[]allback\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 name; v\OT1/cmr/m/n/10
+ )\OML/cmm/m/it/10 saved[]allback\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 k\OT1/cmr/m/
+n/10 ] =
+ []
+
+
+Overfull \hbox (471.32095pt too wide) in paragraph at lines 54--175
+[]\OML/cmm/m/it/10 endendluatexbase:base[]dd[]o[]allback\OT1/cmr/m/n/10 (\OML/c
+mm/m/it/10 name; fun; description\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 fork; vinpai
+rs\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 saved[]allback\OT1/cmr/m/n/10 )\OML/cmm/m/i
+t/10 doluatexbase:base[]dd[]o[]allback\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 name; v
+\OT1/cmr/m/n/10 [1]\OML/cmm/m/it/10 ; v\OT1/cmr/m/n/10 [2])\OML/cmm/m/it/10 end
+returnendluatexbase:catcodetables \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (6770.42305pt too wide) in paragraph at lines 54--175
+\OML/cmm/m/it/10 setmetatable\OT1/cmr/m/n/10 ([]\OML/cmm/m/it/10 ; [][][]$ 
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.176     l
+           ocal whatsitdata = user_whatsits[package]
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.176     local whatsitdata = user_
+                                   whatsits[package]
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.181 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (13.5623pt too wide) in paragraph at lines 176--181
+[]\OT1/cmr/m/n/10 local what-sit-data = user$[]\OML/cmm/m/it/10 hatsits\OT1/cmr
+/m/n/10 [\OML/cmm/m/it/10 package\OT1/cmr/m/n/10 ]\OML/cmm/m/it/10 ifnotwhatsit
+datathenwhatsitdata \OT1/cmr/m/n/10 =
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.182     l
+           ocal id = whatsitdata[name]
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.187         id=luatexbase.new_
+                                whatsit(name)
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Extra }, or forgotten $.
+l.286 }
+       
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+) (/usr/local/texlive/2022/texmf-dist/tex/luatex/luaotfload/luaotfload.sty
+(/usr/local/texlive/2022/texmf-dist/tex/latex/base/ltluatex.tex
+File: ltluatex.tex 2021/10/15 v1.1v LuaTeX support for plain TeX (core) 
+
+! Undefined control sequence.
+l.55 \ifnum\luatexversion
+                         <60 %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   <
+l.55 \ifnum\luatexversion<
+                          60 %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+***************************************************
+* LuaTeX version too old for ltluatex support *
+***************************************************
+)
+Package: luaotfload 2022/03/18 v3.21 OpenType layout system
+
+! Undefined control sequence.
+l.44 \directlua
+               {
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+) (/usr/local/texlive/2022/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/iftex/iftex.sty
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2 
+    
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (28.266pt too wide) in paragraph at lines 182--2
+\OT1/cmr/m/n/10 (%d)", pack-age, name, id) else id=luatexbase.new$[]\OML/cmm/m/
+it/10 hatsit\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 name\OT1/cmr/m/n/10 )\OML/cmm/m/i
+t/10 whatsitdata\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 name\OT1/cmr/m/n/10 ] =
+ []
+
+
+Overfull \hbox (11.33559pt too wide) in paragraph at lines 182--2
+\OML/cmm/m/it/10 idwhatsit[]ds\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 id\OT1/cmr/m/n/
+10 ] = []\OML/cmm/m/it/10 endreturnidendluatexbase:new[]ser[]hatsit[]d \OT1/cmr
+/m/n/10 =
+ []
+
+
+Overfull \hbox (75.00659pt too wide) in paragraph at lines 182--2
+\OML/cmm/m/it/10 new[]ser[]hatsit[]dlocalnew[]ser[]hatsit \OT1/cmr/m/n/10 = \OM
+L/cmm/m/it/10 function\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 req; package\OT1/cmr/m/
+n/10 )\OML/cmm/m/it/10 localid; whatsitiftype\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 
+req\OT1/cmr/m/n/10 ) ==
+ []
+
+
+Overfull \hbox (143.23021pt too wide) in paragraph at lines 182--2
+\OT1/cmr/m/n/10 "\OML/cmm/m/it/10 string\OT1/cmr/m/n/10 "\OML/cmm/m/it/10 theni
+d \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 new[]ser[]hatsit[]d\OT1/cmr/m/n/10 (\OML/c
+mm/m/it/10 req; package\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 whatsit \OT1/cmr/m/n/1
+0 = \OML/cmm/m/it/10 newnode\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 whatsit[]; user[]
+efined[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 whatsit:user[]d \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (51.58296pt too wide) in paragraph at lines 182--2
+\OML/cmm/m/it/10 idelseifreq:id \OT1/cmr/m/n/10 == \OML/cmm/m/it/10 whatsit[]an
+dreq:subtype \OT1/cmr/m/n/10 == \OML/cmm/m/it/10 user[]efined[]thenid \OT1/cmr/
+m/n/10 = \OML/cmm/m/it/10 req:user[]dwhatsit \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (531.1357pt too wide) in paragraph at lines 182--2
+\OML/cmm/m/it/10 copynode\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 req\OT1/cmr/m/n/10 )
+\OML/cmm/m/it/10 ifnotwhatsit[]ds\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 id\OT1/cmr/m
+/n/10 ]\OML/cmm/m/it/10 thenwarning\OT1/cmr/m/n/10 ("\OML/cmm/m/it/10 whatsitid
+\OT1/cmr/m/n/10 %\OML/cmm/m/it/10 dunregistered\OT1/cmr/m/n/10 ; "\OML/cmm/m/it
+/10 ::\OT1/cmr/m/n/10 "\OML/cmm/m/it/10 inconsistenciesmayarise\OT1/cmr/m/n/10 
+"\OML/cmm/m/it/10 ; id\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 endendreturnfunction\OT
+1/cmr/m/n/10 ()\OML/cmm/m/it/10 returncopynode\OT1/cmr/m/n/10 (\OML/cmm/m/it/10
+ whatsit\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 end; idendluatexbase:new[]ser[]hatsit
+ \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (69.8739pt too wide) in paragraph at lines 182--2
+\OML/cmm/m/it/10 new[]ser[]hatsitlocalget[]ser[]hatsit[]d \OT1/cmr/m/n/10 = \OM
+L/cmm/m/it/10 function\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 name; package\OT1/cmr/m
+/n/10 )\OML/cmm/m/it/10 ifnotpackagethenpackage \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (36.5984pt too wide) in paragraph at lines 182--2
+\OML/cmm/m/it/10 unassociatedendreturnuser[]hatsits\OT1/cmr/m/n/10 [\OML/cmm/m/
+it/10 package\OT1/cmr/m/n/10 ][\OML/cmm/m/it/10 name\OT1/cmr/m/n/10 ]\OML/cmm/m
+/it/10 endluatexbase:get[]ser[]hatsit[]d \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (34.54642pt too wide) in paragraph at lines 182--2
+\OML/cmm/m/it/10 get[]ser[]hatsit[]dlocalget[]ser[]hatsit[]ame \OT1/cmr/m/n/10 
+= \OML/cmm/m/it/10 function\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 asked\OT1/cmr/m/n/
+10 )\OML/cmm/m/it/10 localidiftype\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 asked\OT1/c
+mr/m/n/10 ) ==
+ []
+
+
+Overfull \hbox (28.47665pt too wide) in paragraph at lines 182--2
+\OT1/cmr/m/n/10 "\OML/cmm/m/it/10 number\OT1/cmr/m/n/10 "\OML/cmm/m/it/10 theni
+d \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 askedelseiftype\OT1/cmr/m/n/10 (\OML/cmm/m
+/it/10 asked\OT1/cmr/m/n/10 ) == "\OML/cmm/m/it/10 function\OT1/cmr/m/n/10 "\OM
+L/cmm/m/it/10 thenlocaln \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 asked\OT1/cmr/m/n/1
+0 ()\OML/cmm/m/it/10 id \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (691.40813pt too wide) in paragraph at lines 182--2
+\OML/cmm/m/it/10 n:user[]delseid \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 asked:user[
+]dendlocalmetadata \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 whatsit[]ds\OT1/cmr/m/n/1
+0 [\OML/cmm/m/it/10 id\OT1/cmr/m/n/10 ]\OML/cmm/m/it/10 ifnotmetadatathenwarnin
+g\OT1/cmr/m/n/10 ("\OML/cmm/m/it/10 whatsitid\OT1/cmr/m/n/10 %\OML/cmm/m/it/10 
+dunregistered\OT1/cmr/m/n/10 ; \OML/cmm/m/it/10 inconsistenciesmayarise\OT1/cmr
+/m/n/10 "\OML/cmm/m/it/10 ; id\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 return\OT1/cmr/
+m/n/10 ""\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 ""\OML/cmm/m/it/10 endreturntableun
+pack\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 metadata\OT1/cmr/m/n/10 )\OML/cmm/m/it/10
+ endluatexbase:get[]ser[]hatsit[]ame \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (74.1573pt too wide) in paragraph at lines 182--2
+\OML/cmm/m/it/10 get[]ser[]hatsit[]amelocaldump[]egistered[]hatsits \OT1/cmr/m/
+n/10 = \OML/cmm/m/it/10 function\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 asked[]ackage
+\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 localwhatsit[]ist \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (932.73325pt too wide) in paragraph at lines 182--2
+[]\OML/cmm/m/it/10 ifasked[]ackagethenlocalwhatsitdata \OT1/cmr/m/n/10 = \OML/c
+mm/m/it/10 user[]hatsits\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 asked[]ackage\OT1/cmr
+/m/n/10 ]\OML/cmm/m/it/10 ifnotwhatsitdatathenerror\OT1/cmr/m/n/10 ("(\OML/cmm/
+m/it/10 nouserwhatsitsregisteredforpackage\OT1/cmr/m/n/10 %\OML/cmm/m/it/10 s\O
+T1/cmr/m/n/10 )"\OML/cmm/m/it/10 ; asked[]ackage\OT1/cmr/m/n/10 )\OML/cmm/m/it/
+10 returnendtexiowrite[]l\OT1/cmr/m/n/10 ("(\OML/cmm/m/it/10 userwhatsitallocat
+ionstatsfor\OT1/cmr/m/n/10 "\OML/cmm/m/it/10 ::asked[]ackage\OT1/cmr/m/n/10 )\O
+ML/cmm/m/it/10 forname; idinnext; whatsitdatadowhatsit[]ist\OT1/cmr/m/n/10 [#\O
+ML/cmm/m/it/10 whatsit[]ist \OT1/cmr/m/n/10 +
+ []
+
+
+Overfull \hbox (1062.2655pt too wide) in paragraph at lines 182--2
+\OT1/cmr/m/n/10 1] = \OML/cmm/m/it/10 stringformat\OT1/cmr/m/n/10 ("(%\OML/cmm/
+m/it/10 s \OT1/cmr/m/n/10 : %\OML/cmm/m/it/10 s\OT1/cmr/m/n/10 %\OML/cmm/m/it/1
+0 d\OT1/cmr/m/n/10 )"\OML/cmm/m/it/10 ; asked[]ackage; name; id\OT1/cmr/m/n/10 
+)\OML/cmm/m/it/10 endelsetexiowrite[]l\OT1/cmr/m/n/10 ("(\OML/cmm/m/it/10 userw
+hatsitallocationstats\OT1/cmr/m/n/10 ")\OML/cmm/m/it/10 texiowrite[]l\OT1/cmr/m
+/n/10 (\OML/cmm/m/it/10 stringformat\OT1/cmr/m/n/10 ("((\OML/cmm/m/it/10 total\
+OT1/cmr/m/n/10 %\OML/cmm/m/it/10 d\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 n\OML/cmm/m
+/it/10 n\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 anonymous\OT1/cmr/m/n/10 %\OML/cmm/m/
+it/10 d\OT1/cmr/m/n/10 ))"\OML/cmm/m/it/10 ; current[]hatsit; anonymous[]hatsit
+s\OT1/cmr/m/n/10 ))\OML/cmm/m/it/10 forpackage; whatsitdatainnext; user[]hatsit
+sdoforname; idinnext; whatsitdatadowhatsit[]ist\OT1/cmr/m/n/10 [#\OML/cmm/m/it/
+10 whatsit[]ist \OT1/cmr/m/n/10 +
+ []
+
+
+Overfull \hbox (62.66487pt too wide) in paragraph at lines 182--2
+\OT1/cmr/m/n/10 1] = \OML/cmm/m/it/10 stringformat\OT1/cmr/m/n/10 ("(%\OML/cmm/
+m/it/10 s \OT1/cmr/m/n/10 : %\OML/cmm/m/it/10 s\OT1/cmr/m/n/10 %\OML/cmm/m/it/1
+0 d\OT1/cmr/m/n/10 )"\OML/cmm/m/it/10 ; package; name; id\OT1/cmr/m/n/10 )\OML/
+cmm/m/it/10 endendendtexiowrite[]l\OT1/cmr/m/n/10 "("\OML/cmm/m/it/10 localfirs
+t \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (378.42607pt too wide) in paragraph at lines 182--2
+\OML/cmm/m/it/10 truefori \OT1/cmr/m/n/10 = 1\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10
+ #\OML/cmm/m/it/10 whatsit[]istdoiffirstthenfirst \OT1/cmr/m/n/10 = \OML/cmm/m/
+it/10 falseelsetexiowrite[]l\OT1/cmr/m/n/10 ""\OML/cmm/m/it/10 endtexiowrite\OT
+1/cmr/m/n/10 (\OML/cmm/m/it/10 whatsit[]ist\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 i\
+OT1/cmr/m/n/10 ])\OML/cmm/m/it/10 endtexiowrite\OT1/cmr/m/n/10 "))\OMS/cmsy/m/n
+/10 n\OML/cmm/m/it/10 n\OT1/cmr/m/n/10 "\OML/cmm/m/it/10 endluatexbase:dump[]eg
+istered[]hatsits \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (71.48589pt too wide) in paragraph at lines 182--2
+\OML/cmm/m/it/10 dump[]egistered[]hatsitsluatexbase:newattribute \OT1/cmr/m/n/1
+0 = \OML/cmm/m/it/10 new[]ttributeluatexbase:newuserwhatsit \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (82.88158pt too wide) in paragraph at lines 182--2
+\OML/cmm/m/it/10 new[]ser[]hatsitluatexbase:newuserwhatsitid \OT1/cmr/m/n/10 = 
+\OML/cmm/m/it/10 new[]ser[]hatsit[]dluatexbase:getuserwhatsitid \OT1/cmr/m/n/10
+ =
+ []
+
+
+Overfull \hbox (142.73633pt too wide) in paragraph at lines 182--2
+\OML/cmm/m/it/10 get[]ser[]hatsit[]dluatexbase:getuserwhatsitname \OT1/cmr/m/n/
+10 = \OML/cmm/m/it/10 get[]ser[]hatsit[]ameluatexbase:dumpregisteredwhatsits \O
+T1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (444.77339pt too wide) in paragraph at lines 182--2
+\OML/cmm/m/it/10 dump[]egistered[]hatsits[]$ 
+ []
+
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+)
+! Undefined control sequence.
+l.343   \@PackageInfoNoLine
+                           {pdftexcmds}{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.343   \@PackageInfoNoLine{p
+                             dftexcmds}{%
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Undefined control sequence.
+l.348   \@PackageInfoNoLine
+                           {pdftexcmds}{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.430 \ltx@IfUndefined
+                      {pdfdraftmode}{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.431   \@PackageInfoNoLine
+                           {pdftexcmds}{\ltx@backslashchar pdfdraftmode not ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.431 ...InfoNoLine{pdftexcmds}{\ltx@backslashchar
+                                                   pdfdraftmode not found}%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.435     \@PackageInfoNoLine
+                             {pdftexcmds}{\ltx@backslashchar pdfdraftmode fo...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.435 ...InfoNoLine{pdftexcmds}{\ltx@backslashchar
+                                                   pdfdraftmode found}%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.442 \ifcase\pdftexcmds@temp
+                             
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   \let 
+l.443   \let
+            \pdf@draftmode\ltx@zero
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+<recently read> \pdftexcmds@AtEnd 
+                                  
+l.489 \fi
+         %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.490 \pdftexcmds@directlua
+                           {%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.493 \ifnum\luatexversion
+                          >37 %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   >
+l.493 \ifnum\luatexversion>
+                           37 %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+l.510   \ltx@onelevel@sanitize
+                              \x
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.512     \pdftexcmds@directlua
+                               {%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.520     \@PackageError
+                        {pdftexcmds}{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+\pdftexcmds@toks=\toks16
+! Undefined control sequence.
+l.534 \ifnum\luatexversion
+                          >40 %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   >
+l.534 \ifnum\luatexversion>
+                           40 %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Text line contains an invalid character.
+l.553         \pdftexcmds@DecodeA#2\@nil{#3#1^^@
+                                                }%
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+! Undefined control sequence.
+l.570 \ifnum\luatexversion
+                          <36 %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   <
+l.570 \ifnum\luatexversion<
+                           36 %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+\pdf@strcmp #1#2->\directlua 
+                             0{oberdiek.pdftexcmds.strcmp("\luaescapestring ...
+l.581 \long\def
+               \pdf@escapehex#1{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing = inserted for \ifnum.
+<to be read again> 
+                   {
+l.581 \long\def
+               \pdf@escapehex#1{%
+I was expecting to see `<', `=', or `>'. Didn't.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   {
+l.581 \long\def
+               \pdf@escapehex#1{%
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+\pdf@strcmp ...dftexcmds.strcmp("\luaescapestring 
+                                                  {#1}","\luaescapestring {#...
+l.581 \long\def
+               \pdf@escapehex#1{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pdf@strcmp ...capestring {#1}","\luaescapestring 
+                                                  {#2}")}
+l.581 \long\def
+               \pdf@escapehex#1{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \ltx@firstoftwo 
+                                
+l.581 \long\def
+               \pdf@escapehex#1{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing { inserted.
+<to be read again> 
+                   ##
+l.581 \long\def\pdf@escapehex#
+                              1{%
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Undefined control sequence.
+l.582   \directlua
+                  0{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.583 ...ek.pdftexcmds.escapehex("\luaescapestring
+                                                  {#1}", "byte")%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing { inserted.
+<to be read again> 
+                   ##
+l.586 \long\def\pdf@escapehexnative#
+                                    1{%
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Undefined control sequence.
+l.587   \directlua
+                  0{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.588 ...ek.pdftexcmds.escapehex("\luaescapestring
+                                                  {#1}")%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing { inserted.
+<to be read again> 
+                   ##
+l.591 \def\pdf@unescapehex#
+                           1{%
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Undefined control sequence.
+l.594   \directlua
+                  0{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.596 ....pdftexcmds.unescapehex("\luaescapestring
+                                                  {#1}", "byte", \pdftexcmds...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing { inserted.
+<to be read again> 
+                   ##
+l.600 \def\pdf@unescapehexnative#
+                                 1{%
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Undefined control sequence.
+l.603   \directlua
+                  0{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.605 ....pdftexcmds.unescapehex("\luaescapestring
+                                                  {#1}", \pdftexcmds@Patch)%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing { inserted.
+<to be read again> 
+                   ##
+l.609 \long\def\pdf@escapestring#
+                                 1{%
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Undefined control sequence.
+l.610   \directlua
+                  0{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.611 ...pdftexcmds.escapestring("\luaescapestring
+                                                  {#1}")%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing { inserted.
+<to be read again> 
+                   ##
+l.614 \long\def\pdf@escapename#
+                               1{%
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Undefined control sequence.
+l.615   \directlua
+                  0{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.616 ...k.pdftexcmds.escapename("\luaescapestring
+                                                  {#1}", "byte")%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.619 \long\def\pdf@escapenamenative
+                                    #1{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.620   \directlua
+                  0{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.621 ...k.pdftexcmds.escapename("\luaescapestring
+                                                  {#1}")%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing { inserted.
+<to be read again> 
+                   ##
+l.624 \def\pdf@filesize#
+                        1{%
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Undefined control sequence.
+l.625   \directlua
+                  0{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.626 ...iek.pdftexcmds.filesize("\luaescapestring
+                                                  {#1}")%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing { inserted.
+<to be read again> 
+                   ##
+l.629 \def\pdf@filemoddate#
+                           1{%
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Undefined control sequence.
+l.630   \directlua
+                  0{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.631 ....pdftexcmds.filemoddate("\luaescapestring
+                                                  {#1}")%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ##
+l.634 \def\pdf@filedump#1#
+                          2#3{%
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing { inserted.
+<to be read again> 
+                   ##
+l.634 \def\pdf@filedump#1#
+                          2#3{%
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Undefined control sequence.
+l.635   \directlua
+                  0{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.636 ...iek.pdftexcmds.filedump("\luaescapestring
+                                                  {\number#1}",%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ##
+l.636 ...xcmds.filedump("\luaescapestring{\number#
+                                                  1}",%
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+l.637         "\luaescapestring
+                               {\number#2}",%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ##
+l.637         "\luaescapestring{\number#
+                                        2}",%
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+l.638         "\luaescapestring
+                               {#3}")%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Use of \pdf@mdfivesum doesn't match its definition.
+l.641 \long\def\pdf@mdfivesum#
+                              1{%
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Undefined control sequence.
+l.642   \directlua
+                  0{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.643 ...ek.pdftexcmds.mdfivesum("\luaescapestring
+                                                  {#1}", "byte")%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Use of \pdf@mdfivesumnative doesn't match its definition.
+l.646 \long\def\pdf@mdfivesumnative#
+                                    1{%
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Undefined control sequence.
+l.647   \directlua
+                  0{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.648 ...ek.pdftexcmds.mdfivesum("\luaescapestring
+                                                  {#1}")%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Use of \pdf@filemdfivesum doesn't match its definition.
+l.651 \def\pdf@filemdfivesum#
+                             1{%
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Undefined control sequence.
+l.652   \directlua
+                  0{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.653 ...dftexcmds.filemdfivesum("\luaescapestring
+                                                  {#1}")%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.656 \let\pdftexcmds@temp
+                          =Y%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.692     \pdftexcmds@directlua
+                               0{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.698       \pdftexcmds@directlua
+                                 0{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.704 \ifnum\luatexversion
+                          <68 %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   <
+l.704 \ifnum\luatexversion<
+                           68 %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Use of \pdf@system doesn't match its definition.
+l.710 \def\pdf@system#
+                      1{%
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Undefined control sequence.
+l.711   \directlua
+                  0{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.712 ...rdiek.pdftexcmds.system("\luaescapestring
+                                                  {#1}")%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.715 \def\pdf@lastsystemstatus
+                               {%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.716   \directlua
+                  0{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.720 \def\pdf@lastsystemexit
+                             {%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.721   \directlua
+                  0{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.725 \catcode`\0
+                 =12 %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.727     \pdftexcmds@directlua
+                               {%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing = inserted for \ifnum.
+<to be read again> 
+                   {
+l.727     \pdftexcmds@directlua{
+                                %
+I was expecting to see `<', `=', or `>'. Didn't.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   {
+l.727     \pdftexcmds@directlua{
+                                %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+l.733   \def\pdf@pipe
+                     #1{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.736     \pdftexcmds@directlua
+                               {%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.738 ...berdiek.pdftexcmds.pipe("\luaescapestring
+                                                  {#1}", \pdftexcmds@Patch)%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.743 \pdftexcmds@AtEnd
+                       %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+)
+Runaway text?
+## length1{##}2##3{0{oberdiek.pdftexcmds.filedump("{0##1}","{0##2}","\ETC.
+! File ended while scanning text of ???.
+<inserted text> 
+                }
+l.79   \RequirePackage{pdftexcmds} [2011/11/29]
+                                                % v0.20
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+! Undefined control sequence.
+\reserved@a ...urrext -h@@k\endcsname \@undefined 
+                                                  \ifx \@unprocessedoptions ...
+l.79   \RequirePackage{pdftexcmds} [2011/11/29]
+                                                % v0.20
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\reserved@a ... .\@currext \endcsname \@undefined 
+                                                  \ifx \@currext \@pkgextens...
+l.79   \RequirePackage{pdftexcmds} [2011/11/29]
+                                                % v0.20
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\GenericError  ...                                
+                                                    #4  \errhelp \@err@     ...
+l.79   \RequirePackage{pdftexcmds} [2011/11/29]
+                                                % v0.20
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\GenericError  ...                                
+                                                  \let \@err@               ...
+l.79   \RequirePackage{pdftexcmds} [2011/11/29]
+                                                % v0.20
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\GenericError  ...                                
+                                                  \@empty \def \MessageBreak...
+l.79   \RequirePackage{pdftexcmds} [2011/11/29]
+                                                % v0.20
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\GenericError  ...                                
+                                                     \endgroup 
+l.79   \RequirePackage{pdftexcmds} [2011/11/29]
+                                                % v0.20
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\GenericError  ...                                
+                                                    #4  \errhelp \@err@     ...
+l.79   \RequirePackage{pdftexcmds} [2011/11/29]
+                                                % v0.20
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\GenericError  ...                                
+                                                  \let \@err@               ...
+l.79   \RequirePackage{pdftexcmds} [2011/11/29]
+                                                % v0.20
+(That makes 100 errors; please try again.) 
+Here is how much of TeX's memory you used:
+ 971 strings out of 478300
+ 20989 string characters out of 5845125
+ 324193 words of memory out of 5000000
+ 19184 multiletter control sequences out of 15000+600000
+ 469259 words of font info for 28 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 93i,6n,94p,289b,325s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+!  ==> Fatal error occurred, no output PDF file produced!

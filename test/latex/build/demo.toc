@@ -1,0 +1,12 @@
+\contentsline {section}{\numberline {1}安裝前準備作業（Prerequisites）}{1}{}%
+\contentsline {subsection}{\numberline {1.1}完成作業系統 Shell 環境設定}{1}{}%
+\contentsline {subsection}{\numberline {1.2}完成 Python 開發環境設定}{1}{}%
+\contentsline {subsection}{\numberline {1.3}完成 Node.js 開發環境設定}{1}{}%
+\contentsline {subsection}{\numberline {1.4}完成 Lua 開發環境設定}{1}{}%
+\contentsline {section}{\numberline {2}安裝與設定作業（Setup process）}{2}{}%
+\contentsline {section}{\numberline {3}後續規劃（Todos）}{3}{}%
+\contentsline {section}{\numberline {4}快捷鍵（Bindings）}{4}{}%
+\contentsline {section}{\numberline {5}使用插件（Plugins）}{5}{}%
+\contentsline {section}{\numberline {6}參考資料（References）}{6}{}%
+\contentsline {subsection}{\numberline {6.1}Neovim Language Server Protocol (LSP)}{7}{}%
+\contentsline {paragraph}{Neovim LSP 主要功能摘要：}{7}{}%
