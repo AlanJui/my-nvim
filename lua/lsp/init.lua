@@ -9,7 +9,7 @@ end
 
 --------------------------------------------------------------------
 -- Local functions
-------- -------------------------------------------------------------
+--------------------------------------------------------------------
 
 -- Print diagnostics to message area
 function PrintDiagnostics(opts, bufnr, line_nr, client_id)
@@ -59,6 +59,9 @@ lsp_installer.setup({
 
 -- Setup Language Servers
 -- require("lsp.manager")
+
+-- Setup null-ls for layout formatting, diagnosticing (language linting)
+require('lsp.null-langserver')
 
 --------------------------------------------------------------------
 -- Setup UI: Diannostics

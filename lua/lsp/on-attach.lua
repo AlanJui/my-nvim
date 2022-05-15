@@ -74,6 +74,7 @@ local function on_attach(client, bufnr)
     if client.name == 'null-ls' then
         client.resolved_capabilities.code_action = false
     end
+
     if client.resolved_capabilities.code_action then
         buf_set_keymap('n', '<LocalLeader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
         buf_set_keymap('n', '<LocalLeader>ra', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
