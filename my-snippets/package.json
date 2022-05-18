@@ -3,22 +3,6 @@
     "contributes": {
         "snippets": [
             {
-                "language": [
-                    "plaintex",
-                    "ltex",
-                    "tex"
-                ],
-                "path": "./snippets/latex.json"
-            },
-            {
-                "language": [
-                    "plaintex",
-                    "ltex",
-                    "tex"
-                ],
-                "path": "./snippets/latex/latex-snippets.json"
-            },
-            {
                 "language": "html",
                 "path": "./snippets/html.json"
             },

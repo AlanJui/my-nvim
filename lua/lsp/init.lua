@@ -14,10 +14,9 @@ end
 --------------------------------------------------------------------
 -- (1) Setup lsp-instller
 --------------------------------------------------------------------
-lsp_installer.setup({
+require('nvim-lsp-installer').setup({
 	-- automatically detect which servers to install
 	automatic_installation = true,
-
 	ui = {
 		-- (based on which servers are set up via lspconfig)
 		icons = {
@@ -26,7 +25,6 @@ lsp_installer.setup({
 			server_uninstalled = '✗',
 		},
 	},
-
 	-- The directory in which to installl servers.
 	install_root_dir = RUNTIME_DIR .. '/lsp_servers',
 })
@@ -35,15 +33,14 @@ lsp_installer.setup({
 -- (2) Setup LSP Client
 --------------------------------------------------------------------
 -- Setup Language Servers
-require('lsp.manager')
+require('lsp/manager')
 
 -- Setup null-ls for layout formatting, diagnosticing (language linting)
-require('lsp.null-langserver')
+require('lsp/null-langserver')
 
 --------------------------------------------------------------------
 -- (3) Setup UI for Diannostics
 --------------------------------------------------------------------
-local PrintDiagnostics = require('lsp.print_diagnostics')
 
 -- Change diagnostic symbols in the sign column (gutter)
 local diagnostic_signs = {
@@ -92,6 +89,7 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.s
 })
 
 -- Print diagnostics to message area
+-- local PrintDiagnostics = require('lsp.print_diagnostics')
 -- vim.cmd [[ autocmd CursorHold * lua PrintDiagnostics() ]]
 -- Use floating popup window to display diagnostics from Language Server: Ref: on_attach
 
