@@ -33,7 +33,7 @@ require('nvim_utils')
 -----------------------------------------------------------
 require('plugins')
 
-require('auto-cmp')
+require('lsp/luasnip')
 require('lsp')
 
 -----------------------------------------------------------

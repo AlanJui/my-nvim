@@ -5,7 +5,7 @@
 --------------------------------------------------------------------------
 local null_ls = safe_require('null-ls')
 if not null_ls then
-	return
+    return
 end
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
@@ -14,39 +14,34 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup({
-	debug = false,
-	on_attach = function(client)
-		if client.resolved_capabilities.document_formatting then
-			vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
-		end
-	end,
-	sources = {
-		-----------------------------
-		-- Code formatting
-		-----------------------------
-		-- HTML
-		formatting.prettier.with({
-			extra_args = {
-				'--no-semi',
-				'--single-quote',
-				'--jsx-single-quote',
-			},
-		}),
-		-- Lua
-		formatting.stylua,
-		-- Python
-		-- formatting.autopep8,
-		formatting.black,
-		formatting.isort,
-		-----------------------------
-		-- Code diagnostic
-		---------------------------
-		diagnostics.flake8.with({
-			filetypes = {
-				'python',
-			},
-		}),
-		diagnostics.pylint,
-		-- diagnostics.mypy,
-	},
+    debug = false,
+    sources = {
+        -----------------------------
+        -- Code formatting
+        -----------------------------
+        -- HTML
+        formatting.prettier.with({
+            extra_args = {
+                '--no-semi',
+                '--single-quote',
+                '--jsx-single-quote',
+            },
+        }),
+        -- Lua
+        formatting.stylua,
+        -- Python
+        -- formatting.autopep8,
+        formatting.black,
+        formatting.isort,
+        -----------------------------
+        -- Code diagnostic
+        ---------------------------
+        diagnostics.flake8.with({
+            filetypes = {
+                'python',
+            },
+        }),
+        diagnostics.pylint,
+        -- diagnostics.mypy,
+    },
 })

@@ -9,12 +9,14 @@ end
 -- Set up buffer-local keymaps (vim.api.nvim_buf_set_keymap()), etc.
 --------------------------------------------------------------------
 local function on_attach(client, bufnr)
-	require('lsp.on-attach')(client, bufnr)
+	-- require('lsp.on-attach')(client, bufnr)
+	require('lsp.mini-on-attach')(client, bufnr)
 end
 
 --------------------------------------------------------------------
 -- Capabilities
 --------------------------------------------------------------------
+require('lsp/auto-cmp')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 if package.loaded['cmp_nvim_lsp'] then
 	capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
@@ -44,71 +46,60 @@ local handlers = {
 }
 
 --------------------------------------------------------------------
--- Settings for servers
---------------------------------------------------------------------
-local servers = require('lsp.servers-settings')
-
---------------------------------------------------------------------
--- Get configuration of specific server
---------------------------------------------------------------------
-local function get_config(server_name)
-	-- Specify the default options which we'll use to setupll servers
-	local config = servers[server_name] or {}
-	config.on_attach = on_attach
-	config.capabilities = capabilities
-	config.border = border
-	config.handlers = handlers
-	return config
-end
-
---------------------------------------------------------------------
 -- Main Process
 --------------------------------------------------------------------
--- lsp_installer.setup(function(server)
--- 	server:setup(get_config(server.name))
--- 	vim.cmd([[ do User LspAttachBuffers ]])
--- end)
-
 local servers = {
+	'sumneko_lua',
 	'texlab',
-	-- 'sumneko_lua',
 	'pyright',
 	'emmet_ls',
 	'html',
 	'jsonls',
 }
+
+-- Settings for servers
+local servers_settings = require('lsp.servers-settings')
+
 for _, lsp in pairs(servers) do
-	local config = get_config(lsp)
-	lspconfig[lsp].setup({
-		on_attach = config.on_attach,
+	local opts = {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		handlers = handlers,
 		flags = {
 			debounce_text_changes = 150,
 		},
-	})
+	}
+
+	-- Get configuration of specific server
+	local custom_opts = servers_settings[lsp] or {}
+	if custom_opts then
+		opts = vim.tbl_deep_extend('force', custom_opts, opts)
+	end
+	require('lspconfig')[lsp].setup(opts)
 end
 
-lspconfig.sumneko_lua.setup({
-	on_attach = custom_attach,
-	settings = {
-		Lua = {
-			runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
-			completion = { keywordSnippet = 'Disable' },
-			diagnostics = {
-				enable = true,
-				globals = {
-					'vim',
-					'describe',
-					'it',
-					'before_each',
-					'after_each',
-				},
-			},
-			workspace = {
-				library = {
-					[vim.fn.expand('$VIMRUNTIME/lua')] = true,
-					[vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-				},
-			},
-		},
-	},
-})
+-- require('lspconfig').sumneko_lua.setup({
+--     on_attach = on_attach,
+--     settings = {
+--         Lua = {
+--             runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
+--             completion = { keywordSnippet = 'Disable' },
+--             diagnostics = {
+--                 enable = true,
+--                 globals = {
+--                     'vim',
+--                     'describe',
+--                     'it',
+--                     'before_each',
+--                     'after_each',
+--                 },
+--             },
+--             workspace = {
+--                 library = {
+--                     [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+--                     [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+--                 },
+--             },
+--         },
+--     },
+-- })
