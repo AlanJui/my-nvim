@@ -1,71 +1,67 @@
--- nvim-treesitter
+---------------------------------------------------------------------------
+-- Treesitter
+-- Can be used for things like highlighting, indentation, folding.
+---------------------------------------------------------------------------
 
--- Treesitter configuration
--- Parsers must be installed manually via :TSInstall
-require('nvim-treesitter.configs').setup({
-	ensure_installed = {
-		'tsx',
-		'toml',
-		'yaml',
-		'bash',
-		'json',
-		'comment',
-		'html',
-		'css',
-		'scss',
-		'lua',
-		'python',
-	},
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  ensure_installed = {
+    "lua",
+    "vim",
+    "comment",
+    "python",
+    "yaml",
+    "dockerfile",
+    "latex",
+    "javascript",
+    "typescript",
+    "go",
+    "html",
+    "toml",
+    "css",
+    "scss",
+    "bash",
+    "c",
+    "cmake",
+    "rust",
+  },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- List of parsers to ignore installing (for "all")
+  ignore_install = { "javascript" },
+
   highlight = {
-    enable = true, -- false will disable the whole extension
-		disable = {},
-  },
-  indent = {
+    -- `false` will disable the whole extension
     enable = true,
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = 'gnn',
-      node_incremental = 'grn',
-      scope_incremental = 'grc',
-      node_decremental = 'grm',
-    },
-  },
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ['af'] = '@function.outer',
-        ['if'] = '@function.inner',
-        ['ac'] = '@class.outer',
-        ['ic'] = '@class.inner',
-      },
-    },
-    move = {
-      enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        [']m'] = '@function.outer',
-        [']]'] = '@class.outer',
-      },
-      goto_next_end = {
-        [']M'] = '@function.outer',
-        [']['] = '@class.outer',
-      },
-      goto_previous_start = {
-        ['[m'] = '@function.outer',
-        ['[['] = '@class.outer',
-      },
-      goto_previous_end = {
-        ['[M'] = '@function.outer',
-        ['[]'] = '@class.outer',
-      },
-    },
-  },
-})
 
-local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-parser_config.tsx.used_by = { 'javascript', 'typescript.tsx' }
+    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+    -- the name of the parser)
+    -- list of language that will be disabled
+    disable = { "c", "rust" },
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+
+require'nvim-treesitter.configs'.setup {
+  context_commentstring = {
+    enable = true,
+    config = {
+      css = '// %s',
+      javascript = {
+        __default = '// %s',
+        jsx_element = '{/* %s */}',
+        jsx_fragment = '{/* %s */}',
+        jsx_attribute = '// %s',
+        comment = '// %s'
+      },
+    }
+  }
+}

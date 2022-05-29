@@ -131,14 +131,14 @@ return require('packer').startup({
                 -- stylua-nvim is a mini Lua code formatter
                 'ckipp01/stylua-nvim',
             },
-            config = [[ require('lsp.null-langserver') ]],
+            -- config = [[ require('lsp.null-langserver') ]],
         })
 
         -- vscode-like pictograms for neovim lsp completion items Topics
-        use({
-            'onsails/lspkind-nvim',
-            config = [[ require('plugins.lspkind') ]],
-        })
+        -- use({
+        --     'onsails/lspkind-nvim',
+        --     config = [[ require('plugins.lspkind') ]],
+        -- })
 
         -- Utility functions for getting diagnostic status and progress messages
         -- from LSP servers, for use in the Neovim statusline
@@ -187,7 +187,7 @@ return require('packer').startup({
             -- config = [[ require('auto-cmp.nvim-cmp') ]]
         })
 
-        -- -- Snippet Engine for Neovim written in Lua.
+        -- Snippet Engine for Neovim written in Lua.
         use({
             'L3MON4D3/LuaSnip',
             requires = {
@@ -204,9 +204,9 @@ return require('packer').startup({
         -- Nvim Treesitter configurations and abstraction layer
         use({
             'nvim-treesitter/nvim-treesitter',
-            run = ':TSUpdate',
-            -- config = [[ require('plugins.treesitter') ]]
-            config = [[ require('plugins.nvim-treesitter') ]],
+            -- run = ':TSUpdate',
+            -- -- config = [[ require('plugins.treesitter') ]]
+            -- config = [[ require('plugins.nvim-treesitter') ]],
         })
         -- Additional textobjects for treesitter
         use('nvim-treesitter/nvim-treesitter-textobjects')
@@ -333,10 +333,10 @@ return require('packer').startup({
         -----------------------------------------------------------
 
         -- surroundings: parentheses, brackets, quotes, XML tags, and more
-        use({
-            'tpope/vim-surround',
-            requires = { 'tpope/vim-repeat' },
-        })
+        -- use({
+        --     'tpope/vim-surround',
+        --     requires = { 'tpope/vim-repeat' },
+        -- })
 
         -- Toggle comments in Neovim
         use({ 'tpope/vim-commentary' })
@@ -478,22 +478,21 @@ return require('packer').startup({
         -- })
 
         -- Live server
-        use('turbio/bracey.vim')
+        use({
+            'turbio/bracey.vim',
+            run = 'npm install --prefix server',
+        })
 
         -- Markdown preview
         use({
             'instant-markdown/vim-instant-markdown',
-            config = vim.cmd([[
-                                      runtime ./lua/plugins/vim-instant-markdown.rc.vim
-                                      ]]),
+            config = vim.cmd([[ runtime ./lua/plugins/vim-instant-markdown.rc.vim ]]),
         })
 
         -- PlantUML
         use({
             'weirongxu/plantuml-previewer.vim',
-            config = vim.cmd([[
-                                      runtime ./lua/plugins/plantuml-previewer.rc.vim
-                                      ]]),
+            -- config = vim.cmd([[ runtime ./lua/plugins/plantuml-previewer.rc.vim ]]),
         })
 
         -- PlantUML syntax highlighting

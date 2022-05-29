@@ -28,6 +28,19 @@ else
 end
 
 -----------------------------------------------------------
+
+LSP_SERVERS = {
+  'sumneko_lua',
+  'texlab',
+  'pyright',
+  'emmet_ls',
+  'html',
+  'jsonls',
+  'rust_analyzer',
+  'tsserver',
+}
+
+-----------------------------------------------------------
 PYENV_ROOT_PATH = HOME .. '/.pyenv'
 PYENV_GLOBAL_PATH = PYENV_ROOT_PATH .. '/versions/venv-nvim'
 PYTHON_BINARY = PYENV_GLOBAL_PATH .. '/bin/python3'

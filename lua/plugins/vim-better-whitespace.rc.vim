@@ -21,5 +21,4 @@ let g:better_whitespace_filetypes_blacklist = [ 'diff', 'gitcommit', 'qf', 'help
 
 " Don't ask for confirmation before whitespace is stripped when you save the file.
 let g:strip_whitespace_confirm = 0
-
 let g:show_spaces_that_precede_tabs = 1
