@@ -93,22 +93,22 @@ local mappings = {
 			'Use widgets to display the variables',
 		},
 	},
-	-- Find files
-	f = {
-		name = 'find',
-		a = { ':Telescope live_grep<CR>', 'Live grep' },
-		b = { ':Telescope buffers theme=get_dropdown<CR>', 'buffers' },
-		f = { ':Telescope find_files<CR>', 'Find files' },
-		g = { ':Telescope git_files<CR>', 'Git files' },
-		m = { ':Telescope marks<CR>', 'Bookmarks' },
-		r = { ':Telescope oldfiles<CR>', 'Recently open files' },
-		h = { ':Telescope help_tags<CR>', 'Help Tags' },
-		p = { ':FloatermNew ranger<CR>', 'Picture Viewer' },
-		w = { ':Telescope live_grep<CR>', 'Find word' },
-		v = { ':FloatermNew vifm<CR>', 'ViFm' },
-	},
 	-- Files
 	F = {
+        -- Find files
+        s = {
+            name = 'search',
+            a = { ':Telescope live_grep<CR>', 'Live grep' },
+            b = { ':Telescope buffers theme=get_dropdown<CR>', 'buffers' },
+            f = { ':Telescope find_files<CR>', 'Find files' },
+            g = { ':Telescope git_files<CR>', 'Git files' },
+            m = { ':Telescope marks<CR>', 'Bookmarks' },
+            r = { ':Telescope oldfiles<CR>', 'Recently open files' },
+            h = { ':Telescope help_tags<CR>', 'Help Tags' },
+            p = { ':FloatermNew ranger<CR>', 'Picture Viewer' },
+            w = { ':Telescope live_grep<CR>', 'Find word' },
+            v = { ':FloatermNew vifm<CR>', 'ViFm' },
+        },
 		name = 'files',
 		f = {
 			name = 'Open/Close',
