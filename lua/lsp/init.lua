@@ -26,7 +26,8 @@ require("nvim-lsp-installer").setup({
 		},
 	},
 	-- The directory in which to installl servers.
-	install_root_dir = RUNTIME_DIR .. '/lsp_servers',
+	-- install_root_dir = RUNTIME_DIR .. '/lsp_servers',
+	install_root_dir = '/Users/alanjui/.local/share/my-nvim' .. '/lsp_servers',
 })
 
 -----------------------------------------------------------------------------------------------

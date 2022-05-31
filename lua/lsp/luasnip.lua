@@ -2,14 +2,11 @@
 -- Setup LuaSnip integrate with nvim-cmp
 ------------------------------------------------------------
 
-local function prequire(...)
-local status, lib = pcall(require, ...)
-if (status) then return lib end
-    return nil
+local luasnip = safe_require('luasnip')
+local cmp = safe_require("cmp")
+if not luasnip or not cmp then
+    return
 end
-
-local luasnip = prequire('luasnip')
-local cmp = prequire("cmp")
 
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)

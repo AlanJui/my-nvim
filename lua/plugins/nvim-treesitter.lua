@@ -2,6 +2,10 @@
 -- Treesitter
 -- Can be used for things like highlighting, indentation, folding.
 ---------------------------------------------------------------------------
+local treesitter = safe_require('nvim-treesitter')
+if not treesitter then
+    return
+end
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
