@@ -1,10 +1,17 @@
+-----------------------------------------------------------
+-- Initial environments for Neovim
+-----------------------------------------------------------
+DEBUG = false
 MY_VIM = 'my-nvim'
-HOME = ''
-CONFIG_DIR = ''
-RUNTIME_DIR = ''
-COMPILE_PATH = ''
-PACKAGE_ROOT = ''
-INSTALL_PATH = ''
+HOME = os.getenv('HOME')
+
+CONFIG_DIR = HOME .. '/.config/' .. MY_VIM
+RUNTIME_DIR = HOME .. '/.local/share'
+
+PACKAGE_ROOT = RUNTIME_DIR .. '/site/pack'
+INSTALL_PATH = PACKAGE_ROOT .. '/packer/start/packer.nvim'
+COMPILE_PATH = CONFIG_DIR .. '/plugin/packer_compiled.lua'
+
 INSTALLED = false
 LSP_SERVERS = {
     'sumneko_lua',
@@ -18,6 +25,10 @@ LSP_SERVERS = {
 }
 
 -----------------------------------------------------------
+-- Initial environment
+-----------------------------------------------------------
+
+-- Join path
 local on_windows = vim.loop.os_uname().version:match 'Windows'
 local function join_paths(...)
     local path_sep = on_windows and '\\' or '/'
@@ -25,12 +36,31 @@ local function join_paths(...)
     return result
 end
 
-local function load_plugins()
-    require('packer').startup {
-        function (use)
-        end
-    }
+-- Setup runtimepath: stdpath('config'), stdpath('data')
+local function setup_rtp()
+    vim.cmd [[
+        "set runtimepath^=RUNTIME_DIR
+        set runtimepath+=(CONFIG_DIR)
+        set runtimepath+=(CONFIG_DIR..'/after')
+        set runtimepath+=(CONFIG_DIR..'/lua')
+    ]]
+    vim.cmd [[let &packpath = &runtimepath]]
 end
+
+local package_root = join_paths(RUNTIME_DIR, MY_VIM, 'site', 'pack')
+local install_path = join_paths(package_root, 'packer', 'start', 'packer.nvim')
+local compile_path = join_paths(CONFIG_DIR, 'plugin', 'packer_compiled.lua')
+-- print('$VIMRUNTIME=' .. os.getenv('VIMRUNTIME'))
+-- print('package_root=' .. package_root)
+-- print('install_path=' .. install_path)
+-- print('compile_path=' .. compile_path)
+
+-- setup_rtp()
+
+
+-----------------------------------------------------------
+-- Local functions
+-----------------------------------------------------------
 
 _G.load_config = function()
     -- vim.lsp.set_log_level 'trace'
@@ -85,31 +115,6 @@ _G.load_config = function()
 
     print [[You can find your log at $HOME/.cache/nvim/lsp.log. Please paste in a github issue under a details tag as described in the issue template.]]
 end
------------------------------------------------------------
--- Initial environments for Neovim
------------------------------------------------------------
-local function init_env()
-    HOME = os.getenv('HOME')
-
-    CONFIG_DIR = HOME .. '/.config/' .. MY_VIM
-    RUNTIME_DIR = HOME .. '/.local/share'
-
-    PACKAGE_ROOT = RUNTIME_DIR .. '/site/pack'
-    INSTALL_PATH = PACKAGE_ROOT .. '/packer/start/packer.nvim'
-    COMPILE_PATH = INSTALL_PATH .. '/plugin/packer_compiled.lua'
-end
-
------------------------------------------------------------
--- Setup runtimepath: stdpath('config'), stdpath('data')
------------------------------------------------------------
-local function setup_rtp()
-    vim.cmd [[
-        set runtimepath^=RUNTIME_DIR
-        set runtimepath+=(CONFIG_DIR..'after')
-        set runtimepath+=(CONFIG_DIR..'lua')
-    ]]
-    vim.cmd [[let &packpath = &runtimepath]]
-end
 
 -----------------------------------------------------------
 -- Global Functions
@@ -117,73 +122,31 @@ end
 vim.api.nvim_command('luafile ~/.config/my-nvim/lua/globals.lua')
 
 -----------------------------------------------------------
--- Initial environment
------------------------------------------------------------
-init_env()
-setup_rtp()
-vim.api.nvim_command('luafile ~/.config/my-nvim/lua/init-env.lua')
-
-local package_root = join_paths(RUNTIME_DIR, MY_VIM, 'site', 'pack')
-local install_path = join_paths(package_root, 'packer', 'start', 'packer.nvim')
-local compile_path = join_paths(CONFIG_DIR, 'plugin', 'packer_compiled.lua')
-
-
--- print('$VIMRUNTIME=' .. os.getenv('VIMRUNTIME'))
--- print('package_root=' .. package_root)
--- print('install_path=' .. install_path)
--- print('compile_path=' .. compile_path)
-
-
------------------------------------------------------------
 -- Plugin Manager: install plugins
 -----------------------------------------------------------
 -- require('plugins')
-local fn = vim.fn
-local packer_bootstrap
+vim.api.nvim_command('luafile ~/.config/my-nvim/lua/plugins/init.lua')
 
--- if vim.fn.isdirectory(install_path) == 0 then
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({
-        'git',
-        'clone',
-        '--depth',
-        '1',
-        'https://github.com/wbthomason/packer.nvim',
-        INSTALL_PATH,
-    })
-end
-
-require('packer').init({
-    package_root = PACKAGE_ROOT,
-    compile_path = COMPILE_PATH,
-    plugin_package = 'packer',
-    display = {
-        open_fn = require('packer.util').float,
-    },
-})
-
-require('packer').startup({
-    function (use)
-        use 'wbthomason/packer.nvim'
-        use 'neovim/nvim-lspconfig'
-        -- Automatically set up your configuration after cloning packer.nvim
-        -- Put this at the end after all plugins
-        if packer_bootstrap then
-            require('packer').sync()
-        end
-    end,
-})
+-- configure Neovim to automatically run :PackerCompile whenever
+-- plugin-list.lua is updated with an autocommand:
+vim.cmd([[
+augroup packer_user_config
+autocmd!
+autocmd BufWritePost ~/.config/my-nvim/lua/plugins/init.lua source <afile> | PackerCompile
+augroup end
+]])
 
 -----------------------------------------------------------
 -- configuration of plugins
 -----------------------------------------------------------
 -- require('plugins/nvim-treesitter')
--- require('lsp/luasnip')
--- require('lsp')
--- require('lsp/null-langserver')
--- require('debug')
+vim.api.nvim_command('luafile ~/.config/my-nvim/lua/plugins/nvim-treesitter.lua')
+require('lsp/luasnip')
+require('lsp')
+require('lsp/null-langserver')
+require('debug')
 
-_G.load_config()
+-- _G.load_config()
 
 -----------------------------------------------------------
 -- Configurations for Neovim
