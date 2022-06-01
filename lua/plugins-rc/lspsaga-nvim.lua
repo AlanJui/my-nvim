@@ -1,4 +1,7 @@
-local lspsaga = require('lspsaga')
+local lspsaga = safe_require('lspsaga')
+if not lspsaga then
+    return
+end
 
 lspsaga.init_lsp_saga {
   -- error_sign = '',   -- '\u{F658}',

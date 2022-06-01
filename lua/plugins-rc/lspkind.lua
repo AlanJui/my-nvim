@@ -1,4 +1,10 @@
-require("lspkind").init({
+local lspkind = safe_require('lspkind')
+if not lspkind then
+    return
+end
+
+-- require("lspkind").init({
+lspkind.init({
     -- DEPRECATED (use mode instead): enables text annotations
     --
     -- default: true

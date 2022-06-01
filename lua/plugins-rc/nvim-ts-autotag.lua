@@ -1,8 +1,21 @@
 -- nvim-ts-autotag.lua
+local nvim_treesitter = safe_require('nvim-treesitter')
+local nvim_ts_autotag = safe_require('nvim-ts-autotag')
+if not nvim_treesitter or not nvim_ts_autotag then
+    return
+end
+
 require('nvim-treesitter.configs').setup({
     autotag = {
         enable = true,
-        filetypes = { "html", "htmldjango", "xml", "javascript", "javascriptreact", "typescriptreact", "vue" },
+        filetypes = {
+            "html",
+            "htmldjango",
+            "xml",
+            "javascript",
+            "javascriptreact", "typescriptreact",
+            "vue"
+        },
     }
 })
 

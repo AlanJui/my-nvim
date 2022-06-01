@@ -1,5 +1,11 @@
 -- autopairs.lua
-require('nvim-autopairs').setup({
+local auto_pairs = safe_require('nvim-autopairs')
+if not auto_pairs then
+    return
+end
+
+-- require('nvim-autopairs').setup({
+auto_pairs.setup({
     enable_check_bracket_line = true,                   -- Don't add pairs if it already have a close pairs in same line
     disable_filetype = { "TelescopePrompt" , "vim" },   --
     enable_afterquote = false,                           -- add bracket pairs after quote

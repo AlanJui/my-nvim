@@ -14,7 +14,8 @@ vim.g.maplocalleader = ","
 keymap('i', 'jj', '<Esc>', opts)
 
 -- On/Off File explorer
-keymap('n',  '\\', ':NvimTreeToggle<CR>', {})
+keymap('n', '<LocalLeader>e', ':NvimTreeToggle<CR>', opts )
+keymap('n', '<Space><Space>', ':Telescope find_files<CR>', opts)
 
 -- Ctrl-s: to save
 keymap('n',  '<c-s>', ':w<CR>', {})

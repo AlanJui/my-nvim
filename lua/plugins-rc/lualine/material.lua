@@ -4,6 +4,11 @@
 -- | A | B | C                             X | Y | Z |
 -- +-------------------------------------------------+
 
+local lualine = safe_require('lualine')
+if not lualine then
+    return
+end
+
 local lsp_provider = require('utils.lsp').lsp_provider
 
 --------------------------------------------------------

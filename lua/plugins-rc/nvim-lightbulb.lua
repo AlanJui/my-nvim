@@ -5,10 +5,15 @@
 -- This makes code actions both discoverable and efficient,
 -- as code actions can be available even when there are no
 -- visible diagnostics (warning, information, hints etc.).
+local nvim_light_bulb = safe_require('nvim-lightbulb')
+if not nvim_light_bulb then
+    return
+end
 
 -- Configuration for Available options
 -- Showing defaults
-require'nvim-lightbulb'.update_lightbulb {
+-- require'nvim-lightbulb'.update_lightbulb {
+nvim_light_bulb.update_lightbulb {
     -- LSP client names to ignore
     -- Example: {"sumneko_lua", "null-ls"}
     ignore = {},

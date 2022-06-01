@@ -52,9 +52,6 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
-}
-
-require'nvim-treesitter.configs'.setup {
   context_commentstring = {
     enable = true,
     config = {
@@ -67,5 +64,21 @@ require'nvim-treesitter.configs'.setup {
         comment = '// %s'
       },
     }
-  }
+  },
 }
+
+-- require'nvim-treesitter.configs'.setup {
+--   context_commentstring = {
+--     enable = true,
+--     config = {
+--       css = '// %s',
+--       javascript = {
+--         __default = '// %s',
+--         jsx_element = '{/* %s */}',
+--         jsx_fragment = '{/* %s */}',
+--         jsx_attribute = '// %s',
+--         comment = '// %s'
+--       },
+--     }
+--   }
+-- }

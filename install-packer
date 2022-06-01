@@ -1,0 +1,7 @@
+#!/bin/sh
+export MY_NVIM="my-nvim"
+export MY_CONFIG_DIR="$HOME/.config/$MY_NVIM"
+export MY_RUNTIME_DIR="$HOME/.local/share/$MY_NVIM"
+
+echo 'Install nvim.packer'
+exec nvim -u "$MY_CONFIG_DIR/init.lua" "--headless"  "-c 'autocmd User PackerComplete quitall'" "-c 'PackerSync'" "$@"

@@ -1,4 +1,8 @@
-local lsp_status = require('lsp-status')
+local lsp_status = safe_require('lsp-status')
+if not lsp_status then
+    return
+end
+
 lsp_status.register_progress()
 
 lsp_status.config({

@@ -1,7 +1,12 @@
 -- Plugin configuration: nvim-tree.lua
---============================================================================
+local nvim_tree = safe_require('nvim-tree')
+if not nvim_tree then
+    return
+end
+
 -- following options are the default
-require("nvim-tree").setup({
+-- require("nvim-tree").setup({
+nvim_tree.setup({
     -- disables netrw completely
     disable_netrw = true,
     -- hijack netrw window on startup
@@ -51,7 +56,6 @@ require("nvim-tree").setup({
         -- the command arguments as a list
         args = {},
     },
-
     view = {
         -- width of the window, can be either a number (columns) or a string in `%`, for left or right side placement
         width = 30,
@@ -80,7 +84,7 @@ require("nvim-tree").setup({
 -- vim.g.nvim_tree_width_allow_resize = true
 -- vim.g.nvim_tree_ignore = { '.git', 'node_modules', '.cache' }
 
-vim.cmd([[
+vim.cmd [[
 let g:nvim_tree_icons = {
     \ 'default': '',
     \ 'symlink': '',
@@ -104,4 +108,4 @@ let g:nvim_tree_icons = {
     \   'symlink_open': "",
     \   }
     \ }
-]])
+]]

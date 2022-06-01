@@ -1,37 +1,43 @@
 -- telescope.nvim.lua
+local telescope = safe_require('telescope')
+if not telescope then
+    return
+end
+
 local actions = require('telescope.actions')
 
-require('telescope').setup{
-  defaults = {
-    layout_config = {
-      flex = {
-        flip_columns = 130
-      }
-    },
-    mappings = {
-			n = {
-				['q'] = actions.close
-			},
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
-    },
-    layout_strategy = 'flex',
-    vimgrep_arguments = {
-      'rg',
-      '--no-heading',
-      '--with-filename',
-      '--line-number',
-      '--column',
-      '--smart-case'
+-- require('telescope').setup{
+telescope.setup{
+    defaults = {
+        layout_config = {
+            flex = {
+                flip_columns = 130
+            }
+        },
+        mappings = {
+            n = {
+                ['q'] = actions.close
+            },
+            i = {
+                ['<C-u>'] = false,
+                ['<C-d>'] = false,
+            },
+        },
+        layout_strategy = 'flex',
+        vimgrep_arguments = {
+            'rg',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case'
+        }
     }
-  }
 }
 
 -- keymap
-local keymap = require('utils.set_keymap')
-local opts = { noremap = true, silent = true }
+-- local keymap = require('utils.set_keymap')
+-- local opts = { noremap = true, silent = true }
 
 -- keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
 -- keymap('n', '<leader>sf', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], { noremap = true, silent = true })
