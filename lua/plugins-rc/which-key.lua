@@ -50,7 +50,7 @@ local mappings = {
     [';'] = { ':FloatermNew --wintype=normal --height=10<CR>', 'Open Terminal' },
     ['v'] = { ':FloatermNew --height=0.7 --width=0.9 --wintype=float  vifm<CR>', 'ViFm' },
     ['/'] = { 'gcc', 'Comment out (Toggle)' },
-    ['e'] = { ':NvimTreeToggle<CR>', 'File explorer' },
+    ['\\'] = { ':NvimTreeToggle<CR>', 'File explorer' },
     ['z'] = { 'UndotreeToggle<CR>', 'Undo tree' },
     -- Actions
     a = {

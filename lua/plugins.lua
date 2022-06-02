@@ -165,8 +165,8 @@ return require('packer').startup({
             },
         })
         -- File/Flolders explorer:nvim-tree
-        use({ 
-            'kyazdani42/nvim-tree.lua', 
+        use({
+            'kyazdani42/nvim-tree.lua',
             requires = {
                 'kyazdani42/nvim-web-devicons', -- optional, for file icon
             },
@@ -253,6 +253,26 @@ return require('packer').startup({
         -- Python: provides text objects and motions for Python classes, methods,
         -- functions and doc strings
         use('jeetsukumaran/vim-pythonsense')
+        -----------------------------------------------------------
+        -- Programming
+        -----------------------------------------------------------
+        -- Yet Another Build System
+        use({
+            'pianocomposer321/yabs.nvim',
+            requires = { 'nvim-lua/plenary.nvim' },
+        })
+        -- terminal
+        use({
+            "akinsho/toggleterm.nvim",
+            tag = 'v1.*',
+            config = function()
+                local toggle_term = safe_require('toggleterm')
+                if not toggle_term then
+                    return
+                end
+                toggle_term.setup()
+            end
+        })
         -----------------------------------------------------------
         -- DAP
         -----------------------------------------------------------

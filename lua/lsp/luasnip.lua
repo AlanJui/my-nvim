@@ -33,6 +33,7 @@ _G.tab_complete = function()
   end
   return ''
 end
+
 _G.s_tab_complete = function()
   if cmp and cmp.visible() then
     cmp.select_prev_item()

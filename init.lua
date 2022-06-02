@@ -15,18 +15,18 @@ COMPILE_PATH = CONFIG_DIR .. '/plugin/packer_compiled.lua'
 
 INSTALLED = false
 if vim.fn.empty(vim.fn.glob(INSTALL_PATH)) == 0 then
-    INSTALLED = true
+	INSTALLED = true
 end
 
 LSP_SERVERS = {
-    'sumneko_lua',
-    'texlab',
-    'pyright',
-    'emmet_ls',
-    'html',
-    'jsonls',
-    'rust_analyzer',
-    'tsserver',
+	'sumneko_lua',
+	'texlab',
+	'pyright',
+	'emmet_ls',
+	'html',
+	'jsonls',
+	'rust_analyzer',
+	'tsserver',
 }
 
 -----------------------------------------------------------
@@ -43,36 +43,36 @@ vim.api.nvim_command('luafile ~/.config/my-nvim/lua/globals.lua')
 
 -- Setup runtimepath(rtp):
 local function setup_rtp()
-    -- 變更 stdpath('config') 預設的 rtp : ~/.config/nvim/
-    vim.opt.rtp:remove(join_paths(vim.fn.stdpath('data'), 'site'))
-    vim.opt.rtp:remove(join_paths(vim.fn.stdpath('data'), 'site', 'after'))
-    vim.opt.rtp:prepend(join_paths(RUNTIME_DIR, 'site'))
-    vim.opt.rtp:append(join_paths(RUNTIME_DIR, 'site', 'after'))
+	-- 變更 stdpath('config') 預設的 rtp : ~/.config/nvim/
+	vim.opt.rtp:remove(join_paths(vim.fn.stdpath('data'), 'site'))
+	vim.opt.rtp:remove(join_paths(vim.fn.stdpath('data'), 'site', 'after'))
+	vim.opt.rtp:prepend(join_paths(RUNTIME_DIR, 'site'))
+	vim.opt.rtp:append(join_paths(RUNTIME_DIR, 'site', 'after'))
 
-    -- 變更 stdpath('data') 預設的 rtp : ~/.local/share/nvim/
-    vim.opt.rtp:remove(vim.fn.stdpath('config'))
-    vim.opt.rtp:remove(join_paths(vim.fn.stdpath('config'), 'after'))
-    vim.opt.rtp:prepend(CONFIG_DIR)
-    vim.opt.rtp:append(join_paths(CONFIG_DIR, 'after'))
+	-- 變更 stdpath('data') 預設的 rtp : ~/.local/share/nvim/
+	vim.opt.rtp:remove(vim.fn.stdpath('config'))
+	vim.opt.rtp:remove(join_paths(vim.fn.stdpath('config'), 'after'))
+	vim.opt.rtp:prepend(CONFIG_DIR)
+	vim.opt.rtp:append(join_paths(CONFIG_DIR, 'after'))
 
-    -- 引用 rpt 設定 package path （即擴充擴件(plugins)的安裝路徑）
-    -- 此設定需正確，指令：requitre('<PluginName>') 才能正常執行。
-    vim.cmd [[let &packpath = &runtimepath]]
+	-- 引用 rpt 設定 package path （即擴充擴件(plugins)的安裝路徑）
+	-- 此設定需正確，指令：requitre('<PluginName>') 才能正常執行。
+	vim.cmd([[let &packpath = &runtimepath]])
 end
 
 if not DEBUG then
-    setup_rtp()
+	setup_rtp()
 else
-    -- 在「除錯」作業時，顯示 setup_rtp() 執行前、後， rtp 的設定內容。
-    -- P(vim.api.nvim_list_runtime_paths())
-    Print_table(vim.opt.runtimepath:get())
-    print('-----------------------------------------------------------')
+	-- 在「除錯」作業時，顯示 setup_rtp() 執行前、後， rtp 的設定內容。
+	-- P(vim.api.nvim_list_runtime_paths())
+	Print_table(vim.opt.runtimepath:get())
+	print('-----------------------------------------------------------')
 
-    setup_rtp()
+	setup_rtp()
 
-    Print_table(vim.opt.runtimepath:get())
-    print('-----------------------------------------------------------')
-    -- P(vim.api.nvim_list_runtime_paths())
+	Print_table(vim.opt.runtimepath:get())
+	print('-----------------------------------------------------------')
+	-- P(vim.api.nvim_list_runtime_paths())
 end
 
 ---------------------------------------------------------------
@@ -97,49 +97,50 @@ augroup end
 -- 載入各擴充套件(plugins) 的設定
 -----------------------------------------------------------
 if DEBUG then
-    -- 正處「除錯」作業階段時，僅只載入除錯時所需的
-    -- 擴充套件(plugins) 設定。
-    require('lsp.lsp-debug')
-    _G.load_config()
-
+	-- 正處「除錯」作業階段時，僅只載入除錯時所需的
+	-- 擴充套件(plugins) 設定。
+	require('lsp.lsp-debug')
+	_G.load_config()
 elseif INSTALLED then
-    -- 非「除錯」作業；且 packer.nvim 已安裝時，
-    -- 則：開始載入各擴充套件（plugins）的設定；
-    -- 否則：略過擴充套件設定的載入。
+	-- 非「除錯」作業；且 packer.nvim 已安裝時，
+	-- 則：開始載入各擴充套件（plugins）的設定；
+	-- 否則：略過擴充套件設定的載入。
 
-    -- Neovim kernel
-    require('plugins-rc.nvim-treesitter')
-    require('lsp.luasnip')
-    -- lsp
-    require('lsp')
-    require('lsp.null-langserver')
-    -- User Interface
-    require('plugins-rc.nvim-web-devicons')
-    require('plugins-rc.telescope-nvim')
-    require('plugins-rc.nvim-tree')
-    require('plugins-rc.nvim-lightbulb')
-    require('plugins-rc.tabline')
-    -- status line
-    -- require('plugins-rc.lspstatus')
-    require('plugins-rc.lualine.material')
-    -- git
-    require('plugins-rc.gitsigns')
-    require('plugins-rc.neogit')
-    require('plugins-rc.vim-gist')
-    -- editting tools
-    require('plugins-rc.indent-blankline')
-    require('plugins-rc.autopairs')
-    require('plugins-rc.undotree')
-    vim.cmd [[ runtime ./lua/plugins-rc/vim-better-whitespace.rc.vim ]]
-    vim.cmd [[runtime ./lua/plugins-rc/emmet-vim.rc.vim]]
-    vim.cmd [[runtime ./lua/plugins-rc/vim-closetag.rc.vim]]
-    vim.cmd [[runtime ./lua/plugins-rc/tagalong-vim.rc.vim]]
-    -- debug
-    require('plugins-rc.ultest')
-    require('debug')
-    -- Utilities
-    vim.cmd [[ runtime ./lua/plugins-rc/vim-instant-markdown.rc.vim ]]
-    vim.cmd [[ runtime ./lua/plugins-rc/plantuml-previewer.rc.vim ]]
+	-- Neovim kernel
+	require('plugins-rc.nvim-treesitter')
+	require('lsp.luasnip')
+	-- lsp
+	require('lsp')
+	require('lsp.null-langserver')
+	-- User Interface
+	require('plugins-rc.nvim-web-devicons')
+	require('plugins-rc.telescope-nvim')
+	require('plugins-rc.nvim-tree')
+	require('plugins-rc.nvim-lightbulb')
+	require('plugins-rc.tabline')
+	-- status line
+	-- require('plugins-rc.lspstatus')
+	require('plugins-rc.lualine.material')
+	-- git
+	require('plugins-rc.gitsigns')
+	require('plugins-rc.neogit')
+	require('plugins-rc.vim-gist')
+	-- editting tools
+	require('plugins-rc.indent-blankline')
+	require('plugins-rc.autopairs')
+	require('plugins-rc.undotree')
+	vim.cmd([[ runtime ./lua/plugins-rc/vim-better-whitespace.rc.vim ]])
+	vim.cmd([[runtime ./lua/plugins-rc/emmet-vim.rc.vim]])
+	vim.cmd([[runtime ./lua/plugins-rc/vim-closetag.rc.vim]])
+	vim.cmd([[runtime ./lua/plugins-rc/tagalong-vim.rc.vim]])
+	-- code runner
+	require('plugins-rc.yabs')
+	-- debug
+	require('plugins-rc.ultest')
+	require('debug')
+	-- Utilities
+	vim.cmd([[ runtime ./lua/plugins-rc/vim-instant-markdown.rc.vim ]])
+	vim.cmd([[ runtime ./lua/plugins-rc/plantuml-previewer.rc.vim ]])
 end
 
 -----------------------------------------------------------
@@ -187,7 +188,7 @@ require('plugins-rc.which-key')
 
 -- Say hello
 local function blah()
-    print("init.lua is loaded!\n")
+	print('init.lua is loaded!\n')
 end
 
 blah()
