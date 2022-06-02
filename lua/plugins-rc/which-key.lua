@@ -123,36 +123,12 @@ local mappings = {
     -- Files
     F = {
         name = 'files',
-        f = {
-            name = 'Open/Close',
-            w = { ':w<CR>', 'Save' },
-            c = { ':bdelete<CR>', 'Close' },
-            C = { ':q!<CR>', 'Quit withou save' },
-            e = { ':qa<CR>', 'Exit Neovim' },
-            E = { ':qa!<CR>', 'Exit Neovim without save' },
-        },
-        b = {
-            name = 'buffers',
-            ['['] = { 'gT', 'Prev. buffer' },
-            [']'] = { 'gt', 'Next buffer' },
-            c = { ':bdelete<CR>', 'Close buffer' },
-            C = { '%bdelete|edit #|normal `"<CR>', 'Close all but current' },
-            I = { 'gg=G', 'Formate indent of line' },
-            l = { ':Telescope buffers<CR>', 'List all buffers' },
-            s = { ':setlocal spell!<CR>', 'Toggle spell' },
-            w = { ':StripWhitespace<CR>', 'Strip white space' },
-            W = { ':ToggleWhitespace<CR>', 'Toggle white space' },
-        },
-        -- Quit
-        q = {
-            name = 'Save/Quit',
-            q = { ':q<CR>', 'Quit' },
-            w = { ':w<CR>', 'Save' },
-            c = { ':bdelete<CR>', 'Close' },
-            C = { ':q!<CR>', 'Quit withou save' },
-            e = { ':qa<CR>', 'Exit Neovim' },
-            E = { ':qa!<CR>', 'Exit Neovim without save' },
-        },
+        w = { ':w<CR>', 'Save' },
+        c = { ':bdelete<CR>', 'Close' },
+        C = { ':q!<CR>', 'Quit withou save' },
+        e = { ':qa<CR>', 'Exit Neovim' },
+        E = { ':qa!<CR>', 'Exit Neovim without save' },
+        q = { ':q<CR>', 'Quit' },
     },
     -- Git
     g = {

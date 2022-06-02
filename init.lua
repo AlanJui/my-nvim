@@ -112,36 +112,42 @@ elseif INSTALLED then
 	-- lsp
 	require('lsp')
 	require('lsp.null-langserver')
-	-- User Interface
-	require('plugins-rc.nvim-web-devicons')
-	require('plugins-rc.telescope-nvim')
-	require('plugins-rc.nvim-tree')
-	require('plugins-rc.nvim-lightbulb')
-	require('plugins-rc.tabline')
 	-- status line
-	require('plugins-rc.lualine.material')
+	-- require('plugins-rc.lualine.material')
+	require('plugins-rc.lualine-material')
+    require('plugins-rc.tabline')
 	-- require('plugins-rc.lspstatus')
-	-- git
-	require('plugins-rc.gitsigns')
-	require('plugins-rc.neogit')
-	require('plugins-rc.vim-gist')
-	-- editting tools
+	-- User Interface
+	require('plugins-rc.nvim-lightbulb')
+	require('plugins-rc.nvim-web-devicons')
 	require('plugins-rc.indent-blankline')
+    -- files management
+    require('plugins-rc.telescope-nvim')
+	require('plugins-rc.nvim-tree')
+	-- editting tools
 	require('plugins-rc.autopairs')
 	require('plugins-rc.undotree')
-	vim.cmd([[ runtime ./lua/plugins-rc/vim-better-whitespace.rc.vim ]])
+	vim.cmd([[runtime ./lua/plugins-rc/vim-better-whitespace.rc.vim]])
 	vim.cmd([[runtime ./lua/plugins-rc/emmet-vim.rc.vim]])
 	vim.cmd([[runtime ./lua/plugins-rc/vim-closetag.rc.vim]])
 	vim.cmd([[runtime ./lua/plugins-rc/tagalong-vim.rc.vim]])
-	-- code runner
+	-- programming
     require('plugins-rc.toggleterm')
 	require('plugins-rc.yabs')
 	-- debug
 	require('plugins-rc.ultest')
 	require('debug')
+    -- versional control
+	require('plugins-rc.neogit')
+	require('plugins-rc.gitsigns')
+	require('plugins-rc.vim-gist')
+	-- vim.cmd([[ runtime ./lua/plugins-rc/vim-signify.rc.vim]])
 	-- Utilities
-	vim.cmd([[ runtime ./lua/plugins-rc/vim-instant-markdown.rc.vim ]])
-	vim.cmd([[ runtime ./lua/plugins-rc/plantuml-previewer.rc.vim ]])
+    require('plugins-rc.toggleterm')
+	vim.cmd([[runtime ./lua/plugins-rc/bracey.rc.vim]])
+	vim.cmd([[runtime ./lua/plugins-rc/vim-instant-markdown.rc.vim]])
+	vim.cmd([[runtime ./lua/plugins-rc/plantuml-previewer.rc.vim]])
+	vim.cmd([[runtime ./lua/plugins-rc/vimtex.rc.vim]])
 end
 
 -----------------------------------------------------------
