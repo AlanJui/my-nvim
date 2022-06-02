@@ -62,6 +62,16 @@ set.shell = 'zsh' -- shell to use for `!`, `:!`, `system()` etc.
 set.wildignore = set.wildignore + '*.o,*.rej,*.so'
 -- faster scrolling
 set.lazyredraw = true
+--Save undo history
+vim.cmd([[set undofile]])
+
+-- Disable swap file
+vim.opt.swapfile = false
+vim.opt.writebackup = false
+
+-- make buffer modifiable
+vim.opt.modifiable = true
+
 -- remove whitespace on save
 -- cmd([[au BufWritePre * :%s/\s\+$//e]])
 -- don't auto commenting new lines
@@ -96,12 +106,8 @@ endif
 -- -- json
 -- cmd([[ au BufEnter *.json set ai expandtab shiftwidth=2 tabstop=2 sta fo=croql ]])
 
---Save undo history
-vim.cmd([[set undofile]])
-
--- Disable swap file
-vim.opt.swapfile = false
-vim.opt.writebackup = false
-
--- make buffer modifiable
-vim.opt.modifiable = true
+-- Reformat indent line
+-- gg=G
+-- vim.cmd([[
+-- command! -range=% Format :<line1>,<line2>s/^\s*/&&
+-- ]])

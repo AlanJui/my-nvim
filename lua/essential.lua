@@ -1,4 +1,12 @@
 -----------------------------------------------------------
+-- Neovim global options
+-----------------------------------------------------------
+vim.g.python3_host_prog = PYTHON_BINARY
+vim.g.loaded_python_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+
+-----------------------------------------------------------
 -- Essential configuration on development init.lua
 -----------------------------------------------------------
 
@@ -29,8 +37,3 @@ vim.cmd([[
 autocmd FileType lua setlocal expandtab shiftwidth=4 tabstop=4 smartindent
 autocmd BufEnter *.lua set autoindent expandtab shiftwidth=4 tabstop=4
 ]])
--- Reformat indent line
--- gg=G
--- vim.cmd([[
--- command! -range=% Format :<line1>,<line2>s/^\s*/&&
--- ]])

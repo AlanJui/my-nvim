@@ -1,18 +1,10 @@
 -----------------------------------------------------------
--- Neovim global options
+-- Global Functions
 -----------------------------------------------------------
+
 PYENV_ROOT_PATH = HOME .. '/.pyenv'
 PYENV_GLOBAL_PATH = PYENV_ROOT_PATH .. '/versions/venv-nvim'
 PYTHON_BINARY = PYENV_GLOBAL_PATH .. '/bin/python3'
-
-vim.g.python3_host_prog = PYTHON_BINARY
-vim.g.loaded_python_provider = 0
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_perl_provider = 0
-
------------------------------------------------------------
--- Global Functions
------------------------------------------------------------
 
 function _G.is_empty(str)
     return str == nil or str == ''

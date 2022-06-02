@@ -1,5 +1,6 @@
 -----------------------------------------------------------
 -- Initial environments for Neovim
+-- 設定 my-nvim 作業時，所需之「全域常數」。
 -----------------------------------------------------------
 DEBUG = false
 MY_VIM = 'my-nvim'
@@ -30,54 +31,60 @@ LSP_SERVERS = {
 
 -----------------------------------------------------------
 -- Global Functions
+-- 載入 my-nvim 作業時，所需之各種 Global Functions 。
 -----------------------------------------------------------
 vim.api.nvim_command('luafile ~/.config/my-nvim/lua/globals.lua')
 
 -----------------------------------------------------------
 -- Initial environment
+-- 執行「初始」作業，變更 Neovim 的 Run Time Path (rtp)，
+-- 以便 my-nvim 可在「目錄路徑」： ~/.config/my-nvim/ 運行。
 -----------------------------------------------------------
 
--- Setup runtimepath(rtp): stdpath('config'), stdpath('data')
+-- Setup runtimepath(rtp):
 local function setup_rtp()
+    -- 變更 stdpath('config') 預設的 rtp : ~/.config/nvim/
     vim.opt.rtp:remove(join_paths(vim.fn.stdpath('data'), 'site'))
     vim.opt.rtp:remove(join_paths(vim.fn.stdpath('data'), 'site', 'after'))
     vim.opt.rtp:prepend(join_paths(RUNTIME_DIR, 'site'))
     vim.opt.rtp:append(join_paths(RUNTIME_DIR, 'site', 'after'))
 
+    -- 變更 stdpath('data') 預設的 rtp : ~/.local/share/nvim/
     vim.opt.rtp:remove(vim.fn.stdpath('config'))
     vim.opt.rtp:remove(join_paths(vim.fn.stdpath('config'), 'after'))
     vim.opt.rtp:prepend(CONFIG_DIR)
     vim.opt.rtp:append(join_paths(CONFIG_DIR, 'after'))
 
+    -- 引用 rpt 設定 package path （即擴充擴件(plugins)的安裝路徑）
+    -- 此設定需正確，指令：requitre('<PluginName>') 才能正常執行。
     vim.cmd [[let &packpath = &runtimepath]]
-
-    -- vim.cmd [[
-    --     set runtimepath^=RUNTIME_DIR
-    --     set runtimepath+=(CONFIG_DIR)
-    --     set runtimepath+=(CONFIG_DIR..'/after')
-    -- ]]
-    -- vim.cmd [[set runtimepath+=RUNTIME_DIR]]
-    -- vim.cmd [[let &packpath = &runtimepath]]
 end
 
--- P(vim.api.nvim_list_runtime_paths())
-Print_table(vim.opt.runtimepath:get())
-print('-----------------------------------------------------------')
+if not DEBUG then
+    setup_rtp()
+else
+    -- 在「除錯」作業時，顯示 setup_rtp() 執行前、後， rtp 的設定內容。
+    -- P(vim.api.nvim_list_runtime_paths())
+    Print_table(vim.opt.runtimepath:get())
+    print('-----------------------------------------------------------')
 
-setup_rtp()
+    setup_rtp()
 
-Print_table(vim.opt.runtimepath:get())
-print('-----------------------------------------------------------')
--- P(vim.api.nvim_list_runtime_paths())
+    Print_table(vim.opt.runtimepath:get())
+    print('-----------------------------------------------------------')
+    -- P(vim.api.nvim_list_runtime_paths())
+end
 
------------------------------------------------------------
+---------------------------------------------------------------
 -- Install Plugin Manager & Plugins / Load Plugins
------------------------------------------------------------
--- vim.api.nvim_command('luafile ~/.config/my-nvim/lua/plugins/init.lua')
+-- 當 packer.nvim 尚未安裝，可自動執行下載及安裝作業；
+-- 若 packer.nvim 已安裝，則執行擴充套件 (plugins) 的載入作業。
+---------------------------------------------------------------
 require('plugins')
 
 -- configure Neovim to automatically run :PackerCompile whenever
 -- plugins.lua is updated with an autocommand:
+-- plugins.lua 內容有所變更時，自動執行 PackerCompile
 vim.cmd([[
 augroup packer_user_config
 autocmd!
@@ -87,11 +94,19 @@ augroup end
 
 -----------------------------------------------------------
 -- configuration of plugins
+-- 載入各擴充套件(plugins) 的設定
 -----------------------------------------------------------
 if DEBUG then
+    -- 正處「除錯」作業階段時，僅只載入除錯時所需的
+    -- 擴充套件(plugins) 設定。
     require('lsp.lsp-debug')
     _G.load_config()
+
 elseif INSTALLED then
+    -- 非「除錯」作業；且 packer.nvim 已安裝時，
+    -- 則：開始載入各擴充套件（plugins）的設定；
+    -- 否則：略過擴充套件設定的載入。
+
     -- Neovim kernel
     require('plugins-rc.nvim-treesitter')
     require('lsp.luasnip')
@@ -129,24 +144,50 @@ end
 
 -----------------------------------------------------------
 -- Configurations for Neovim
+-- 設定 Neovim 的 Options
 -----------------------------------------------------------
+-- Must have options of Neovim when under development of init.lua
+-- 在開發階段，init.lua 務必須有的 Neovim 設定
+require('essential')
+
+-- General options of Neovim
+-- 在開發完成後，Neovim 應有的設定
 require('options')
+
+-- User's specific options of Neovim
+-- 使用者有個人應用需求的特殊設定
 require('settings')
 
 -----------------------------------------------------------
 -- Color Themes
+-- Neovim 畫面的色彩設定
 -----------------------------------------------------------
 require('color-themes')
 
 -----------------------------------------------------------
 -- Key bindings
+-- 操作時的按鍵設定
 -----------------------------------------------------------
 -- Load Shortcut Key
+-- 「快捷鍵」設定
 require('keymaps')
 
 -- Load Which-key
+-- 提供【選單】式的指令操作
 require('plugins-rc.which-key')
 
 -----------------------------------------------------------
 -- Experiments
+-- 實驗用的臨時設定
 -----------------------------------------------------------
+
+-- For folding
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+-- Say hello
+local function blah()
+    print("init.lua is loaded!\n")
+end
+
+blah()
