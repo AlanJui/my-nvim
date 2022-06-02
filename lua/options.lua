@@ -1,4 +1,4 @@
--- configs.lua
+-- options.lua
 local exec = vim.api.nvim_exec -- execute Vimscript
 local set = vim.opt -- global options
 local cmd = vim.cmd -- execute Vim commands
@@ -7,32 +7,9 @@ local cmd = vim.cmd -- execute Vim commands
 -- local b     = vim.bo            -- buffer-scoped options
 -- local w     = vim.wo            -- windows-scoped options
 
--- cmd('autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=grey') --to Show whitespace, MUST be inserted BEFORE the colorscheme command
--- cmd('colorscheme rvcs')
-set.encoding = 'UTF-8'
-set.guifont = 'DroidSansMono Nerd Font 20'
-set.termguicolors = true -- Enable GUI colors for the terminal to get truecolor
-set.list = false -- show whitespace
-set.listchars = {
-    nbsp = '⦸', -- CIRCLED REVERSE SOLIDUS (U+29B8, UTF-8: E2 A6 B8)
-    extends = '»', -- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
-    precedes = '«', -- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
-    tab = '▷─', -- WHITE RIGHT-POINTING TRIANGLE (U+25B7, UTF-8: E2 96 B7) + BOX DRAWINGS HEAVY TRIPLE DASH HORIZONTAL (U+2505, UTF-8: E2 94 85)
-    trail = '•', -- BULLET (U+2022, UTF-8: E2 80 A2)
-    space = ' ',
-}
-set.fillchars = {
-    diff = '∙', -- BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
-    eob = ' ', -- NO-BREAK SPACE (U+00A0, UTF-8: C2 A0) to suppress ~ at EndOfBuffer
-    fold = '·', -- MIDDLE DOT (U+00B7, UTF-8: C2 B7)
-    vert = ' ', -- remove ugly vertical lines on window division
-}
-set.clipboard = set.clipboard + 'unnamedplus' --copy & paste
 set.wrap = false -- don't automatically wrap on load
 set.showmatch = true -- show the matching part of the pair for [] {} and ()
 set.cursorline = true -- highlight current line
-set.number = true -- show line numbers
-set.relativenumber = true -- show relative line number
 set.incsearch = true -- incremental search
 set.hlsearch = true -- highlighted search results
 set.ignorecase = true -- ignore case sensetive while searching
@@ -42,11 +19,6 @@ set.sidescrolloff = 2 -- keep 30 columns visible left and right of the cursor at
 set.backspace = 'indent,start,eol' -- make backspace behave like normal again
 set.mouse = 'a' -- turn on mouse interaction
 set.updatetime = 500 -- CursorHold interval
-set.tabstop = 8 -- spaces per tab
-set.softtabstop = 4
-set.shiftwidth = 4 -- spaces per tab (when shifting), when using the >> or << commands, shift lines by 4 spaces
-set.expandtab = false -- don't expand tabs into spaces
-set.smarttab = true -- <tab>/<BS> indent/dedent in leading whitespace
 set.autoindent = true -- maintain indent of current line
 set.shiftround = true
 set.splitbelow = true -- open horizontal splits below current window

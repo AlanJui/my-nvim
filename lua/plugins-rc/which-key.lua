@@ -51,6 +51,7 @@ local mappings = {
     ['v'] = { ':FloatermNew --height=0.7 --width=0.9 --wintype=float  vifm<CR>', 'ViFm' },
     ['/'] = { 'gcc', 'Comment out (Toggle)' },
     ['\\'] = { ':NvimTreeToggle<CR>', 'File explorer' },
+    ['r'] = { ':Telescope yabs tasks<CR>', 'List tasks of YABS' },
     ['z'] = { 'UndotreeToggle<CR>', 'Undo tree' },
     -- Actions
     a = {
@@ -74,6 +75,19 @@ local mappings = {
         W = { ':ToggleWhitespace<CR>', 'Toggle white space' },
         ['['] = { 'gT', 'Prev. buffer' },
         [']'] = { 'gt', 'Next buffer' },
+    },
+    -- Code Runner
+    c = {
+        name = 'Code Runner',
+        r = {':TermExec cmd="python %"<CR>', 'Run python file'},
+        d = {':TermExec cmd="python -m pdb %"<CR>', 'Debug python file'},
+        m = {':TermExec cmd="nodemon -e py %"<CR>', 'Monitor python file'},
+        p = {
+            name = 'Python',
+            r = { ':update<CR>:exec "!python3" shellescape(@%,1)<CR>', 'Run Python file' },
+            d = { ':update<CR>:sp term://python3 -m pdb %<CR>', 'Debug Python file' },
+            n = { ':update<CR>:sp term://nodemon -e py %<CR>', 'Monitor the file' },
+        },
     },
     -- Debug
     d = {
@@ -175,7 +189,7 @@ local mappings = {
             m = { ':Gist -m<CR>', 'post a gist with all open buffers' },
             p = { ':Gist -p<CR>', 'post public gist' },
             P = { ':Gist -P<CR>', 'post private gist' },
-	},
+	    },
     },
     -- utilities
     u = {
