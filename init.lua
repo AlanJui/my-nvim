@@ -119,8 +119,8 @@ elseif INSTALLED then
 	require('plugins-rc.nvim-lightbulb')
 	require('plugins-rc.tabline')
 	-- status line
-	-- require('plugins-rc.lspstatus')
 	require('plugins-rc.lualine.material')
+	-- require('plugins-rc.lspstatus')
 	-- git
 	require('plugins-rc.gitsigns')
 	require('plugins-rc.neogit')
@@ -134,6 +134,7 @@ elseif INSTALLED then
 	vim.cmd([[runtime ./lua/plugins-rc/vim-closetag.rc.vim]])
 	vim.cmd([[runtime ./lua/plugins-rc/tagalong-vim.rc.vim]])
 	-- code runner
+    require('plugins-rc.toggleterm')
 	require('plugins-rc.yabs')
 	-- debug
 	require('plugins-rc.ultest')

@@ -107,7 +107,7 @@ local mappings = {
         v = { ':FloatermNew vifm<CR>', 'ViFm' },
     },
     -- Files
-    f = {
+    F = {
         name = 'files',
         f = {
             name = 'Open/Close',

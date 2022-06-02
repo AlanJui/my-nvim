@@ -265,13 +265,6 @@ return require('packer').startup({
         use({
             "akinsho/toggleterm.nvim",
             tag = 'v1.*',
-            config = function()
-                local toggle_term = safe_require('toggleterm')
-                if not toggle_term then
-                    return
-                end
-                toggle_term.setup()
-            end
         })
         -----------------------------------------------------------
         -- DAP
