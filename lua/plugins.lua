@@ -8,18 +8,15 @@ end
 local fn = vim.fn
 local packer_bootstrap
 
-local packer = safe_require('packer')
-if not packer then
-    if vim.fn.empty(fn.glob(INSTALL_PATH)) > 0 then
-        packer_bootstrap = fn.system({
-            'git',
-            'clone',
-            '--depth',
-            '1',
-            'https://github.com/wbthomason/packer.nvim',
-            INSTALL_PATH,
-        })
-    end
+if vim.fn.empty(fn.glob(INSTALL_PATH)) > 0 then
+    packer_bootstrap = fn.system({
+        'git',
+        'clone',
+        '--depth',
+        '1',
+        'https://github.com/wbthomason/packer.nvim',
+        INSTALL_PATH,
+    })
 end
 
 if DEBUG then
