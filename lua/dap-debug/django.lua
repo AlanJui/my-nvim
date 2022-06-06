@@ -2,13 +2,14 @@
 -- nvim-dap-python
 -- ... more options, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings
 -----------------------------------------------------------
+local dap_python = safe_require('dap-python')
+if not dap_python then
+    return
+end
+
 M = {}
 
 M.setup = function (python_path)
-    local dap_python = safe_require('dap-python')
-    if not dap_python then
-        return
-    end
 
     -- configure DAP Adapter
     local dap = require('dap')

@@ -45,6 +45,9 @@ keymap('n', '<LocalLeader>dv',
 keymap('n', '<LocalLeader>df',
     '<cmd>lua require"telescope".extensions.dap.frames{}<CR>')
 
+-- 開啟／關閉「除錯器」之「使用者介面」
+keymap("n", "<LocalLeader>du", "<cmd>lua require'dapui'.toggle()<CR>")
+
 -----------------------------------------------------------
 vim.cmd([[
     nnoremap <silent> <F5>  :lua require'dap'.continue()<CR>

@@ -268,26 +268,37 @@ return require('packer').startup({
         -----------------------------------------------------------
         use({ 'mfussenegger/nvim-dap' })
         -- nvim-dap’s functionality for managing various debuggers.
-        use({ 'Pocco81/DAPInstall.nvim' })
-        -- nvim-dap tools and UIs
-        use({ 'nvim-telescope/telescope-dap.nvim' })
+        -- use({ 'Pocco81/DAPInstall.nvim' })
+        -- Manage debuggers provided by nvim-dap.
+        use({ 'Pocco81/dap-buddy.nvim' })
+        -----------------------------------------------------------
+        -- UI Extensions
+        -----------------------------------------------------------
+        -- Experimental UI for nvim-dap
+        use({ 'rcarriga/nvim-dap-ui', })
+        -- Inlines the values for variables as virtual text using treesitter.
         use({ 'theHamsta/nvim-dap-virtual-text' })
-        use({
-            'rcarriga/nvim-dap-ui',
-            requires = { 'mfussenegger/nvim-dap' },
-        })
-        -- nvim-dap unit test tools
+        -- Integration for nvim-dap with telescope.nvim
+        use({ 'nvim-telescope/telescope-dap.nvim' })
+        -- UI integration for nvim-dat with fzf
+        use({ 'ibhagwan/fzf-lua' })
+        -- nvim-cmp source for using DAP completions inside the REPL.
+        use({ 'rcarriga/cmp-dap' })
+        -----------------------------------------------------------
+        -- Language specific exensions
+        -----------------------------------------------------------
+        -- DAP adapter for Python
+        use({ 'mfussenegger/nvim-dap-python' })
+        -- DAP adapter for the Neovim lua language
+        use({ 'jbyuki/one-small-step-for-vimkind', })
+        -----------------------------------------------------------
+        -- Polyglot language extensions
+        -----------------------------------------------------------
+        -- Test runner building upon vim-test with nvim-dap support.
         use({
             'rcarriga/vim-ultest',
             requires = { 'vim-test/vim-test' },
             run = ':UpdateRemotePlugins',
-        })
-        -- DAP adapter for Python
-        use({ 'mfussenegger/nvim-dap-python' })
-        -- DAP adapter for the Neovim lua language
-        use({
-            'jbyuki/one-small-step-for-vimkind',
-            -- config = [[ require('plugins.one-small-step-for-vimkind') ]],
         })
         -----------------------------------------------------------
         -- Utility
@@ -338,9 +349,10 @@ return require('packer').startup({
             ft = { 'tex', 'bib' },
             cmd = { 'TexlabInverseSearch' },
         })
-
-        -- Automatically set up your configuration after cloning packer.nvim
-        -- Put this at the end after all plugins
+        -----------------------------------------------------------
+        -- Automatically set up your configuration after cloning
+        -- packer.nvim. Put this at the end after all plugins
+        -----------------------------------------------------------
         if packer_bootstrap then
             require('packer').sync()
         end

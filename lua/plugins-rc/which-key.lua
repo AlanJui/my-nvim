@@ -94,17 +94,32 @@ local mappings = {
         name = 'debug',
         b = { ":lua require'dap'.toggle_breakpoint()<CR>", 'Toggle breakpoint' },
         B = { ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", 'Condition breakpoint' },
-        c = { ":lua require'dap'.continue()<CR>", 'Start debug...' },
-        C = { ":lua require'dap-python'.test_method()<CR>", 'Debug to cursor' },
-        o = { ":lua require'dap'.step_over()<CR>", 'Step over' },
+        c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+        s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
+        R = { ":lua require'dap'.run_to_cursor()<cr>", "Run to Cursor" },
         i = { ":lua require'dap'.step_into()<CR>", 'Step into' },
+        o = { ":lua require'dap'.step_over()<CR>", 'Step over' },
         O = { ":lua require'dap'.step_out()<CR>", 'Step out' },
+        p = { "<cmd>lua require'dap'.pause.toggle()<cr>", "Pause" },
+        g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
+        d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
+        x = { "<cmd>lua require'dap'.terminate()<cr>", "Terminate" },
+        q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
+        Q = {
+            "<cmd>lua require'dap'.close()<CR><cmd>lua require'dap.repl'.close()<CR><cmd>lua require'dapui'.close()<CR><cmd>DapVirtualTextForceRefresh<CR>",
+            "Quit Nvim DAP"
+        },
+        -- Show contents in Variable when mouse pointer hover
+        h = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Hover Variables" },
+        e = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
+        S = { "<cmd>lua require'dap.ui.widgets'.scopes()<cr>", "Scopes" },
         u = { ":lua require'dapui'.toggle()<CR>", 'Show/Hide Debug Sidebar' },
-        v = { ":lua require'dap.ui.widgets'.hover()<CR>", 'Show contents in variable' },
         V = {
             "<cmd>lua local widgets=require'dap.ui.widgets'; widgets.centered_float(widgets.scopes)<CR>",
             'Use widgets to display the variables',
         },
+        -- REPEL
+        r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
     },
     -- Search files
     s = {
@@ -225,3 +240,17 @@ local opts = {
 }
 
 which_key.register(mappings, opts)
+
+
+local keymap_v = {
+    name = "Debug",
+    e = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
+}
+which_key.register(keymap_v, {
+    mode = "v",
+    prefix = "<Leader>",
+    buffer = nil,
+    silent = true,
+    noremap = true,
+    nowait = false,
+})
