@@ -2,10 +2,6 @@
 -- Global Functions
 -----------------------------------------------------------
 
-PYENV_ROOT_PATH = HOME .. '/.pyenv'
-PYENV_GLOBAL_PATH = PYENV_ROOT_PATH .. '/versions/venv-nvim'
-PYTHON_BINARY = PYENV_GLOBAL_PATH .. '/bin/python3'
-
 function _G.is_empty(str)
     return str == nil or str == ''
 end
@@ -42,6 +38,15 @@ function _G.which_os()
     end
 
     return system_name
+end
+
+function _G.get_python_path_in_venv()
+    local venv = os.getenv("VIRTUAL_ENV")
+    if not venv then
+        return PYTHON_BINARY
+    else
+        return vim.fn.getcwd() .. string.format("%s/bin/python", venv)
+    end
 end
 
 function _G.print_rtp()

@@ -9,14 +9,12 @@ end
 
 M = {}
 
-M.setup = function (python_path)
-
+M.setup = function (dap)
     -- configure DAP Adapter
-    local dap = require('dap')
     dap.adapters.python = {
-        type = 'executable';
-        command = python_path;
-        args = { '-m', 'debugpy.adapter' };
+        type = 'executable',
+        command = 'python',
+        args = { '-m', 'debugpy.adapter' },
     }
 
     -- configure configurations of DAP Adapter
@@ -34,7 +32,7 @@ M.setup = function (python_path)
             console = 'integratedTerminal',
             justMyCode = true,
             pythonPath = function ()
-                return python_path
+                return DEBUGPY
             end,
         },
     }

@@ -1,9 +1,18 @@
 -----------------------------------------------------------
+-- Global Functions
+-- 載入 my-nvim 作業時，所需之各種 Global Functions 。
+-----------------------------------------------------------
+-- vim.api.nvim_command('luafile ~/.config/my-nvim/lua/globals.lua')
+require('globals')
+
+-----------------------------------------------------------
 -- Initial environments for Neovim
 -- 設定 my-nvim 作業時，所需之「全域常數」。
 -----------------------------------------------------------
 DEBUG = false
+
 MY_VIM = 'my-nvim'
+OS_SYS = which_os()
 HOME = os.getenv('HOME')
 
 CONFIG_DIR = HOME .. '/.config/' .. MY_VIM
@@ -30,17 +39,10 @@ LSP_SERVERS = {
 }
 
 -----------------------------------------------------------
--- Global Functions
--- 載入 my-nvim 作業時，所需之各種 Global Functions 。
------------------------------------------------------------
-vim.api.nvim_command('luafile ~/.config/my-nvim/lua/globals.lua')
-
------------------------------------------------------------
 -- Initial environment
 -- 執行「初始」作業，變更 Neovim 的 Run Time Path (rtp)，
 -- 以便 my-nvim 可在「目錄路徑」： ~/.config/my-nvim/ 運行。
 -----------------------------------------------------------
-
 -- Setup runtimepath(rtp):
 local function setup_rtp()
 	-- 變更 stdpath('config') 預設的 rtp : ~/.config/nvim/
@@ -135,8 +137,8 @@ elseif INSTALLED then
     require('plugins-rc.toggleterm')
 	require('plugins-rc.yabs')
 	-- debug
+	require('dap-debug')
 	require('plugins-rc.ultest')
-	require('debug')
     -- versional control
 	require('plugins-rc.neogit')
 	require('plugins-rc.gitsigns')

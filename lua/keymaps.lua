@@ -104,15 +104,10 @@ keymap('n', '<C-Right>', '<cmd>wincmd l<CR>', opts)
 -- keymap('n', '<C-l>', '<C-w><Right>', {})
 
 -- Window Resize
-keymap('n', '<M-Up>', '<cmd>wincmd -<CR>', opts)
-keymap('n', '<M-Down>', '<cmd>wincmd +<CR>', opts)
-keymap('n', '<M-Left>', '<cmd>wincmd <<CR>', opts)
+keymap('n', '<M-Up>',    '<cmd>wincmd -<CR>', opts)
+keymap('n', '<M-Down>',  '<cmd>wincmd +<CR>', opts)
+keymap('n', '<M-Left>',  '<cmd>wincmd <<CR>', opts)
 keymap('n', '<M-Right>', '<cmd>wincmd ><CR>', opts)
-
-keymap('n', '<F1>', '<cmd>wincmd -<CR>', opts)
-keymap('n', '<F2>', '<cmd>wincmd +<CR>', opts)
-keymap('n', '<F3>', '<cmd>wincmd <<CR>', opts)
-keymap('n', '<F4>', '<cmd>wincmd ><CR>', opts)
 
 --------------------------------------------------------------------
 -- Buffers

@@ -84,27 +84,16 @@ end
 local function load_language_specific_dap()
 
     -- Python Language
-    local venv = os.getenv("VIRTUAL_ENV")
-    local python_path = vim.fn.getcwd() .. string.format("%s/bin/python",venv)
-    print('python_path = ', python_path)
-    -- configure DAP Adapter
-    require('nvim-dap-python').setup(python_path)
+    -- require('dap-debug.dap.django').setup(dap)
+    require('dap-debug.dap.python').setup(dap)
 
-    -- custom configuration for Django Project
-    table.insert(dap.configurations.python, {
-        type = 'python',
-        request = 'launch',
-        name = 'Django',
-        program = vim.fn.getcwd() .. '/manage.py',
-        args = { 'runserver', '--noreload' },
-    })
+    -- Lua language
+    require('dap-debug.dap.lua').setup(dap)
 
     -- local dap_config = {
-    --     python = require('debug.dap-python'),
-    --     lua = require('debug.dap-lua'),
+    --     python = require('dap-debug.dap-python'),
+    --     lua = require('dap-debug.dap-lua'),
     -- }
-    -- -- require('debug.lua-dap').setup()
-    -- -- require('debug.python-dap').setup()
     -- for dap_name, dap_options in pairs(dap_config) do
     --     dap.adapters[dap_name] = dap_options.adapters
     --     dap.configurations[dap_name] = dap_options.configurations
@@ -122,11 +111,11 @@ configure_debug_ui()
 -- DAP 操作之各項「操作指令」，於 which_key 中之 "debug" 指令選單中設定。
 -- 設定【快捷鍵】
 vim.cmd([[
-    nnoremap <silent> <F4>  :lua require'dap'.repl.open()<CR>
-    nnoremap <silent> <F5>  :lua require'dap'.continue()<CR>
-    nnoremap <silent> <F9>  :lua require'dap'.toggle_breakpoint()<CR>
-    nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
-    nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
-    nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
+    nnoremap <silent> <F4>  <cmd>lua require'dap'.repl.open()<CR>
+    nnoremap <silent> <F5>  <cmd>lua require'dap'.continue()<CR>
+    nnoremap <silent> <F9>  <cmd>lua require'dap'.toggle_breakpoint()<CR>
+    nnoremap <silent> <F10> <cmd>lua require'dap'.step_over()<CR>
+    nnoremap <silent> <F11> <cmd>lua require'dap'.step_into()<CR>
+    nnoremap <silent> <F12> <cmd>lua require'dap'.step_out()<CR>
 ]])
 
