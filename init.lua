@@ -197,7 +197,13 @@ require('plugins-rc.which-key')
 
 -- Say hello
 local function blah()
-	print('init.lua is loaded!\n')
+	print('init.lua is loaded!')
+    print('====================================================================')
+    print(string.format('OS = %s', which_os()))
+    print(string.format('${workspaceFolder} = %s', vim.fn.getcwd()))
+    print(string.format('DEBUGPY = %s', DEBUGPY))
+    print(string.format('$VIRTUAL_ENV = %s', os.getenv('VIRTUAL_ENV')))
+    print('====================================================================')
 end
 
 blah()
