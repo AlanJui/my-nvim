@@ -121,6 +121,48 @@ local mappings = {
         -- REPEL
         r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
     },
+    -- Programming
+    p = {
+        name = 'programming',
+        a = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Do CodeAction' },
+        A = { '<cmd>lua vim.lsp.buf.range_code_action()<CR>', 'Do Range CodeAction' },
+        f = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'LSP formatting code' },
+        k = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'Show HoverDocument' },
+        r = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename code' },
+        s = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Show signature help' },
+        d = {
+            name = 'diagnostics',
+            e = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Open diagnostics floating' },
+            p = { '<cmd>lua vim.diagnostic.goto_prev()<CR>', 'Goto prev diagnostics' },
+            n = { '<cmd>lua vim.diagnostic.goto_next()<CR>', 'Goto next diagnostics' },
+            s = { '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', 'Set loclist' },
+            l = { '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', 'Show line diagnostics' },
+            D = { ':Telescope diagnostics<CR>', 'List diagnostics in worksapce' },
+            d = { ':Telescope diagnostics bufnr=0<CR>', 'List diagnostics current file' },
+        },
+        g = {
+            name = 'goto',
+            D = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Go to declaration' },
+            d = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'Go to definition' },
+            t = { '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Go to type definition' },
+            i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Go to Implementation' },
+            r = { '<cmd>lua vim.lsp.buf.references()<CR>', 'References' },
+        },
+        m = {
+            name = 'misc',
+            t = { ':set filetype=htmldjango<CR>', 'set file type to django template' },
+            T = { ':set filetype=html<CR>', 'set file type to HTML' },
+        },
+        w = {
+            name = 'workspace',
+            l = {
+                '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
+                'List workspace folders',
+            },
+            a = { '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', 'Add folder to workspace' },
+            r = { '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', 'Remove folder from workspace' },
+        },
+    },
     -- Search files
     s = {
         name = 'search',
