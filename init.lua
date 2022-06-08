@@ -33,6 +33,8 @@ LSP_SERVERS = {
 	'pyright',
 	'emmet_ls',
 	'html',
+	'cssls',
+    'stylelint_lsp',
 	'jsonls',
 	'rust_analyzer',
 	'tsserver',
@@ -128,6 +130,7 @@ elseif INSTALLED then
 	require('plugins-rc.nvim-tree')
 	-- editting tools
 	require('plugins-rc.autopairs')
+	require('plugins-rc.nvim-ts-autotag')
 	require('plugins-rc.undotree')
 	vim.cmd([[runtime ./lua/plugins-rc/vim-better-whitespace.rc.vim]])
 	vim.cmd([[runtime ./lua/plugins-rc/emmet-vim.rc.vim]])

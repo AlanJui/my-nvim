@@ -53,7 +53,13 @@ local servers = LSP_SERVERS
 -- Settings for servers
 local servers_settings = require("lsp/server-settings")
 
+
 for _, lsp in pairs(servers) do
+    if lsp == 'cssls' then
+        --Enable (broadcasting) snippet capability for completion
+        capabilities.textDocument.completion.completionItem.snippetSupport = true
+    end
+
 	local setup_opts = {
 		on_attach = on_attach,
 		capabilities = capabilities,

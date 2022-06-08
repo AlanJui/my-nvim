@@ -209,16 +209,24 @@ return require('packer').startup({
         -- Editting Tools
         -----------------------------------------------------------
         -- surroundings: parentheses, brackets, quotes, XML tags, and more
-        -- use({
-        --     'tpope/vim-surround',
-        --     requires = { 'tpope/vim-repeat' },
-        -- })
+        use({
+            'tpope/vim-surround',
+            requires = { 'tpope/vim-repeat' },
+        })
         -- Toggle comments in Neovim
         use({ 'tpope/vim-commentary' })
         -- Causes all trailing whitespace characters to be highlighted
         use({ 'ntpeters/vim-better-whitespace', })
         -- Auto close parentheses and repeat by dot dot dot ...
-        use({ 'windwp/nvim-autopairs', })
+        use({ 'windwp/nvim-autopairs' })
+        -- use({
+        --     'windwp/nvim-autopairs',
+        --     wants = 'nvim-treesitter',
+        --     module = {
+        --         'nvim-autopairs.completion.cmp',
+        --         'nvim-autopairs',
+        --     },
+        -- })
         -- Multiple cursor editting
         -- use({'mg979/vim-visual-multi'})
         -- visualizes undo history and makes it easier to browse and switch between different undo branches
@@ -228,8 +236,10 @@ return require('packer').startup({
         ---------------------------------------------------------------
         -- provides support for expanding abbreviations similar to emmet
         use({ 'mattn/emmet-vim', })
+        -- Auto tag
+        use({ 'windwp/nvim-ts-autotag', })
         -- Auto close tag
-        use({ 'alvan/vim-closetag', })
+        -- use({ 'alvan/vim-closetag', })
         -- Auto change html tags
         use({ 'AndrewRadev/tagalong.vim', })
         ---------------------------------------------------------------

@@ -1,45 +1,54 @@
 local yabs = safe_require('yabs')
 if not yabs then
-  return
+    return
 end
 
 local telescope = safe_require('telescope')
 if not telescope then
-  return
+    return
 end
 
 local M = {}
 
 function M.setup()
-  yabs:setup {
-    languages = {
-      -- Lua
-      lua = {
-        tasks = {
-          run = {
-            command = 'luafile %',
-            type = 'lua',
-          },
+    yabs:setup {
+        languages = {
+            -- Lua
+            lua = {
+                tasks = {
+                    run = {
+                        command = 'luafile %',
+                        type = 'lua',
+                    },
+                },
+            },
+            -- Django
+            django = {
+                tasks = {
+                    run = {
+                        command = 'python manage.py runserver',
+                        output = 'terminal',
+                    }
+                },
+            },
+            -- Python
+            python = {
+                tasks = {
+                    run = {
+                        command = 'python %',
+                        output = 'terminal',
+                    },
+                    monitor = {
+                        command = 'nodemon -e py %',
+                        output = 'terminal',
+                    },
+                },
+            },
+            -- Others
+            -- ...
         },
-      },
-      -- Python
-      python = {
-        tasks = {
-          run = {
-            command = 'python %',
-            output = 'terminal',
-          },
-          monitor = {
-            command = 'nodemon -e py %',
-            output = 'terminal',
-          },
-        },
-      },
-      -- Others
-      -- ...
-    },
-  }
-  telescope.load_extension "yabs"
+    }
+    telescope.load_extension "yabs"
 end
 
 -- return M

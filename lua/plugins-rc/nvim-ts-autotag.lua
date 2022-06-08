@@ -1,36 +1,22 @@
 -- nvim-ts-autotag.lua
-local nvim_treesitter = safe_require('nvim-treesitter')
 local nvim_ts_autotag = safe_require('nvim-ts-autotag')
-if not nvim_treesitter or not nvim_ts_autotag then
+if not nvim_ts_autotag then
     return
 end
 
-require('nvim-treesitter.configs').setup({
-    autotag = {
-        enable = true,
-        filetypes = {
-            "html",
-            "htmldjango",
-            "xml",
-            "javascript",
-            "javascriptreact", "typescriptreact",
-            "vue"
-        },
-    }
+local filetypes = {
+    'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript',
+    'xml',
+    'markdown',
+    'glimmer','handlebars','hbs'
+}
+
+local skip_tags = {
+  'area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'slot',
+  'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr','menuitem'
+}
+
+nvim_ts_autotag.setup({
+    filetypes = filetypes,
+    skip_tags = skip_tags,
 })
-
--- require('nvim-ts-autotag').setup({
---     filetypes = { "html", "htmldjango", "xml", "javascript", "javascriptreact", "typescriptreact", "vue" },
--- })
-
--- vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
---     vim.lsp.diagnostic.on_publish_diagnostics,
---     {
---         underline = true,
---         virtual_text = {
---             spacing = 5,
---             severity_limit = 'Warning',
---         },
---         update_in_insert = true,
---     }
--- )

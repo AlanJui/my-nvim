@@ -83,8 +83,15 @@ local mappings = {
         p = { ':TermExec cmd="python %"<CR>', 'Run python file'},
         d = { ':TermExec cmd="python -m pdb %"<CR>', 'Debug python file'},
         m = { ':TermExec cmd="nodemon -e py %"<CR>', 'Monitor python file'},
+        D = {
+            name = 'Django',
+            r = { ':TermExec cmd="python manage.py runserver"<CR>', 'Django runserver' },
+            R = { ':TermExec cmd="python manage.py runserver --noreload"<CR>', 'Django runserver --noreload' },
+            s = { ':TermExec cmd="python manage.py collectstatic"<CR>', 'Collect all static files' },
+            m = { ':TermExec cmd="python manage.py migrate"<CR>', 'Migrate DB' },
+        },
         L = {
-            name = 'lua',
+            name = 'Lua',
             r = { ':TermExec cmd="lua %"<CR>', 'Run lua file' }
         },
         P = {
