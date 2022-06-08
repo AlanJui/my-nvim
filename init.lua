@@ -202,7 +202,11 @@ local function blah()
     print(string.format('OS = %s', which_os()))
     print(string.format('${workspaceFolder} = %s', vim.fn.getcwd()))
     print(string.format('DEBUGPY = %s', DEBUGPY))
-    print(string.format('$VIRTUAL_ENV = %s', os.getenv('VIRTUAL_ENV')))
+
+    -- print(string.format('$VIRTUAL_ENV = %s', os.getenv('VIRTUAL_ENV')))
+    local util = require('utils.python')
+    local venv_python = util.get_python_path_in_venv()
+    print(string.format('$VIRTUAL_ENV = %s', venv_python))
     print('====================================================================')
 end
 

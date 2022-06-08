@@ -40,15 +40,6 @@ function _G.which_os()
     return system_name
 end
 
--- function _G.get_python_path_in_venv()
---     local venv = os.getenv("VIRTUAL_ENV")
---     if venv == nil then
---         return
---     else
---         return vim.fn.getcwd() .. string.format("%s/bin/python", venv)
---     end
--- end
-
 function _G.print_rtp()
     print(string.format('rtp = %s', vim.opt.rtp['_value']))
 end

@@ -7,7 +7,7 @@ let g:tex_flavor = "latex"
 ]]
 
 -- Folding Text
-vim.cmd [[
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
-]]
+-- vim.cmd [[
+-- autocmd BufWinLeave *.* mkview
+-- autocmd BufWinEnter *.* silent loadview
+-- ]]

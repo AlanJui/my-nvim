@@ -79,10 +79,15 @@ local mappings = {
     -- Code Runner
     c = {
         name = 'Code Runner',
-        r = {':TermExec cmd="python %"<CR>', 'Run python file'},
-        d = {':TermExec cmd="python -m pdb %"<CR>', 'Debug python file'},
-        m = {':TermExec cmd="nodemon -e py %"<CR>', 'Monitor python file'},
-        p = {
+        l = { ':TermExec cmd="lua %"<CR>', 'Run lua file' },
+        p = { ':TermExec cmd="python %"<CR>', 'Run python file'},
+        d = { ':TermExec cmd="python -m pdb %"<CR>', 'Debug python file'},
+        m = { ':TermExec cmd="nodemon -e py %"<CR>', 'Monitor python file'},
+        L = {
+            name = 'lua',
+            r = { ':TermExec cmd="lua %"<CR>', 'Run lua file' }
+        },
+        P = {
             name = 'Python',
             r = { ':update<CR>:exec "!python3" shellescape(@%,1)<CR>', 'Run Python file' },
             d = { ':update<CR>:sp term://python3 -m pdb %<CR>', 'Debug Python file' },
