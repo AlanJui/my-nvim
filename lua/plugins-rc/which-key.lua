@@ -88,7 +88,9 @@ local mappings = {
             r = { ':TermExec cmd="python manage.py runserver"<CR>', 'Django runserver' },
             R = { ':TermExec cmd="python manage.py runserver --noreload"<CR>', 'Django runserver --noreload' },
             s = { ':TermExec cmd="python manage.py collectstatic"<CR>', 'Collect all static files' },
-            m = { ':TermExec cmd="python manage.py migrate"<CR>', 'Migrate DB' },
+            S = { ':TermExec cmd="python manage.py createsuperuser"<CR>', 'Create super user' },
+            m = { ':TermExec cmd="python manage.py makemigrations"<CR>', 'Update DB' },
+            M = { ':TermExec cmd="python manage.py migrate"<CR>', 'Migrate DB' },
         },
         L = {
             name = 'Lua',

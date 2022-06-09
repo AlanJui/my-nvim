@@ -40,6 +40,11 @@ LSP_SERVERS = {
 	'tsserver',
 }
 
+-- Your own custom vscode style snippets
+SNIPPETS_PATH = {
+    CONFIG_DIR .. '/my-snippets/snippets',
+}
+
 -----------------------------------------------------------
 -- Initial environment
 -- 執行「初始」作業，變更 Neovim 的 Run Time Path (rtp)，

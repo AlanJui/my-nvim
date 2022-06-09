@@ -56,16 +56,14 @@ vim.api.nvim_set_keymap('s', '<M-m>', '<Plug>luasnip-next-choice', {})
 -- Add Snippets
 ------------------------------------------------------------
 
--- Load Vscode-like snippets:
--- To use existing vs-code style snippets from a plugin
--- (eg. rafamadriz/friendly-snippets)
---
-require('luasnip.loaders.from_vscode').lazy_load()
-
 -- Load your own custom vscode style snippets
 -- Path format: path/of/your/nvim/config/my-snippets
 -- require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./my-snippets" } })
-require('luasnip.loaders.from_vscode').lazy_load({ paths = { '~/.config/my-nvim/my-snippets/' } })
+SNIPPETS_PATH = {
+    '~/.config/my-nvim/my-snippets',
+}
+require('luasnip.loaders.from_vscode').lazy_load({ paths = SNIPPETS_PATH })
 
 require('luasnip').filetype_extend('vimwik', {'markdown'})
-require('luasnip').filetype_extend('htmldjango', { 'html' })
+require('luasnip').filetype_extend('html', { 'htmldjango' })
+-- require('luasnip').filetype_extend('htmldjango', { 'html' })
