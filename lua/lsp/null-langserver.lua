@@ -45,7 +45,7 @@ null_ls.setup({
         -- Python utility / library to sort imports alphabetically and
         -- automatically separate them into sections and by type.
         null_ls.builtins.formatting.isort,
-        -- HTML Template Linter and Formatter.
+        -- Django HTML Template Linter and Formatter.
         null_ls.builtins.diagnostics.djlint,
         null_ls.builtins.formatting.djlint,
         -- A pure-Python Django/Jinja template indenter without dependencies.

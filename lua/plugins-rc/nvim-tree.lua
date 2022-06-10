@@ -7,6 +7,7 @@ end
 -- following options are the default
 -- require("nvim-tree").setup({
 nvim_tree.setup({
+    auto_reload_on_write = true,
     -- disables netrw completely
     disable_netrw = true,
     -- hijack netrw window on startup
