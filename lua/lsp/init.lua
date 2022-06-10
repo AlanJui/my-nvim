@@ -6,8 +6,8 @@
 -- (3) Setup UI for Diagnostic
 -----------------------------------------------------------
 local lsp_installer = safe_require('nvim-lsp-installer')
-local lspconfig = safe_require('lspconfig')
-if not lsp_installer or not lspconfig then
+local lsp_config = safe_require('lspconfig')
+if not lsp_installer or not lsp_config then
 	return
 end
 
@@ -42,7 +42,8 @@ end
 -- Capabilities
 --------------------------------------------------------------------
 require("lsp/auto-cmp")
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 --------------------------------------------------------------------
 -- (2) Setup LSP Client
@@ -72,7 +73,8 @@ for _, lsp in pairs(servers) do
 		setup_opts = vim.tbl_deep_extend("force", custom_opts, setup_opts)
 	end
 
-	require("lspconfig")[lsp].setup(setup_opts)
+	-- require("lspconfig")[lsp].setup(setup_opts)
+	lsp_config[lsp].setup(setup_opts)
 end
 
 ----------------------------------------------------------------------
@@ -80,50 +82,55 @@ end
 ----------------------------------------------------------------------
 
 ---- Change diagnostic symbols in the sign column (gutter)
---local diagnostic_signs = {
---	Error = '',
---	Warn = '',
---	Hint = '',
---	Info = '',
---}
+local diagnostic_signs = {
+	Error = '',
+	Warn  = '',
+	Hint  = '',
+	Info  = '',
+}
 --for type, icon in pairs(diagnostic_signs) do
---	local hl = 'DiagnosticSign' .. type
---	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
---end
+for _, sign in ipairs(diagnostic_signs) do
+    vim.fn.sign_define(sign.name, {
+        texthl = sign.name,
+        text = sign.text,
+        numhl = '',
+    })
+end
 
 ---- Customizing how diagnostics are displayed
---vim.diagnostic.config({
---	underline = true,
---	-- disable virtual text
---	-- virtual_text = false,
---	-- virtual_text = true,
---	virtual_text = {
---		spacing = 2,
---		severity_limit = 'Warning',
---	},
---	-- show signs
---	signs = {
---		active = diagnostic_signs,
---	},
---	update_in_insert = true,
---	severity_sort = true,
---	float = {
---		focusable = false,
---		style = 'minimal',
---		border = 'rounded',
---		source = 'always',
---		header = '',
---		prefix = '',
---	},
---})
+vim.diagnostic.config({
+	-- disable virtual text
+	-- virtual_text = false,
+	-- virtual_text = true,
+	virtual_text = {
+		spacing = 2,
+		severity_limit = 'Warning',
+	},
+	-- show signs
+	signs = {
+		active = diagnostic_signs,
+	},
+	update_in_insert = true,
+    underline = true,
+	severity_sort = true,
+	float = {
+		focusable = false,
+		style = 'minimal',
+		border = 'rounded',
+		source = 'always',
+		header = '',
+		prefix = '',
+	},
+})
 
 ---- Setup UI: hover and popup dispalyed contents
---vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
---	border = 'rounded',
---})
---vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
---	border = 'rounded',
---})
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+	border = 'rounded',
+})
+
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+	border = 'rounded',
+})
 
 ---- Print diagnostics to message area
 ---- local PrintDiagnostics = require('lsp.print_diagnostics')

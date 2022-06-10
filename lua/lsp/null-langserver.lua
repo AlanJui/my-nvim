@@ -15,6 +15,7 @@ null_ls.setup({
         -- which modifies a subset of the source's default options.
         null_ls.builtins.formatting.prettier.with({
             filetypes = { "html", "css", "scss", "less", "javascript", "typescript", "vue", "json", "jsonc", "yaml", "markdown", "handlebars" },
+            extra_filetypes = { "json" },
         }),
         -- Snippet engine for Neovim
         null_ls.builtins.completion.luasnip,

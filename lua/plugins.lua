@@ -65,6 +65,8 @@ return require('packer').startup({
                 'ckipp01/stylua-nvim',
             },
         })
+        -- automatically highlighting other uses of the current word under the cursor
+        use({ 'RRethy/vim-illuminate' })
         -----------------------------------------------------------
         -- Completion: for auto-completion/suggestion/snippets
         -----------------------------------------------------------
