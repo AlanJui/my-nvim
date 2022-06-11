@@ -40,10 +40,18 @@ keymap('n', '<M-Up>', '<cmd>wincmd -<CR>', opts)
 --------------------------------------------------------------------
 -- Line editting
 --------------------------------------------------------------------
--- Blank whole line
-keymap('n', '<M-l>', '0d$', opts)
+-- Editting on Insert Mode
 keymap('i', '<M-l>', '<Esc>A', opts)
 keymap('i', '<M-j>', '<Esc>la', opts)
+keymap('i', '<M-,>', '<Esc>A,', opts)
+keymap('i', '<M-.>', '<Esc>A:', opts)
+keymap('i', '<LocalLeader>l', '<Esc>A', opts)
+keymap('i', '<LocalLeader>j', '<Esc>la', opts)
+keymap('i', '<LocalLeader>,', '<Esc>A,', opts)
+keymap('i', '<LocalLeader>.', '<Esc>A:', opts)
+-- Blank whole line
+keymap('n', '<M-l>', '0d$', opts)
+keymap('n', '<M-p>', 'pdd', opts)
 -- Remove Line
 keymap('i', '<C-Enter>',    '<Esc>kA', opts)
 -- Insert line
@@ -135,7 +143,7 @@ keymap('n', '<S-Tab>', '<cmd>bp<CR>', opts)
 --------------------------------------------------------------------
 -- Terminal mode
 --------------------------------------------------------------------
-keymap('t', '<Esc>', '<C-\\><C-n>', opts)
+-- keymap('t', '<Esc>', '<C-\\><C-n>', opts)
 
 --------------------------------------------------------------
 -- Nonbuild-in commands

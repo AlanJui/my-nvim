@@ -8,49 +8,62 @@ if not telescope then
     return
 end
 
-local M = {}
 
-function M.setup()
-    yabs:setup {
-        languages = {
-            -- Lua
-            lua = {
-                tasks = {
-                    run = {
-                        command = 'luafile %',
-                        type = 'lua',
-                    },
+yabs:setup({
+    languages = {
+        -- Lua
+        lua = {
+            tasks = {
+                run = {
+                    command = 'luafile %',
+                    type = 'lua',
                 },
             },
-            -- Django
-            django = {
-                tasks = {
-                    run = {
-                        command = 'python manage.py runserver',
-                        output = 'terminal',
-                    }
-                },
-            },
-            -- Python
-            python = {
-                tasks = {
-                    run = {
-                        command = 'python %',
-                        output = 'terminal',
-                    },
-                    monitor = {
-                        command = 'nodemon -e py %',
-                        output = 'terminal',
-                    },
-                },
-            },
-            -- Others
-            -- ...
         },
-    }
-    telescope.load_extension "yabs"
-end
+        -- Python
+        python = {
+            default_task = 'django_runserver',
+            tasks = {
+                run = {
+                    command = 'python %',
+                    output = 'terminal',
+                },
+                monitor = {
+                    command = 'nodemon -e py %',
+                    output = 'terminal',
+                },
+                django_runserver = {
+                    command = 'python manage.py runserver',
+                    output = 'quickfix',
+                },
+                django_shell = {
+                    command = 'python manage.py shell',
+                    output = 'terminal',
+                },
+                django_collect_static = {
+                    command = 'python manage.py collectstatic',
+                    output = 'terminal',
+                },
+                django_create_super_user = {
+                    command = 'python manage.py createsuperuser',
+                    output = 'terminal',
+                },
+                django_make_migrations = {
+                    command = 'python manage.py makemigrations',
+                    output = 'terminal',
+                },
+                django_migrate = {
+                    command = 'python manage.py migrate',
+                    output = 'terminal',
+                },
+                django_sql_migrate = {
+                    command = 'python manage.py sqlmigrate',
+                    output = 'terminal',
+                },
+            },
+        },
+        -- Others
+    },
+})
 
--- return M
-
-M.setup()
+telescope.load_extension "yabs"

@@ -65,6 +65,37 @@ local on_attach = function(client, bufnr)
         client.resolved_capabilities.document_formatting = false
     end
 
+    -- Neovim 0.7: highlight symbol under cursor
+    if client.resolved_capabilities.document_highlight then
+        vim.cmd [[
+            hi! LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
+            hi! LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
+            hi! LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
+            augroup lsp_document_highlight
+            autocmd! * <buffer>
+            autocmd! CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+            autocmd! CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+            autocmd! CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+            augroup END
+        ]]
+    end
+
+    -- Neovim v0.7: Show line diagnostics automatically in hover window
+    vim.api.nvim_create_autocmd("CursorHold", {
+    buffer = bufnr,
+    callback = function()
+        local opts = {
+        focusable = false,
+        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+        border = 'rounded',
+        source = 'always',
+        prefix = ' ',
+        scope = 'cursor',
+        }
+        vim.diagnostic.open_float(nil, opts)
+    end
+    })
+
     lsp_keymaps(bufnr)
     lsp_highlight_document(client)
 end

@@ -89,47 +89,75 @@ end
 ---- (3) Setup UI for Diannostics (Lint)
 -----------------------------------------------------------------------------------------------
 
----- Change diagnostic symbols in the sign column (gutter)
-local diagnostic_signs = {
-	Error = '',
-	Warn  = '',
-	Hint  = '',
-	Info  = '',
-}
---for type, icon in pairs(diagnostic_signs) do
-for _, sign in ipairs(diagnostic_signs) do
-    vim.fn.sign_define(sign.name, {
-        texthl = sign.name,
-        text = sign.text,
-        numhl = '',
-    })
-end
-
 ---- Customizing how diagnostics are displayed
 vim.diagnostic.config({
 	-- disable virtual text
-	-- virtual_text = false,
-	-- virtual_text = true,
-	virtual_text = {
-		spacing = 4,
-		severity_limit = 'Warning',
-	},
+	virtual_text = false,
+	-- virtual_text = {
+        -- prefix = 'x',
+    -- },
 	-- show signs
-	signs = {
-		active = diagnostic_signs,
-	},
-	update_in_insert = true,
+	signs = true,
     underline = true,
+	update_in_insert = false,
 	severity_sort = true,
-	float = {
-		focusable = false,
-		style = 'minimal',
-		border = 'rounded',
-		source = 'always',
-		header = '',
-		prefix = '',
-	},
 })
+
+-- Change diagnostic symbols in the sign column (gutter)
+local signs = {
+    Error = " ",
+    Warn = " ",
+    Hint = " ",
+    Info = " "
+}
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+-- Filter by severity in sign column
+local orig_set_signs = vim.lsp.diagnostic.set_signs
+local set_signs_limited = function(diagnostics, bufnr, client_id, sign_ns, opts)
+  opts = opts or {}
+  opts.severity_limit = "Error"
+  orig_set_signs(diagnostics, bufnr, client_id, sign_ns, opts)
+end
+vim.lsp.diagnostic.set_signs = set_signs_limited
+
+-- Print diagnostics to message area
+function PrintDiagnostics(opts, bufnr, line_nr, client_id)
+  bufnr = bufnr or 0
+  line_nr = line_nr or (vim.api.nvim_win_get_cursor(0)[1] - 1)
+  opts = opts or {['lnum'] = line_nr}
+
+  local line_diagnostics = vim.diagnostic.get(bufnr, opts)
+  if vim.tbl_isempty(line_diagnostics) then return end
+
+  local diagnostic_message = ""
+  for i, diagnostic in ipairs(line_diagnostics) do
+    diagnostic_message = diagnostic_message .. string.format("%d: %s", i, diagnostic.message or "")
+    print(diagnostic_message)
+    if i ~= #line_diagnostics then
+      diagnostic_message = diagnostic_message .. "\n"
+    end
+  end
+  vim.api.nvim_echo({{diagnostic_message, "Normal"}}, false, {})
+end
+
+vim.cmd [[ autocmd! CursorHold * lua PrintDiagnostics() ]]
+
+-- Highlight line number instead of having icons in sign column
+vim.cmd [[
+  highlight! DiagnosticLineNrError guibg=#51202A guifg=#FF0000 gui=bold
+  highlight! DiagnosticLineNrWarn guibg=#51412A guifg=#FFA500 gui=bold
+  highlight! DiagnosticLineNrInfo guibg=#1E535D guifg=#00FFFF gui=bold
+  highlight! DiagnosticLineNrHint guibg=#1E205D guifg=#0000FF gui=bold
+
+  sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticLineNrError
+  sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=DiagnosticLineNrWarn
+  sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=DiagnosticLineNrInfo
+  sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=DiagnosticLineNrHint
+]]
 
 ---- Setup UI: hover and popup dispalyed contents
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {

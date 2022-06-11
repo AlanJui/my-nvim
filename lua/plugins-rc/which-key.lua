@@ -51,7 +51,7 @@ local mappings = {
     ['v'] = { ':FloatermNew --height=0.7 --width=0.9 --wintype=float  vifm<CR>', 'ViFm' },
     ['/'] = { 'gcc', 'Comment out (Toggle)' },
     ['\\'] = { ':NvimTreeToggle<CR>', 'File explorer' },
-    ['r'] = { ':Telescope yabs tasks<CR>', 'List tasks of YABS' },
+    ['y'] = { ':Telescope yabs tasks<CR>', 'List tasks of YABS' },
     ['z'] = { 'UndotreeToggle<CR>', 'Undo tree' },
     -- Actions
     a = {
@@ -76,69 +76,9 @@ local mappings = {
         ['['] = { 'gT', 'Prev. buffer' },
         [']'] = { 'gt', 'Next buffer' },
     },
-    -- Code Runner
+    -- Coding
     c = {
-        name = 'Code Runner',
-        l = { ':TermExec cmd="lua %"<CR>', 'Run lua file' },
-        p = { ':TermExec cmd="python %"<CR>', 'Run python file'},
-        d = { ':TermExec cmd="python -m pdb %"<CR>', 'Debug python file'},
-        m = { ':TermExec cmd="nodemon -e py %"<CR>', 'Monitor python file'},
-        D = {
-            name = 'Django',
-            r = { ':TermExec cmd="python manage.py runserver"<CR>', 'Django runserver' },
-            R = { ':TermExec cmd="python manage.py runserver --noreload"<CR>', 'Django runserver --noreload' },
-            c = { ':TermExec cmd="python manage.py collectstatic"<CR>', 'Collect all static files' },
-            s = { ':TermExec go_back=0 cmd="python manage.py shell"<CR>', 'manage.py shell' },
-            S = { ':TermExec go_back=0 cmd="python manage.py createsuperuser"<CR>', 'Create super user' },
-            m = { ':TermExec go_back=0 cmd="python manage.py makemigrations"<CR>', 'Update DB' },
-            M = { ':TermExec go_back=0 cmd="python manage.py migrate"<CR>', 'Migrate DB' },
-        },
-        L = {
-            name = 'Lua',
-            r = { ':TermExec cmd="lua %"<CR>', 'Run lua file' }
-        },
-        P = {
-            name = 'Python',
-            r = { ':update<CR>:exec "!python3" shellescape(@%,1)<CR>', 'Run Python file' },
-            d = { ':update<CR>:sp term://python3 -m pdb %<CR>', 'Debug Python file' },
-            n = { ':update<CR>:sp term://nodemon -e py %<CR>', 'Monitor the file' },
-        },
-    },
-    -- Debug
-    d = {
-        name = 'debug',
-        b = { "<cmd>lua require'dap'.toggle_breakpoint()<CR>", 'Toggle breakpoint' },
-        B = { "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition<cmd> '))<CR>", 'Condition breakpoint' },
-        c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
-        s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
-        R = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run to Cursor" },
-        i = { "<cmd>lua require'dap'.step_into()<CR>", 'Step into' },
-        o = { "<cmd>lua require'dap'.step_over()<CR>", 'Step over' },
-        O = { "<cmd>lua require'dap'.step_out()<CR>", 'Step out' },
-        p = { "<cmd>lua require'dap'.pause.toggle()<cr>", "Pause" },
-        g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
-        d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
-        x = { "<cmd>lua require'dap'.terminate()<cr>", "Terminate" },
-        q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
-        Q = {
-            "<cmd>lua require'dap'.close()<CR><cmd>lua require'dap.repl'.close()<CR><cmd>lua require'dapui'.close()<CR><cmd>DapVirtualTextForceRefresh<CR>",
-            "Quit Nvim DAP"
-        },
-        -- Show contents in Variable when mouse pointer hover
-        h = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Hover Variables" },
-        e = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
-        S = { "<cmd>lua require'dap.ui.widgets'.scopes()<cr>", "Scopes" },
-        u = { "<cmd>lua require'dapui'.toggle()<CR>", 'Show/Hide Debug Sidebar' },
-        V = {
-            "<cmd>lua local widgets=require'dap.ui.widgets'; widgets.centered_float(widgets.scopes)<CR>",
-            'Use widgets to display the variables',
-        },
-        -- REPEL
-        r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
-    },
-    -- Programming
-    p = {
-        name = 'programming',
+        name = 'Coding',
         a = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Do CodeAction' },
         A = { '<cmd>lua vim.lsp.buf.range_code_action()<CR>', 'Do Range CodeAction' },
         f = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'LSP formatting code' },
@@ -176,6 +116,66 @@ local mappings = {
             },
             a = { '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', 'Add folder to workspace' },
             r = { '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', 'Remove folder from workspace' },
+        },
+    },
+    -- Debug
+    d = {
+        name = 'debug',
+        b = { "<cmd>lua require'dap'.toggle_breakpoint()<CR>", 'Toggle breakpoint' },
+        B = { "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition<cmd> '))<CR>", 'Condition breakpoint' },
+        c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+        s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
+        R = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run to Cursor" },
+        i = { "<cmd>lua require'dap'.step_into()<CR>", 'Step into' },
+        o = { "<cmd>lua require'dap'.step_over()<CR>", 'Step over' },
+        O = { "<cmd>lua require'dap'.step_out()<CR>", 'Step out' },
+        p = { "<cmd>lua require'dap'.pause.toggle()<cr>", "Pause" },
+        g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
+        d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
+        x = { "<cmd>lua require'dap'.terminate()<cr>", "Terminate" },
+        q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
+        Q = {
+            "<cmd>lua require'dap'.close()<CR><cmd>lua require'dap.repl'.close()<CR><cmd>lua require'dapui'.close()<CR><cmd>DapVirtualTextForceRefresh<CR>",
+            "Quit Nvim DAP"
+        },
+        -- Show contents in Variable when mouse pointer hover
+        h = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Hover Variables" },
+        e = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
+        S = { "<cmd>lua require'dap.ui.widgets'.scopes()<cr>", "Scopes" },
+        u = { "<cmd>lua require'dapui'.toggle()<CR>", 'Show/Hide Debug Sidebar' },
+        V = {
+            "<cmd>lua local widgets=require'dap.ui.widgets'; widgets.centered_float(widgets.scopes)<CR>",
+            'Use widgets to display the variables',
+        },
+        -- REPEL
+        r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
+    },
+    -- Running code
+    r = {
+        name = 'Code Runner',
+        l = { ':TermExec cmd="lua %"<CR>', 'Run lua file' },
+        p = { ':TermExec cmd="python %"<CR>', 'Run python file'},
+        d = { ':TermExec cmd="python -m pdb %"<CR>', 'Debug python file'},
+        m = { ':TermExec cmd="nodemon -e py %"<CR>', 'Monitor python file'},
+        D = {
+            name = 'Django',
+            r = { ':TermExec cmd="python manage.py runserver"<CR>', 'Django runserver' },
+            R = { ':TermExec cmd="python manage.py runserver --noreload"<CR>', 'Django runserver --noreload' },
+            c = { ':TermExec cmd="python manage.py collectstatic"<CR>', 'Collect all static files' },
+            s = { ':TermExec go_back=0 size=20 cmd="python manage.py shell"<CR>', 'manage.py shell' },
+            S = { ':TermExec go_back=0 cmd="python manage.py createsuperuser"<CR>', 'Create super user' },
+            m = { ':TermExec go_back=0 cmd="python manage.py makemigrations"<CR>', 'Update DB' },
+            M = { ':TermExec go_back=0 cmd="python manage.py migrate"<CR>', 'Migrate DB' },
+        },
+        L = {
+            name = 'Lua',
+            r = { ':TermExec cmd="lua %"<CR>', 'Run lua file' }
+        },
+        P = {
+            name = 'Python',
+            r = { ':update<CR>:exec "!python3" shellescape(@%,1)<CR>', 'Run Python file' },
+            d = { ':update<CR>:sp term://python3 -m pdb %<CR>', 'Debug Python file' },
+            n = { ':update<CR>:sp term://nodemon -e py %<CR>', 'Monitor the file' },
         },
     },
     -- Search files

@@ -29,6 +29,7 @@ end
 
 LSP_SERVERS = {
 	'sumneko_lua',
+    'diagnosticls',
 	'texlab',
 	'pyright',
 	'emmet_ls',
