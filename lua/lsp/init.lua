@@ -27,33 +27,38 @@ require("nvim-lsp-installer").setup({
 	},
 	-- The directory in which to installl servers.
 	-- install_root_dir = RUNTIME_DIR .. '/lsp_servers',
-	install_root_dir = '/Users/alanjui/.local/share/my-nvim' .. '/lsp_servers',
+	-- install_root_dir = '/Users/alanjui/.local/share/my-nvim' .. '/lsp_servers',
+	install_root_dir = RUNTIME_DIR .. '/lsp_servers',
 })
 
 -----------------------------------------------------------------------------------------------
 -- (2) Setup LSP client for connectting to LSP server
 -----------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------
 -- on_attach: to map keys after the languate server attaches to the current buffer
+-----------------------------------------------------------------------------------------------
+-- local on_attach = require('lsp/on-attach') or {}
 local on_attach = safe_require("lsp/on-attach")
 if not on_attach then
-	return
+    on_attach = nil
 end
 
+-----------------------------------------------------------------------------------------------
 -- Capabilities
---------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+
+-- Setup nvim-cmp plugin
 require("lsp/auto-cmp")
+
+-- Initial capabilities option for LSP client
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
---------------------------------------------------------------------
--- (2) Setup LSP Client
---------------------------------------------------------------------
-
+-----------------------------------------------------------------------------------------------
+-- Get extra setup options and setup for LSP server
+-----------------------------------------------------------------------------------------------
 local servers = LSP_SERVERS
-
--- Settings for servers
-local servers_settings = require("lsp/server-settings")
-
 
 for _, lsp in pairs(servers) do
     if lsp == 'cssls' then
@@ -68,18 +73,21 @@ for _, lsp in pairs(servers) do
 	}
 
 	-- Get configuration of specific server
-	local custom_opts = servers_settings[lsp] or {}
-	if custom_opts then
-		setup_opts = vim.tbl_deep_extend("force", custom_opts, setup_opts)
-	end
+	-- local custom_opts = servers_settings[lsp] or {}
+	-- if custom_opts then
+	-- 	setup_opts = vim.tbl_deep_extend("force", custom_opts, setup_opts)
+	-- end
+    local has_custom_opts, lsp_custom_opts = pcall(require, 'lsp.settings.' .. lsp)
+    if has_custom_opts then
+        setup_opts = vim.tbl_deep_extend('force', lsp_custom_opts, setup_opts)
+    end
 
-	-- require("lspconfig")[lsp].setup(setup_opts)
 	lsp_config[lsp].setup(setup_opts)
 end
 
-----------------------------------------------------------------------
----- (3) Setup UI for Diannostics
-----------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+---- (3) Setup UI for Diannostics (Lint)
+-----------------------------------------------------------------------------------------------
 
 ---- Change diagnostic symbols in the sign column (gutter)
 local diagnostic_signs = {
@@ -103,7 +111,7 @@ vim.diagnostic.config({
 	-- virtual_text = false,
 	-- virtual_text = true,
 	virtual_text = {
-		spacing = 2,
+		spacing = 4,
 		severity_limit = 'Warning',
 	},
 	-- show signs
@@ -131,15 +139,3 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
 	border = 'rounded',
 })
-
----- Print diagnostics to message area
----- local PrintDiagnostics = require('lsp.print_diagnostics')
----- vim.cmd [[ autocmd CursorHold * lua PrintDiagnostics() ]]
----- Use floating popup window to display diagnostics from Language Server: Ref: on_attach
-
----- Show line diagnostics automatically in hover window
----- You will likely want to reduce updatetime which affects CursorHold
----- note: this setting is global and should be set only once
---vim.o.updatetime = 250
---vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
-
