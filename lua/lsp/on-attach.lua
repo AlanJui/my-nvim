@@ -61,7 +61,8 @@ local on_attach = function(client, bufnr)
 	  formatting_callback(client, bufnr)
 	end
 
-    if client.name == 'tsserver' or client.name == 'html' then
+    if client.name == 'tsserver' or client.name == 'html'
+        or client.name == 'diagnosticls' then
         client.resolved_capabilities.document_formatting = false
     end
 

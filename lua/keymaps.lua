@@ -43,15 +43,18 @@ keymap('n', '<M-Up>', '<cmd>wincmd -<CR>', opts)
 -- Editting on Insert Mode
 keymap('i', '<M-l>', '<Esc>A', opts)
 keymap('i', '<M-j>', '<Esc>la', opts)
-keymap('i', '<M-,>', '<Esc>A,', opts)
-keymap('i', '<M-.>', '<Esc>A:', opts)
 keymap('i', '<LocalLeader>l', '<Esc>A', opts)
 keymap('i', '<LocalLeader>j', '<Esc>la', opts)
-keymap('i', '<LocalLeader>,', '<Esc>A,', opts)
-keymap('i', '<LocalLeader>.', '<Esc>A:', opts)
+keymap('i', '<M-,>', '<Esc>A,', opts)
+keymap('i', '<M-.>', '<Esc>A:', opts)
+-- keymap('i', '<LocalLeader>,', '<Esc>A,', opts)
+-- keymap('i', '<LocalLeader>.', '<Esc>A:', opts)
 -- Blank whole line
 keymap('n', '<M-l>', '0d$', opts)
 keymap('n', '<M-p>', 'pdd', opts)
+-- Indent / Unident a line
+keymap('n', '<M->>', 'V><Esc>', opts)
+keymap('n', '<M-<>', 'V<<Esc>', opts)
 -- Remove Line
 keymap('i', '<C-Enter>',    '<Esc>kA', opts)
 -- Insert line

@@ -42,7 +42,8 @@ local kind_icons = {
 
 cmp.setup({
     cmpletion = {
-        completeopt = "menu, menuone, noinsert",
+        -- completeopt = "menu, menuone, noinsert",
+        completeopt = "menu, menuone, noselect",
     },
     snippet = {
         -- REQUIRED - you must specify a snippet engine
@@ -51,7 +52,7 @@ cmp.setup({
         end,
     },
     window = {
-        -- completion = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
     },
     sources = cmp.config.sources({
@@ -96,12 +97,6 @@ cmp.setup({
         format = function(entry, vim_item)
             -- fancy icons and a name of kind
             vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-            -- vim_item.kind = require('lspkind').presets.default[vim_item.kind]
-            -- vim_item.kind = string.format(
-            --     '%s %s',
-            --     lspkind.presets.default[vim_item.kind],
-            --     vim_item.kind
-            -- )
             -- set a name for each source
             vim_item.menu = ({
                 buffer = "[Buff]",
