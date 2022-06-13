@@ -17,6 +17,7 @@ if vim.fn.empty(fn.glob(INSTALL_PATH)) > 0 then
         'https://github.com/wbthomason/packer.nvim',
         INSTALL_PATH,
     })
+    vim.api.nvim_command('packadd packer.nvim')
 end
 
 if DEBUG then
