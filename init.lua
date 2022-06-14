@@ -181,7 +181,13 @@ require('settings')
 -- Color Themes
 -- Neovim 畫面的色彩設定
 -----------------------------------------------------------
-require('color-themes')
+if not INSTALLED or DEBUG then
+    print('<< Load default colorscheme >>')
+    -- Use solarized8_flat color scheme when first time start my-nvim
+    vim.cmd([[ colorscheme solarized8_flat ]])
+else
+    require('color-themes')
+end
 
 -----------------------------------------------------------
 -- Key bindings
@@ -193,7 +199,9 @@ require('keymaps')
 
 -- Load Which-key
 -- 提供【選單】式的指令操作
-require('plugins-rc.which-key')
+if INSTALLED then
+    require('plugins-rc.which-key')
+end
 
 -----------------------------------------------------------
 -- Experiments

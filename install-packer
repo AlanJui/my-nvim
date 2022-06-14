@@ -1,18 +1,4 @@
 #!/bin/sh
-export MY_NVIM="my-nvim"
-export MY_CONFIG_DIR="$HOME/.config/$MY_NVIM"
-export MY_RUNTIME_DIR="$HOME/.local/share/$MY_NVIM"
-export INSTALL_PATH="${HOME}/.local/share/${MY_NVIM}/site/pack/packer/start"
 
-clear
-echo 'Create dir for install packer.nvim'
-mkdir -p "$INSTALL_PATH"
-
-echo 'Download packer.nvim from GitHub...'
-git clone --depth 1 https://github.com/wbthomason/packer.nvim "$INSTALL_PATH/packer.nvim"
-
-echo 'Install nvim.packer'
-exec nvim -u "$MY_CONFIG_DIR/init.lua" --headless  -c "autocmd User PackerComplete quitall" -c "PackerSync"
-
-pause
-ls -al "$INSTALL_PATH"
+echo 'Install nvim.packer and all plugins for Neovim'
+my-nvim --headless  -c "autocmd User PackerComplete quitall" -c "PackerSync"

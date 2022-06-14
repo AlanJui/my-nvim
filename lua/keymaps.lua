@@ -13,9 +13,6 @@ vim.g.maplocalleader = ","
 
 keymap('i', 'jj', '<Esc>', opts)
 
--- On/Off File explorer
-keymap('n', '<LocalLeader>e', ':NvimTreeToggle<CR>', opts )
-
 -- Ctrl-s: to save
 keymap('n',  '<c-s>', ':w<CR>', {})
 keymap('i',  '<c-s>', '<Esc>:w<CR>a', {})
@@ -43,10 +40,11 @@ keymap('n', '<M-Up>', '<cmd>wincmd -<CR>', opts)
 -- Editting on Insert Mode
 keymap('i', '<M-l>', '<Esc>A', opts)
 keymap('i', '<M-j>', '<Esc>la', opts)
-keymap('i', '<LocalLeader>l', '<Esc>A', opts)
-keymap('i', '<LocalLeader>j', '<Esc>la', opts)
+-- keymap('i', '<LocalLeader>l', '<Esc>A', opts)
+-- keymap('i', '<LocalLeader>j', '<Esc>la', opts)
 keymap('i', '<M-,>', '<Esc>A,', opts)
 keymap('i', '<M-.>', '<Esc>A:', opts)
+keymap('i', '<M-:>', '<Esc>A:<CR>', opts)
 -- keymap('i', '<LocalLeader>,', '<Esc>A,', opts)
 -- keymap('i', '<LocalLeader>.', '<Esc>A:', opts)
 -- Blank whole line

@@ -18,6 +18,7 @@ if vim.fn.empty(fn.glob(INSTALL_PATH)) > 0 then
         INSTALL_PATH,
     })
     vim.api.nvim_command('packadd packer.nvim')
+    print('packer.nvim is installed and loaded...')
 end
 
 if DEBUG then
@@ -307,12 +308,14 @@ return require('packer').startup({
         -----------------------------------------------------------
         -- Polyglot language extensions
         -----------------------------------------------------------
-        -- Test runner building upon vim-test with nvim-dap support.
-        use({
-            'rcarriga/vim-ultest',
-            requires = { 'vim-test/vim-test' },
-            run = ':UpdateRemotePlugins',
-        })
+        -- -- A Vim wrapper for running tests on different granularities.
+        -- use({ 'vim-test/vim-test' }) 
+        -- -- Test runner building upon vim-test with nvim-dap support.
+        -- use({
+        --     'rcarriga/vim-ultest',
+        --     requires = { 'vim-test/vim-test' },
+        --     run = ':UpdateRemotePlugins',
+        -- })
         -----------------------------------------------------------
         -- Utility
         -----------------------------------------------------------
