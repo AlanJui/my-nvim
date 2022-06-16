@@ -99,14 +99,13 @@ cmp.setup({
             vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
             -- set a name for each source
             vim_item.menu = ({
-                buffer = "[Buff]",
                 nvim_lsp = "[LSP]",
-                nvim_lua = "[Lua]",
+                buffer = "[Buff]",
                 luasnip = "[LuaSnip]",
+                nvim_lua = "[Lua]",
                 latex_symbols = "[Latex]",
                 spell = "[Spell]",
                 treesitter = "[TreeSitter]",
-                vsnip = "[VsSnip]",
                 zsh = "[Zsh]",
                 path = "[Path]",
             })[entry.source.name]

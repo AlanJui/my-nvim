@@ -91,7 +91,6 @@ local mappings = {
             p = { '<cmd>lua vim.diagnostic.goto_prev()<CR>', 'Goto prev diagnostics' },
             n = { '<cmd>lua vim.diagnostic.goto_next()<CR>', 'Goto next diagnostics' },
             s = { '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', 'Set loclist' },
-            l = { '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', 'Show line diagnostics' },
             D = { ':Telescope diagnostics<CR>', 'List diagnostics in worksapce' },
             d = { ':Telescope diagnostics bufnr=0<CR>', 'List diagnostics current file' },
         },
