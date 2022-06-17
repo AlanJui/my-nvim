@@ -57,12 +57,12 @@ local on_attach = function(client, bufnr)
 	-- recommended to avoid this if possible. Each server attached to a buffer carries a small
 	-- amount of performance overhead, and the response to each request is overwritten by the
 	-- previous server's response.
-	if client.name ~= 'sumneko_lua' then
-	  formatting_callback(client, bufnr)
-	end
+	-- if client.name ~= 'sumneko_lua' then
+	--   formatting_callback(client, bufnr)
+	-- end
 
     if client.name == 'tsserver' or client.name == 'html'
-        or client.name == 'diagnosticls' then
+        or client.name == 'diagnosticls' or client.name == 'sumneko_lua' then
         client.resolved_capabilities.document_formatting = false
     end
 

@@ -29,22 +29,22 @@ end
 
 LSP_SERVERS = {
 	'sumneko_lua',
-    'diagnosticls',
+	'diagnosticls',
 	'texlab',
 	'pyright',
 	'emmet_ls',
 	'html',
 	'cssls',
-    'stylelint_lsp',
+	'stylelint_lsp',
 	'jsonls',
 	'rust_analyzer',
 	'tsserver',
 }
 
+DEBUGPY = '~/.virtualenvs/debugpy/bin/python'
+
 -- Your own custom vscode style snippets
-SNIPPETS_PATH = {
-    CONFIG_DIR .. '/my-snippets/snippets',
-}
+SNIPPETS_PATH = { CONFIG_DIR .. '/my-snippets/snippets' }
 
 -----------------------------------------------------------
 -- Initial environment
@@ -90,7 +90,7 @@ end
 -- 當 packer.nvim 尚未安裝，可自動執行下載及安裝作業；
 -- 若 packer.nvim 已安裝，則執行擴充套件 (plugins) 的載入作業。
 ---------------------------------------------------------------
-require('plugins')
+require('load-plugins')
 
 -- configure Neovim to automatically run :PackerCompile whenever
 -- plugins.lua is updated with an autocommand:
@@ -125,14 +125,14 @@ elseif INSTALLED then
 	-- status line
 	-- require('plugins-rc.lualine.material')
 	require('plugins-rc.lualine-material')
-    require('plugins-rc.tabline')
+	require('plugins-rc.tabline')
 	-- require('plugins-rc.lspstatus')
 	-- User Interface
 	require('plugins-rc.nvim-lightbulb')
 	require('plugins-rc.nvim-web-devicons')
 	require('plugins-rc.indent-blankline')
-    -- files management
-    require('plugins-rc.telescope-nvim')
+	-- files management
+	require('plugins-rc.telescope-nvim')
 	require('plugins-rc.nvim-tree')
 	-- editting tools
 	require('plugins-rc.autopairs')
@@ -143,18 +143,17 @@ elseif INSTALLED then
 	vim.cmd([[runtime ./lua/plugins-rc/vim-closetag.rc.vim]])
 	vim.cmd([[runtime ./lua/plugins-rc/tagalong-vim.rc.vim]])
 	-- programming
-    require('plugins-rc.toggleterm')
+	require('plugins-rc.toggleterm')
 	require('plugins-rc.yabs')
 	-- debug
 	require('dap-debug')
 	require('plugins-rc.ultest')
-    -- versional control
+	-- versional control
 	require('plugins-rc.neogit')
 	require('plugins-rc.gitsigns')
 	require('plugins-rc.vim-gist')
 	-- vim.cmd([[ runtime ./lua/plugins-rc/vim-signify.rc.vim]])
 	-- Utilities
-    require('plugins-rc.toggleterm')
 	vim.cmd([[runtime ./lua/plugins-rc/bracey.rc.vim]])
 	vim.cmd([[runtime ./lua/plugins-rc/vim-instant-markdown.rc.vim]])
 	vim.cmd([[runtime ./lua/plugins-rc/plantuml-previewer.rc.vim]])
@@ -182,11 +181,11 @@ require('settings')
 -- Neovim 畫面的色彩設定
 -----------------------------------------------------------
 if not INSTALLED or DEBUG then
-    print('<< Load default colorscheme >>')
-    -- Use solarized8_flat color scheme when first time start my-nvim
-    vim.cmd([[ colorscheme solarized8_flat ]])
+	print('<< Load default colorscheme >>')
+	-- Use solarized8_flat color scheme when first time start my-nvim
+	vim.cmd([[ colorscheme solarized8_flat ]])
 else
-    require('color-themes')
+	require('color-themes')
 end
 
 -----------------------------------------------------------
@@ -200,7 +199,7 @@ require('keymaps')
 -- Load Which-key
 -- 提供【選單】式的指令操作
 if INSTALLED then
-    require('plugins-rc.which-key')
+	require('plugins-rc.which-key')
 end
 
 -----------------------------------------------------------
@@ -215,16 +214,16 @@ end
 -- Say hello
 local function blah()
 	print('init.lua is loaded!')
-    print('====================================================================')
-    print(string.format('OS = %s', which_os()))
-    print(string.format('${workspaceFolder} = %s', vim.fn.getcwd()))
-    print(string.format('DEBUGPY = %s', DEBUGPY))
+	print('====================================================================')
+	print(string.format('OS = %s', which_os()))
+	print(string.format('${workspaceFolder} = %s', vim.fn.getcwd()))
+	print(string.format('DEBUGPY = %s', DEBUGPY))
 
-    -- print(string.format('$VIRTUAL_ENV = %s', os.getenv('VIRTUAL_ENV')))
-    local util = require('utils.python')
-    local venv_python = util.get_python_path_in_venv()
-    print(string.format('$VIRTUAL_ENV = %s', venv_python))
-    print('====================================================================')
+	-- print(string.format('$VIRTUAL_ENV = %s', os.getenv('VIRTUAL_ENV')))
+	local util = require('utils.python')
+	local venv_python = util.get_python_path_in_venv()
+	print(string.format('$VIRTUAL_ENV = %s', venv_python))
+	print('====================================================================')
 end
 
 blah()
