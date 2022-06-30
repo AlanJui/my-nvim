@@ -67,7 +67,8 @@ local on_attach = function(client, bufnr)
     end
 
     -- Neovim 0.7: highlight symbol under cursor
-    if client.resolved_capabilities.document_highlight then
+    if client.name ~= 'texlab' and
+       client.resolved_capabilities.document_highlight then
         vim.cmd [[
             hi! LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
             hi! LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
