@@ -63,12 +63,14 @@ local on_attach = function(client, bufnr)
 
     if client.name == 'tsserver' or client.name == 'html'
         or client.name == 'diagnosticls' or client.name == 'sumneko_lua' then
-        client.resolved_capabilities.document_formatting = false
+        -- client.resolved_capabilities.document_formatting = false
+				client.server_capabilities.documentFormattingProvider = true
     end
 
     -- Neovim 0.7: highlight symbol under cursor
     if client.name ~= 'texlab' and
-       client.resolved_capabilities.document_highlight then
+       -- client.resolved_capabilities.document_highlight then
+       client.server_capabilities.documentHighlightProvider then
         vim.cmd [[
             hi! LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
             hi! LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
