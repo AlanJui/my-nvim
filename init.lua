@@ -144,14 +144,14 @@ elseif INSTALLED then
 	vim.cmd([[runtime ./lua/plugins-rc/vim-closetag.rc.vim]])
 	vim.cmd([[runtime ./lua/plugins-rc/tagalong-vim.rc.vim]])
 	-- programming
-	-- require('plugins-rc.toggleterm')
+	require('plugins-rc.toggleterm')
 	require('plugins-rc.yabs')
 	-- debug
 	require('dap-debug')
 	require('plugins-rc.ultest')
 	-- versional control
 	require('plugins-rc.neogit')
-	-- require('plugins-rc.gitsigns')
+	require('plugins-rc.gitsigns')
 	require('plugins-rc.vim-gist')
 	-- vim.cmd([[ runtime ./lua/plugins-rc/vim-signify.rc.vim]])
 	-- Utilities

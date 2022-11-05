@@ -50,6 +50,7 @@ M.load = function(use)
 	-- Snippet Engine for Neovim written in Lua.
 	use({
 		"L3MON4D3/LuaSnip",
+        tag = "v<CurrentMajor>.*",
 		requires = {
 			-- Snippets collection for a set of different programming languages for faster development
 			"rafamadriz/friendly-snippets",
@@ -206,7 +207,13 @@ M.load = function(use)
 	-- Yet Another Build System
 	use({ "pianocomposer321/yabs.nvim", requires = { "nvim-lua/plenary.nvim" } })
 	-- terminal
-	use({ "akinsho/toggleterm.nvim", tag = "v1.*" })
+	use({
+        "akinsho/toggleterm.nvim",
+        tag = "*",
+        config = function()
+            require("toggleterm").setup()
+        end,
+    })
 	-----------------------------------------------------------
 	-- DAP
 	-----------------------------------------------------------
