@@ -51,11 +51,9 @@ M.load = function(use)
 	use({
 		"L3MON4D3/LuaSnip",
         tag = "v<CurrentMajor>.*",
-		requires = {
-			-- Snippets collection for a set of different programming languages for faster development
-			"rafamadriz/friendly-snippets",
-		},
 	})
+	-- Snippets collection for a set of different programming languages for faster development
+    use("rafamadriz/friendly-snippets")
 	-----------------------------------------------------------
 	-- Treesitter: for better syntax
 	-----------------------------------------------------------
