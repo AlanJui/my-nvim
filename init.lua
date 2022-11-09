@@ -29,17 +29,18 @@ if vim.fn.empty(vim.fn.glob(INSTALL_PATH)) == 0 then
 end
 
 LSP_SERVERS = {
+    'vimls',
 	'sumneko_lua',
 	'diagnosticls',
-	'texlab',
 	'pyright',
 	'emmet_ls',
 	'html',
 	'cssls',
 	'stylelint_lsp',
+    'eslint',
 	'jsonls',
-	'rust_analyzer',
 	'tsserver',
+	'texlab',
 }
 
 DEBUGPY = '~/.virtualenvs/debugpy/bin/python'
@@ -60,7 +61,7 @@ local function setup_rtp()
 	vim.opt.rtp:prepend(join_paths(RUNTIME_DIR, 'site'))
 	vim.opt.rtp:append(join_paths(RUNTIME_DIR, 'site', 'after'))
 
-	-- 變更 stdpath('data') 預設的 rtp : ~/.local/share/nvim/
+	-- 變更 stdpath('data') 預設的 rtp : ~/.local/share/my-nvim/
 	vim.opt.rtp:remove(vim.fn.stdpath('config'))
 	vim.opt.rtp:remove(join_paths(vim.fn.stdpath('config'), 'after'))
 	vim.opt.rtp:prepend(CONFIG_DIR)
@@ -119,12 +120,10 @@ elseif INSTALLED then
 
 	-- Neovim kernel
 	require('plugins-rc.nvim-treesitter')
-	require('lsp.luasnip')
 	-- lsp
 	require('lsp')
-	require('lsp.null-langserver')
+	-- require('lsp.null-langserver')
 	-- status line
-	-- require('plugins-rc.lualine.material')
 	require('plugins-rc.lualine-material')
 	require('plugins-rc.tabline')
 	-- require('plugins-rc.lspstatus')
@@ -137,10 +136,10 @@ elseif INSTALLED then
 	require('plugins-rc.nvim-tree')
 	-- editting tools
 	require('plugins-rc.autopairs')
+	require('plugins-rc.autopairs')
 	require('plugins-rc.nvim-ts-autotag')
 	require('plugins-rc.undotree')
 	vim.cmd([[runtime ./lua/plugins-rc/vim-better-whitespace.rc.vim]])
-	vim.cmd([[runtime ./lua/plugins-rc/emmet-vim.rc.vim]])
 	vim.cmd([[runtime ./lua/plugins-rc/vim-closetag.rc.vim]])
 	vim.cmd([[runtime ./lua/plugins-rc/tagalong-vim.rc.vim]])
 	-- programming
