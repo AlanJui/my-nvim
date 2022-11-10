@@ -108,8 +108,20 @@ else
     lsp.configure('pyright', {
         require('lua.lsp.settings.pyright')
     })
+    -- lsp.configure('html', {
+    --     require('lua.lsp.settings.html')
+    -- })
     lsp.configure('html', {
-        require('lua.lsp.settings.html')
+        filetypes = { 'html', 'htmldjango' },
+        init_options = {
+            configurationSection = { 'html', 'htmldjango', 'css', 'javascript' },
+            embeddedLanguages = {
+                css = true,
+                javascript = true,
+            },
+        },
+        settings = {},
+        single_file_support = true,
     })
     lsp.configure('texlab', {
         require('lua.lsp.settings.texlab')

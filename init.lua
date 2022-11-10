@@ -122,7 +122,7 @@ elseif INSTALLED then
 	require('plugins-rc.nvim-treesitter')
 	-- lsp
 	require('lsp')
-	-- require('lsp.null-langserver')
+	require('lsp.null-langserver')
 	-- status line
 	require('plugins-rc.lualine-material')
 	require('plugins-rc.tabline')

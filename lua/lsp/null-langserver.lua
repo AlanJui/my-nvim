@@ -32,7 +32,7 @@ null_ls.setup({
         -- flake8 is a python tool that glues together pycodestyle,
         -- pyflakes, mccabe, and third-party plugins to check the style
         -- and quality of Python code.
-        null_ls.builtins.diagnostics.flake8,
+        -- null_ls.builtins.diagnostics.flake8,
         -- A tool that automatically formats Python code to conform to
         -- the PEP 8 style guide.
         null_ls.builtins.formatting.autopep8,

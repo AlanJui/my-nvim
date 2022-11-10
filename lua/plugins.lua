@@ -45,13 +45,13 @@ M.load = function(use)
             {'rafamadriz/friendly-snippets'},
         }
     }
-    -- use({
-    --     "jose-elias-alvarez/null-ls.nvim",
-    --     requires = {
-    --         "nvim-lua/plenary.nvim", -- stylua-nvim is a mini Lua code formatter
-    --         "ckipp01/stylua-nvim",
-    --     },
-    -- })
+    use({
+        "jose-elias-alvarez/null-ls.nvim",
+        requires = {
+            "nvim-lua/plenary.nvim", -- stylua-nvim is a mini Lua code formatter
+            "ckipp01/stylua-nvim",
+        },
+    })
     -------------------------------------------------------------
     ---- Completion: for auto-completion/suggestion/snippets
     -------------------------------------------------------------
