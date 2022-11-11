@@ -37,11 +37,11 @@ null_ls.setup({
         -- the PEP 8 style guide.
         null_ls.builtins.formatting.autopep8,
         -- The uncompromising Python code formatter
-        -- null_ls.builtins.formatting.black.with({
-        -- 	filetypes = { "python" },
-        -- 	command = "black",
-        -- 	extra_args = { "--stdin-filename", "$FILENAME", "--quiet", "-" },
-        -- }),
+        null_ls.builtins.formatting.black.with({
+        	filetypes = { "python" },
+        	command = "black",
+        	extra_args = { "--stdin-filename", "$FILENAME", "--quiet", "-" },
+        }),
         -- Python utility / library to sort imports alphabetically and
         -- automatically separate them into sections and by type.
         null_ls.builtins.formatting.isort,

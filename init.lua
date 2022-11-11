@@ -126,7 +126,6 @@ elseif INSTALLED then
 	-- status line
 	require('plugins-rc.lualine-material')
 	require('plugins-rc.tabline')
-	-- require('plugins-rc.lspstatus')
 	-- User Interface
 	require('plugins-rc.nvim-lightbulb')
 	require('plugins-rc.nvim-web-devicons')
@@ -135,7 +134,6 @@ elseif INSTALLED then
 	require('plugins-rc.telescope-nvim')
 	require('plugins-rc.nvim-tree')
 	-- editting tools
-	require('plugins-rc.autopairs')
 	require('plugins-rc.autopairs')
 	require('plugins-rc.nvim-ts-autotag')
 	require('plugins-rc.undotree')

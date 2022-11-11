@@ -1,6 +1,9 @@
 
 return {
     filetypes = { 'python' },
+    root_dir = function ()
+        return vim.loop.cwd()
+    end,
     settings = {
         python = {
             analysis = {
