@@ -1,59 +1,82 @@
-if DEBUG then
-    print('Loading plugins...')
-end
-
------------------------------------------------------------
+-----------------------------------------------------------------
 -- Plugin Manager: install plugins
------------------------------------------------------------
-local fn = vim.fn
-local packer_bootstrap
-
-if vim.fn.empty(fn.glob(INSTALL_PATH)) > 0 then
-    packer_bootstrap = fn.system({
-        'git',
-        'clone',
-        '--depth',
-        '1',
-        'https://github.com/wbthomason/packer.nvim',
-        INSTALL_PATH,
-    })
-    vim.api.nvim_command('packadd packer.nvim')
-    print('packer.nvim is installed and loaded...')
+-- $ nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+-----------------------------------------------------------------
+if DEBUG then
+	print('Loading plugins...')
 end
+
+local package_root = PACKAGE_ROOT
+local compile_path = COMPILE_PATH
+local install_path = INSTALL_PATH
+
+-----------------------------------------------------------------
+-- 確認 packer.nvim 套件已安裝，然後再「載入」及「更新」。
+-----------------------------------------------------------------
+
+-- auto install packer if not installed
+local ensure_packer = function()
+	local fn = vim.fn
+	if fn.empty(fn.glob(install_path)) > 0 then
+		fn.system({
+			'git',
+			'clone',
+			'--depth',
+			'1',
+			'https://github.com/wbthomason/packer.nvim',
+			install_path,
+		})
+		vim.cmd([[packadd packer.nvim]])
+		return true
+	end
+	return false
+end
+local packer_bootstrap = ensure_packer() -- true if packer was just installed
+
+-- autocommand that reloads neovim and installs/updates/removes plugins
+-- when file is saved
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]])
 
 if DEBUG then
-    print('PACKAGE_ROOT=', PACKAGE_ROOT)
-    print('INSTALL_PATH=', INSTALL_PATH)
-    print('COMPILE_PATH=', COMPILE_PATH)
-    print('packer_bootstrap=', packer_bootstrap)
+	print('PACKAGE_ROOT=', PACKAGE_ROOT)
+	print('INSTALL_PATH=', INSTALL_PATH)
+	print('COMPILE_PATH=', COMPILE_PATH)
+	print('packer_bootstrap=', packer_bootstrap)
 end
 
------------------------------------------------------------
--- Initial Packer Manager
------------------------------------------------------------
-require('packer').init({
-    package_root = PACKAGE_ROOT,
-    compile_path = COMPILE_PATH,
-    plugin_package = 'packer',
-    display = {
-        open_fn = require('packer.util').float,
-    },
-    max_jobs = 10,
-})
-
--- 確認 packer.nvim 已能運作後，處理 nvim 套件安裝作業
-local plugins = safe_require('plugins')
-if not plugins then
+-- 確認套件 packer.nvim 已被安裝，且已被載入 nvim
+local ok, packer = pcall(require, 'packer')
+if not ok then
 	return
 end
 
-return require('packer').startup(function(use)
-    plugins.load(use)
-    -----------------------------------------------------------
-    -- Automatically set up your configuration after cloning
-    -- packer.nvim. Put this at the end after all plugins
-    -----------------------------------------------------------
-    if packer_bootstrap then
-        require('packer').sync()
-    end
+packer.init({
+	package_root = package_root,
+	compile_path = compile_path,
+	plugin_package = 'packer',
+	display = { open_fn = require('packer.util').float },
+	max_jobs = 10,
+})
+
+-- 確認 packer.nvim 已能運作後，處理 nvim 套件安裝作業
+local ok1, plugins = pcall(require, 'plugins')
+if not ok1 then
+	return
+end
+
+return packer.startup(function(use)
+	plugins.load(use)
+
+	-----------------------------------------------------------
+	-- Automatically set up your configuration after cloning
+	-- packer.nvim. Put this at the end after all plugins
+	-----------------------------------------------------------
+	if packer_bootstrap then
+		require('packer').sync()
+	end
 end)

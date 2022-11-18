@@ -2,7 +2,6 @@
 -- Global Functions
 -- 載入 my-nvim 作業時，所需之各種 Global Functions 。
 -----------------------------------------------------------
--- vim.api.nvim_command('luafile ~/.config/my-nvim/lua/globals.lua')
 require('globals')
 
 -----------------------------------------------------------
@@ -29,15 +28,16 @@ if vim.fn.empty(vim.fn.glob(INSTALL_PATH)) == 0 then
 end
 
 LSP_SERVERS = {
-    'vimls',
+	'vimls',
 	'sumneko_lua',
 	'diagnosticls',
 	'pyright',
 	'emmet_ls',
 	'html',
 	'cssls',
+	'tailwindcss',
 	'stylelint_lsp',
-    'eslint',
+	'eslint',
 	'jsonls',
 	'tsserver',
 	'texlab',
@@ -94,16 +94,6 @@ end
 ---------------------------------------------------------------
 require('load-plugins')
 
--- configure Neovim to automatically run :PackerCompile whenever
--- plugins.lua is updated with an autocommand:
--- plugins.lua 內容有所變更時，自動執行 PackerCompile
-vim.cmd([[
-augroup packer_user_config
-autocmd!
-autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-augroup end
-]])
-
 -----------------------------------------------------------
 -- configuration of plugins
 -- 載入各擴充套件(plugins) 的設定
@@ -120,42 +110,50 @@ elseif INSTALLED then
 
 	-- Neovim kernel
 	require('plugins-rc.nvim-treesitter')
+
 	-- lsp
 	require('lsp')
-	require('lsp.null-langserver')
+
 	-- status line
 	require('plugins-rc.lualine-material')
 	require('plugins-rc.tabline')
+
 	-- User Interface
 	require('plugins-rc.nvim-lightbulb')
 	require('plugins-rc.nvim-web-devicons')
 	require('plugins-rc.indent-blankline')
+
 	-- files management
 	require('plugins-rc.telescope-nvim')
 	require('plugins-rc.nvim-tree')
+
 	-- editting tools
+	require('plugins-rc.trim-nvim')
+	require('plugins-rc.comment-nvim')
 	require('plugins-rc.autopairs')
 	require('plugins-rc.nvim-ts-autotag')
 	require('plugins-rc.undotree')
-	vim.cmd([[runtime ./lua/plugins-rc/vim-better-whitespace.rc.vim]])
-	vim.cmd([[runtime ./lua/plugins-rc/vim-closetag.rc.vim]])
-	vim.cmd([[runtime ./lua/plugins-rc/tagalong-vim.rc.vim]])
+
 	-- programming
 	require('plugins-rc.toggleterm')
+	require('plugins-rc.consolation-nvim')
 	require('plugins-rc.yabs')
-	-- debug
-	require('dap-debug')
-	require('plugins-rc.ultest')
+
 	-- versional control
 	require('plugins-rc.neogit')
 	require('plugins-rc.gitsigns')
 	require('plugins-rc.vim-gist')
 	-- vim.cmd([[ runtime ./lua/plugins-rc/vim-signify.rc.vim]])
+
 	-- Utilities
 	vim.cmd([[runtime ./lua/plugins-rc/bracey.rc.vim]])
 	vim.cmd([[runtime ./lua/plugins-rc/vim-instant-markdown.rc.vim]])
 	vim.cmd([[runtime ./lua/plugins-rc/plantuml-previewer.rc.vim]])
 	vim.cmd([[runtime ./lua/plugins-rc/vimtex.rc.vim]])
+
+	-- debug
+	require('dap-debug')
+	require('plugins-rc.ultest')
 end
 
 -----------------------------------------------------------
@@ -224,4 +222,4 @@ local function blah()
 	print('====================================================================')
 end
 
-blah()
+-- blah()
