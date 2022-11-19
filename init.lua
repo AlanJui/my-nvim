@@ -95,6 +95,32 @@ else
 end
 
 ------------------------------------------------------------------------------
+-- Configuration supportting for VS Code
+-- 與 VS Code 整合作業時，應有的環境設定
+------------------------------------------------------------------------------
+-- 使用以下方法，皆不能正確運作：
+--   if vim.fn.exists('g:vscode') then
+--   if vim.fn.exists('g:vscode') == 0 then
+if vim.g.vscode ~= nil then
+	-----------------------------------------------------------
+	-- VSCode extension"
+	-----------------------------------------------------------
+	-- Load plugins
+	require("packer").startup(function(use)
+		-- Screen Navigation
+		-- use("folke/which-key.nvim")
+	end)
+	-- load configurations for plugins
+	-- require('plugins-rc.which-key')
+	-- Must have options of Neovim when under development of init.lua
+	require("essential")
+	-- Key bindings
+	require("keymaps")
+
+	return
+end
+
+------------------------------------------------------------------------------
 -- Install Plugin Manager & Plugins
 -- 確保擴充套件管理器（packer.nvim）已完成安裝；以便擴充套件能正常安裝、更新。
 -- (1) 當 packer.nvim 尚未安裝，可自動執行下載及安裝作業；
