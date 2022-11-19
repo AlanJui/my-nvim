@@ -115,8 +115,6 @@ M.load = function(use)
 	-- Utility functions for getting diagnostic status and progress messages
 	-- from LSP servers, for use in the Neovim statusline
 	use({ "nvim-lua/lsp-status.nvim" })
-	-- Icons
-	use({ "kyazdani42/nvim-web-devicons" })
 	-- Fuzzy files finder
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
 	use({
@@ -127,6 +125,8 @@ M.load = function(use)
 			"nvim-telescope/telescope-live-grep-raw.nvim",
 		},
 	})
+	-- Icons
+	-- use({ "kyazdani42/nvim-web-devicons" })
 	-- vs-code like icons
 	use("nvim-tree/nvim-web-devicons")
 	-- File/Flolders explorer:nvim-tree
@@ -177,22 +177,10 @@ M.load = function(use)
 	use({ "mbbill/undotree" })
 	-- Auto close parentheses and repeat by dot dot dot ...
 	use({ "windwp/nvim-autopairs" })
-	--
-	-- HTML
-	--
+	-- Use treesitter to autoclose and autorename html tag
 	use({ "windwp/nvim-ts-autotag" })
-	-- Auto close tag
-	-- use({ 'alvan/vim-closetag', })
 	-- Auto change html tags
-	use({ "AndrewRadev/tagalong.vim" })
-	--
-	-- Python
-	--
-	--  Modifies Vim’s indentation behavior to comply with PEP8 and my aesthetic preferences.
-	use("Vimjas/vim-python-pep8-indent")
-	-- Python: provides text objects and motions for Python classes, methods,
-	-- functions and doc strings
-	use("jeetsukumaran/vim-pythonsense")
+	-- use({ "AndrewRadev/tagalong.vim" })
 	-----------------------------------------------------------
 	-- Coding Tools
 	-----------------------------------------------------------
