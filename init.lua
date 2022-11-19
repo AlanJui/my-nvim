@@ -1,12 +1,14 @@
 -----------------------------------------------------------
--- Global Functions
--- 載入 my-nvim 作業時，所需之各種 Global Functions 。
+-- Initial environments for Neovim
+-- 初始階段
 -----------------------------------------------------------
+-- Global Functions
+-- 為後續作業，需先載入之「共用功能（Global Functions）」。
 require("globals")
 
 -----------------------------------------------------------
--- Initial environments for Neovim
--- 設定 my-nvim 作業時，所需之「全域常數」。
+-- Initial global constants
+-- 設定所需使用之「全域常數」。
 -----------------------------------------------------------
 DEBUG = false
 -- DEBUG = true
@@ -48,12 +50,17 @@ DEBUGPY = "~/.virtualenvs/debugpy/bin/python"
 -- Your own custom vscode style snippets
 SNIPPETS_PATH = { CONFIG_DIR .. "/my-snippets/snippets" }
 
+-- Essential Options
+-- 初始時需有的 Neovim 基本設定
+require("essential")
+
 -----------------------------------------------------------
--- Initial environment
--- 執行「初始」作業，變更 Neovim 的 Run Time Path (rtp)，
--- 以便 my-nvim 可在「目錄路徑」： ~/.config/my-nvim/ 運行。
+-- Initial RTP (Run Time Path) environment
+-- 設定 RTP ，要求 Neovim 啟動時的設定作業、執行作業，不採預設。
+-- 故 my-nvim 的設定檔，可置於目錄： ~/.config/my-nvim/ 運行；
+-- 執行作業（Run Time）所需使用之擴充套件（Plugins）與 LSP Servers
+-- 可置於目錄： ~/.local/share/my-nvim/
 -----------------------------------------------------------
--- Setup runtimepath(rtp):
 local function setup_rtp()
 	-- 變更 stdpath('config') 預設的 rtp : ~/.config/nvim/
 	vim.opt.rtp:remove(join_paths(vim.fn.stdpath("data"), "site"))
@@ -87,17 +94,18 @@ else
 	-- P(vim.api.nvim_list_runtime_paths())
 end
 
----------------------------------------------------------------
--- Install Plugin Manager & Plugins / Load Plugins
--- 當 packer.nvim 尚未安裝，可自動執行下載及安裝作業；
--- 若 packer.nvim 已安裝，則執行擴充套件 (plugins) 的載入作業。
----------------------------------------------------------------
+------------------------------------------------------------------------------
+-- Install Plugin Manager & Plugins
+-- 確保擴充套件管理器（packer.nvim）已完成安裝；以便擴充套件能正常安裝、更新。
+-- (1) 當 packer.nvim 尚未安裝，可自動執行下載及安裝作業；
+-- (2) 若 packer.nvim 已安裝，則執行擴充套件 (plugins) 的載入作業。
+------------------------------------------------------------------------------
 require("load-plugins")
 
------------------------------------------------------------
+------------------------------------------------------------------------------
 -- configuration of plugins
 -- 載入各擴充套件(plugins) 的設定
------------------------------------------------------------
+------------------------------------------------------------------------------
 if DEBUG then
 	-- 正處「除錯」作業階段時，僅只載入除錯時所需的
 	-- 擴充套件(plugins) 設定。
@@ -107,65 +115,15 @@ elseif INSTALLED then
 	-- 非「除錯」作業；且 packer.nvim 已安裝時，
 	-- 則：開始載入各擴充套件（plugins）的設定；
 	-- 否則：略過擴充套件設定的載入。
-
-	-- Neovim kernel
-	require("plugins-rc.nvim-treesitter")
-
-	-- lsp
-	require("lsp")
-
-	-- status line
-	require("plugins-rc.lualine-material")
-	require("plugins-rc.tabline")
-
-	-- User Interface
-	require("plugins-rc.nvim-lightbulb")
-	require("plugins-rc.nvim-web-devicons")
-	require("plugins-rc.indent-blankline")
-
-	-- files management
-	require("plugins-rc.telescope-nvim")
-	require("plugins-rc.nvim-tree")
-
-	-- editting tools
-	require("plugins-rc.trim-nvim")
-	require("plugins-rc.comment-nvim")
-	require("plugins-rc.autopairs")
-	require("plugins-rc.nvim-ts-autotag")
-	require("plugins-rc.undotree")
-
-	-- programming
-	require("plugins-rc.toggleterm")
-	require("plugins-rc.consolation-nvim")
-	require("plugins-rc.yabs")
-
-	-- versional control
-	require("plugins-rc.neogit")
-	require("plugins-rc.gitsigns")
-	require("plugins-rc.vim-gist")
-	-- vim.cmd([[ runtime ./lua/plugins-rc/vim-signify.rc.vim]])
-
-	-- Utilities
-	vim.cmd([[runtime ./lua/plugins-rc/bracey.rc.vim]])
-	vim.cmd([[runtime ./lua/plugins-rc/vim-instant-markdown.rc.vim]])
-	vim.cmd([[runtime ./lua/plugins-rc/plantuml-previewer.rc.vim]])
-	vim.cmd([[runtime ./lua/plugins-rc/vimtex.rc.vim]])
-
-	-- debug
-	require("dap-debug")
-	require("plugins-rc.ultest")
+	require("setup-plugins")
 end
 
------------------------------------------------------------
+------------------------------------------------------------------------------
 -- Configurations for Neovim
 -- 設定 Neovim 的 Options
------------------------------------------------------------
--- Must have options of Neovim when under development of init.lua
--- 在開發階段，init.lua 務必須有的 Neovim 設定
-require("essential")
-
+------------------------------------------------------------------------------
 -- General options of Neovim
--- 在開發完成後，Neovim 應有的設定
+-- Neovim 於完成初始設定作業後，於執行時期，應有之設定
 require("options")
 
 -- User's specific options of Neovim
