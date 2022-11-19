@@ -2,7 +2,7 @@
 -- Global Functions
 -- 載入 my-nvim 作業時，所需之各種 Global Functions 。
 -----------------------------------------------------------
-require('globals')
+require("globals")
 
 -----------------------------------------------------------
 -- Initial environments for Neovim
@@ -11,16 +11,16 @@ require('globals')
 DEBUG = false
 -- DEBUG = true
 
-MY_VIM = 'my-nvim'
+MY_VIM = "my-nvim"
 OS_SYS = which_os()
-HOME = os.getenv('HOME')
+HOME = os.getenv("HOME")
 
-CONFIG_DIR = HOME .. '/.config/' .. MY_VIM
-RUNTIME_DIR = HOME .. '/.local/share/' .. MY_VIM
+CONFIG_DIR = HOME .. "/.config/" .. MY_VIM
+RUNTIME_DIR = HOME .. "/.local/share/" .. MY_VIM
 
-PACKAGE_ROOT = RUNTIME_DIR .. '/site/pack'
-INSTALL_PATH = PACKAGE_ROOT .. '/packer/start/packer.nvim'
-COMPILE_PATH = CONFIG_DIR .. '/plugin/packer_compiled.lua'
+PACKAGE_ROOT = RUNTIME_DIR .. "/site/pack"
+INSTALL_PATH = PACKAGE_ROOT .. "/packer/start/packer.nvim"
+COMPILE_PATH = CONFIG_DIR .. "/plugin/packer_compiled.lua"
 
 INSTALLED = false
 if vim.fn.empty(vim.fn.glob(INSTALL_PATH)) == 0 then
@@ -28,25 +28,25 @@ if vim.fn.empty(vim.fn.glob(INSTALL_PATH)) == 0 then
 end
 
 LSP_SERVERS = {
-	'vimls',
-	'sumneko_lua',
-	'diagnosticls',
-	'pyright',
-	'emmet_ls',
-	'html',
-	'cssls',
-	'tailwindcss',
-	'stylelint_lsp',
-	'eslint',
-	'jsonls',
-	'tsserver',
-	'texlab',
+	"vimls",
+	"sumneko_lua",
+	"diagnosticls",
+	"pyright",
+	"emmet_ls",
+	"html",
+	"cssls",
+	"tailwindcss",
+	"stylelint_lsp",
+	"eslint",
+	"jsonls",
+	"tsserver",
+	"texlab",
 }
 
-DEBUGPY = '~/.virtualenvs/debugpy/bin/python'
+DEBUGPY = "~/.virtualenvs/debugpy/bin/python"
 
 -- Your own custom vscode style snippets
-SNIPPETS_PATH = { CONFIG_DIR .. '/my-snippets/snippets' }
+SNIPPETS_PATH = { CONFIG_DIR .. "/my-snippets/snippets" }
 
 -----------------------------------------------------------
 -- Initial environment
@@ -56,16 +56,16 @@ SNIPPETS_PATH = { CONFIG_DIR .. '/my-snippets/snippets' }
 -- Setup runtimepath(rtp):
 local function setup_rtp()
 	-- 變更 stdpath('config') 預設的 rtp : ~/.config/nvim/
-	vim.opt.rtp:remove(join_paths(vim.fn.stdpath('data'), 'site'))
-	vim.opt.rtp:remove(join_paths(vim.fn.stdpath('data'), 'site', 'after'))
-	vim.opt.rtp:prepend(join_paths(RUNTIME_DIR, 'site'))
-	vim.opt.rtp:append(join_paths(RUNTIME_DIR, 'site', 'after'))
+	vim.opt.rtp:remove(join_paths(vim.fn.stdpath("data"), "site"))
+	vim.opt.rtp:remove(join_paths(vim.fn.stdpath("data"), "site", "after"))
+	vim.opt.rtp:prepend(join_paths(RUNTIME_DIR, "site"))
+	vim.opt.rtp:append(join_paths(RUNTIME_DIR, "site", "after"))
 
 	-- 變更 stdpath('data') 預設的 rtp : ~/.local/share/my-nvim/
-	vim.opt.rtp:remove(vim.fn.stdpath('config'))
-	vim.opt.rtp:remove(join_paths(vim.fn.stdpath('config'), 'after'))
+	vim.opt.rtp:remove(vim.fn.stdpath("config"))
+	vim.opt.rtp:remove(join_paths(vim.fn.stdpath("config"), "after"))
 	vim.opt.rtp:prepend(CONFIG_DIR)
-	vim.opt.rtp:append(join_paths(CONFIG_DIR, 'after'))
+	vim.opt.rtp:append(join_paths(CONFIG_DIR, "after"))
 
 	-- 引用 rpt 設定 package path （即擴充擴件(plugins)的安裝路徑）
 	-- 此設定需正確，指令：requitre('<PluginName>') 才能正常執行。
@@ -78,12 +78,12 @@ else
 	-- 在「除錯」作業時，顯示 setup_rtp() 執行前、後， rtp 的設定內容。
 	-- P(vim.api.nvim_list_runtime_paths())
 	Print_table(vim.opt.runtimepath:get())
-	print('-----------------------------------------------------------')
+	print("-----------------------------------------------------------")
 
 	setup_rtp()
 
 	Print_table(vim.opt.runtimepath:get())
-	print('-----------------------------------------------------------')
+	print("-----------------------------------------------------------")
 	-- P(vim.api.nvim_list_runtime_paths())
 end
 
@@ -92,7 +92,7 @@ end
 -- 當 packer.nvim 尚未安裝，可自動執行下載及安裝作業；
 -- 若 packer.nvim 已安裝，則執行擴充套件 (plugins) 的載入作業。
 ---------------------------------------------------------------
-require('load-plugins')
+require("load-plugins")
 
 -----------------------------------------------------------
 -- configuration of plugins
@@ -101,7 +101,7 @@ require('load-plugins')
 if DEBUG then
 	-- 正處「除錯」作業階段時，僅只載入除錯時所需的
 	-- 擴充套件(plugins) 設定。
-	require('lsp.lsp-debug')
+	require("lsp.lsp-debug")
 	_G.load_config()
 elseif INSTALLED then
 	-- 非「除錯」作業；且 packer.nvim 已安裝時，
@@ -109,40 +109,40 @@ elseif INSTALLED then
 	-- 否則：略過擴充套件設定的載入。
 
 	-- Neovim kernel
-	require('plugins-rc.nvim-treesitter')
+	require("plugins-rc.nvim-treesitter")
 
 	-- lsp
-	require('lsp')
+	require("lsp")
 
 	-- status line
-	require('plugins-rc.lualine-material')
-	require('plugins-rc.tabline')
+	require("plugins-rc.lualine-material")
+	require("plugins-rc.tabline")
 
 	-- User Interface
-	require('plugins-rc.nvim-lightbulb')
-	require('plugins-rc.nvim-web-devicons')
-	require('plugins-rc.indent-blankline')
+	require("plugins-rc.nvim-lightbulb")
+	require("plugins-rc.nvim-web-devicons")
+	require("plugins-rc.indent-blankline")
 
 	-- files management
-	require('plugins-rc.telescope-nvim')
-	require('plugins-rc.nvim-tree')
+	require("plugins-rc.telescope-nvim")
+	require("plugins-rc.nvim-tree")
 
 	-- editting tools
-	require('plugins-rc.trim-nvim')
-	require('plugins-rc.comment-nvim')
-	require('plugins-rc.autopairs')
-	require('plugins-rc.nvim-ts-autotag')
-	require('plugins-rc.undotree')
+	require("plugins-rc.trim-nvim")
+	require("plugins-rc.comment-nvim")
+	require("plugins-rc.autopairs")
+	require("plugins-rc.nvim-ts-autotag")
+	require("plugins-rc.undotree")
 
 	-- programming
-	require('plugins-rc.toggleterm')
-	require('plugins-rc.consolation-nvim')
-	require('plugins-rc.yabs')
+	require("plugins-rc.toggleterm")
+	require("plugins-rc.consolation-nvim")
+	require("plugins-rc.yabs")
 
 	-- versional control
-	require('plugins-rc.neogit')
-	require('plugins-rc.gitsigns')
-	require('plugins-rc.vim-gist')
+	require("plugins-rc.neogit")
+	require("plugins-rc.gitsigns")
+	require("plugins-rc.vim-gist")
 	-- vim.cmd([[ runtime ./lua/plugins-rc/vim-signify.rc.vim]])
 
 	-- Utilities
@@ -152,8 +152,8 @@ elseif INSTALLED then
 	vim.cmd([[runtime ./lua/plugins-rc/vimtex.rc.vim]])
 
 	-- debug
-	require('dap-debug')
-	require('plugins-rc.ultest')
+	require("dap-debug")
+	require("plugins-rc.ultest")
 end
 
 -----------------------------------------------------------
@@ -162,26 +162,26 @@ end
 -----------------------------------------------------------
 -- Must have options of Neovim when under development of init.lua
 -- 在開發階段，init.lua 務必須有的 Neovim 設定
-require('essential')
+require("essential")
 
 -- General options of Neovim
 -- 在開發完成後，Neovim 應有的設定
-require('options')
+require("options")
 
 -- User's specific options of Neovim
 -- 使用者有個人應用需求的特殊設定
-require('settings')
+require("settings")
 
 -----------------------------------------------------------
 -- Color Themes
 -- Neovim 畫面的色彩設定
 -----------------------------------------------------------
 if not INSTALLED or DEBUG then
-	print('<< Load default colorscheme >>')
+	print("<< Load default colorscheme >>")
 	-- Use solarized8_flat color scheme when first time start my-nvim
 	vim.cmd([[ colorscheme solarized8_flat ]])
 else
-	require('color-themes')
+	require("color-themes")
 end
 
 -----------------------------------------------------------
@@ -190,12 +190,12 @@ end
 -----------------------------------------------------------
 -- Load Shortcut Key
 -- 「快捷鍵」設定
-require('keymaps')
+require("keymaps")
 
 -- Load Which-key
 -- 提供【選單】式的指令操作
 if INSTALLED then
-	require('plugins-rc.which-key')
+	require("plugins-rc.which-key")
 end
 
 -----------------------------------------------------------
@@ -209,17 +209,17 @@ end
 
 -- Say hello
 local function blah()
-	print('init.lua is loaded!')
-	print('====================================================================')
-	print(string.format('OS = %s', which_os()))
-	print(string.format('${workspaceFolder} = %s', vim.fn.getcwd()))
-	print(string.format('DEBUGPY = %s', DEBUGPY))
+	print("init.lua is loaded!")
+	print("====================================================================")
+	print(string.format("OS = %s", which_os()))
+	print(string.format("${workspaceFolder} = %s", vim.fn.getcwd()))
+	print(string.format("DEBUGPY = %s", DEBUGPY))
 
 	-- print(string.format('$VIRTUAL_ENV = %s', os.getenv('VIRTUAL_ENV')))
-	local util = require('utils.python')
+	local util = require("utils.python")
 	local venv_python = util.get_python_path_in_venv()
-	print(string.format('$VIRTUAL_ENV = %s', venv_python))
-	print('====================================================================')
+	print(string.format("$VIRTUAL_ENV = %s", venv_python))
+	print("====================================================================")
 end
 
 -- blah()
