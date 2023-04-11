@@ -1,87 +1,178 @@
--- require "core.autocommands"
--- require "core.utils"
--- require "core.options"
--- require "core.keymaps"
+---@type LazyVimConfig
+local M = {}
 
------------------------------------------------------------
--- Global Functions
--- 為後續作業，需先載入之「共用功能（Global Functions）」。
------------------------------------------------------------
-require("config.globals")
-require("config.utils")
+M.lazy_version = ">=9.1.0"
 
------------------------------------------------------------
--- Essential settings for Neovim
--- 初始時需有的 Neovim 基本設定
------------------------------------------------------------
-require("config.essential")
+---@class LazyVimConfig
+local defaults = {
+  -- colorscheme can be a string like `catppuccin` or a function that will load the colorscheme
+  ---@type string|fun()
+  colorscheme = function()
+    require("tokyonight").load()
+  end,
+  -- load the default settings
+  defaults = {
+    autocmds = true, -- lazyvim.config.autocmds
+    keymaps = true, -- lazyvim.config.keymaps
+    options = true, -- lazyvim.config.options
+  },
+  -- icons used by other plugins
+  icons = {
+    diagnostics = {
+      Error = " ",
+      Warn = " ",
+      Hint = " ",
+      Info = " ",
+    },
+    git = {
+      added = " ",
+      modified = " ",
+      removed = " ",
+    },
+    kinds = {
+      Array = " ",
+      Boolean = " ",
+      Class = " ",
+      Color = " ",
+      Constant = " ",
+      Constructor = " ",
+      Copilot = " ",
+      Enum = " ",
+      EnumMember = " ",
+      Event = " ",
+      Field = " ",
+      File = " ",
+      Folder = " ",
+      Function = " ",
+      Interface = " ",
+      Key = " ",
+      Keyword = " ",
+      Method = " ",
+      Module = " ",
+      Namespace = " ",
+      Null = " ",
+      Number = " ",
+      Object = " ",
+      Operator = " ",
+      Package = " ",
+      Property = " ",
+      Reference = " ",
+      Snippet = " ",
+      String = " ",
+      Struct = " ",
+      Text = " ",
+      TypeParameter = " ",
+      Unit = " ",
+      Value = " ",
+      Variable = " ",
+    },
+  },
+}
 
-------------------------------------------------------------------------------
--- Configurations for Neovim
--- 設定 Neovim 的 Options
-------------------------------------------------------------------------------
--- General options of Neovim
--- Neovim 執行時期，應有之預設
-require("config.options")
+---@type LazyVimConfig
+local options
 
--- User's specific options of Neovim
--- 使用者為個人需求，須變預設之設定
-require("config.settings")
+---@param opts? LazyVimConfig
+function M.setup(opts)
+  options = vim.tbl_deep_extend("force", defaults, opts or {})
+  if not M.has() then
+    require("lazy.core.util").error(
+      "**LazyVim** needs **lazy.nvim** version "
+        .. M.lazy_version
+        .. " to work properly.\n"
+        .. "Please upgrade **lazy.nvim**",
+      { title = "LazyVim" }
+    )
+    error("Exiting")
+  end
 
------------------------------------------------------------
--- Key bindings
--- 快捷鍵設定：操作時的按鍵設定
------------------------------------------------------------
-require("config.keymaps")
+  if vim.fn.argc(-1) == 0 then
+    -- autocmds and keymaps can wait to load
+    vim.api.nvim_create_autocmd("User", {
+      group = vim.api.nvim_create_augroup("LazyVim", { clear = true }),
+      pattern = "VeryLazy",
+      callback = function()
+        M.load("autocmds")
+        M.load("keymaps")
+      end,
+    })
+  else
+    -- load them now so they affect the opened buffers
+    M.load("autocmds")
+    M.load("keymaps")
+  end
 
------------------------------------------------------------
--- Get configurations of DAP
--- 取得 DAP 設定結果
------------------------------------------------------------
--- print("config.DAP = debugger/adapter/vscode-nodejs-dap")
--- print(require("config.debugger/adapter/vscode-nodejs-dap").show_config())
-
------------------------------------------------------------
--- Experiments
--- 實驗用的臨時設定
------------------------------------------------------------
--- require("config.utils/markdown")
-
------------------------------------------------------------
--- code folding
------------------------------------------------------------
--- vim.cmd([[
--- set foldmethod=indent
--- set foldnestmax=10
--- set nofoldenable
--- set foldlevel=5
--- ]])
--- Ref: https://www.jmaguire.tech/posts/treesitter_folding/
--- vim.opt.foldmethod = "expr"
--- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-------------------------------------------------------------------------------
--- Test
-------------------------------------------------------------------------------
-
--- Add local LuaRocks installation directory to package path
--- package.path = package.path .. ";~/.config/nvim/lua/rocks/?.lua"
--- package.path = package.path .. ";~/.config/nvim/lua/?.lua"
--- package.cpath = package.cpath .. ";~/.config/nvim/lua/rocks/?.so"
--- vim.cmd([[
--- luafile ~/.config/nvim/lua/my-chatgpt.lua
--- ]])
-
-function _G.my_test_1()
-	-- Set some options
-	vim.o.tabstop = 4
-	vim.o.shiftwidth = 4
-	vim.o.expandtab = true
-
-	-- Create a new buffer and set its contents
-	local buf = vim.api.nvim_create_buf(false, true)
-	vim.api.nvim_buf_set_lines(buf, 0, -1, false, { "Hello, world!" })
-
-	-- Open the new buffer in a split window
-	vim.api.nvim_command("config.split")
-	vim.api.nvim_buf_set_name(buf, "hello.txt")
+  require("lazy.core.util").try(function()
+    if type(M.colorscheme) == "function" then
+      M.colorscheme()
+    else
+      vim.cmd.colorscheme(M.colorscheme)
+    end
+  end, {
+    msg = "Could not load your colorscheme",
+    on_error = function(msg)
+      require("lazy.core.util").error(msg)
+      vim.cmd.colorscheme("habamax")
+    end,
+  })
 end
+
+---@param range? string
+function M.has(range)
+  local Semver = require("lazy.manage.semver")
+  return Semver.range(range or M.lazy_version):matches(require("lazy.core.config").version or "0.0.0")
+end
+
+---@param name "autocmds" | "options" | "keymaps"
+function M.load(name)
+  local Util = require("lazy.core.util")
+  local function _load(mod)
+    Util.try(function()
+      require(mod)
+    end, {
+      msg = "Failed loading " .. mod,
+      on_error = function(msg)
+        local info = require("lazy.core.cache").find(mod)
+        if info == nil or (type(info) == "table" and #info == 0) then
+          return
+        end
+        Util.error(msg)
+      end,
+    })
+  end
+  -- always load lazyvim, then user file
+  if M.defaults[name] then
+    _load("lazyvim.config." .. name)
+  end
+  _load("config." .. name)
+  if vim.bo.filetype == "lazy" then
+    -- HACK: LazyVim may have overwritten options of the Lazy ui, so reset this here
+    vim.cmd([[do VimResized]])
+  end
+end
+
+M.did_init = false
+function M.init()
+  if not M.did_init then
+    M.did_init = true
+    -- delay notifications till vim.notify was replaced or after 500ms
+    require("lazyvim.util").lazy_notify()
+
+    -- load options here, before lazy init while sourcing plugin modules
+    -- this is needed to make sure options will be correctly applied
+    -- after installing missing plugins
+    require("lazyvim.config").load("options")
+  end
+end
+
+setmetatable(M, {
+  __index = function(_, key)
+    if options == nil then
+      return vim.deepcopy(defaults)[key]
+    end
+    ---@cast options LazyVimConfig
+    return options[key]
+  end,
+})
+
+return M

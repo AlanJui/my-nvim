@@ -1,189 +1,145 @@
---------------------------------------------------------------------
--- keymap.lua
---------------------------------------------------------------------
-if DEBUG then print("<< DEBUG: Loading keymaps.lua >>") end
+-- This file is automatically loaded by lazyvim.plugins.config
 
--- set leader key to space
-vim.g.mapleader = " "
-vim.g.maplocalleader = ","
+local Util = require("lazyvim.util")
 
-local keymap = vim.keymap -- for conciseness
+local function map(mode, lhs, rhs, opts)
+  local keys = require("lazy.core.handler").handlers.keys
+  ---@cast keys LazyKeysHandler
+  -- do not create the keymap if a lazy keys handler exists
+  if not keys.active[keys.parse({ lhs, mode = mode }).id] then
+    opts = opts or {}
+    opts.silent = opts.silent ~= false
+    vim.keymap.set(mode, lhs, rhs, opts)
+  end
+end
 
-keymap.set("i", "jj", "<Esc>")
+-- better up/down
+map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
--- Ctrl-s: to save
-keymap.set("n", "<c-s>", ":w<CR>", {})
-keymap.set("i", "<c-s>", "<Esc>:w<CR>a", {})
+-- Move to window using the <ctrl> hjkl keys
+map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
+map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
+map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
+map("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 
---------------------------------------------------------------------
--- Line editting
---------------------------------------------------------------------
--- Editting on Insert Mode
--- keymap.set("i", "<M-,>", "<Right>,")
--- keymap.set("i", "<M-.>", "<Right>.")
--- keymap.set("i", "<M-:>", "<Right>:")
-keymap.set("i", "<M-,><M-,>", "<Esc>A,")
-keymap.set("i", "<M-.><M-.>", "<Esc>A.")
-keymap.set("i", "<M-:><M-:>", "<Esc>A:")
--- Blank whole line
--- keymap.set('n', '<M-l>', '0d$')
--- keymap.set('n', '<M-p>', 'pdd')
--- Indent / Unident a line
-keymap.set("n", "<M->>", "V><Esc>")
-keymap.set("n", "<M-<>", "V<<Esc>")
--- Remove Line
-keymap.set("i", "<C-CR>", "<Esc>A<Esc>jddO")
+-- Resize window using <ctrl> arrow keys
+map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
--- Insert line
-keymap.set("i", "<M-o>", "<Esc>o")
-keymap.set("i", "<M-n>", "<Esc>jO")
-keymap.set("i", "<M-i>", "<Esc>O<Esc>jddkA")
-keymap.set("n", "<M-i>", "O")
--- Insert text in HTML Tags
-keymap.set("i", "<M-lt>", "<CR><Esc>O")
+-- Move Lines
+map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
+map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
+map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
--- Editting in line
-keymap.set("n", "I", "^d$i")
-keymap.set("n", "H", "0")
-keymap.set("n", "L", "$")
-keymap.set("n", "X", "d$")
-keymap.set("n", "Y", "y$")
--- Insert a item in table
--- keymap.set('i', '<M-t>', '<ESC>A,<ESC>hi<CR><ESC>O')
+-- buffers
+if Util.has("bufferline.nvim") then
+  map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+  map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+  map("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+  map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+else
+  map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+  map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+  map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+  map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
+end
+map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
--- Move line
-keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-keymap.set("n", "<S-Down>", ":m .+1<CR>gv=gv")
-keymap.set("n", "<S-Up>", ":m .-2<CR>gv=gv")
-keymap.set("i", "<S-Down>", "<Esc>:m .+1<CR>")
-keymap.set("i", "<S-Up>", "<Esc>:m .-2<CR>")
-keymap.set("v", "<S-Down>", ":move '>+1<CR>gv=gv")
-keymap.set("v", "<S-Up>", ":move '<-2<CR>gv=gv")
+-- Clear search with <esc>
+map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
--- Indent/Unident
-keymap.set("v", "<", "<gv")
-keymap.set("v", ">", ">gv")
+-- Clear search, diff update and redraw
+-- taken from runtime/lua/_editor.lua
+map(
+  "n",
+  "<leader>ur",
+  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+  { desc = "Redraw / clear hlsearch / diff update" }
+)
 
---------------------------------------------------------------------
--- Windows navigation
---------------------------------------------------------------------
--- Split window
-keymap.set("n", "<localleader>sh", ":split<CR>")
-keymap.set("n", "<localleader>sv", ":vsplit<CR>")
-keymap.set("n", "<localleader>se", "<C-w>=") -- make split windows equal width & height
-keymap.set("n", "<localleader>sx", ":close<CR>") -- close current split window
+map({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
 
--- Move focus on window
-keymap.set("n", "<ESC>k", "<cmd>wincmd k<CR>")
-keymap.set("n", "<ESC>j", "<cmd>wincmd j<CR>")
-keymap.set("n", "<ESC>h", "<cmd>wincmd h<CR>")
-keymap.set("n", "<ESC>l", "<cmd>wincmd l<CR>")
+-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+map("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+map("n", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
--- keymap.set("n", "<C-k>", "<cmd>wincmd k<CR>")
--- keymap.set("n", "<C-j>", "<cmd>wincmd j<CR>")
--- keymap.set("n", "<C-h>", "<cmd>wincmd h<CR>")
--- keymap.set("n", "<C-l>", "<cmd>wincmd l<CR>")
+-- Add undo break-points
+map("i", ",", ",<c-g>u")
+map("i", ".", ".<c-g>u")
+map("i", ";", ";<c-g>u")
 
--- keymap.set("n", "<S-Up>", "<cmd>wincmd k<CR>")
--- keymap.set("n", "<S-Down>", "<cmd>wincmd j<CR>")
--- keymap.set("n", "<S-Left>", "<cmd>wincmd h<CR>")
--- keymap.set("n", "<S-Right>", "<cmd>wincmd l<CR>")
+-- save file
+map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 
--- Window Resize
-keymap.set("n", "<M-Up>", "<cmd>wincmd -<CR>")
-keymap.set("n", "<M-Down>", "<cmd>wincmd +<CR>")
-keymap.set("n", "<M-Left>", "<cmd>wincmd <<CR>")
-keymap.set("n", "<M-Right>", "<cmd>wincmd ><CR>")
+-- better indenting
+map("v", "<", "<gv")
+map("v", ">", ">gv")
 
--- Window Zoom In/Out
-keymap.set("n", "<C-w>i", ":tabnew %<CR>")
-keymap.set("n", "<C-w>o", ":tabclose<CR>")
+-- lazy
+map("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })
 
--- maximizer window
-keymap.set("n", "<localleader>sm", ":MaximizerToggle<CR>") -- close current split window
+-- new file
+map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
---------------------------------------------------------------------
--- Buffers
---------------------------------------------------------------------
+map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
+map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
 
--- Tab navigation
-keymap.set("n", "<localleader>to", ":tabnew<CR>") -- open new tab
-keymap.set("n", "<localleader>tx", ":tabclose<CR>") -- close current tab
-keymap.set("n", "<localleader>tn", ":tabn<CR>") --  go to next tab
-keymap.set("n", "<localleader>tp", ":tabp<CR>") --  go to previous tab
+if not Util.has("trouble.nvim") then
+  map("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
+  map("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
+end
 
--- Tab operations
-keymap.set("n", "gt", "<cmd>bn<CR>")
-keymap.set("n", "gT", "<cmd>bp<CR>")
+-- stylua: ignore start
 
---------------------------------------------------------------------
--- Clear highlighting on escale in normal mode.
---------------------------------------------------------------------
-keymap.set("n", "<localleader>nh", ":nohl<CR>")
+-- toggle options
+map("n", "<leader>uf", require("lazyvim.plugins.lsp.format").toggle, { desc = "Toggle format on Save" })
+map("n", "<leader>us", function() Util.toggle("spell") end, { desc = "Toggle Spelling" })
+map("n", "<leader>uw", function() Util.toggle("wrap") end, { desc = "Toggle Word Wrap" })
+map("n", "<leader>ul", function() Util.toggle("relativenumber", true) Util.toggle("number") end, { desc = "Toggle Line Numbers" })
+map("n", "<leader>ud", Util.toggle_diagnostics, { desc = "Toggle Diagnostics" })
+local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
+map("n", "<leader>uc", function() Util.toggle("conceallevel", false, {0, conceallevel}) end, { desc = "Toggle Conceal" })
 
---------------------------------------------------------------------
--- Terminal mode
---------------------------------------------------------------------
-keymap.set("t", "<Esc>", "<C-\\><C-n>")
+-- lazygit
+map("n", "<leader>gg", function() Util.float_term({ "lazygit" }, { cwd = Util.get_root() }) end, { desc = "Lazygit (root dir)" })
+map("n", "<leader>gG", function() Util.float_term({ "lazygit" }) end, { desc = "Lazygit (cwd)" })
 
---------------------------------------------------------------
--- Nonbuild-in commands
---------------------------------------------------------------
+-- quit
+map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 
--- nvim-tree
--- keymap.set("n", "<localleader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
+-- highlights under cursor
+if vim.fn.has("nvim-0.9.0") == 1 then
+  map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
+end
 
--- telescope
-keymap.set("n", "<localleader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
-keymap.set("n", "<localleader>fs", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
-keymap.set("n", "<localleader>fc", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
-keymap.set("n", "<localleader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
-keymap.set("n", "<localleader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
+-- floating terminal
+map("n", "<leader>ft", function() Util.float_term(nil, { cwd = Util.get_root() }) end, { desc = "Terminal (root dir)" })
+map("n", "<leader>fT", function() Util.float_term() end, { desc = "Terminal (cwd)" })
+map("t", "<esc><esc>", "<c-\\><c-n>", {desc = "Enter Normal Mode"})
 
--- telescope git commands
-keymap.set("n", "<localleader>gc", "<cmd>Telescope git_commits<cr>") -- list all git commits (use <cr> to checkout) ["gc" for git commits]
-keymap.set("n", "<localleader>gfc", "<cmd>Telescope git_bcommits<cr>") -- list git commits for current file/buffer (use <cr> to checkout) ["gfc" for git file commits]
-keymap.set("n", "<localleader>gb", "<cmd>Telescope git_branches<cr>") -- list git branches (use <cr> to checkout) ["gb" for git branch]
-keymap.set("n", "<localleader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview ["gs" for git status]
+-- windows
+map("n", "<leader>ww", "<C-W>p", { desc = "Other window" })
+map("n", "<leader>wd", "<C-W>c", { desc = "Delete window" })
+map("n", "<leader>w-", "<C-W>s", { desc = "Split window below" })
+map("n", "<leader>w|", "<C-W>v", { desc = "Split window right" })
+map("n", "<leader>-", "<C-W>s", { desc = "Split window below" })
+map("n", "<leader>|", "<C-W>v", { desc = "Split window right" })
 
--- restart lsp server
-keymap.set("n", "<localleader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
-
--- 將下一行的文字「連到本行尾」
-vim.keymap.set("n", "J", "mzJ`z")
-
--- 螢幕翻頁捲動時，總是居中
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
--- 執行「搜尋」功能時，找到的文字所在行，總是放在螢幕居中位置
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
--- greatest remap ever
-vim.keymap.set("x", "<localleader>p", [["_dP]])
-vim.keymap.set("x", "<leader>p", [["_dP]])
-vim.keymap.set("x", "P", "viwp")
-
--- next greatest remap ever : asbjornHaland
-vim.keymap.set({ "n", "v" }, "<localleader>y", [["+y]])
-vim.keymap.set("n", "<localleader>Y", [["+Y]])
-
-vim.keymap.set({ "n", "v" }, "<localleader>d", [["_d]])
-
--- delete without yanking
--- Note: "_ is the `blackhole register` (ref: `:help "_` )
-vim.keymap.set("n", "<localleader>d", [["_d]])
-vim.keymap.set("v", "<localleader>d", [["_d]])
--- replace currently selected text with default register
--- without yanking it
-vim.keymap.set("v", "<localleader>p", [["_dP]])
--- bar
--- barfoo
--- bar
--- bar
----------------------------------------------------------
--- 禁用插件的映射
-vim.g.plugin_disable_mappings = 1
-
--- 使用自己的映射
-vim.api.nvim_set_keymap('n', 'ys', '<Plug>Ysurround', {})
+-- tabs
+map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
+map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
+map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })

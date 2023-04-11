@@ -1,92 +1,56 @@
--- options.lua
+-- This file is automatically loaded by plugins.config
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 local opt = vim.opt
-local exec = vim.api.nvim_exec -- execute Vimscript
-local set = vim.opt -- global options
-local cmd = vim.cmd -- execute Vim commands
--- local fn    = vim.fn            -- call Vim functions
--- local g     = vim.g             -- global variables
--- local b     = vim.bo            -- buffer-scoped options
--- local w     = vim.wo            -- windows-scoped options
 
-set.wrap = false -- don't automatically wrap on load
-set.showmatch = true -- show the matching part of the pair for [] {} and ()
-set.cursorline = true -- highlight current line
-set.incsearch = true -- incremental search
-set.hlsearch = false -- highlighted search results
-set.ignorecase = true -- ignore case sensetive while searching
-set.smartcase = true
-set.scrolloff = 1 -- when scrolling, keep cursor 1 lines away from screen border
-set.sidescrolloff = 2 -- keep 30 columns visible left and right of the cursor at all times
-set.backspace = "indent,start,eol" -- make backspace behave like normal again
-set.mouse = "a" -- turn on mouse interaction
-set.updatetime = 500 -- CursorHold interval
-set.autoindent = true -- maintain indent of current line
-set.shiftround = true
-set.splitbelow = true -- open horizontal splits below current window
-set.splitright = true -- open vertical splits to the right of the current window
-set.laststatus = 2 -- always show status line
--- set.colorcolumn = "79"        -- vertical word limit line
+opt.autowrite = true -- Enable auto write
+opt.clipboard = "unnamedplus" -- Sync with system clipboard
+opt.completeopt = "menu,menuone,noselect"
+opt.conceallevel = 3 -- Hide * markup for bold and italic
+opt.confirm = true -- Confirm to save changes before exiting modified buffer
+opt.cursorline = true -- Enable highlighting of the current line
+opt.expandtab = true -- Use spaces instead of tabs
+opt.formatoptions = "jcroqlnt" -- tcqj
+opt.grepformat = "%f:%l:%c:%m"
+opt.grepprg = "rg --vimgrep"
+opt.ignorecase = true -- Ignore case
+opt.inccommand = "nosplit" -- preview incremental substitute
+opt.laststatus = 0
+opt.list = true -- Show some invisible characters (tabs...
+opt.mouse = "a" -- Enable mouse mode
+opt.number = true -- Print line number
+opt.pumblend = 10 -- Popup blend
+opt.pumheight = 10 -- Maximum number of entries in a popup
+opt.relativenumber = true -- Relative line numbers
+opt.scrolloff = 4 -- Lines of context
+opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
+opt.shiftround = true -- Round indent
+opt.shiftwidth = 2 -- Size of an indent
+opt.shortmess:append { W = true, I = true, c = true }
+opt.showmode = false -- Dont show mode since we have a statusline
+opt.sidescrolloff = 8 -- Columns of context
+opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
+opt.smartcase = true -- Don't ignore case with capitals
+opt.smartindent = true -- Insert indents automatically
+opt.spelllang = { "en" }
+opt.splitbelow = true -- Put new windows below current
+opt.splitright = true -- Put new windows right of current
+opt.tabstop = 2 -- Number of spaces tabs count for
+opt.termguicolors = true -- True color support
+opt.timeoutlen = 300
+opt.undofile = true
+opt.undolevels = 10000
+opt.updatetime = 200 -- Save swap file and trigger CursorHold
+opt.wildmode = "longest:full,full" -- Command-line completion mode
+opt.winminwidth = 5 -- Minimum window width
+opt.wrap = false -- Disable line wrap
 
-set.hidden = true -- allows you to hide buffers with unsaved changes without being prompted
-set.inccommand = "split" -- live preview of :s results
--- set.shell = 'zsh' -- shell to use for `!`, `:!`, `system()` etc.
+if vim.fn.has("nvim-0.9.0") == 1 then
+  opt.splitkeep = "screen"
+  opt.shortmess:append { C = true }
+end
 
--- patterns to ignore during file-navigation
-set.wildignore = set.wildignore + "*.o,*.rej,*.so"
--- faster scrolling
-set.lazyredraw = true
--- Save undo history
-vim.cmd([[set undofile]])
-
--- Disable swap file
-opt.swapfile = false
-opt.backup = false
--- opt.writebackup = false
-
--- make buffer modifiable
-opt.modifiable = true
-
--- line numbers
-opt.relativenumber = true -- show relative line numbers
-opt.number = true -- shows absolute line number on cursor line (when relative number is on)
-
--- tabs & indentation
--- opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
--- opt.shiftwidth = 2 -- 2 spaces for indent width
--- opt.expandtab = true -- expand tab to spaces
--- opt.autoindent = true -- copy indent from current line when starting new one
-
--- line wrapping
-opt.wrap = false -- disable line wrapping
-
--- search settings
-opt.ignorecase = true -- ignore case when searching
-opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
-
--- cursor line
-opt.cursorline = true -- highlight the current cursor line
-
--- appearance
-
--- turn on termguicolors for nightfly colorscheme to work
--- (have to use iterm2 or any other true color terminal)
-opt.termguicolors = true
-opt.background = "dark" -- colorschemes that can be light or dark will be made dark
-opt.signcolumn = "yes" -- show sign column so that text doesn't shift
-
--- backspace
-opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
-
--- clipboard
-opt.clipboard:append("unnamedplus") -- use system clipboard as default register
-
--- split windows
-opt.splitright = true -- split vertical window to the right
-opt.splitbelow = true -- split horizontal window to the bottom
-
----------------------------------------------------------------------------------
-opt.iskeyword:append("-") -- consider string-string as whole word
-
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
