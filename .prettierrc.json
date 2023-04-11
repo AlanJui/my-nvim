@@ -1,0 +1,55 @@
+{
+  "tabWidth": 2,
+  "semi": false,
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": [
+        "*.uml",
+        "*.puml",
+        "*.tex"
+      ],
+      "options": {
+        "tabWidth": 4
+      }
+    },
+    {
+      "files": "*.md",
+      "options": {
+        "proseWrap": "always",
+        "printWidth": 80
+      }
+    },
+    {
+      "files": "*.json",
+      "options": {
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": [
+        "*.py",
+      ],
+      "options": {
+        "tabWidth": 4
+        "printWidth": 80
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "options": {
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": [
+        "*.css"
+      ],
+      "options": {
+        "tabWidth": 4
+      }
+    }
+  ]
+}

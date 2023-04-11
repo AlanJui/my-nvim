@@ -1,18 +1,19 @@
--------------------------------------------------------------------------------
+-------------------------------------------------------------------------
 -- Disabling all file types can be done by setting the
 -- special key "*".  File types can then be turned back
 -- on individually.
--------------------------------------------------------------------------------
+-------------------------------------------------------------------------
 local ok = pcall(require, "copilot")
-if not ok then
-	return
-end
+if not ok then return end
+
+-- 禁用內部文件類型限制
+-- vim.g.copilot_internal_filetypes = {}
 
 -- use this table to disable/enable filetypes
 -- 正向表列：每種程式語語，均需 Copilot 協助；不需使用之程式語言，則一一條列。
 vim.g.copilot_filetypes = {
-	xml = false,
-	markdown = false,
+    xml = false,
+    markdown = true,
 }
 --
 -- since most are enabled by default you can turn them off
@@ -25,19 +26,13 @@ vim.g.copilot_filetypes = {
 -- 	lua = true,
 -- }
 
--------------------------------------------------------------------------------
+-------------------------------------------------------------------------
 -- Default Keymap:
 -- <Tab>        Accept the suggestion
 -- <Ctrl-]>	    Dismiss the current suggestion
 -- <Alt-[>	    Cycle to the next suggestion
 -- <Alt-]>	    Cycle to the previous suggestionk
--------------------------------------------------------------------------------
-
--- imap <silent><script><expr> <C-a> copilot#Accept("\<CR>")
--- vim.g.copilot_no_tab_map = true
--- vim.keymap.set.keymap("i", "<C-a>", ":copilot#Accept('\\<CR>')<CR>", { silent = true })
--- vim.g.copilot_no_tab_map = true
--- vim.api.nvim_set_keymap("i", "<C-e>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+-- <C-]>                   Dismiss the current suggestion.
 --
 -- <C-]>                   Dismiss the current suggestion.
 -- <Plug>(copilot-dismiss)
@@ -49,5 +44,25 @@ vim.g.copilot_filetypes = {
 --                                                 *copilot-i_ALT-[*
 -- <M-[>                   Cycle to the previous suggestion.
 -- <Plug>(copilot-previous)
+-------------------------------------------------------------------------
 
-vim.cmd([[highlight CopilotSuggestion guifg=#555557 ctermfg=8]])
+-- Keymap
+-- vim.g.copilot_no_tab_map = true
+-- vim.g.copilot_no_tab_map = false
+-- Syntax Highlighting
+-- vim.cmd([[highlight CopilotSuggestion guifg=#555557 ctermfg=8]])
+-- vim.keymap.set.keymap("i", "<C-y>", ":copilot#Accept('\\<CR>')<CR>", { silent = true })
+-- vim.api.nvim_set_keymap("i", "<C-e>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+-- vim.cmd([[
+-- let g:copilot_no_tab_map = v:true
+-- " Keymap
+-- imap <silent><script><expr> <C-y> copilot#Accept("\<CR>")
+-- imap <silent> <C-]> <Plug>(copilot-dismiss)
+-- imap <silent> <M-]> <Plug>(copilot-next)
+-- imap <silent> <M-[> <Plug>(copilot-previous)
+-- imap <silent> <M-\> <Plug>(copilot-suggest)
+--
+-- " Syntax Highlighting
+-- highlight CopilotSuggestion guifg=#555557 ctermfg=8
+-- ]])
+vim.cmd[[highlight CopilotSuggestion ctermfg=8 guifg=white guibg=#5c6370]]

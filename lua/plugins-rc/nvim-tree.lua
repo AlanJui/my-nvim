@@ -1,5 +1,5 @@
 -- Plugin configuration: nvim-tree.lua
-local status, nvim_tree = pcall(require, 'nvim-tree')
+local status, nvim_tree = pcall(require, "nvim-tree")
 if not status then
     return
 end
@@ -32,15 +32,18 @@ nvim_tree.setup({
             error = "",
         },
     },
-    -- update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file
+    -- update the focused file on `BufEnter`, un-collapses the folders recursively
+    -- until it finds the file
     update_focused_file = {
         -- enables the feature
         enable = false,
-        -- update the root directory of the tree to the one of the folder containing the file if the file is not under the current root directory
-        -- only relevant when `update_focused_file.enable` is true
+        -- update the root directory of the tree to the one of the folder containing
+        -- the file if the file is not under the current root directory only relevant
+        -- when `update_focused_file.enable` is true
         update_cwd = false,
-        -- list of buffer names / filetypes that will not update the cwd if the file isn't found under the current root directory
-        -- only relevant when `update_focused_file.update_cwd` is true and `update_focused_file.enable` is true
+        -- list of buffer names / filetypes that will not update the cwd if the file
+        -- isn't found under the current root directory only relevant when
+        -- `update_focused_file.update_cwd` is true and `update_focused_file.enable` is true
         ignore_list = {},
     },
     -- configuration options for the system open command (`s` in the tree by default)
@@ -85,28 +88,28 @@ nvim_tree.setup({
 -- vim.g.nvim_tree_width_allow_resize = true
 -- vim.g.nvim_tree_ignore = { '.git', 'node_modules', '.cache' }
 
-vim.cmd [[
+vim.cmd([[
 let g:nvim_tree_icons = {
-    \ 'default': '',
-    \ 'symlink': '',
-    \ 'git': {
-    \   'unstaged': "⁉",
-    \   'staged': "✓",
-    \   'unmerged': "",
-    \   'renamed': "➜",
-    \   'untracked': "★",
-    \   'deleted': "",
-    \   'ignored': "◌"
-    \   },
-    \ 'folder': {
-    \   'arrow_open': "",
-    \   'arrow_closed': "",
-    \   'default': "",
-    \   'open': "",
-    \   'empty': "",
-    \   'empty_open': "",
-    \   'symlink': "",
-    \   'symlink_open': "",
-    \   }
-    \ }
-]]
+\ 'default': '',
+\ 'symlink': '',
+\ 'git': {
+\   'unstaged': "⁉",
+\   'staged': "✓",
+\   'unmerged': "",
+\   'renamed': "➜",
+\   'untracked': "★",
+\   'deleted': "",
+\   'ignored': "◌"
+\   },
+\ 'folder': {
+\   'arrow_open': "",
+\   'arrow_closed': "",
+\   'default': "",
+\   'open': "",
+\   'empty': "",
+\   'empty_open': "",
+\   'symlink': "",
+\   'symlink_open': "",
+\   }
+\ }
+]])

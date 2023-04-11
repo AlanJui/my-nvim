@@ -5,7 +5,7 @@
 -- This makes code actions both discoverable and efficient,
 -- as code actions can be available even when there are no
 -- visible diagnostics (warning, information, hints etc.).
-local nvim_light_bulb = safe_require('nvim-lightbulb')
+local nvim_light_bulb = _G.safe_require("nvim-lightbulb")
 if not nvim_light_bulb then
     return
 end
@@ -13,7 +13,7 @@ end
 -- Configuration for Available options
 -- Showing defaults
 -- require'nvim-lightbulb'.update_lightbulb {
-nvim_light_bulb.update_lightbulb {
+nvim_light_bulb.update_lightbulb({
     -- LSP client names to ignore
     -- Example: {"sumneko_lua", "null-ls"}
     ignore = {},
@@ -54,21 +54,18 @@ nvim_light_bulb.update_lightbulb {
         -- Text to provide when code actions are available
         text = "💡",
         -- Text to provide when no actions are available
-        text_unavailable = ""
-    }
-}
+        text_unavailable = "",
+    },
+})
 
 -- Modify the lightbulb sign:
 --   Fill text, texthl, linehl, and numhl according to your preferences
-vim.fn.sign_define(
-    'LightBulbSign',
-    {
-        text = "",
-        texthl = "",
-        linehl="",
-        numhl=""
-    }
-)
+vim.fn.sign_define("LightBulbSign", {
+    text = "",
+    texthl = "",
+    linehl = "",
+    numhl = "",
+})
 
 -- Modify the lightbulb float window and virtual text colors
 --   Fill ctermfg, ctermbg, guifg, guibg according to your preferences
@@ -81,8 +78,8 @@ vim.fn.sign_define(
 -- augroup END
 -- ]])
 -- Lua
-vim.api.nvim_command('highlight LightBulbFloatWin ctermfg=0 ctermbg=251 guifg=#242424 guibg=#cdcdcd')
-vim.api.nvim_command('highlight LightBulbVirtualText ctermfg=239 ctermbg=251 guifg=#666666 guibg=#cdcdcd')
+vim.api.nvim_command("highlight LightBulbFloatWin ctermfg=0 ctermbg=251 guifg=#242424 guibg=#cdcdcd")
+vim.api.nvim_command("highlight LightBulbVirtualText ctermfg=239 ctermbg=251 guifg=#666666 guibg=#cdcdcd")
 
 -- Status-line text usage
-require'nvim-lightbulb'.get_status_text()
+require("nvim-lightbulb").get_status_text()

@@ -19,159 +19,173 @@
 --      :lua require'dap'.repl.open()  or
 --      using the widget UI
 ------------------------------------------------------------------
-local dap = safe_require("dap")
-local dapui = safe_require("dapui")
-local mason_nvim_dap = safe_require("mason-nvim-dap")
+local dap = _G.safe_require("dap")
+local neodev = _G.safe_require("neodev")
+local dapui = _G.safe_require("dapui")
+local mason_nvim_dap = _G.safe_require("mason-nvim-dap")
 
-if not dap or not dapui or not mason_nvim_dap then
-	return
+if not dap or not neodev or not dapui or not mason_nvim_dap then
+    return
 end
 
 local function setup_style_of_breakpoint()
-	-- error
-	vim.fn.sign_define("DapBreakpoint", {
-		text = "🟥",
-		texthl = "LspDiagnosticsSignError",
-		linehl = "",
-		numhl = "",
-	})
-	-- stopped
-	vim.fn.sign_define("DapStopped", {
-		text = "⭐️",
-		texthl = "LspDiagnosticsSignInformation",
-		linehl = "DiagnosticUnderlineInfo",
-		numhl = "LspDiagnosticsSignInformation",
-	})
-	-- rejected
-	vim.fn.sign_define("DapBreakpointRejected", {
-		text = "",
-		texthl = "LspDiagnosticsSignHint",
-		linehl = "",
-		numhl = "",
-	})
+    -- error
+    vim.fn.sign_define("DapBreakpoint", {
+        text = "🟥",
+        texthl = "LspDiagnosticsSignError",
+        linehl = "",
+        numhl = "",
+    })
+    -- stopped
+    vim.fn.sign_define("DapStopped", {
+        text = "⭐️",
+        texthl = "LspDiagnosticsSignInformation",
+        linehl = "DiagnosticUnderlineInfo",
+        numhl = "LspDiagnosticsSignInformation",
+    })
+    -- rejected
+    vim.fn.sign_define("DapBreakpointRejected", {
+        text = "",
+        texthl = "LspDiagnosticsSignHint",
+        linehl = "",
+        numhl = "",
+    })
 end
 
 -- 設定操作介面
 local function setup_debug_ui()
-	-- 設定「除錯接合器（Debug Adapter）」，可顯示「變數」內容值。
-	require("nvim-dap-virtual-text").setup({ commented = true })
+    -- Use neodev.nvim to enable type checking for nvim-dap-ui to get type checking,
+    -- autocompletion, and documentation
+    -- To enable type checking for nvim-dap-ui
+    neodev.setup({
+        libary = {
+            plugins = { "nvim-dap-ui" },
+            types = true,
+        },
+    })
+    -- 設定「除錯接合器（Debug Adapter）」，可顯示「變數」內容值。
+    require("nvim-dap-virtual-text").setup({ commented = true })
 
-	-- 設定「除錯器」的「使用者介面」在「右側」顯示
-	dapui.setup({
-		icons = { expanded = "▾", collapsed = "▸" },
-		mappings = {
-			-- Use a table to apply multiple mappings
-			expand = { "<CR>", "<2-LeftMouse>" },
-			open = "o",
-			remove = "d",
-			edit = "e",
-			repl = "r",
-			toggle = "t",
-		},
-		-- Expand lines larger than the window
-		-- Requires >= 0.7
-		expand_lines = vim.fn.has("nvim-0.7"),
-		-- Layouts define sections of the screen to place windows.
-		-- The position can be "left", "right", "top" or "bottom".
-		-- The size specifies the height/width depending on position. It can be an Int
-		-- or a Float. Integer specifies height/width directly (i.e. 20 lines/columns) while
-		-- Float value specifies percentage (i.e. 0.3 - 30% of available lines/columns)
-		-- Elements are the elements shown in the layout (in order).
-		-- Layouts are opened in order so that earlier layouts take priority in window sizing.
-		layouts = {
-			{
-				elements = {
-					-- Elements can be strings or table with id and size keys.
-					{ id = "scopes", size = 0.25 },
-					"breakpoints",
-					"stacks",
-					"watches",
-				},
-				size = 40, -- 40 columns
-				position = "left",
-			},
-			{
-				elements = { "repl", "console" },
-				size = 0.25, -- 25% of total lines
-				position = "bottom",
-			},
-		},
-		controls = {
-			-- Requires Neovim nightly (or 0.8 when released)
-			enabled = true,
-			-- Display controls in this element
-			element = "repl",
-			icons = {
-				pause = "",
-				play = "",
-				step_into = "",
-				step_over = "",
-				step_out = "",
-				step_back = "",
-				run_last = "",
-				terminate = "",
-			},
-		},
-		floating = {
-			max_height = nil, -- These can be integers or a float between 0 and 1.
-			max_width = nil, -- Floats will be treated as percentage of your screen.
-			border = "single", -- Border style. Can be "single", "double" or "rounded"
-			mappings = { close = { "q", "<Esc>" } },
-		},
-		windows = { indent = 1 },
-		render = {
-			max_type_length = nil, -- Can be integer or nil.
-		},
-	})
+    -- 完成「初始作業」後，便顯示使用者介面
+    dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+    end
 
-	-- 完成「初始作業」後，便顯示使用者介面
-	dap.listeners.after.event_initialized["dapui_config"] = function()
-		dapui.open()
-	end
+    -- 值「終結作業」時，便關閉使用者介面
+    dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+    end
 
-	-- 值「終結作業」時，便關閉使用者介面
-	dap.listeners.before.event_terminated["dapui_config"] = function()
-		dapui.close()
-	end
+    -- 值「結束作業」時，便關閉使用者介面
+    dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+    end
 
-	-- 值「結束作業」時，便關閉使用者介面
-	dap.listeners.before.event_exited["dapui_config"] = function()
-		dapui.close()
-	end
+    -- 設定「除錯器」的「使用者介面」在「右側」顯示
+    dapui.setup({})
 end
 
 -- 各程式語言「除錯接合器」載入作業
 local function load_language_specific_dap()
-	require("debugger/adapter/lua-dap").setup()
-	require("debugger/adapter/python-dap").setup()
-	require("debugger/adapter/vscode-nodejs-dap").setup()
+    require("debugger/connector/lua-dap").setup()
+    -- require("debugger/connector/js-dap").setup()
+    -- require("debugger/connector/mason-python-dap").setup()
+    -- require("debugger/connector/vscode-nodejs-dap").setup()
 end
 
 -----------------------------------------------------------
 -- Main processes
 -----------------------------------------------------------
 
--- 務必確認以下的設定指令，須依如下順序執行
--- require("mason").setup(...)
--- require("mason-nvim-dap").setup(...),
+-- 務必依如下順序執行
+-- require("mason").setup({...})
+-- require("mason-nvim-dap").setup({
+--     ensure_installed = { ... },
+--     automatic_setup = false,
+-- })
+-- require 'mason-nvim-dap'.setup_handlers({ ... })
+
+--
+-- main processes
+--
+-- load_language_specific_dap()
+
+local nvim_config = _G.GetConfig()
+local debugpy_path = nvim_config["python"]["debugpy_path"]
+local venv_python_path = nvim_config["python"]["venv_python_path"]
+
 mason_nvim_dap.setup({
-	ensure_installed = {
-		"python",
-		"node2",
-	},
-	automatic_setup = true,
+    ensure_installed = {
+        "python",
+        "node2",
+        "js",
+        "bash",
+    },
+    handlers = {
+        function(config)
+            -- all sources with no handler get passed here
+
+            -- Keep original functionality
+            mason_nvim_dap.default_setup(config)
+        end,
+        python = function(config)
+            config.adapters = {
+                type = "executable",
+                command = debugpy_path,
+                args = {
+                    "-m",
+                    "debugpy.adapter",
+                },
+            }
+            config.configurations = {
+                {
+                    -- The first three options are required by nvim-dap
+                    type = "python",
+                    request = "launch",
+                    name = "Python: Launch file",
+                    pythonPath = venv_python_path,
+                    program = "${file}",
+                },
+                {
+                    type = "python",
+                    request = "launch",
+                    name = "Python: Launch Django Server",
+                    pythonPath = venv_python_path,
+                    cwd = "${workspaceFolder}",
+                    program = "${workspaceFolder}/manage.py",
+                    args = {
+                        "runserver",
+                        "--noreload",
+                    },
+                    console = "integratedTerminal",
+                    justMyCode = true,
+                },
+                {
+                    type = "python",
+                    request = "launch",
+                    name = "Python: Django Debug Single Test",
+                    pythonPath = venv_python_path,
+                    program = "${workspaceFolder}/manage.py",
+                    args = {
+                        "test",
+                        "${relativeFileDirname}",
+                    },
+                    console = "integratedTerminal",
+                    django = true,
+                },
+            }
+            mason_nvim_dap.default_setup(config)
+        end,
+        node2 = function(config)
+            config.adapters = {
+                type = "executable",
+                command = vim.fn.exepath("node-debug2-adapter"),
+            }
+            mason_nvim_dap.default_setup(config)
+        end,
+    },
 })
 
--- mason_nvim_dap.setup_handlers({
--- 	function(source_name)
--- 		-- all sources with no handler get passed here
---
--- 		-- Keep original functionality of `automatic_setup = true`
--- 		require("mason-nvim-dap.automatic_setup")(source_name)
--- 	end,
--- })
-
-load_language_specific_dap()
 setup_style_of_breakpoint()
 setup_debug_ui()
 require("debugger/keymaps").setup()

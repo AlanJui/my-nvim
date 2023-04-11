@@ -4,4 +4,11 @@ export MY_CONFIG_DIR="$HOME/.config/$MY_NVIM"
 export MY_RUNTIME_DIR="$HOME/.local/share/$MY_NVIM"
 # export DEBUG=true
 
-exec nvim -u "$MY_CONFIG_DIR/init.lua" --cmd "luafile $MY_CONFIG_DIR/my-nvim-rtp.lua" "$@"
+export XDG_CONFIG_HOME="$HOME/.config/my-nvim"
+export XDG_DATA_HOME="$HOME/.local/share/my-nvim"
+
+# XDG_CONFIG_HOME=$HOME/.config/my-nvim XDG_DATA_HOME=$HOME/.local/share/my-nvim nvim
+
+exec nvim -u "$MY_CONFIG_DIR/init.lua" --cmd "luafile $MY_CONFIG_DIR/lua/setup-rtp.lua" "$@"
+# exec nvim -u "$MY_CONFIG_DIR/init.lua" "$@"
+

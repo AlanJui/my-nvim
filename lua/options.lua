@@ -46,24 +46,6 @@ opt.backup = false
 -- make buffer modifiable
 opt.modifiable = true
 
--- highlight on yank
-exec(
-	[[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=500, on_visual=true}
-  augroup end
-]],
-	false
-)
-
--- jump to the last position when reopening a file
-cmd([[
-if has("autocmd")
-    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-endif
-]])
-
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
@@ -101,12 +83,6 @@ opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 -- split windows
 opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
-
--- folding
-opt.foldmethod = "indent"
-opt.foldnestmax = 10
-opt.foldenable = true
-opt.foldlevel = 2
 
 ---------------------------------------------------------------------------------
 opt.iskeyword:append("-") -- consider string-string as whole word

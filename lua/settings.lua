@@ -2,39 +2,24 @@
 -- Neovim options
 -----------------------------------------------------------
 -- Configurations of Neovim
-vim.cmd [[
+vim.cmd([[
 let g:tex_flavor = "latex"
-]]
+]])
 
--- Folding Text
--- vim.cmd [[
--- autocmd BufWinLeave *.* mkview
--- autocmd BufWinEnter *.* silent loadview
--- ]]
+-----------------------------------------------------------
+-- folding
+-- opt.foldmethod = "indent"
+-- opt.foldnestmax = 10
+-- opt.foldenable = true
+-- opt.foldlevel = 2
 
--- Django
-vim.cmd [[
-autocmd FileType htmldjango setlocal shiftwidth=4 tabstop=4 softtabstop=4
-autocmd FileType htmldjango inoremap {{ {{  }}<left><left><left>
-autocmd FileType htmldjango inoremap {% {%  %}<left><left><left>
-autocmd FileType htmldjango inoremap {# {#  #}<left><left><left>
-
-augroup filetypedetect
-  " removes current htmldjango detection located at $VIMRUNTIME/filetype.vim
-  autocmd! BufNewFile,BufRead *.html
-  autocmd  BufNewFile,BufRead *.html call FThtml()
-
-  func! FThtml()
-    let n = 1
-    while n < 10 && n < line("$")
-        if getline(n) =~ '{%\|{{\|{#'
-        setf htmldjango
-        return
-      endif
-      let n = n + 1
-    endwhile
-    "setf html
-    setf html
-  endfunc
-augroup END
-]]
+-- 打開文件時禁用 Neovim 的折疊功能，
+-- vim.api.nvim_exec([[
+--   autocmd BufRead,BufNewFile * setlocal nofoldenable
+-- ]], false)
+vim.api.nvim_exec(
+    [[
+        autocmd BufRead,BufNewFile *.lua setlocal nofoldenable
+    ]],
+    false
+)

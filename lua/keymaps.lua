@@ -1,9 +1,7 @@
 --------------------------------------------------------------------
 -- keymap.lua
 --------------------------------------------------------------------
-if DEBUG then
-	print("<< DEBUG: Loading keymaps.lua >>")
-end
+if DEBUG then print("<< DEBUG: Loading keymaps.lua >>") end
 
 -- set leader key to space
 vim.g.mapleader = " "
@@ -21,9 +19,9 @@ keymap.set("i", "<c-s>", "<Esc>:w<CR>a", {})
 -- Line editting
 --------------------------------------------------------------------
 -- Editting on Insert Mode
-keymap.set("i", "<M-,>", "<Right>,")
-keymap.set("i", "<M-.>", "<Right>.")
-keymap.set("i", "<M-:>", "<Right>:")
+-- keymap.set("i", "<M-,>", "<Right>,")
+-- keymap.set("i", "<M-.>", "<Right>.")
+-- keymap.set("i", "<M-:>", "<Right>:")
 keymap.set("i", "<M-,><M-,>", "<Esc>A,")
 keymap.set("i", "<M-.><M-.>", "<Esc>A.")
 keymap.set("i", "<M-:><M-:>", "<Esc>A:")
@@ -37,7 +35,7 @@ keymap.set("n", "<M-<>", "V<<Esc>")
 keymap.set("i", "<C-CR>", "<Esc>A<Esc>jddO")
 
 -- Insert line
-keymap.set("i", "<M-o>", "<Esc>oi")
+keymap.set("i", "<M-o>", "<Esc>o")
 keymap.set("i", "<M-n>", "<Esc>jO")
 keymap.set("i", "<M-i>", "<Esc>O<Esc>jddkA")
 keymap.set("n", "<M-i>", "O")
@@ -183,3 +181,9 @@ vim.keymap.set("v", "<localleader>p", [["_dP]])
 -- barfoo
 -- bar
 -- bar
+---------------------------------------------------------
+-- 禁用插件的映射
+vim.g.plugin_disable_mappings = 1
+
+-- 使用自己的映射
+vim.api.nvim_set_keymap('n', 'ys', '<Plug>Ysurround', {})
