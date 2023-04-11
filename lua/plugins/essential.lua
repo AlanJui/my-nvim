@@ -6,15 +6,6 @@ return {
     "nvim-lua/plenary.nvim",
     -- Tools to migrating init.vim to init.lua
     "norcalli/nvim_utils",
-    -- vs-code like icons
-    "nvim-tree/nvim-web-devicons",
-    -- File/Flolders explorer:nvim-tree
-    {
-        "kyazdani42/nvim-tree.lua",
-        dependencies = {
-            "nvim-tree/nvim-web-devicons", -- optional, for file icon
-        },
-    },
     -----------------------------------------------------------
     -- Treesitter: for better syntax
     -----------------------------------------------------------

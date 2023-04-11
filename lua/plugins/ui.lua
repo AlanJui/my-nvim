@@ -2,8 +2,6 @@ return {
     -----------------------------------------------------------
     -- User Interface
     -----------------------------------------------------------
-    -- Screen Navigation
-    { "folke/which-key.nvim", lazy = true },
     -- Quick switch between files
     "ThePrimeagen/harpoon",
     -- maximizes and restores current window
