@@ -1,8 +1,11 @@
-local home_dir = os.getenv("HOME")
-local my_nvim = os.getenv("MY_NVIM")
-local config_dir = home_dir .. "/.config/" .. my_nvim
-local runtime_dir = home_dir .. "/.local/share/" .. my_nvim
-local lazy_dir = runtime_dir .. "/lazy"
+local my_nvim = os.getenv("MY_NVIM") or "nvim"
+local lazy_dir = vim.fn.stdpath("data") .. "/lazy"   
+
+if my_nvim ~= "nvim" then
+  local home_dir = os.getenv("HOME")
+  local runtime_dir = home_dir .. "/.local/share/" .. my_nvim
+  lazy_dir = runtime_dir .. "/lazy"
+end
 local lazypath = lazy_dir .. "/lazy.nvim"
 
 if vim.fn.isdirectory(lazypath) == 0 then
